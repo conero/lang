@@ -1,0 +1,151 @@
+    												2016年4月16日13:40:23@-
+分类
+	1.机器语言、汇编语言、高级语言、脚本语言
+汇编语言			(来源		百度词条 http://baike.baidu.com/link?url=IPXPqcZ7iL9oZ3HlfOrHOsPZsO-Uf13wjTu5CaQfvPk0sYV0Mv6XGzsHqxIcgxXwMEKdI3LzdZQVf5wjJHndWa)
+	特点
+		面向机器，通常是为特定的计算机或系列计算机专门设计的。不同的处理器有不同的汇编语言语法和编译器，编译的程序无法在不同的处理器上执行，可移植性差；
+	优点	
+		1、因为用汇编语言设计的程序最终被转换成机器指令，故能够保持机器语言的一致性，直接、简捷，并能像机器指令一样访问、控制计算机的各种硬件设备，如磁盘、存储器、CPU、I/O端口等。使用汇编语言，可以访问所有能够被访问的软、硬件资源。
+		2、目标代码简短，占用内存少，执行速度快，是高效的程序设计语言，经常与高级语言配合使用，以改善程序的执行速度和效率，弥补高级语言在硬件控制方面的不足，应用十分广泛。
+	编译和直译
+		非脚本语言
+			编写-编译-链接-运行
+			edit-compile-link-run
+		脚本语言  =》  解释器
+			解释性的语言
+			脚本语言不需要编译，可以直接用，由解释器来负责解释。
+			分为  独立型和嵌入型
+			分类方式2
+				工作控制语言和shell
+				GUI 脚本
+				应用程序定制的脚本语言
+				WEB编程脚本
+				文本处理语言
+				通用动态语言
+				扩展/可嵌入语言
+			Python,vbscript,javascript,installshield script,ActionScript。Windows下的批处理，Unix下的sell
+			特点：
+				快速开发，容易部署，同已有技术的集成，易学易用，动态代码
+			早期的脚本语言经常被称为批处理语言或工作控制语言。一个脚本通常是解释运行而非编译。虽然许多脚本语言都超越了计算机简单任务自动化的领域，成熟到可以编写精巧的程序，但仍然还是被称为脚本。几乎所有计算机系统的各个层次都有一种脚本语言。包括操作系统层，如计算机游戏，网络应用程序，文字处理文档，网络软件等。在许多方面，高级编程语言和脚本语言之间互相交叉，二者之间没有明确的界限。
+
+			作为通用的编程语言存在，如Perl、Python、Ruby等。由于“解释执行，内存管理，动态”等特性，它们仍被称为脚本语言。但它们已经用于应用程序编写，用户也不把它们看作脚本语言；
+高级语言
+	FORTRAN<-BASIC,C
+	BCPL<-B<-C
+	1954@FORTRAN
+	1964@BASIC	John G. Kemeny 与 Thomas E. Kurtz     FORTRAN简化
+C
+	1972@Dennis MacAlistair Ritchie 
+	系统编程语言。被广泛用于操作系统和编译器的开发。
+	发明顺序 BCPL<-B<-C.B开发Unix,后用C重写
+Objective-C
+	1980@Brad Cox  ,Stepstone公司
+	通常写作ObjC或OC和较少用的Objective C或Obj-C，是扩充C的面向对象编程语言。它主要使用于Mac OS X和GNUstep这两个使用OpenStep标准的系统，而在NeXTSTEP和OpenStep中它更是基本语言。
+	GCC与Clang含Objective-C的编译器，Objective-C可以在GCC以及Clang运作的系统上编译。
+	iOS操作系统,iOS应用程序,Mac OS X操作系统,Mac OSX 上的应用程序
+	Objective-C的流行归功于iPhone的成功。编写iPhone应用程序的主要编程语言是Objective-C。
+	Objective-C它完全兼容标准C语言（C++对C语言的兼容仅在于大部分语法上，而在ABI（Application Binary Interface）上，还需要使用extern "C"这种显式声明来与C函数进行兼容），而在此基础上增加了面向对象编程语言的特性以及Smalltalk消息机制。
+C++
+	1983@Bjarne Stroustrup    C++进一步扩充和完善了C语言，是一种面向对象的程序设计语言。C语言的超集
+	其编程领域众广，常用于系统开发，引擎开发等应用领域，是至今为止最受广大程序员受用的最强大编程语言之一,支持类：类、封装、重载等特性!
+	C/C++标准
+Java
+	1995@James Gosling, Sun Microsystems   现公司Oracle
+	Java平台
+	是一种可以撰写跨平台应用程序的面向对象的程序设计语言。Java 技术具有卓越的通用性、高效性、平台移植性和安全性，广泛应用于PC、数据中心、游戏控制台、科学超级计算机、移动电话和互联网，同时拥有全球最大的开发者专业社群。
+	历程：
+		1.Java最初被称为Oak，是1991年为消费类电子产品的嵌入式芯片而设计的
+		2.1995年更名为Java，并重新设计用于开发Internet应用程序
+	组成部分：	语法，文件格式，JVM虚拟机，java API
+	官网： http://java.com/ 
+Delphi
+	1995@Anders Hejlsberg    美国Borland（宝兰）公司 
+	是Windows平台下著名的快速应用程序开发工具(Rapid Application Development，简称RAD)
+	Delphi是一个集成开发环境（IDE），使用的核心是由传统Pascal语言发展而来的Object Pascal，以图形用户界面为开发环境，透过IDE、VCL工具与编译器，配合连结数据库的功能，构成一个以面向对象程序设计为中心的应用程序开发工具。
+C#
+	2000@Anders Hejlsberg 微软公司，用于同Java生态相竞争  C SHARP 
+	.NET Framework
+	C#是一种安全的、稳定的、简单的、优雅的，由C和C++衍生出来的面向对象的编程语言。它在继承C和C++强大功能的同时去掉了一些它们的复杂特性（例如没有宏以及不允许多重继承）。C#综合了VB简单的可视化操作和C++的高运行效率，以其强大的操作能力、优雅的语法风格、创新的语言特性和便捷的面向组件编程的支持成为.NET开发的首选语言。
+	C#语言取代了Visual J++，语言本身深受 Java、C 和 C++ 的影响。
+	借鉴了
+		Delphi 的一个特点，与COM（组件对象模型）是直接集成的
+		VB 综合了VB简单的可视化操作和C++的高运行效率
+		可调用由 C/C++ 编写的本机原生函数
+Go lang
+	2009@Google  Rob Pike
+	Go语言是谷歌2009发布的第二款开源编程语言。Go语言专门针对多处理器系统应用程序的编程进行了优化，使用Go编译的程序可以媲美C或C++代码的速度，而且更加安全、支持并行进程。
+	Go的目标是希望提升现有编程语言对程序库等依赖性(dependency)的管理，这些软件元素会被应用程序反复调用。由于存在并行编程模式，因此这一语言也被设计用来解决多处理器的任务。
+	通过创建新的编程语言，谷歌将继续拓展计算领域的各个方面，从而促进这些领域的发展。这同样也是谷歌开发Android操作系统、Chrome浏览器和Chrome OS的动机所在。
+swift
+	2014@			《=Object-C
+	Swift，苹果于2014年WWDC（苹果开发者大会）发布的新开发语言，可与Objective-C*共同运行于Mac OS和iOS平台，用于搭建基于苹果平台的应用程序。
+	Swift是一款易学易用的编程语言，而且它还是第一套具有与脚本语言同样的表现力和趣味性的系统编程语言。Swift的设计以安全为出发点，以避免各种常见的编程错误类别。[1] 
+	2015年12月4日，苹果公司宣布其Swift编程语言现在开放源代码。长600多页的 The Swift Programming Language[2]  可以在线免费下载。
+	Swift 结合了 C 和 Objective-C 的优点并且不受C兼容性的限制。
+	参考： C、JavaScript、Python、Java 
+~脚本语言
+Perl
+	1987@Larry Wall       
+	实际抽取与汇报语言Practical Extraction and Report Language
+	Perl借取了C、sed、awk、shell 脚本语言以及很多其他程序语言的特性，其中最重要的特性是它内部集成了正则表达式的功能，以及巨大的第三方代码库CPAN。Perl像C一样强大，像awk、sed等脚本描述语言一样方便，被Perl语言爱好者称之为“一种拥有各种语言功能的梦幻脚本语言”、“Unix 中的王牌工具”。
+	Unix 的脚本语言设计的，但是它早就移植到大多数其它操作系统里了
+Python
+	1989@Guido van Rossum		《=ABC lang
+	Python是纯粹的自由软件， 源代码和解释器CPython遵循 GPL(GNU General Public License)协议[1]  。
+	Python语法简洁清晰，特色之一是强制用空白符(white space)作为语句缩进。
+	Python具有丰富和强大的库。它常被昵称为胶水语言，能够把用其他语言制作的各种模块（尤其是C/C++）很轻松地联结在一起。常见的一种应用情形是，使用Python快速生成程序的原型（有时甚至是程序的最终界面），然后对其中[2]  有特别要求的部分，用更合适的语言改写，比如3D游戏中的图形渲染模块，性能要求特别高，就可以用C/C++重写，而后封装为Python可以调用的扩展类库。需要注意的是在您使用扩展类库时可能需要考虑平台问题，某些可能不提供跨平台的实现
+	设计哲学是“优雅”、“明确”、“简单”
+	应用场景
+		处理系统管理任务和Web编程。
+		国外用Python做科学计算的研究机构日益增多
+		系统编程，图形处理，数学处理，文本处理，数据库编程，网络编程，Web编程，多媒体应用，pymo引擎，黑客编程
+JavaScript			ECMAScript
+	1992@Brendan Eich  ,Netscape公司	Netscape、Mozilla基金会 
+	发展为ECMA 标准
+
+Lua	
+	1993@Roberto Ierusalimschy、Waldemar Celes 和 Luiz Henrique de Figueiredo所组成并于1993年开发  是巴西里约热内卢天主教大学（Pontifical Catholic University of Rio de Janeiro）里的一个研究小组
+	Lua是作为嵌入式脚本的最佳选择
+	其设计目的是为了嵌入应用程序中，从而为应用程序提供灵活的扩展和定制功能。
+	Lua由标准C编写而成，几乎在所有操作系统和平台上都可以编译，运行。Lua并没有提供强大的库，这是由它的定位决定的。所以Lua不适合作为开发独立应用程序的语言。Lua 有一个同时进行的JIT项目，提供在特定平台上的即时编译功能。
+	应用场景
+		游戏开发
+		独立应用脚本
+		Web 应用脚本
+		扩展和数据库插件如：MySQL Proxy 和 MySQL WorkBench
+		安全系统，如入侵检测系统
+PHP
+	1994@Rasmus Lerdorf
+	1997@年，任职于 Technion IIT公司的两个以色列程序设计师：Zeev Suraski 和 Andi Gutmans，重写了 PHP 的剖析器，成为 PHP 3 的基础
+	2000@在2000年5月22日，以Zend Engine 1.0为基础的PHP 4正式发布
+	刚刚开始是Rasmus Lerdorf为了要维护个人网页而制作的一个简单的用Perl语言编写的程序。
+	原始为Personal Home Page的缩写，已经正式更名为 "PHP: Hypertext Preprocessor"
+Ruby
+	1995@Yukihiro Matsumoto    由日本人松本行弘开发
+	它的灵感与特性来自于 Perl、Smalltalk、Eiffel、Ada以及 Lisp 语言。由 Ruby 语言本身还发展出了JRuby（Java平台）、IronRuby（.NET平台）等其他平台的 Ruby 语言替代品。Ruby的作者于1993年2月24日开始编写Ruby，直至1995年12月才正式公开发布于fj（新闻组）。因为Perl发音与6月诞生石pearl（珍珠）相同，因此Ruby以7月诞生石ruby（红宝石）命名。
+	Ruby归根结底源于Perl和Python两类语言，与C，C++，C#，java是不同大类。
+Scala
+	2001@Martin Odersky
+	多范式的编程语言，一种类似java的编程语言
+	类java
+Groovy
+	2003@Guillaume Laforge
+	基于JVM（Java虚拟机）的敏捷开发语言，Groovy 代码能够与 Java 代码很好地结合，也能用于扩展现有代码。由于其运行在 JVM 上的特性，Groovy 可以使用其他 Java 语
+	类java
+TypeScript
+	2012@Anders Hejlsberg
+	JavaScript的一个超集
+	为大型应用之开发而设计，而编译时它产生 JavaScript 以确保兼容性。
+操作系统
+	Windows
+		DLL
+			(Dynamic Link Library)文件为动态链接库文件，又称“应用程序拓展”，是软件文件类型。在Windows中，许多应用程序并不是一个完整的可执行文件，它们被分割成一些相对独立的动态链接库，即DLL文件，放置于系统中。当我们执行某一个程序时，相应的DLL文件就会被调用。一个应用程序可使用多个DLL文件，一个DLL文件也可能被不同的应用程序使用，这样的DLL文件被称为共享DLL文件。
+		
+		EXE
+			可执行程序（executable program，EXE File）是指一种可在操作系统存储空间中浮动定位的可执行程序。在MS-DOS和MS-WINDOWS下，此类文件扩展名为·exe。
+			WINDOWS操作系统中的二进制可执行文件，分两种：
+			一种后辍名为·com，另一种是·exe 。
+			DOS规定，有重名的exe和com，运行时优先执行com文件。如果只有A.exe，就可以直接输入A，而不用输入全名。但如果有A.com和A.exe，输入A则优先执行A.com，要运行A.exe只能输入A.exe而不能输入A。一般用于DOS，在WINDOWS系统中的执行文件一般都是.exe文件。在 MS-DOS 中，用以标识可执行文件的文件扩展名。用户在提示行输入不带 .exe 扩展名的文件名后按 Enter 键或者点双击就能运行可执行程序。
+CGI
+	(Common Gateway Interface) 是WWW技术中最重要的技术之一，有着不可替代的重要地位。CGI是外部应用程序（CGI程序）与Web服务器之间的接口标准，是在CGI程序和Web服务器之间传递信息的规程。CGI规范允许Web服务器执行外部程序，并将它们的输出发送给Web浏览器，CGI将Web的一组简单的静态超媒体文档变成一个完整的新的交互式媒体。
+
