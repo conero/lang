@@ -5,15 +5,42 @@
  */
  
  class sqlBuilder{
-     protected $table;  // 数据表名
+     public $table;  // 数据表名
      protected $data;   // 提交数据
      protected $registerEvents = [];    // 注册事件
+     protected $runtimeSqlStack = [];   // 运行时sql执行栈
+     // 多数据库支持
+     public $mutilateOptions = [
+         // oracle
+         'oci' => [
+             'col_quotes' => '"',       // 字段引号
+             'val_quotes' => '\''       // 值引号
+         ],
+         'mysql' => [
+             'col_quotes' => '`',       // 字段引号
+             'val_quotes' => '\''       // 值引号
+         ]
+     ];
+     public $type;
+
      /**
       * sqlBuilder constructor.
       * @param string $table
+      * @param string $type
       */
-     public function __construct($table){
+     public function __construct($table,$type='oci'){
          $this->table = $table;
+         $this->type = $type;
+     }
+
+     /**
+      * @param string $key 键值
+      * @param null $def 默认
+      * @return mixed|null
+      */
+     public function mutilateDbs($key, $def=null){
+         $data = $this->mutilateOptions[$this->type]? $this->mutilateOptions[$this->type]: [];
+         return isset($data[$key])? $data[$key]: $def;
      }
      /**
       * @param array $data
@@ -36,6 +63,18 @@
          return $this;
      }
 
+     /**
+      * @param null $data
+      * @return $this|array
+      */
+     public function stack($data=null){
+         if(null !== $data){
+             $this->runtimeSqlStack[] = $data;
+             return $this;
+         }else{
+             return $this->runtimeSqlStack;
+         }
+     }
      /**
       * @param string $key
       * @return callable|null
@@ -63,10 +102,11 @@
             $filter = is_array($filter)? $filter: null;
             $cols = [];$key = 'argv';$ctt = 1;
             $cBind = [];
+            $cQuotes = $this->mutilateDbs('col_quotes', '"');
             foreach($data as $k=>$v){
                 // 过滤指定的数组
                 if($filter && !in_array($k, $filter)){continue;}
-                $cols[] = '"'.$k.'"';
+                $cols[] = $cQuotes.$k.$cQuotes;
                 $newKey = $key . $ctt;
                 $cBind[] = ':'.$newKey;
                 $bind[$newKey] = $v;
@@ -77,8 +117,13 @@
                 $insertEvent($cols, $cBind);
             }
             $sql = '
-                INSERT INTO "'.$this->table.'"('.implode(',', $cols).') VALUES ('.implode(',', $cBind).')
+                INSERT INTO '.$cQuotes.$this->table.$cQuotes.'('.implode(',', $cols).') VALUES ('.implode(',', $cBind).')
             ';
+            // 运行时记录
+            $this->stack([
+                'sql' => $sql,
+                'bind'=> $bind
+            ]);
         }
         return [$sql, $bind];
      }
@@ -94,12 +139,13 @@
         $sql = null;
         $bind = [];
         if(is_array($data)){
+            $cQuotes = $this->mutilateDbs('col_quotes', '"');
             $key = 'argv';$ctt = 1;
             $updateList = [];
             foreach($data as $k=>$v){
                 // 过滤指定的数组
                 $newKey = $key.$ctt;
-                $updateList[] = '"'.$k.'"=:'.$newKey;
+                $updateList[] = $cQuotes.$k.$cQuotes.'=:'.$newKey;
                 $bind[$newKey] = $v;
                 $ctt++;
             }
@@ -108,7 +154,7 @@
             foreach ($whArray as $k1=>$v1){
                 $newKey = $key.$ctt;
                 $bind[$newKey] = $v1;
-                $whList[] = '"'.$k1.'"=:'.$newKey;
+                $whList[] = $cQuotes.$k1.$cQuotes.'=:'.$newKey;
                 $ctt++;
             }
             $updateEvent = $this->getBindEvent('update');
@@ -117,7 +163,12 @@
             }
             $where = count($whList)>0? implode(' AND ', $whList): $where;
             // 更新sql语句
-            $sql = 'UPDATE "'.$this->table.'" SET '.implode(',', $updateList).' '.($where? ' WHERE '. $where:'');
+            $sql = 'UPDATE '.$cQuotes.$this->table.$cQuotes.' SET '.implode(',', $updateList).' '.($where? ' WHERE '. $where:'');
+            // 运行时记录
+            $this->stack([
+                'sql' => $sql,
+                'bind'=> $bind
+            ]);
         }
         return [$sql, $bind];
      }
@@ -134,10 +185,11 @@
          $whList = [];
          $key = 'argv';$ctt = 1;
          $filter = is_array($filter)? $filter: null;
+         $cQuotes = $this->mutilateDbs('col_quotes', '"');
          foreach ($where as $k=>$v){
              if($filter && !in_array($k, $filter)){continue;}
              $newKey = $key . $ctt;
-             $whList[] = '"'.$k.'"=:'.$newKey;
+             $whList[] = $cQuotes.$k.$cQuotes.'=:'.$newKey;
              $bind[$newKey] = $v;
              $ctt++;
          }
@@ -147,33 +199,13 @@
                  $deleteEvent($whList);
              }
              $sql = '
-                DELETE FROM "'.$this->table.'" WHERE '.implode(' AND ', $whList).'
+                DELETE FROM '.$cQuotes.$this->table.$cQuotes.' WHERE '.implode(' AND ', $whList).'
              ';
-         }
-         return [$sql, $bind];
-     }
-     public function del($where, $filter=null){
-         $sql = null;
-         $bind = [];
-         $where = is_array($where)? $where:[];
-         $whList = [];
-         $key = 'argv';$ctt = 1;
-         $filter = is_array($filter)? $filter: null;
-         foreach ($where as $k=>$v){
-             if($filter && !in_array($k, $filter)){continue;}
-             $newKey = $key . $ctt;
-             $whList[] = '"'.$k.'"=:'.$newKey;
-             $bind[$newKey] = $v;
-             $ctt++;
-         }
-         if(count($whList) > 0){
-             $deleteEvent = $this->getBindEvent('delete');
-             if($deleteEvent){
-                 $deleteEvent($whList);
-             }
-             $sql = '
-                DELETE FROM "'.$this->table.'" WHERE '.implode(' AND ', $whList).'
-             ';
+             // 运行时记录
+             $this->stack([
+                 'sql' => $sql,
+                 'bind'=> $bind
+             ]);
          }
          return [$sql, $bind];
      }
@@ -184,19 +216,20 @@
       * @return array [$sql, $bind]
       */
      public function select($cols=null, $where = null, $filter=null){
+        $cQuotes = $this->mutilateDbs('col_quotes', '"');
          if(empty($cols)) $cols = '*';
          elseif (is_array($cols)){
              $colList = [];
              foreach ($cols as $k=>$v){
                  if(is_int($k)){
-                     $colList[] = '"'.$v.'"';
+                     $colList[] = $cQuotes.$v.$cQuotes;
                  }else{
-                     $colList[] = '"'.$k.'" as "'.$v.'"';
+                     $colList[] = $cQuotes.$k.$cQuotes.' as '.$cQuotes.$v.$cQuotes;
                  }
              }
              $cols = implode(',', $colList);
          }
-         $sql = 'SELECT '.$cols.' FROM "'.$this->table.'"';
+         $sql = 'SELECT '.$cols.' FROM '.$cQuotes.$this->table.$cQuotes;
          $bind = [];
          if($where){
              if(is_array($where)){
@@ -207,7 +240,7 @@
                      if($filter && !in_array($k, $filter)){continue;}
                      $newKey = $key. $ctt;
                      $bind[$newKey] = $v;
-                     $whList[] = '"'.$k.'"=:'.$newKey;
+                     $whList[] = $cQuotes.$k.$cQuotes.'=:'.$newKey;
                      $ctt++;
                  }
                  if(count($whList) > 0){
@@ -222,6 +255,11 @@
              $where = '';
          }
          $sql .= $where;
+         // 运行时记录
+         $this->stack([
+             'sql' => $sql,
+             'bind'=> $bind
+         ]);
         return [$sql, $bind];
      }
  }
