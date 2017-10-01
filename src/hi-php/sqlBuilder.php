@@ -34,6 +34,7 @@
      }
 
      /**
+      * 多数据库配置获取
       * @param string $key 键值
       * @param null $def 默认
       * @return mixed|null
@@ -43,6 +44,7 @@
          return isset($data[$key])? $data[$key]: $def;
      }
      /**
+      * 设置请求数据
       * @param array $data
       * @return $this
       */
@@ -51,8 +53,8 @@
          return $this;
      }
      /**
-      * on
-      * @param string $key 
+      * 事件绑定
+      * @param string $key  insert/update/delete
       * @param callback $callback 
       * @return 
       */
@@ -64,6 +66,7 @@
      }
 
      /**
+      * sql 运行堆操作
       * @param null $data
       * @return $this|array
       */
@@ -76,6 +79,21 @@
          }
      }
      /**
+      * 获取到运行器最后执行的sql语句
+      * @param bool $isRaw
+      * @return string|array
+      */
+     public function getLastSql($isRaw=true){
+         $data = count($this->runtimeSqlStack) > 1? 
+            $this->runtimeSqlStack[count($this->runtimeSqlStack)-1]:
+            null;
+        if($isRaw){
+            return $data? $this->getRawSql($data): null;
+        }
+        return $data? $data:[null, []];
+     }
+     /**
+      * 获取当前的注册时间
       * @param string $key
       * @return callable|null
       */
@@ -261,5 +279,24 @@
              'bind'=> $bind
          ]);
         return [$sql, $bind];
+     }
+     /**
+      * @param string|array $sql， [$sql, $bind]
+      * @param array $bind 过滤列表
+      * @return string 
+      */
+     public function getRawSql($sql, $bind=[]){
+        if(is_arrat($sql)){ // 数组参参数传入
+            list($sql, $bind) = $sql;
+        }
+        $vQuotes = $this->mutilateDbs('val_quotes', '\'');
+        foreach($bind as $k=>$v){
+            $value = $v? $vQuotes.$v.$vQuotes: null;
+            if(empty($value)){
+                $value = 'NULL';
+            }
+            $sql = str_replace(':'.$k, $value, $sql);
+        }
+        return $sql;
      }
  }
