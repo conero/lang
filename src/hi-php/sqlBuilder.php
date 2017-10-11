@@ -161,6 +161,10 @@
             $key = 'argv';$ctt = 1;
             $updateList = [];
             foreach($data as $k=>$v){
+				if(is_int($k)){
+					$updateList[] = $v;
+					continue;
+				}
                 // 过滤指定的数组
                 $newKey = $key.$ctt;
                 $updateList[] = $cQuotes.$k.$cQuotes.'=:'.$newKey;
