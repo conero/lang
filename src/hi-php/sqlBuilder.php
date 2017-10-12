@@ -5,8 +5,9 @@
  */
  
  class sqlBuilder{
-     public $table;  // 数据表名
+     public $table;     // 数据表名
      protected $data;   // 提交数据
+     protected $where;  // 数据条件
      protected $registerEvents = [];    // 注册事件
      protected $runtimeSqlStack = [];   // 运行时sql执行栈
      // 多数据库支持
@@ -16,6 +17,7 @@
              'col_quotes' => '"',       // 字段引号
              'val_quotes' => '\''       // 值引号
          ],
+         // mysql 数据库
          'mysql' => [
              'col_quotes' => '`',       // 字段引号
              'val_quotes' => '\''       // 值引号
@@ -25,14 +27,30 @@
 
      /**
       * sqlBuilder constructor.
+      * @param string $table 数据表
+      * @param string $type 数据库类型 oci, mysql
+      */
+     public function __construct($table=null, $type='oci'){         
+         $this->table = $table;
+         $this->type = $type? $type: 'oci';
+     }
+     /**
+      * sqlBuilder constructor(单例对象).
       * @param string $table
       * @param string $type
       */
-     public function __construct($table,$type='oci'){
-         $this->table = $table;
-         $this->type = $type;
+     public static function table($table, $type=null){
+         return new self($table, $type);
      }
-
+     /**
+      * 数据表设置
+      * @param array $data
+      * @return $this
+      */
+     public function setTable($table){
+         $this->table = $table;
+         return $this;
+     }
      /**
       * 多数据库配置获取
       * @param string $key 键值
@@ -52,6 +70,24 @@
          $this->data = $data;
          return $this;
      }
+     /**
+      * 设置请求数据
+      * @param array $data
+      * @return $this
+      */
+    public function data($data){
+        $this->data = $data;
+        return $this;
+    }
+    /**
+      * 设置请求数据
+      * @param array $data
+      * @return $this
+      */
+    public function where($data){
+        $this->where = $data;
+        return $this;
+    }
      /**
       * 事件绑定
       * @param string $key  insert/update/delete
@@ -154,6 +190,7 @@
       */
      public function update($data=null, $where=null){
         $data = $data? $data: $this->data;
+        $where = $where? $where: $this->where;
         $sql = null;
         $bind = [];
         if(is_array($data)){
@@ -200,9 +237,10 @@
       * @param array|null $filter 过滤列表
       * @return array [$sql, $bind]
       */
-     public function delete($where, $filter=null){
+     public function delete($where=null, $filter=null){
          $sql = null;
          $bind = [];
+         $where = $where? $where: $this->where;
          $where = is_array($where)? $where:[];
          $whList = [];
          $key = 'argv';$ctt = 1;
@@ -238,6 +276,7 @@
       * @return array [$sql, $bind]
       */
      public function select($cols=null, $where = null, $filter=null){
+        $where = $where? $where: $this->where;
         $cQuotes = $this->mutilateDbs('col_quotes', '"');
          if(empty($cols)) $cols = '*';
          elseif (is_array($cols)){
@@ -290,7 +329,7 @@
       * @return string 
       */
      public function getRawSql($sql, $bind=[]){
-        if(is_arrat($sql)){ // 数组参参数传入
+        if(is_array($sql)){ // 数组参参数传入
             list($sql, $bind) = $sql;
         }
         $vQuotes = $this->mutilateDbs('val_quotes', '\'');
