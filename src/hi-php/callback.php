@@ -12,7 +12,8 @@
  }
  class Callback{
      public function __construct(){
-         $this->scopeTest();
+        //  $this->scopeTest();
+         $this->callSelfTest();
      }
      private function scopeTest(){
          // 不去取地址
@@ -31,6 +32,15 @@
          });
          var_dump($use);
      }
+    // 自动回调函数
+    function callSelfTest(){
+        $rand = call_user_func(function($r){
+            echo $r. " (内部函数程序)\r\n";
+            return $r/100;
+        }, rand(0, 100));
+
+        echo $rand."\r\n";
+    }
  }
 
  new Callback;
