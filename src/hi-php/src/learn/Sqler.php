@@ -83,11 +83,7 @@ namespace conero\learn;
                  $alias = $table;
              }
          }
-         $condition = preg_replace_callback("/\.[\d_]+/", function ($matches){
-                 print_r($matches);
-                 return '888888';
-            }
-            ,$condition);
+         $condition = $this->pointSgParse($condition);
          $this->tableJoinList[$alias] = [
              'type'         => $type,
              'condition'    => $condition,
@@ -117,37 +113,67 @@ namespace conero\learn;
      /**
       * 设置请求数据
       * @param array $data
+      * @param bool $cover 是否覆盖原来的数据
       * @return $this
       */
-     public function setData($data){
-         $this->data = $data;
+     public function setData($data, $cover=false){
+         if($cover){
+             $this->data = $data;
+         }else{
+             $this->data = is_array($this->data)?
+                 array_merge($this->data, $data): $data;
+         }
          return $this;
      }
      /**
       * 设置请求数据
       * @param array $data
+      * @param bool $cover  是否覆盖原来的数据
       * @return $this
       */
-     public function data($data){
-         $this->data = $data;
+     public function data($data, $cover=false){
+         if($cover){
+             $this->data = $data;
+         }else{
+             $this->data = is_array($this->data)?
+                 array_merge($this->data, $data): $data;
+         }
          return $this;
      }
      /**
-      * 设置请求数据
-      * @param array $data
+      * 设置条件数据
+      * @param string|array $data 最终生成数组
+      * @param bool $cover 是否覆盖原来的数据
       * @return $this
       */
-     public function where($data){
-         $this->where = $data;
+     public function where($data, $cover=false){
+         if(is_string($data)){
+             $data = [$data];
+         }
+         if($cover){
+             $this->where = $data;
+         }else{
+             $this->where = is_array($this->where)?
+                 array_merge($this->where, $data): $data;
+         }
          return $this;
      }
      /**
       * 设置查询列表
       * @param array $data
+      * @param bool $cover 是否覆盖原来的数据
       * @return $this
       */
-     public function field($data){
-         $this->cols = $data;
+     public function field($data, $cover=false){
+         if(is_string($data)){
+             $data = [$data];
+         }
+         if($cover){
+             $this->cols = $data;
+         }else{
+             $this->cols = is_array($this->cols)?
+                 array_merge($this->cols, $data): $data;
+         }
          return $this;
      }
      /**
@@ -163,7 +189,7 @@ namespace conero\learn;
       * 事件绑定
       * @param string $key  insert/update/delete
       * @param callback $callback
-      * @return
+      * @return $this
       */
      public function on($key, $callback){
          if($key && is_callable($callback)){
@@ -356,32 +382,42 @@ namespace conero\learn;
              $cols = $cols? array_merge($cols, $this->cols): $this->cols;
              $this->cols = null;
          }
+         // 字段列名处理
          if(empty($cols)){
              $cols = '*';
          }
          elseif (is_array($cols)){
              $colList = [];
              foreach ($cols as $k=>$v){
+                 // 数字键数组
                  if(is_int($k)){
-                     $colList[] = $cQuotes.$v.$cQuotes;
+                     $colList[] = $this->pointSgParse($v);
+                 // k-v 数组
                  }else{
-                     $colList[] = $cQuotes.$k.$cQuotes.' as '.$cQuotes.$v.$cQuotes;
+                     $colList[] = $this->pointSgParse($k).' as '.$cQuotes.$v.$cQuotes;
                  }
              }
              $cols = implode(',', $colList);
          }
          $sql = 'SELECT '.$cols.' FROM '.$this->getBuilderTable();
          $bind = [];
+         // where 条件处理
          if($where){
              if(is_array($where)){
                  $key = 'args';$ctt = 1;
                  $whList = [];
                  $filter = is_array($filter)? $filter: null;
                  foreach ($where as $k=>$v){
+                     // 数字键数组
+                     if(is_int($k)){
+                         $whList[] = $this->pointSgParse($v);
+                         continue;
+                     }
+                     // kv-数组处理
                      if($filter && !in_array($k, $filter)){continue;}
                      $newKey = $key. $ctt;
                      $bind[$newKey] = $v;
-                     $whList[] = $cQuotes.$k.$cQuotes.'=:'.$newKey;
+                     $whList[] = $this->pointSgParse($k).'=:'.$newKey;
                      $ctt++;
                  }
                  if(count($whList) > 0){
@@ -404,7 +440,7 @@ namespace conero\learn;
          return [$sql, $bind];
      }
      /**
-      * @param string|array $sql， [$sql, $bind]
+      * @param string|array $sql/[$sql, $bind]
       * @param array $bind 过滤列表
       * @return string
       */
@@ -453,6 +489,25 @@ namespace conero\learn;
          $cQuotes = $this->mutilateDbs('col_quotes', '"');
          return (false !== strpos($noun, $cQuotes))? $noun: $cQuotes.$noun.$cQuotes;
      }
+
+     /**
+      * 字符换点操作符号解析
+      * @param string $str
+      * @return string
+      */
+     protected function pointSgParse($str){
+         if(false !== strpos($str, '.')){
+             // alias.column => alias."column" oracle
+             preg_match_all("/\.[a-zA-Z0-9_]+/", $str, $matches);
+             $matches = isset($matches[0])? $matches[0]: [];
+             $cQuotes = $this->mutilateDbs('col_quotes', '"');
+             foreach ($matches as $v){
+                 $newStr = '.'.$cQuotes.substr($v, 1).$cQuotes;
+                 $str = str_replace($v, $newStr, $str);
+             }
+         }
+         return $str;
+     }
  }
 
 
@@ -460,5 +515,29 @@ namespace conero\learn;
     ChangeLog   更新日志：
         1). 支持多表数据连接    /2017年10月18日 星期三
             select 时 class::$col 与 fun::$col 合并，并且自动销毁（防止下次影响）
-            字符串安全监测
+            字符串安全监测,
+            数据表别名不知用标点符号
+
+
+    类结构
+        (入口)实例化 $instance
+                new Sqler()
+                Sqler::table()
+
+        (中间件) -> $this
+            Sqler::join             数据表连接
+            Sqler::setTable         数据表设置
+            Sqler::setData          设置请求数据
+            Sqler::data             设置请求数据
+            Sqler::where            设置条件数据
+            Sqler::field            设置查询列表
+            Sqler::alias            设置数据表别名
+            Sqler::on               事件支持
+
+        (出口)
+            Sqler::getLastSql       获取最后一条数据
+            Sqler::insert           数据新增
+            Sqler::update           数据更新
+            Sqler::delete           数据删除
+            Sqler::select           数据查询
 */

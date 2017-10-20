@@ -49,6 +49,8 @@ class TestCase{
         $userMutTbs = Sqler::table(['sys_user', 'a'])
             ->join(['login', 'b'], 'a.uid = b.uid')
             ->join('family c', 'a.family_id=c.id', 'left')
+            ->join('user_info d', 'a.uid=d."emp_id"')
+            ->where(['a.name'=>'test'])
             ->select()
             ;
         /*
@@ -65,6 +67,17 @@ class TestCase{
             $userMutTbs
             //, $userMutTbs2
         ]);
+        debug(function (){
+            return Sqler::table(['sys_user', 'a'])
+                ->field(['a.cname'])
+                ->field(['b.emp_no', 'b.gender'])
+                ->field(['c.stru_name'])
+                ->join('emp2000c b', 'a.emp_id = b.emp_id')
+                ->join('str0000c c', 'b.stru_id = c.stru_id', 'left')
+                ->where('a.cname like \'%杨%\'')
+                ->select()
+                ;
+        });
     }
 }
 new TestCase;
