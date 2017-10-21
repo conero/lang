@@ -1,7 +1,7 @@
 <?php
 /**
  * Auther: Joshua Conero
- * Date: 2017/10/18 0018 15:52
+ * Date: 2017年9月27日 星期三 0018 15:52
  * Email: brximl@163.com
  * Name: 数据库生成器
  */
