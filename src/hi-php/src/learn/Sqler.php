@@ -506,6 +506,9 @@ namespace conero\learn;
                 $str = str_replace($v, $newStr, $str);
             }
         }
+        else{
+            $str = $this->getDbNoun($str);
+        }
         return $str;
     }
 }
