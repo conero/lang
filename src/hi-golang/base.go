@@ -1,7 +1,7 @@
 /**
 * 2017年9月2日 星期六
 * golang 基础代码示例
-*/
+ */
 
 package main
 
@@ -9,17 +9,17 @@ import (
 	"fmt"
 )
 
-type BaseLearn struct {}
+type BaseLearn struct{}
 
 // 基本变量测试
-func (b *BaseLearn) BaseVariable()  {
+func (b *BaseLearn) BaseVariable() {
 	var i, j int
 	i = 5
 	j = 9
 	fmt.Println(i, j)
 
 	// 值交换
-	i,j = j,i
+	i, j = j, i
 	fmt.Println(i, j)
 
 	// 类型强制转换
@@ -28,60 +28,63 @@ func (b *BaseLearn) BaseVariable()  {
 }
 
 // 类型测试
-func (b *BaseLearn) TypeTest(){
+func (b *BaseLearn) TypeTest() {
 	msg := `
 		BaseLearn.TypeTest()
 	`
 	fmt.Print(msg)
 }
 
-
 // go1.9 类型别名
 type AliasBaseLearn = BaseLearn
-func (abl *AliasBaseLearn) ATypeTest(){
+
+func (abl *AliasBaseLearn) ATypeTest() {
 	abl.TypeTest()
 }
 
 // 结构体继承
-type ExtendBaseLearn struct{
+type ExtendBaseLearn struct {
 	BaseLearn
-	Name string 
-	name string
+	Name         string
+	name         string
 	privateSatck map[string]string
 }
+
 // 链式指针
-func (ebl *ExtendBaseLearn) Link() (*ExtendBaseLearn){
+func (ebl *ExtendBaseLearn) Link() *ExtendBaseLearn {
 	return ebl
 }
+
 // 链式方法
-func (ebl *ExtendBaseLearn) LinkCallBack(CallBack func(cEbl *ExtendBaseLearn)) (*ExtendBaseLearn){
+func (ebl *ExtendBaseLearn) LinkCallBack(CallBack func(cEbl *ExtendBaseLearn)) *ExtendBaseLearn {
 	CallBack(ebl)
 	return ebl
 }
 
-func (ebl *ExtendBaseLearn) Set(k ,v string) bool{
+func (ebl *ExtendBaseLearn) Set(k, v string) bool {
 	// fmt.Println(ebl.privateSatck, "K-V", nil)
-	if ebl.privateSatck == nil{
+	if ebl.privateSatck == nil {
 		ebl.privateSatck = map[string]string{}
 	}
 	ebl.privateSatck[k] = v
 	return true
 }
-func (ebl *ExtendBaseLearn) GET(k string) string{
+func (ebl *ExtendBaseLearn) GET(k string) string {
 	return ebl.privateSatck[k]
 }
 
 // 基本接口
-type BaseInterface interface{
+type BaseInterface interface {
 	Set(k, v string) bool
 	Get(k string) string
 }
-type BITest struct{
+type BITest struct {
 	privateSatck map[string]string
 }
+
 func (bit *BITest) Set(k, v string) bool {
 	// 初始化判断
-	if bit.privateSatck == nil{
+	if bit.privateSatck == nil {
 		bit.privateSatck = map[string]string{}
 	}
 	bit.privateSatck[k] = v
@@ -91,7 +94,7 @@ func (bit *BITest) Get(k string) string {
 	return bit.privateSatck[k]
 }
 
-func main()  {
+func main() {
 	// 结果题调用1
 	var bl *BaseLearn = &BaseLearn{}
 	bl.BaseVariable()
@@ -103,13 +106,13 @@ func main()  {
 	// 组合调用
 	ebl := &ExtendBaseLearn{}
 	//ebl.Link().ATypeTest()
-	fmt.Println(ebl.LinkCallBack(func(cEbl *ExtendBaseLearn){
+	fmt.Println(ebl.LinkCallBack(func(cEbl *ExtendBaseLearn) {
 		cEbl.name = "Susanna"
 		cEbl.Name = "Emma"
 	}).name, ebl.Name)
-	
+
 	// 接口的实现
-	var bit BaseInterface = new(BITest)	
+	var bit BaseInterface = new(BITest)
 	bit.Set("name", "SuGoddess")
 	fmt.Println(bit.Get("name"))
 

@@ -8,15 +8,15 @@
 
 namespace conero\learn;
 
- class Sqler{
+ class SqlerV2{
     public $table;     // 数据表名
     public $alias;     // 数据库别名，用于多表连接查询
     protected $data;   // 提交数据
     protected $where;  // 数据条件
     protected $cols;   // 系统列表
-    protected $registerEvents = [];    // 注册事件
     protected $runtimeSqlStack = [];   // 运行时sql执行栈
     protected $tableJoinList = [];     // 数据链表
+    protected $isBindMark = false;     // 字符绑定标识
     /*
        $tableJoinList = [
            alias => {
@@ -160,7 +160,7 @@ namespace conero\learn;
     }
     /**
      * 设置查询列表
-     * @param array $data
+     * @param string|array $data
      * @param bool $cover 是否覆盖原来的数据
      * @return $this
      */
@@ -185,19 +185,14 @@ namespace conero\learn;
         $this->alias = $alias;
         return $this;
     }
-    /**
-     * 事件绑定
-     * @param string $key  insert/update/delete
-     * @param callback $callback
-     * @return $this
-     */
-    public function on($key, $callback){
-        if($key && is_callable($callback)){
-            $this->registerEvents[$key] = $callback;
-        }
+     /**
+      * 字符安全绑定设置
+      * @return $this
+      */
+    public function isBind(){
+        $this->isBindMark = true;
         return $this;
     }
-
     /**
      * sql 运行堆操作
      * @param null $data
@@ -226,240 +221,178 @@ namespace conero\learn;
         return $data? $data:[null, []];
     }
     /**
-     * 获取当前的注册时间
-     * @param string $key
-     * @return callable|null
-     */
-    protected function getBindEvent($key){
-        $callback = isset($this->registerEvents[$key]) && is_callable($this->registerEvents[$key])?
-            $this->registerEvents[$key]: null;
-        // 获取成功以后自动销毁注册函数，一次性的
-        if($callback){
-            unset($this->registerEvents[$key]);
-        }
-        return $callback;
-    }
-    /**
      * insert, 支持注册事件 => ($col, $data)
      * @param null|array $data 提交数组
-     * @param null|array $filter 过滤数组中的字段
-     * @return array [$sql, $bind]
+     * @return string|array [$sql, $bind]
      */
-    public function insert($data=null, $filter = null){
-        $data = $data? $data: $this->data;
-        $sql = null;
+    public function insert($data=null){
+        $sql = 'INSERT INTO '.$this->getBuilderTable();
+        // 支持子查询语句
+        if(is_string($data)){
+            $sql .= $data;
+            return $this->isBindMark? [$sql, []]: $sql;
+        }
+        $data = is_array($data)? $data:array();
+        if($this->data){
+            if(is_array($this->data)){
+                $data = array_merge($this->data, $data);
+            }
+            $this->data = null;
+        }
+        $cIst = [];
+        $vIst = [];
+        $ctt = 1;
         $bind = [];
-        if(is_array($data)){
-            $filter = is_array($filter)? $filter: null;
-            $cols = [];$key = 'argv';$ctt = 1;
-            $cBind = [];
-            $cQuotes = $this->mutilateDbs('col_quotes', '"');
-            foreach($data as $k=>$v){
-                // 过滤指定的数组
-                if($filter && !in_array($k, $filter)){continue;}
-                $cols[] = $cQuotes.$k.$cQuotes;
-                $newKey = $key . $ctt;
-                $cBind[] = ':'.$newKey;
-                $bind[$newKey] = $v;
-                $ctt++;
+        foreach ($data as $k=>$v){
+            if(is_int($k)){
+                // col = value
+                if(strpos($v, '=') > 0){
+                    list($key, $value) = explode('=', $v);
+                    $cIst[] = $this->getDbNoun(trim($key));
+                    $vIst[] = $this->valueSgParse(trim($value));
+                }
+            }else{
+                $cIst[] = $this->getDbNoun($k);
+                if($this->isBindMark){
+                    $key = 'argv'.$ctt;
+                    $vIst[] = ':'.$key;
+                    $ctt += 1;
+                    $bind[$key] = $v;
+                }else{
+                    $vIst[] = $this->valueSgParse($v);
+                }
             }
-            $insertEvent = $this->getBindEvent('insert');
-            if($insertEvent){
-                $insertEvent($cols, $cBind);
-            }
-            $sql = '
-               INSERT INTO '.$cQuotes.$this->table.$cQuotes.'('.implode(',', $cols).') VALUES ('.implode(',', $cBind).')
-           ';
+        }
+        $sql = 'INSERT INTO '.$this->getBuilderTable().'('.implode(',', $cIst).') VALUES ('.implode(',', $vIst).')';
+        if($this->isBindMark){
             // 运行时记录
             $this->stack([
                 'sql' => $sql,
                 'bind'=> $bind
             ]);
+            return [$sql, $bind];
         }
-        return [$sql, $bind];
+        return $sql;
     }
 
     /**
      * update, 支持注册事件 => ($updateList/更新列表, $where)
      * @param null|array $data
      * @param null|string|array $where
-     * @return array [$sql, $bind]
+     * @return string|array [$sql, $bind]
      */
     public function update($data=null, $where=null){
-        $data = $data? $data: $this->data;
-        $where = $where? $where: $this->where;
-        $sql = null;
-        $bind = [];
-        if(is_array($data)){
-            $cQuotes = $this->mutilateDbs('col_quotes', '"');
-            $key = 'argv';$ctt = 1;
-            $updateList = [];
-            foreach($data as $k=>$v){
-                if(is_int($k)){
-                    $updateList[] = $v;
-                    continue;
-                }
-                // 过滤指定的数组
-                $newKey = $key.$ctt;
-                $updateList[] = $cQuotes.$k.$cQuotes.'=:'.$newKey;
-                $bind[$newKey] = $v;
-                $ctt++;
+        $whereParsed = $this->parseWhere($where);
+        $data = is_array($data)? $data:array();
+        if($this->data){
+            if(is_array($this->data)){
+                $data = array_merge($this->data, $data);
             }
-            $whArray = is_array($where)? $where: [];
-            $whList = [];
-            foreach ($whArray as $k1=>$v1){
-                $newKey = $key.$ctt;
-                $bind[$newKey] = $v1;
-                $whList[] = $cQuotes.$k1.$cQuotes.'=:'.$newKey;
-                $ctt++;
-            }
-            $updateEvent = $this->getBindEvent('update');
-            if($updateEvent){
-                $updateEvent($updateList, $where);
-            }
-            $where = count($whList)>0? implode(' AND ', $whList): $where;
-            // 更新sql语句
-            $sql = 'UPDATE '.$cQuotes.$this->table.$cQuotes.' SET '.implode(',', $updateList).' '.($where? ' WHERE '. $where:'');
-            // 运行时记录
-            $this->stack([
-                'sql' => $sql,
-                'bind'=> $bind
-            ]);
+            $this->data = null;
         }
-        return [$sql, $bind];
-    }
-    /**
-     * @param string|array $where
-     * @param array|null $filter 过滤列表
-     * @return array [$sql, $bind]
-     */
-    public function delete($where=null, $filter=null){
-        $sql = null;
-        $bind = [];
-        $where = $where? $where: $this->where;
-        $where = is_array($where)? $where:[];
-        $whList = [];
-        $key = 'argv';$ctt = 1;
-        $filter = is_array($filter)? $filter: null;
-        $cQuotes = $this->mutilateDbs('col_quotes', '"');
-        foreach ($where as $k=>$v){
-            if($filter && !in_array($k, $filter)){continue;}
-            $newKey = $key . $ctt;
-            $whList[] = $cQuotes.$k.$cQuotes.'=:'.$newKey;
-            $bind[$newKey] = $v;
-            $ctt++;
-        }
-        if(count($whList) > 0){
-            $deleteEvent = $this->getBindEvent('delete');
-            if($deleteEvent){
-                $deleteEvent($whList);
-            }
-            $sql = '
-               DELETE FROM '.$cQuotes.$this->table.$cQuotes.' WHERE '.implode(' AND ', $whList).'
-            ';
-            // 运行时记录
-            $this->stack([
-                'sql' => $sql,
-                'bind'=> $bind
-            ]);
-        }
-        return [$sql, $bind];
-    }
-    /**
-     * @param null|array $cols
-     * @param null|string|array $where
-     * @param array|null $filter 过滤列表
-     * @return array [$sql, $bind]
-     */
-    public function select($cols=null, $where = null, $filter=null){
-        if($this->where){
-            $where = $where? array_merge($where, $this->where): $this->where;
-            $this->where = null;
-        }
-        $cQuotes = $this->mutilateDbs('col_quotes', '"');
-        if($this->cols){
-            // 合并系统 col且自动销毁
-            $cols = $cols? array_merge($cols, $this->cols): $this->cols;
-            $this->cols = null;
-        }
-        // 字段列名处理
-        if(empty($cols)){
-            $cols = '*';
-        }
-        elseif (is_array($cols)){
-            $colList = [];
-            foreach ($cols as $k=>$v){
-                // 数字键数组
-                if(is_int($k)){
-                    $colList[] = $this->pointSgParse($v);
-                // k-v 数组
-                }else{
-                    $colList[] = $this->pointSgParse($k).' as '.$cQuotes.$v.$cQuotes;
-                }
-            }
-            $cols = implode(',', $colList);
-        }
-        $sql = 'SELECT '.$cols.' FROM '.$this->getBuilderTable();
-        $bind = [];
-        // where 条件处理
-        if($where){
-            if(is_array($where)){
-                $key = 'args';$ctt = 1;
-                $whList = [];
-                $filter = is_array($filter)? $filter: null;
-                foreach ($where as $k=>$v){
-                    // 数字键数组
+        if($this->isBindMark){
+            $sql = '';
+            $bind = [];
+            if(is_array($data)){
+                $bind = [];
+                $key = 'argv';$ctt = 1;
+                $updateList = [];
+                foreach($data as $k=>$v){
                     if(is_int($k)){
-                        $whList[] = $this->pointSgParse($v);
+                        $updateList[] = $this->pointSgParse($v);
                         continue;
                     }
-                    // kv-数组处理
-                    if($filter && !in_array($k, $filter)){continue;}
-                    $newKey = $key. $ctt;
+                    // 过滤指定的数组
+                    $newKey = $key.$ctt;
+                    $updateList[] = $this->pointSgParse($k).'=:'.$newKey;
                     $bind[$newKey] = $v;
-                    $whList[] = $this->pointSgParse($k).'=:'.$newKey;
                     $ctt++;
                 }
-                if(count($whList) > 0){
-                    $where = ' WHERE '.implode(' AND ', $whList);
-                }else{
-                    $where = '';
-                }
-            }else{
-                $where = ' WHERE '.$where;
+                list($whStr, $wBind) = $whereParsed;
+                $sql = 'UPDATE '.$this->getBuilderTable().' SET '.implode(',', $updateList).$whStr;
+                $bind = array_merge($bind, $whereParsed);
+                // 运行时记录
+                $this->stack([
+                    'sql' => $sql,
+                    'bind'=> $bind
+                ]);
             }
-        }else{
-            $where = '';
+            return [$sql, $bind];
         }
-        $sql .= $where;
-        // 运行时记录
-        $this->stack([
-            'sql' => $sql,
-            'bind'=> $bind
-        ]);
-        return [$sql, $bind];
+        else{
+            $sql = '';
+            if(is_array($data)){
+                $updateList = [];
+                foreach ($data as $k=>$v){
+                    if(is_int($k)){
+                        $updateList[] = $this->pointSgParse($v);
+                    }else{
+                        $updateList[] = $this->pointSgParse($k).'='.$this->valueSgParse($v);
+                    }
+                }
+                $sql = 'UPDATE '.$this->getBuilderTable().' SET '.implode(',', $updateList).$whereParsed;
+            }
+            return $sql;
+        }
+    }
+    /**
+     * @param array|string $where 删除条件
+     * @return string|array [$sql, $bind]
+     */
+    public function delete($where=null){
+        $whereParsed = $this->parseWhere($where);
+        $sql = 'DELETE FROM '.$this->getBuilderTable();
+        if($this->isBindMark){
+            $sql .= ' '.$whereParsed[0];
+            return[$sql, $whereParsed[1]];
+        }else{
+            $sql .= ' '.$whereParsed[0];
+        }
+        return $sql;
+    }
+    /**
+     * @param null|array|string $cols
+     * @param null|string|array $where，传入值时会与类的where数据合并(如果存在)
+     * @return array|string [$sql, $bind]
+     */
+    public function select($cols=null, $where = null){
+        $sql = 'SELECT '.$this->fieldParse($cols).' FROM '.$this->getBuilderTable();
+        $whereParsed = $this->parseWhere($where);
+        if($this->isBindMark){
+            list($whStr, $bind) = $whereParsed;
+            $sql .= $whStr;
+            // 运行时记录
+            $this->stack([
+                'sql' => $sql,
+                'bind'=> $bind
+            ]);
+            return [$sql, $bind];
+        }else{
+            $sql .= $whereParsed;
+            return $sql;
+        }
     }
      /**
       * 列求次数统计查询
       * @param null|string|array $col
-      * @return array
+      * @return array|string
       */
      public function count($col=null){
-         if(empty($col)){
-             $col = 'COUNT(*)';
-         }else{
-             if(is_array($col)){
-                 $col = 'COUNT('.$this->getDbNoun($col[0]).') AS '.$this->getDbNoun($col[1]);
-             }else{
-                 $col = 'COUNT('.$this->getDbNoun($col).')';
-             }
-         }
-         return $this->select($col);
-     }
+        if(empty($col)){
+            $col = 'COUNT(*)';
+        }else{
+            if(is_array($col)){
+                $col = 'COUNT('.$this->getDbNoun($col[0]).') AS '.$this->getDbNoun($col[1]);
+            }else{
+                $col = 'COUNT('.$this->getDbNoun($col).')';
+            }
+        }
+        return $this->select($col);
+    }
      /**
       * 列求和查询
       * @param string|array $col
-      * @return array
+      * @return array|string
       */
      public function sum($col){
          if(is_array($col)){
@@ -472,7 +405,7 @@ namespace conero\learn;
      /**
       * 列平均数查询
       * @param string|array $col
-      * @return array
+      * @return array|string
       */
      public function avg($col){
          if(is_array($col)){
@@ -486,7 +419,7 @@ namespace conero\learn;
      * @param string|array $sql/[$sql, $bind]
      * @param array $bind 过滤列表
      * @return string
-     */
+     */    
     public function getRawSql($sql, $bind=[]){
         if(is_array($sql)){ // 数组参参数传入
             list($sql, $bind) = $sql;
@@ -506,7 +439,6 @@ namespace conero\learn;
      * @return string
      */
     protected function getBuilderTable(){
-        $cQuotes = $this->mutilateDbs('col_quotes', '"');
         $table = $this->table;
         if(count($this->tableJoinList) > 0){
             $tbList = [];
@@ -532,7 +464,6 @@ namespace conero\learn;
         $cQuotes = $this->mutilateDbs('col_quotes', '"');
         return (false !== strpos($noun, $cQuotes))? $noun: $cQuotes.$noun.$cQuotes;
     }
-
     /**
      * 字符换点操作符号解析
      * @param string $str
@@ -553,6 +484,93 @@ namespace conero\learn;
             $str = $this->getDbNoun($str);
         }
         return $str;
+    }
+     /**
+      * @param string $str 系统参数值
+      * @return string
+      */
+    protected function valueSgParse($str){
+        $vQuotes = $this->mutilateDbs('val_quotes', '\'');
+        if(substr_count($str, '\'') < 2){
+            $str = $vQuotes. $str . $vQuotes;
+        }
+        return $str;
+    }
+     /**
+      * @param null|string|array $where 提哦啊就爱你
+      * @param bool $onlyInput 仅仅解析输入的数据
+      * @param bool $isRaw 不自动添加Where等字符串
+      * @return array|string
+      */
+    public function parseWhere($where=null, $onlyInput=false, $isRaw=false){
+        // where 条件自动解析为array、string
+        if($where){
+            $where = is_array($where)? $where: [$where];
+        }
+        if(!$onlyInput && $this->where){
+            $where = $where? array_merge($this->where, $where): $this->where;
+            $this->where = null;
+        }
+        $str = '';
+        $isBindMark = $this->isBindMark;
+        $bind = [];
+        $ctt = 1;
+        foreach ($where as $k=>$v){
+            if(is_int($k)){
+                $tmpStr = $this->pointSgParse($v);
+                // 连接词查看
+                if(!preg_match("/(and)|(or)/i", $tmpStr)){
+                    $str .= ($str? ' AND ': '');
+                }
+                $str .= $tmpStr;
+            }else{
+                if($isBindMark){
+                    $key = 'argw'.$ctt;
+                    $bind[$key] = $v;
+                    $str .= ($str? ' AND ': ''). $this->pointSgParse($k).'=:'. $key;
+                    $ctt += 1;
+                }
+                else{
+                    $str .= ($str? ' AND ': ''). $this->pointSgParse($k).'='. $this->valueSgParse($v);
+                }
+            }
+        }
+        $str = ($str && !$isRaw ? ' WHERE ': '').$str;
+        return $isBindMark? [$str, $bind]: $str;
+    }
+
+     /**
+      * 查询列名解析
+      * @param null|string|array $cols 列名
+      * @return string
+      */
+    public function fieldParse($cols=null){
+        if(is_string($cols)){
+            $cols = [$cols];
+        }
+        if($this->cols){
+            // 合并系统 col且自动销毁
+            $cols = $cols? array_merge($this->cols, $cols): $this->cols;
+            $this->cols = null;
+        }
+        // 字段列名处理
+        if(empty($cols)){
+            $cols = '*';
+        }
+        elseif (is_array($cols)){
+            $colList = [];
+            foreach ($cols as $k=>$v){
+                // 数字键数组
+                if(is_int($k)){
+                    $colList[] = $this->pointSgParse($v);
+                    // k-v 数组
+                }else{
+                    $colList[] = $this->pointSgParse($k).' as '.$this->getDbNoun($v);
+                }
+            }
+            $cols = implode(',', $colList);
+        }
+        return $cols;
     }
 }
 
@@ -586,4 +604,15 @@ namespace conero\learn;
             Sqler::update           数据更新
             Sqler::delete           数据删除
             Sqler::select           数据查询
+            Sqler::count            列统计
+            Sqler::sum              列合并
+            Sqler::avg              列平均数
+
+    V2 ：/20171023
+        取消：
+            1.事件注册，如 insert/update/delete
+            2.删除部分方法中的 filter 参数(由于使用率很小)
+        新特性：
+            1.sql绑定与非绑定特性开发， 前者返回 array 或者返回 string
+
 */

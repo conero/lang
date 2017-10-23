@@ -3,28 +3,23 @@
  *	go 协程与channel 测试
  */
 
-package main 
+package main
 
-import(
+import (
 	"fmt"
 	"time"
 )
 
-
-
-
 // 测试用例
 type GoRountineTest struct{}
 
-
-
 // 基本线程测试
 
-func (g *GoRountineTest) BaseTest(){
+func (g *GoRountineTest) BaseTest() {
 	//
 	t := func(vs []string, rChannel chan int) {
 		vlen := 0
-		for _, v := range vs{
+		for _, v := range vs {
 			vlen += len(v)
 		}
 		rChannel <- vlen
@@ -37,14 +32,13 @@ func (g *GoRountineTest) BaseTest(){
 	// 传入值
 	fmt.Println(<-RC)
 
-
 	go t([]string{"yang", "su", "love"}, RC)
 
 	fmt.Println(<-RC)
 }
 
 // 阻塞式协程处理
-func (g *GoRountineTest) ChokeTest()  {
+func (g *GoRountineTest) ChokeTest() {
 
 	go (func() {
 		fmt.Println(time.Now().Format("2006"))
@@ -55,9 +49,8 @@ func (g *GoRountineTest) ChokeTest()  {
 	fmt.Println(value)
 }
 
-func main(){
+func main() {
 	grt := &GoRountineTest{}
 	grt.BaseTest()
 	//grt.ChokeTest()
 }
-

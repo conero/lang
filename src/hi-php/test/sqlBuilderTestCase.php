@@ -39,6 +39,7 @@ class TestCase{
             'sql'   => $mysql->getRawSql($dataMySql)
         ]);
     }
+    // select 数据查询
     public function selectBaseTest(){
         // 单表查询
         $user = (new Sqler('sys_user'))
@@ -78,6 +79,9 @@ class TestCase{
                 ->select()
                 ;
         });
+        debug(
+            Sqler::table('sys_user')->where('name like \'%杨%\'')->count('name')
+        );
     }
 }
 new TestCase;
