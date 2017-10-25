@@ -27,7 +27,7 @@ func (da *db_adapter) init ()  *db_adapter{
 	switch vtype {
 	case "mysql":
 		da.dbMap = mysqlSetting
-	case "orcle":
+	case "oracle":
 		da.dbMap = oracleSetting
 	default:
 		da.dbMap = map[string]string{
