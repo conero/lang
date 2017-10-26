@@ -11,8 +11,8 @@ import (
 
 const (
 	Author  = "Joshua Conero"
-	Date    = "2017年10月23日 星期一"
-	Version = "0.0.1"
+	Date    = "20171026"
+	Version = "0.0.3"
 )
 
 // 数据类类型 * 默认mysql
@@ -41,8 +41,10 @@ type Sql struct {
 
 // 中间件
 func (sql *Sql) Type(vtype string) *Sql {
+	table := sql.table
+	table = sql.da.strClearCol(table)
 	sql.da = getDbAdapter(vtype)
-	sql.table = sql.da.getColName(sql.table)
+	sql.table = sql.da.getColName(table)
 	return sql
 }
 /**
