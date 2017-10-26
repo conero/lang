@@ -1,0 +1,56 @@
+Array
+(
+    [0] => SELECT a."cname",b."emp_no",b."gender",c."stru_name" FROM "sys_user" a   JOIN "emp2000c" b ON a."emp_id" = b."emp_id"  LEFT JOIN "str0000c" c ON b."stru_id" = c."stru_id" WHERE a."cname" like '%杨%'
+    [1] => Array
+        (
+        )
+
+)
+Array
+(
+    [0] => SELECT a."cname",b."emp_no",b."gender",c."stru_name" FROM "sys_user" a   JOIN "emp2000c" b ON a."emp_id" = b."emp_id"  LEFT JOIN "str0000c" c ON b."stru_id" = c."stru_id" WHERE a."cname" like '%杨%'
+    [1] => Array
+        (
+        )
+
+)
+Array
+(
+    [0] => SELECT COUNT(*) FROM "sys_user"
+    [1] => Array
+        (
+        )
+
+)
+Array
+(
+    [0] => SELECT a."cname",b."emp_no",b."gender",c."stru_name" FROM "sys_user" a   JOIN "emp2000c" b ON a."emp_id" = b."emp_id"  LEFT JOIN "str0000c" c ON b."stru_id" = c."stru_id" WHERE a."cname" like '%杨%'
+    [1] => Array
+        (
+        )
+
+)
+Array
+(
+    [0] => SELECT COUNT("name") FROM "sys_user" WHERE "ssss"
+    [1] => Array
+        (
+        )
+
+)
+Array
+(
+    [0] => SELECT a."cname",b."emp_no",b."gender",c."stru_name" FROM "sys_user" a   JOIN "emp2000c" b ON a."emp_id" = b."emp_id"  LEFT JOIN "str0000c" c ON b."stru_id" = c."stru_id" WHERE a."cname" like '%杨%'
+    [1] => Array
+        (
+        )
+
+)
+Array
+(
+    [0] => SELECT COUNT("name") FROM "sys_user" WHERE "name like '%杨%'"
+    [1] => Array
+        (
+        )
+
+)
