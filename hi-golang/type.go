@@ -14,7 +14,8 @@ type BaseTypeCaseTest struct {
 }
 // 运行台
 func (btct *BaseTypeCaseTest) Console()  {
-	btct.baseType()
+	// btct.baseType()
+	btct.childArray()
 }
 
 func (btct BaseTypeCaseTest) baseType()  {
@@ -38,6 +39,14 @@ func (btct BaseTypeCaseTest) baseType()  {
 	number2 = nInt(number1)
 	number1 = number3
 	fmt.Println(number1, number2, number3)
+}
+
+func (btct BaseTypeCaseTest) childArray()  {
+	a1 := []int{1, 2, 4, 5, 14, 74, 100, 104}
+	fmt.Println(a1, len(a1))
+	a1 = a1[0: 2]
+	fmt.Println(a1, len(a1))
+	fmt.Println(a1[0: 3], len(a1[0: 3]))
 }
 
 func main() {
