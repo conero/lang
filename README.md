@@ -1,10 +1,12 @@
 # DsAlg4Go(Data_Structure and Algorithm for golang/golang 数据接口与算法练习)
 - @date     2017年6月28日 星期三
 - @author   Joshua Coenro
+- @lang     Golang v1.8
+- @window   ^
 
 ## 项目结构
 - src
-    - main  运行库
+    - main  运行库，测试类型
     - ds    数据结构实现库
     - alg   算法事件库
     - data  随机数等数据生成器
