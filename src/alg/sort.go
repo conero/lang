@@ -4,6 +4,11 @@
  */
 package alg
 
+import (
+	"math"
+	"fmt"
+)
+
 // 排序算法
 type Sort struct {
 	Ergodic int		// 遍历次数
@@ -65,4 +70,61 @@ func (S *Sort) InertSort(data []int, numbers ...int) []int{
 func (S *Sort) Inert(arr []int) []int{
 	arr1 := S.InertSort([]int{}, arr...)
 	return arr1
+}
+
+// 直接选择排序
+func (S *Sort) SelectSort(array []int) []int{
+	sortEdArr := []int{}
+	idxMap := map[int]int{}		// 键值对匹配
+	minV := -1
+	minK := -1
+	arrayLen := len(array)
+	for{
+		if len(idxMap) == arrayLen{
+			break
+		}
+		xCount := 0
+		for i,v := range array{
+			// 已经遍历的直接跳过
+			if _,has := idxMap[i]; has{
+				continue
+			}
+			if xCount > 0{
+				// 取小于等于的数据
+				if v <= minV{
+					minV = v
+					minK = i
+				}
+			}else{
+				minK = i
+				minV = v
+			}
+			xCount += 1
+		}
+		idxMap[minK] = minV
+		sortEdArr = append(sortEdArr, minV)
+	}
+	return sortEdArr
+}
+
+// 希尔排序
+func (S *Sort) ShellSort(array []int) []int{
+	aLen := len(array)
+	vLen := aLen
+	getBit := func(vlen int) int {
+		return int(math.Ceil(float64(vlen/2)))
+	}
+	for vLen > 1{
+		vLen = getBit(vLen)
+		for i:=0; i<vLen; i++{
+			n1, n2 := array[i], array[vLen+i+1]
+			if n2 < n1{
+				array[i] = n2
+				array[vLen+i+1] = n1
+			}
+		}
+		fmt.Println(array)
+		println(vLen)
+	}
+	return array
 }
