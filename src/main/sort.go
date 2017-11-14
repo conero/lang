@@ -19,8 +19,8 @@ type tCase struct {
 func (t tCase) console() {
 	//t.InsertSort()	// 插入排序
 	//t.SelectSort()	// 选择排序
-	t.ShellSort()		// 希尔排序
-	//t.SortVsRuntimes()
+	//t.ShellSort()		// 希尔排序
+	t.SortVsRuntimes()
 }
 
 // 插入排序测试
@@ -69,9 +69,10 @@ func (t tCase) ShellSort(){
 
 // 排序比较
 func (t tCase) SortVsRuntimes(){
-	baseArr := data.GetRandIntArray(1000*2, 10000)
+	baseArr := data.GetRandIntArray(1000*5, 10000)
 	aSort := &alg.Sort{}
 	fmt.Println("基准随机数组： ", baseArr)
+	fmt.Println("基准数组长度： ", len(baseArr))
 	t1 := getRunTimes()
 	fmt.Println("A. 选择排序：", aSort.SelectSort(baseArr))
 	fmt.Println("  1).", t1())
@@ -79,6 +80,9 @@ func (t tCase) SortVsRuntimes(){
 	t2 := getRunTimes()
 	fmt.Println("B. 插入排序: ", aSort.Inert(baseArr))
 	fmt.Println("  1).", t2())
+	t3 := getRunTimes()
+	fmt.Println("B2. 希尔排序: ", aSort.ShellSort2(baseArr))
+	fmt.Println("  1).", t3())
 }
 
 // 获取运行时间
