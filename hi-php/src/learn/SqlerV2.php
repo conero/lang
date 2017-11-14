@@ -149,6 +149,8 @@ namespace conero\learn;
     public function where($data, $cover=false){
         if(is_string($data)){
             $data = [$data];
+        }elseif(!is_array($data)){
+            $data = array();
         }
         if($cover){
             $this->where = $data;
@@ -462,7 +464,7 @@ namespace conero\learn;
      */
     protected function getDbNoun($noun){
         $cQuotes = $this->mutilateDbs('col_quotes', '"');
-        return (false !== strpos($noun, $cQuotes))? $noun: $cQuotes.$noun.$cQuotes;
+        return (false !== strpos($noun, $cQuotes) || preg_match('/[\(\)]+/', $noun))? $noun: $cQuotes.$noun.$cQuotes;
     }
     /**
      * 字符换点操作符号解析
@@ -515,6 +517,9 @@ namespace conero\learn;
         $isBindMark = $this->isBindMark;
         $bind = [];
         $ctt = 1;
+        if(empty($where)){
+            $where = array();
+        }
         foreach ($where as $k=>$v){
             if(is_int($k)){
                 $tmpStr = $this->pointSgParse($v);
