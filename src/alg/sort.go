@@ -6,7 +6,6 @@ package alg
 
 import (
 	"math"
-	"fmt"
 )
 
 // 排序算法
@@ -108,6 +107,7 @@ func (S *Sort) SelectSort(array []int) []int{
 }
 
 // 希尔排序
+/*
 func (S *Sort) ShellSort(array []int) []int{
 	aLen := len(array)
 	vLen := aLen
@@ -125,6 +125,57 @@ func (S *Sort) ShellSort(array []int) []int{
 		}
 		fmt.Println(array)
 		println(vLen)
+	}
+	return array
+}
+*/
+/**
+伪代码 =>
+	input: an array a of length n with array elements numbered 0 to n − 1
+　　inc ← round(n/2)
+　　while inc > 0 do:
+　　for i = inc .. n − 1 do:
+　　temp ← a[i]
+　　j ← i
+　　while j ≥ inc and a[j − inc] > temp do:
+　　a[j] ← a[j − inc]
+　　j ← j − inc
+　　a[j] ← temp
+　　inc ← round(inc / 2.2)
+ */
+// 实现伪代码
+func (S *Sort) ShellSort2(array []int) []int{
+	nLen := len(array)
+	floorFn := func(n int) int {
+		return int(math.Floor(float64(n)/float64(2)))
+	}
+	for inc := floorFn(nLen); inc>0; inc = floorFn(inc){
+		for i := inc; i<nLen; i++{
+			tmp := array[i]
+			for j := i; j>= inc && array[j-inc] > tmp; j = j - inc{
+				array[j] = array[j-inc]
+				array[j-inc] = tmp
+			}
+		}
+	}
+	return array
+}
+// https://baike.baidu.com/item/%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F/3229428?fr=aladdin
+// 参考其他语言的实现版本迁移
+func (S *Sort) ShellSort(array []int) []int{
+	nLen := len(array)
+	floorFn := func(n int) int {
+		return int(math.Floor(float64(n)/float64(2)))
+	}
+	for inc := floorFn(nLen); inc > 0; inc = floorFn(inc){
+		//println(inc)
+		for i := inc; i < nLen; i++{
+			for j := i - inc; j>=0 && array[j] < array[j+inc]; j -= inc{
+				n1 := array[j]
+				array[j] = array[j+inc]
+				array[j+inc] = n1
+			}
+		}
 	}
 	return array
 }

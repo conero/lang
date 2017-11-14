@@ -60,10 +60,11 @@ func (t tCase) SelectSort()  {
 
 // 希尔排序
 func (t tCase) ShellSort(){
-	baseArr := data.GetRandIntArray(5)
+	baseArr := data.GetRandIntArray(10)
 	aSort := &alg.Sort{}
 	fmt.Println("基准随机数组： ", baseArr)
-	fmt.Println(aSort.ShellSort(baseArr))
+	fmt.Println("希尔排序处理：", aSort.ShellSort(baseArr))
+	fmt.Println("希尔排序处理2：", aSort.ShellSort2(baseArr))
 }
 
 // 排序比较
