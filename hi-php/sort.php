@@ -53,7 +53,7 @@ function shell_sort($arr)
     return $arr;
 }
 
-
+// [909,446,254,446,906,258,3,878,869,723,161,891,939]
 class Sort{
     // array() => array()
     public static function shellSort($array){
@@ -102,21 +102,133 @@ class Sort{
         }
         return $arr;
     }
+    // 冒泡排序
+    // Joshua Conero
+    public static function bubble($array){
+        $len = count($array);
+        for($i=0; $i<$len; $i++){
+            for($j=$i+1; $j<$len; $j++){
+                if($array[$j] < $array[$i]){
+                    $m1 = $array[$i];     
+                    $array[$i] = $array[$j];
+                    $array[$j] = $m1;
+                }
+            }
+        }
+        return $array;
+    }
+    // 插入排序 - Joshua Conero
+    public static function insert($array){
+        $len = count($array);
+        for($i=0; $i<$len-1; $i++){
+            // 找到剩余列表中的最小值
+            // 并将最小值推到末尾        
+            for($j=$i; $j<$len-1; $j++){
+                if($array[$j] < $array[$j+1]){
+                    $m0 = $array[$j+1];
+                    $array[$j+1] = $array[$j];
+                    $array[$j] = $m0;
+                }
+            }
+            // 有序数组
+            // 将最小值插入到指定的位置
+            $min = $array[$len-1];
+            $k = 0;
+            while($k<$i){
+                if($array[$k] > $min){
+                    $m1 = $array[$k];   // 替换值
+                    $array[$k] = $min;
+                    $min = $m1;
+                }
+                $k++;
+            }
+            $array[$len-1] = $array[$i];
+            $array[$i] = $min;            
+        }
+        return $array;
+    }    
+    // 快速排序
+    public static function quick($array){
+        $aLen = count($array);
+        $alice = floor($aLen/2);
+        for($i=$alice; $i<$aLen; $i++){
+            for($j=0; $j<$alice; $j++){
+                if($array[$i] < $array[$j]){
+                    $m = $array[$i];
+                    $array[$i] = $array[$j];
+                    $array[$j] = $m;
+                }
+            }
+        }
+        // left 任何一个值都比 right要小
+        $left = array_slice($array, 0, $alice);
+        $right = array_slice($array, $alice);
+        if(count($left)>1){
+            $left = Sort::quick($left);
+        }    
+        if(count($right)>1){
+            $right = Sort::quick($right);
+        }    
+        $array = array_merge($left, $right);
+        // /*
+        echo BR;
+        $msgArr = [
+            'basearray`' => json_encode($array),
+            'left' => json_encode($left),
+            'right' => json_encode($right)
+        ];
+        // echo json_encode($msgArr).BR;
+        print_r($msgArr);
+        // die;
+        // */
+
+        //return $array;
+    }
+    // 直接选择排序
+    public static function select($array){
+        $aLen = count($array);
+        // 确定位置
+        for($i=0; $i<$aLen-1; $i++){
+            // 排剩下的数组序列
+            for($j=$i; $j<$aLen-1; $j++){
+                if($array[$j] < $array[$j+1]){
+                    $n1 = $array[$j+1];
+                    $array[$j+1] = $array[$j];
+                    $array[$j] = $n1;
+                }
+            }
+            $n1 = $array[$i];
+            $array[$i] = $array[$aLen-1];
+            $array[$aLen-1] = $n1;
+        }
+        return $array;
+    }
+    // 堆排序
+    // 归并排序
+    // 基数排序
 }
 // 测试函数
 class Test{
     public function shellSort(){
         // $ba = getRandArray(20*10000);
-        $ba = getRandArray(10);
+        $ba = getRandArray(13);
         $start = startRun();
         // $sa = Sort::shellSort($ba);
         // $sa = Sort::shell($ba);
         $sa = shell_sort($ba);
+        $sBubble = Sort::bubble($ba);
+        $sInsert = Sort::insert($ba);
+        $sSelect = Sort::select($ba);
+        $sSQuick = Sort::quick($ba); die;
         $sec = $start();
         echo BR;
         $msgArr = [
             'basearray' => json_encode($ba),
             'sell_sort' => json_encode($sa),
+            'bubble_sort' => json_encode($sBubble),
+            'insert_sort' => json_encode($sInsert),
+            'select_sort' => json_encode($sSelect),
+            'quick_sort' => json_encode($sSQuick),
             'runtimes'  => $sec
         ];
         // echo json_encode($msgArr).BR;
