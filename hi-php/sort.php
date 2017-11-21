@@ -148,7 +148,9 @@ class Sort{
         return $array;
     }    
     // 快速排序
+    // 数据递归的分为两部分， P1 P2, P1 中的任何一个元素都不 P2 要小
     public static function quick($array){
+        // print_r($array);
         $aLen = count($array);
         $alice = floor($aLen/2);
         for($i=$alice; $i<$aLen; $i++){
@@ -169,20 +171,10 @@ class Sort{
         if(count($right)>1){
             $right = Sort::quick($right);
         }    
-        $array = array_merge($left, $right);
-        // /*
-        echo BR;
-        $msgArr = [
-            'basearray`' => json_encode($array),
-            'left' => json_encode($left),
-            'right' => json_encode($right)
-        ];
-        // echo json_encode($msgArr).BR;
-        print_r($msgArr);
-        // die;
-        // */
-
-        //return $array;
+        if(is_array($left) && is_array($right)){
+            $array = array_merge($left, $right);
+        }
+        return $array;
     }
     // 直接选择排序
     public static function select($array){
@@ -204,8 +196,132 @@ class Sort{
         return $array;
     }
     // 堆排序
-    // 归并排序
+    public static function heap($array){}
+    // 归并排序; 采用分治法（Divide and Conquer）
+    public static function merge($array){
+        //$aLen = count($array);   
+        // 分解
+        self::divideMerge($array, $dA);
+        // if($dA) echo json_encode($dA). BR;
+        // 合并
+        return self::conquerMerge($dA); 
+    }
+    // 分解
+    private static function divideMerge($a, &$dArray=array()){
+        $len = count($a);
+        if($len > 2){
+            $dN = floor($len/2);
+            $aP1 = array_slice($a, 0, $dN);
+            if($aP1) self::divideMerge($aP1, $dArray);
+            $aP2 = array_slice($a, $dN);
+            if($aP2) self::divideMerge($aP2, $dArray);
+        }else if($len == 2){
+            if($a[1] < $a[0]){
+                $tmpV = $a[0];
+                $a[0] = $a[1];
+                $a[1] = $tmpV;
+            }
+        }
+        // 分解到长度为 1/2 
+        if($len <3){
+            if(!is_array($dArray)){
+                $dArray = [];
+            }
+            $dArray[] = $a;
+            return false;
+        }
+        return $a;
+    }
+    // 合并
+    private static function conquerMerge($a){
+        // if($a) echo json_encode($a). BR;
+        $len = count($a);
+        $newArray = [];
+        if($len > 1 && self::cqrMergeMk($a)){
+            $i = 0;
+            while($i<$len-1){
+                $a1 = $a[$i];
+                $a2 = $a[$i+1];
+                // a2 -> a1
+                // 数据第一部分
+                for($j=0; $j<count($a2); $j++){
+                    $n1 = $a2[$j];
+                    $baseA = [$n1];
+                    $a1Len = count($a1);
+                    $orderMk = false;       // 是否排序标记
+                    // 数组第二部分
+                    for($k=0; $k<$a1Len; $k++){
+                        if($a1[$k] > $n1){
+                            if($k == 0){
+                                $a1 = array_merge($baseA, $a1);
+                            }else{
+                                // $mA2 = ($k==$a1Len-1)? []:array_slice($a1, $k+1);
+                                $mA2 = array_slice($a1, $k);
+                                $a1 = array_merge(array_slice($a1, 0, $k), $baseA, $mA2);
+                            }
+                            $orderMk = true;
+                            break;
+                        }
+                    }
+                    if(!$orderMk){
+                        $a1[] = $n1;
+                    }
+                }
+                $newArray[] = $a1;
+                $i += 2;
+            }
+        }
+        // 递归合并
+        if(self::cqrMergeMk($newArray)){
+            if(count($newArray) == 1){
+                $newArray = $newArray[0];
+            }else{
+                $newArray = self::conquerMerge($newArray);
+            }
+        }
+        return $newArray;
+    }
+    // 检查是否为可合并的数组
+    private static function cqrMergeMk($a){
+        $right = false;
+        foreach($a as $v){
+            if(is_array($v)){
+                $right = true;
+                break;
+            }
+        }
+        return $right;
+    }
     // 基数排序
+    // 数据的个十百千万位划分
+    private static function getBaseRadix(){
+        $base = [];
+        $i=0;
+        while($i<10){
+            $base[] = false;
+            $i += 1;
+        }
+    }
+    private static function getNbit($array){
+        $maxBit = 1;
+        foreach($array as $v){
+            $b = ceil(log10($v=5));
+            if($b > $maxBit){
+                $maxBit = $b;
+            }
+        }
+        return $maxBit;
+    }
+    public static function radix($array){
+        $maxBit = self::getNbit($array);    // 数据最大位
+        // echo ceil(log10($v=5)). ' ('.$v.', 10)'. BR;
+        $i = 1;
+        while($i <= $maxBit){
+            foreach($array as $v){
+            }
+        }
+        return $array;
+    }
 }
 // 测试函数
 class Test{
@@ -219,7 +335,9 @@ class Test{
         $sBubble = Sort::bubble($ba);
         $sInsert = Sort::insert($ba);
         $sSelect = Sort::select($ba);
-        $sSQuick = Sort::quick($ba); die;
+        $sSQuick = Sort::quick($ba);
+        $sMerge = Sort::merge($ba);
+        $sRadix = Sort::radix($ba);
         $sec = $start();
         echo BR;
         $msgArr = [
@@ -229,6 +347,8 @@ class Test{
             'insert_sort' => json_encode($sInsert),
             'select_sort' => json_encode($sSelect),
             'quick_sort' => json_encode($sSQuick),
+            'merge_sort' => json_encode($sMerge),
+            'radix_sort' => json_encode($sRadix),
             'runtimes'  => $sec
         ];
         // echo json_encode($msgArr).BR;
