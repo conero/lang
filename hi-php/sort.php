@@ -195,6 +195,7 @@ class Sort{
         }
         return $array;
     }
+    // php 如何实现二叉树数据结构 ??
     // 堆排序
     public static function heap($array){}
     // 归并排序; 采用分治法（Divide and Conquer）
@@ -301,24 +302,67 @@ class Sort{
             $base[] = false;
             $i += 1;
         }
+        return $base;
     }
+    // 获取数组序列中最大的位数
     private static function getNbit($array){
         $maxBit = 1;
         foreach($array as $v){
-            $b = ceil(log10($v=5));
+            $b = ceil(log10($v));
             if($b > $maxBit){
                 $maxBit = $b;
             }
         }
         return $maxBit;
     }
+    /**
+     * 获取数据中指定位置的数字. 有点困难， 数学计算法以及字符串处理法
+     * @param $b int
+     * @param $n int
+     * @return int
+     */
+    public static function getBinN($b, $n){
+        $rInt = 0;
+
+        // 数学计算法
+        $bit = ceil(log10($n));
+        if($bit >= $b){
+            $b0 = $n / pow(10, $b);
+            $rInt = intval(($b0 - intval($b0))*10);
+        }
+        
+
+        // // 字符解决法则
+        // $str = $n.'';
+        // $sLen = strlen($str);
+        // if($sLen >= $b){
+        //     $rInt = intval(substr($str, (-1 * $b), 1));
+        // }
+
+        return $rInt;
+    }
+    // 基数排序
     public static function radix($array){
         $maxBit = self::getNbit($array);    // 数据最大位
-        // echo ceil(log10($v=5)). ' ('.$v.', 10)'. BR;
-        $i = 1;
+        // echo $maxBit. BR;
+        // echo ceil(log10($v=2)). ' ('.$v.', 10)'. BR;        
+        // echo json_encode(self::getBaseRadix()). BR;        
+        $i = 1;        
         while($i <= $maxBit){
+            $baseA = self::getBaseRadix();
             foreach($array as $v){
+                $n = self::getBinN($i, $v);
+                if(!$baseA[$n]) $baseA[$n] = [];
+                $baseA[$n][] = $v;                                        
             }
+            $array = [];
+            // echo json_encode($baseA). BR;
+            foreach($baseA as $a){
+                if(!$a) continue;
+                $array = array_merge($array, $a);
+            }
+            // echo json_encode($array). BR;
+            $i++;
         }
         return $array;
     }
@@ -354,10 +398,19 @@ class Test{
         // echo json_encode($msgArr).BR;
         print_r($msgArr);
     }
+    public function RadixTest(){
+        $ba = getRandArray(13);
+        echo json_encode($ba). BR;  
+        foreach($ba as $v){
+            echo $v.','.Sort::getBinN(3, $v).'' . BR;
+        }
+        // echo json_encode(Sort::radix($ba)). BR;  
+    }
 }
 // 运行统计数
 function console(){
     $test = new Test();
     $test->shellSort();
+    // $test->RadixTest();
 }
 console();
