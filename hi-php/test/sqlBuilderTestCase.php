@@ -51,6 +51,8 @@ class TestCase{
             ->join(['login', 'b'], 'a.uid = b.uid')
             ->join('family c', 'a.family_id=c.id', 'left')
             ->join('user_info d', 'a.uid=d."emp_id"')
+            // bug  'a.uid=d."emp_id" and e.uid=a.mtime and e.uid=\'a.5474\''=> ~e.uid='a."5474"'
+            ->join('"user_info" e', 'a.uid=d."emp_id" and e.uid=a.mtime and e.uid=\'a.5474\' and w.name=\'2017.254\'')
             ->where(['a.name'=>'test'])
             ->select()
             ;

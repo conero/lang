@@ -28,6 +28,11 @@ namespace conero\learn;
      */
     // 多数据库支持
     public $mutilateOptions = [
+        // pgsql
+        'pgsql' => [
+            'col_quotes' => '"',       // 字段引号
+            'val_quotes' => '\''       // 值引号
+        ],
         // oracle
         'oci' => [
             'col_quotes' => '"',       // 字段引号
@@ -570,7 +575,7 @@ namespace conero\learn;
                     $colList[] = $this->pointSgParse($v);
                     // k-v 数组
                 }else{
-                    $colList[] = $this->pointSgParse($k).' as '.$this->getDbNoun($v);
+                    $colList[] = $this->pointSgParse($k).' AS '.$this->getDbNoun($v);
                 }
             }
             $cols = implode(',', $colList);
