@@ -77,13 +77,14 @@ class TestCase{
                 ->field(['c.stru_name'])
                 ->join('emp2000c b', 'a.emp_id = b.emp_id')
                 ->join('str0000c c', 'b.stru_id = c.stru_id', 'left')
+                ->join('str0000c d', 'd.stru_id = a.stroage_id and d.code=\'T.DFGJ.S.K\' and d.date > sysdate', 'left')
                 ->where('a.cname like \'%杨%\'')
                 ->select()
                 ;
         });
-        debug(
-            Sqler::table('sys_user')->where('name like \'%杨%\'')->count('name')
-        );
+        // debug(
+        //     Sqler::table('sys_user')->where('name like \'%杨%\'')->count('name')
+        // );
     }
 }
 new TestCase;

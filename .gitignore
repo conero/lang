@@ -1,2 +1,5 @@
 # 禁止可执行文件上传
 *.exe
+
+# idea IDE 不加入git中
+.idea

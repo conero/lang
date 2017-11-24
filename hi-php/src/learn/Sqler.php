@@ -546,12 +546,26 @@ namespace conero\learn;
     protected function pointSgParse($str){
         if(false !== strpos($str, '.')){
             // alias.column => alias."column" oracle
+            $vQuotes = $this->mutilateDbs('val_quotes', '"');
+            // 替换参数值
+            preg_match_all("/".$vQuotes."[^".$vQuotes."]+".$vQuotes."/", $str, $matches);
+            $matches = isset($matches[0])? $matches[0]: [];
+            $replaceQueue = [];
+            foreach($matches as $k=>$v){
+                $key = '__R'.$k.'__';
+                $str = str_replace($v, $key, $str);
+                $replaceQueue[$key] = $v;
+            }
             preg_match_all("/\.[a-zA-Z0-9_]+/", $str, $matches);
             $matches = isset($matches[0])? $matches[0]: [];
             $cQuotes = $this->mutilateDbs('col_quotes', '"');
             foreach ($matches as $v){
                 $newStr = '.'.$cQuotes.substr($v, 1).$cQuotes;
                 $str = str_replace($v, $newStr, $str);
+            }
+            // 还原参数值
+            foreach($replaceQueue as $ref=>$raw){
+                $str = str_replace($ref, $raw, $str);
             }
         }
         else{
@@ -562,9 +576,11 @@ namespace conero\learn;
 }
 
 /*
-    v1.0.1/20171021
+    v1.0.1/20171124
     ChangeLog   更新日志：
-        1). 支持多表数据连接    /2017年10月18日 星期三
+        *). “.”操作自动复原优化    /2017年11月24日 星期五
+            修复无法识别如： test.name='7854.4124' 类型的点操作， 进行操作之前别名替换，后期还原
+        *). 支持多表数据连接    /2017年10月18日 星期三
             select 时 class::$col 与 fun::$col 合并，并且自动销毁（防止下次影响）
             字符串安全监测,
             数据表别名不知用标点符号
