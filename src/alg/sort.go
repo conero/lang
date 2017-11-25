@@ -179,3 +179,82 @@ func (S *Sort) ShellSort(array []int) []int{
 	}
 	return array
 }
+
+// 冒泡排序
+func (S *Sort) Bubble(array []int) []int{
+	aLen := len(array)
+	for i :=0; i<aLen; i++{
+		for j:= i+1;j<aLen; j++{
+			if array[j] < array[i]{
+				array[j], array[i] = array[i], array[j]
+			}
+		}
+	}
+	return array
+}
+
+// 快速排序
+// 数据递归的分为两部分， P1 P2, P1 中的任何一个元素都不 P2 要小
+func (S *Sort) Quick(array []int) []int{
+	// 分为两部分
+	aLen := len(array)
+	alice := int(math.Floor(float64(aLen)/2))
+	for i:=alice; i<aLen; i++{
+		for j:=0; j<alice; j++{
+			if array[i] < array[j]{
+				array[j], array[i] = array[i], array[j]
+			}
+		}
+	}
+	// left 任何一个值都比 right要小
+	left := array[0:alice]
+	right := array[alice:]
+	if len(left) > 1{
+		left = S.Quick(left)
+	}
+	if len(right) > 1{
+		left = S.Quick(left)
+	}
+	if len(left)>0 && len(right)>0{
+		array = append(left, right...)
+	}
+	return array
+}
+
+// 归并排序; 采用分治法（Divide and Conquer）
+func (S *Sort) Merge(array []int) []int {
+	baseArray := []int{}
+	// 分解
+	S.mergeDivide(array, &baseArray)
+	// 合并
+	return S.mergeConquer(baseArray)
+}
+// 分解
+func (S *Sort) mergeDivide(array []int, baseArray *[]int){
+	aLen := len(array)
+	if aLen > 2{
+		dN := int(math.Floor(float64(aLen)/2))
+		aP1 := array[0: dN]
+		if len(aP1) > 0{
+			S.mergeDivide(aP1, baseArray)
+		}
+		aP2 := array[dN:]
+		if len(aP2) > 0{
+			S.mergeDivide(aP2, baseArray)
+		}
+	}else if aLen == 2{
+		if array[1] < array[0]{
+			array[1], array[0] = array[0],array[1]
+		}
+	}
+
+	// 分解到长度为 1/2
+	if aLen > 3{
+		*baseArray = append(*baseArray, array...)
+	}
+}
+// 合并
+func (S *Sort) mergeConquer(array []int) []int {
+	//aLen := len(array)
+	return []int{}
+}
