@@ -36,11 +36,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="variable.go" pinned="false" current-in-tab="true">
+      <file leaf-file-name="variable.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sqler/variable.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="230">
               <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pointer.go" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pointer.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="327">
+              <caret line="27" column="22" lean-forward="true" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -127,6 +137,7 @@
         <option value="$PROJECT_DIR$/src/sqler/README.md" />
         <option value="$PROJECT_DIR$/src/sqler/variable.go" />
         <option value="$PROJECT_DIR$/src/sqler/sqler.go" />
+        <option value="$PROJECT_DIR$/pointer.go" />
       </list>
     </option>
   </component>
@@ -157,8 +168,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -186,6 +195,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -205,7 +216,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Go Application.go run sqler-test.go">
+  <component name="RunManager" selected="Go Application.pointer.go">
     <configuration name="func-vla-test.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
       <module name="hi-golang" />
       <working_directory value="$PROJECT_DIR$/" />
@@ -220,14 +231,24 @@
       <kind value="FILE" />
       <filePath value="$PROJECT_DIR$/test/sqler-test.go" />
     </configuration>
-    <list size="2">
+    <configuration name="pointer.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
+      <module name="hi-golang" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <go_parameters value="-i" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/pointer.go" />
+      <directory value="$PROJECT_DIR$/" />
+    </configuration>
+    <list size="3">
       <item index="0" class="java.lang.String" itemvalue="Go Application.go run sqler-test.go" />
       <item index="1" class="java.lang.String" itemvalue="Go Application.func-vla-test.go" />
+      <item index="2" class="java.lang.String" itemvalue="Go Application.pointer.go" />
     </list>
     <recent_temporary>
-      <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="Go Application.go run sqler-test.go" />
-        <item index="1" class="java.lang.String" itemvalue="Go Application.func-vla-test.go" />
+      <list size="3">
+        <item index="0" class="java.lang.String" itemvalue="Go Application.pointer.go" />
+        <item index="1" class="java.lang.String" itemvalue="Go Application.go run sqler-test.go" />
+        <item index="2" class="java.lang.String" itemvalue="Go Application.func-vla-test.go" />
       </list>
     </recent_temporary>
   </component>
@@ -238,16 +259,16 @@
     <frame x="-9" y="-9" width="1924" height="1048" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24973767" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25351351" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3276644" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32821077" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -268,22 +289,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/sqler/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="1127">
-            <caret line="49" column="0" lean-forward="false" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-            <folding>
-              <marker date="1509119817858" expanded="true" signature="365:488" ph="/.../" />
-              <marker date="1509119817858" expanded="true" signature="638:726" ph="/.../" />
-              <marker date="1509119817858" expanded="true" signature="905:1002" ph="/.../" />
-              <marker date="1509119817858" expanded="true" signature="1242:1287" ph="/.../" />
-            </folding>
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sqler/AdapterOracle.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="207">
@@ -739,17 +744,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sqler/README.md">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="11" column="22" lean-forward="false" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
-          <folding>
-            <marker date="1509119817858" expanded="true" signature="365:488" ph="/.../" />
-            <marker date="1509119817858" expanded="true" signature="638:726" ph="/.../" />
-            <marker date="1509119817858" expanded="true" signature="905:1002" ph="/.../" />
-            <marker date="1509119817858" expanded="true" signature="1242:1287" ph="/.../" />
-          </folding>
-        </state>
-      </provider>
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="1127">
@@ -762,6 +756,17 @@
             </folding>
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="11" column="22" lean-forward="false" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
+          <folding>
+            <marker date="1509119817858" expanded="true" signature="365:488" ph="/.../" />
+            <marker date="1509119817858" expanded="true" signature="638:726" ph="/.../" />
+            <marker date="1509119817858" expanded="true" signature="905:1002" ph="/.../" />
+            <marker date="1509119817858" expanded="true" signature="1242:1287" ph="/.../" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -782,6 +787,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
           <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pointer.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="327">
+          <caret line="27" column="22" lean-forward="true" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
           <folding />
         </state>
       </provider>
