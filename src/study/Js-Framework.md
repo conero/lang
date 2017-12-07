@@ -8,6 +8,8 @@
 ## ReactJs
 - A JavaScript library for building user interfaces
     - facebook
+- jsx   javascript xml
+- 自定义类型，必须以大写开头，否则将视作 html 文档格式
 
 ## AngularJS
 
