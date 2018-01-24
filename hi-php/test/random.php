@@ -9,7 +9,7 @@
 
 
 call_user_func(function (){
-    //return false;   // 开关
+    return false;   // 开关
     $count = 10000;
     $i = 1;
     $array = [];
@@ -19,6 +19,19 @@ call_user_func(function (){
         $array[] = $t1;
         echo $t.'  '.(in_array($t, $array)? 'Y':'N') ."\r\n";
         $array[] = $t;
+        $i++;
+    }
+});
+
+call_user_func(function (){
+    //return false;   // 开关
+    $cout = 100;
+    $i = 1;
+    while ($i<=$cout){
+        $str = 'NONE';
+        $bt = openssl_random_pseudo_bytes ( 10, $str);
+        //echo $i."$bt, $str \r\n";
+        echo $i.". ".bin2hex($bt). " $str \r\n";
         $i++;
     }
 });
