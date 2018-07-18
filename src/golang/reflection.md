@@ -12,6 +12,13 @@
 
 
 
+## 注意项
+
+- *reflect* 用于调用struct的方法时属于外部调用，因此命名上一定符合此规则，即首字母大写(公共)
+  - 私有方法可能无法调用
+
+
+
 ## 参考资料
 
 - [laws-of-reflection](https://blog.golang.org/laws-of-reflection)
