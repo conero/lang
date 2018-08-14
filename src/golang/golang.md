@@ -43,6 +43,153 @@
 
 
 
+### 基本语法
+
+> 字符串, "" 以及 `` 表示
+
+```go
+func main(){
+    var str1 = "字符串"
+	str2 := `多行字符串`
+    fmt.Println(str1, str2)
+}
+
+```
+
+> 域源代码为 *utf-8* 编码格式
+
+> 大小写敏感
+
+> 注释， // 单行， /*多行*/
+
+```go
+func init(){
+	// 单行注释
+    t1, n1 := `ffff`, 5
+    /*
+    多行注释
+    */
+    fmt.Println(t1, n1)
+}
+```
+
+> tokens : *标识符*，*关键字*，*运算符和标点符号*以及*文字* 
+
+> 标识符中的第一个字符必须是字母。以字母开头
+
+> **关键字**
+
+```go
+break        default      func         interface    select
+case         defer        go           map          struct
+chan         else         goto         package      switch
+const        fallthrough  if           range        type
+continue     for          import       return       var
+```
+
+> **运算符和标点符号**
+
+```go
++    &     +=    &=     &&    ==    !=    (    )
+-    |     -=    |=     ||    <     <=    [    ]
+*    ^     *=    ^=     <-    >     >=    {    }
+/    <<    /=    <<=    ++    =     :=    ,    ;
+%    >>    %=    >>=    --    !     ...   .    :
+     &^          &^=
+```
+
+####  数字 / number
+
+> 整形
+
+支持十进制、八进制、十六进制
+
+> float 浮点数
+
+```go
+n10, n8, n16 := 0, o5, 0x100
+f1, f2 := 072.47, 3.45e5
+// 1e-3 = 0.001
+// 1e3 = 1000
+```
+
+
+
+```go
+// utype = 2^n - 1
+uint8       the set of all unsigned  8-bit integers (0 to 255), 2百
+uint16      the set of all unsigned 16-bit integers (0 to 65535), 6万
+uint32      the set of all unsigned 32-bit integers (0 to 4294967295) 42亿
+uint64      the set of all unsigned 64-bit integers (0 to 18446744073709551615)
+
+int8        the set of all signed  8-bit integers (-128 to 127)
+int16       the set of all signed 16-bit integers (-32768 to 32767)
+int32       the set of all signed 32-bit integers (-2147483648 to 2147483647)
+int64       the set of all signed 64-bit integers (-9223372036854775808 to 9223372036854775807)
+
+float32     the set of all IEEE-754 32-bit floating-point numbers
+float64     the set of all IEEE-754 64-bit floating-point numbers
+
+complex64   the set of all complex numbers with float32 real and imaginary parts
+complex128  the set of all complex numbers with float64 real and imaginary parts
+
+byte        alias for uint8
+rune        alias for int32
+
+uint        either 32 or 64 bits
+int         same size as uint
+uintptr     an unsigned integer large enough to store the uninterpreted bits of a pointer value
+```
+
+
+
+#### string/字符串
+
+```go
+string_lit             = raw_string_lit | interpreted_string_lit
+// 原始字符串
+raw_string_lit         = "`" { unicode_char | newline } "`"
+// 解析字符串
+interpreted_string_lit = `"` { unicode_value | byte_value } `"`
+
+n := len(raw_string_lit)	// 0 ... len(s) -1
+```
+
+
+
+#### 常量 / constant
+
+> 类型
+
+- boolean  布尔
+- rune  符文类型
+- integer 整形
+- floating-point 浮点数
+- complex 符合类型
+- string 字符串
+
+Rune, integer, floating-point, and complex constants are collectively called *numeric constants*. 
+
+
+
+#### 变量/variable
+
+>  结构化的变量: array, slice, map
+
+
+
+#### 类型/ type
+
+> 复合类型 *Composite types* 
+
+array, struct, pointer, function, interface, slice, map, and channel
+
+> 基础类型/ *underlying type* 
+
+ boolean, numeric, or string 
+
+
+
 ## import
 
 ### Golang 环境设置
