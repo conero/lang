@@ -4,6 +4,16 @@
 
 ## *语法学习* 
 
+### cgo
+
+> go 语言中调用 *c/c++* 
+
+golang的cgo是调用gcc编译c代码的，gcc工具链在linux上很方便，但windows上是没有的。而windows上一般用的vc，golang是不支持的。
+
+可用 *MinGW*
+
+
+
 ### 概述 
 
 主要特性
@@ -190,6 +200,80 @@ array, struct, pointer, function, interface, slice, map, and channel
 
 
 
+### 接口/interface
+
+> go 语言采用 *组合继承* ；接口实现的方法，一个 ```struct``` 实现 ``interface`` 所有方法则实现了接口
+
+```go
+package main
+
+import "fmt"
+
+type A interface {
+	Name() string
+	Cal(params ...int) int
+}
+
+type A1 struct {
+}
+
+func (a1 *A1) Name() string {
+	return "Add"
+}
+
+func (a1 *A1) Cal(params ...int) int {
+	all := 0
+	for _, n := range params {
+		all += n
+	}
+	return all
+}
+
+type A2 struct {
+}
+
+func (a2 *A2) Name() string {
+	return "Reduce"
+}
+
+func (a2 *A2) Cal(params ...int) int {
+	all := 0
+	for _, n := range params {
+		all -= n
+	}
+	return all
+}
+
+func GetA(vtype string) A {
+	var a A = nil
+	switch vtype {
+	case "A1":
+		//a = A1{}
+		// ERROR: cannot use A1 literal (type A1) as type A in assignment:
+		a = new(A1)
+	case "A2":
+		a = new(A2)
+	}
+	return a
+}
+
+func main() {
+	param := []int{100, 10, 1, 0}
+	var a1, a2 A
+	a1 = GetA("A1")
+	a2 = GetA("A2")
+	fmt.Println(a1.Name(), a1.Cal(param...))
+	fmt.Println(a2.Name(), a2.Cal(param...))
+}
+
+```
+
+
+
+
+
+
+
 ## import
 
 ### Golang 环境设置
@@ -250,19 +334,19 @@ go get = git clone + go install
 
 ## 内建函数或GO基础包
 
-​	go/src/builtin/builtin.go   内建函数文档包，可直接使用而不用引入包
+	go/src/builtin/builtin.go   内建函数文档包，可直接使用而不用引入包
 	go调用C/C++，或dll文件
 
 
 
 ### 保留函数
 
-​	无参数、返回值
+	无参数、返回值
 	main	只能应用于package main
 	init		能够应用于所有的package	可选
 	
 
-​	C/C++中接收命令行参数是通过~main函数传入，而go可以使用 os ,flag 库。	os.Args 命令行
+	C/C++中接收命令行参数是通过~main函数传入，而go可以使用 os ,flag 库。	os.Args 命令行
 
 
 
@@ -277,7 +361,6 @@ go get = git clone + go install
   t2 := *t1				// t1 的值
   ```
 
-  
 
 ### 时间
 
