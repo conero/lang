@@ -51,9 +51,9 @@
       -- 表所有子表引用查询
       FUNCTION ref_ctable(tname VARCHAR2) RETURN reftable PIPELINED;
 
-      descript VARCHAR2(200) := 'oracle 辅助程序包';
-      version VARCHAR2(10) := '0.0.1';
-      release DATE := to_date('20180815', 'YYYYMMDD');
+      descript VARCHAR2(200) := 'oracle 辅助程序包，基于11g';
+      version VARCHAR2(10) := '0.0.2';
+      release DATE := to_date('20180816', 'YYYYMMDD');
       build DATE := to_date('20180815', 'YYYYMMDD');
 
     END jc;
