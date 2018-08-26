@@ -14,7 +14,7 @@
 
 **时间开始于：**2016年4月16日13:40:23@-
 
-         软件行业是一个发展迅速的行业，也为全面的发展，加上长期以来工作上形成的困惑。
+    软件行业是一个发展迅速的行业，也为全面的发展，加上长期以来工作上形成的困惑。
 
 
 
@@ -125,6 +125,24 @@ C++新特效(C++11/14)可满足要求
 - windows  ``VC``
 - linux ``gcc``
 - osx ``clang``
+
+
+
+#### windows/工具
+
+``Cygwin`` 、``WinGW`` 分别为 *中间转换工具/平台*
+
+
+
+> Cygwin
+
+*Get that Linux feeling - on Windows*
+
+
+
+> WinGW
+
+*a contraction of "Minimalist GNU for Windows", is a minimalist development environment for native Microsoft Windows applications.*
 
 
 
