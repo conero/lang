@@ -46,6 +46,24 @@ alter system kill session'10,15';
 
 
 
+## PL/SQL
+
+### 循环
+
+> 死循环可能操作 “锁”现象
+
+
+
+### 常见问题
+
+
+
+#### NO_DATA_FOUND
+
+> PL/SQL 内部查询数据为空时，会抛出异常 *NO DATA FIND*， 而是用 NVL/NVL2 无效(整体记录不存在时)
+
+
+
 
 
 ## 参照
