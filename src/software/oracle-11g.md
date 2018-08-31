@@ -46,6 +46,31 @@ alter system kill session'10,15';
 
 
 
+## 系统/DBA
+
+
+
+> session
+
+```sql
+alter session set nls_date_format='yyyy-mm-dd hh24:mi:ss';
+```
+
+
+
+### objects
+
+> 数据库对象
+
+- 相关表
+  - *all_objects*     所有用户下对象
+  - *dba_objects*  dba所有对象
+  - *user_objects*  当前用户所有对象
+
+
+
+
+
 ## PL/SQL
 
 ### 循环
