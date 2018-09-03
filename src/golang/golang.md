@@ -1,5 +1,70 @@
 # **Golang** 
 
+> 特性
+
+- expressive
+- concise
+- clean
+- efficient
+- with  garbage collection (**GC**)
+-  run-time reflection
+
+> make it easy to write programs that get the most out of multicore and networked machines
+
+
+
+## 关于
+
+### 代码
+
+> workshop    **GOPATH** 用于可指明其目录
+
+- Go programmers typically keep all their Go code in a single *workspace*.    
+  - go 程序员通常将程序代码置于单个``工作区``中
+- A workspace contains many version control *repositories* (managed by Git, for example).
+  - 工作区含多个版本控制
+- Each repository contains one or more *packages*.
+  - 每个仓库包含单/多个``包``
+- Each package consists of one or more Go source files in a single directory.
+  - 每个包含有多个文件再单一目录下(*一个目录一个包*)。
+- The path to a package's directory determines its *import path*.
+  - 包的路径与 *import* 路径一致
+
+
+
+> 包
+
+```go
+// path = ../name 
+package name
+```
+
+*单个包中包名应该一致。*
+
+
+
+### Testing
+
+> go 拥有一个轻量级的测试框架，通过 ``go test`` 命令进行测试
+
+- 测试文件名 ``{name}_test.go``
+
+- 测试方法入口  ``Test{name}``
+
+```go
+func TestName (t *testing.T)
+// t.Error/t.Fail   意识着测试失败
+```
+
+
+
+### fetch
+
+> $> go fetch {url}   获取并安装远程包
+
+
+
+
 
 
 ## *语法学习* 
@@ -344,7 +409,7 @@ go get = git clone + go install
 	无参数、返回值
 	main	只能应用于package main
 	init		能够应用于所有的package	可选
-	
+
 
 	C/C++中接收命令行参数是通过~main函数传入，而go可以使用 os ,flag 库。	os.Args 命令行
 
