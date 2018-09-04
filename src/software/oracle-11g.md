@@ -89,6 +89,61 @@ alter session set nls_date_format='yyyy-mm-dd hh24:mi:ss';
 
 
 
+## oracle /Sys
+
+### Pseudocolumns/ 伪列
+
+> Hierarchical Query   (级联查询)   connect by。 级联伪列
+
+1. `CONNECT_BY_ISCYCLE=1/0`   		是否存在循环
+2. `CONNECT_BY_ISLEAF=1/0`                  是否为*页*
+3. `LEVEL`                                                    层级数
+
+
+
+> Sequence Pseudocolumns    序列伪列
+
+*用于触发器等*
+
+1. `sequence.CURRVAL`   序列当前的值
+2. `sequence.NEXTVAL` 序列下一个值
+
+
+
+
+
+
+
+### DUAL
+
+> 单行文件
+
+
+
+### 随机数
+
+> *dbms_random* /   ``DBMS_RANDOM``
+
+- dbms_random.value     小数(0-1)
+- select trunc(dbms_random.value(0,100)) from dual        （0， 100） 的随机数
+- dbms_random.normal    正态分布随机数
+- dbms_random.string(type, len)
+
+
+
+> dbms_random.string(type)
+
+ /* type可取值如下：
+      'u','U'    :    大写字母
+      'l','L'    :    小写字母
+      'a','A'    :    大、小写字母
+      'x','X'    :    数字、大写字母
+      'p','P'    :    可打印字符
+
+*/
+
+
+
 
 
 ## 参照
