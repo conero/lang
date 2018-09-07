@@ -217,5 +217,169 @@ func ReadFull(r Reader, buf []byte) (n int, err error) {
 
 > defer
 
+Go's `defer` statement schedules a function call (the *deferred* function) to be run immediately before the function executing the `defer` returns。
+
+Go的defer语句用来调度一个函数调用（被延期的函数），使其在执行defer的函数即将返回之前才被运行,被延期执行的函数，它的参数（包括接受者）实在defer执行的时候被求值的，而不是在调用执行的时候。也就是说被延期执行的函数的参数是按正常顺序被求值的。
+
+- *defer 逆序执行*
+- *用于在处理资源时，函数结束时执行*
+
+
+
+```go
+// Contents returns the file's contents as a string.
+func Contents(filename string) (string, error) {
+    f, err := os.Open(filename)
+    if err != nil {
+        return "", err
+    }
+    defer f.Close()  // f.Close will run when we're finished.
+
+    var result []byte
+    buf := make([]byte, 100)
+    for {
+        n, err := f.Read(buf[0:])
+        result = append(result, buf[0:n]...) // append is discussed later.
+        if err != nil {
+            if err == io.EOF {
+                break
+            }
+            return "", err  // f will be closed if we return here.
+        }
+    }
+    return string(result), nil // f will be closed if we return here.
+}
+```
+
+
+
+## Data/ 数据
+
+*Go has two allocation primitives, the built-in functions `new` and `make`.*
+
+go 使用内建函数 `new` 和 `make` 分配类型
+
+### `new` 分配类型
+
+- 与其他语言中的名称不同，它不会*初始化*内存，它只会将其*归零*。即 `new (T) => *T`, 它返回指向新分配的类型零值的指针 `T`
+
+```go
+// 两者等价
+p := new(T)  // type *T
+var v T      // type  T
+
+// new eg1
+func NewFile(fd int, name string) *File {
+    if fd < 0 {
+        return nil
+    }
+    f := new(File)
+    f.fd = fd
+    f.name = name
+    f.dirinfo = nil
+    f.nepipe = 0
+    return f
+}
+// new eg2
+// 使用“复合文字”
+func NewFile(fd int, name string) *File {
+    if fd < 0 {
+        return nil
+    }
+    
+    f := File{fd, name, nil, 0}
+    return &f
+}
+```
+
+>复合文字(composite literals)
+
+```go
+type T struct{
+    Name string
+    Age int
+    Gender string    
+}
+// 函数
+func Test(){
+    // 复合文字的字段按顺序排列，并且必须全部存在。
+    t := &T{"Joshua Conero", 28, 'M'}
+    t2 := &T{
+        Name: "Joshua Conero",
+        Gender: 'M'
+    }
+}
+```
+
+
+
+### `make` 分配类型
+
+函数 `make(T, `**args**`)` 
+
+与 `new` 不同： It creates slices, maps, and channels only, and it returns an *initialized* (not *zeroed*) value of type `T` (not `*T`).  仅仅用于 `lices, maps, and channels`,其初始化非空的的值， 非*指针*
+
+
+
+```go
+// new 与 make 的主要区别
+var p *[]int = new([]int)       // allocates slice structure; *p == nil; rarely useful
+var v  []int = make([]int, 100) // the slice v now refers to a new array of 100 ints
+
+// Unnecessarily complex:
+var p *[]int = new([]int)
+*p = make([]int, 100, 100)
+
+// Idiomatic:
+v := make([]int, 100)
+```
+
+
+
+### Arrays/ 数组
+
+> 与 C 不同
+
+- Arrays are values. Assigning one array to another copies all the elements. 
+  - *值复制，非址引用*
+- In particular, if you pass an array to a function, it will receive a *copy* of the array, not a pointer to it. 
+  - *数组在函数中值传递为：值传递，非址传递*
+- The size of an array is part of its type. The types `[10]int` and `[20]int` are distinct.
+
+
+
+### Slices/ 切片
+
+*切片保存对基础数组的引用，如果将一个切片分配给另一个切片，则两者都引用相同的数组。*
+
+
+
+
+
+### Maps/ 字典
+
+> *k-v* 数据结构
+
+*其值访问与 array、slice相同*
+
+```go
+var M1 map[string]string = map[string]string{
+    "a":"alt",
+    "b":"ben",
+}
+
+// 获取值
+ben := M1["b"]
+
+// 存在与否
+// string,bool := map[string]string
+jan,has := M1["j"]
+_,has := M1["j"]
+
+
+```
+
+
+
 // @TODO ...
 
