@@ -144,6 +144,27 @@ alter session set nls_date_format='yyyy-mm-dd hh24:mi:ss';
 
 
 
+### 用户密码过期
+
+错误信息： `SQLSTATE[HY000]: OCISessionBegin: OCI_SUCCESS_WITH_INFO: ORA-28002: the password will expire within 7 days`
+
+
+
+> 解决方法
+
+```sql
+-- 查询密码状态
+SELECT * FROM dba_profiles s WHERE s.profile='DEFAULT' AND resource_name='PASSWORD_LIFE_TIME';
+
+-- 修改密码为： 将密码设置成永不过期
+ALTER PROFILE DEFAULT LIMIT PASSWORD_LIFE_TIME UNLIMITED;
+
+-- 更新密码
+alter user uname identified by pswd;
+```
+
+
+
 
 
 ## 参照
