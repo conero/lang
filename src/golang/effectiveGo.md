@@ -392,27 +392,27 @@ _,has := M1["j"]
 
 #### 通常/General
 
-- `%v`   指向值的默认格式，任意类型；*struct* 时 `%+v` 包括 field names
+- `%v`   (value) *指向值的默认格式，任意类型；*struct* 时 `%+v` 包括 field names*
 - `%#v`  *go-syntax 语法式值输出*
-- `%T`  *go-syntax 语法式值的类型*
+- `%T`  (type) *go-syntax 语法式值的类型*
 - `%%`   *a literal percent sign; consumes no value*
 
 
 
 #### Boolean
 
-- `%t` *布尔结构： true/false*
+- `%t` (true)*布尔结构： true/false*
 
 
 
 #### Integer
 
-- `%b`  *二进制(base 2)*
+- `%b`  (binary)*二进制(base 2)*
 - `%c`  *Unicode code point*
-- `%d`  *十进制*
-- `%o`  *八进制1*
+- `%d`  (decimal) *十进制*
+- `%o`  (octal)*八进制*
 - `%q`  *go-syntax 单引号字符安全编码*
-- `%x` *十六进制 (a-f)*
+- `%x` (hexadecimal)*十六进制 (a-f)*
 - `%X` *十六进制 (A-F)*
 - `%U`  *Unicode 格式，Unicode format: U+1234; same as "U+%04X"*
 
