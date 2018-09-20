@@ -72,3 +72,36 @@
 **/usr/share ：**系统共用的东西存放地，比如 /usr/share/fonts 是字体目录，/usr/share/doc和/usr/share/man帮助文件。
 
 **/var：**这个目录的内容是经常变动的，看名字就知道，可以理解为vary的缩写，/var下有/var/log 这是用来存放系统日志的目录。/var/ www目录是定义[Apache](https://baike.baidu.com/item/Apache)服务器站点存放目录；/var/lib 用来存放一些库文件，比如MySQL的，以及[MySQL](https://baike.baidu.com/item/MySQL)数据库的的存放地。
+
+
+
+### 常用命令
+
+#### ls 文件/目录列表(list)
+
+#### clear	清除命令行/输出台
+
+#### 目录管理
+
+1. `cd` 			目录
+2. `mkdir`                   新增目录
+3. `rmdir`                   删除目录
+4. `mv`                         目录移动
+5. `cp`                         文件/目录复制
+6. `dirs`                     显示目录
+7. `pwd`                       以绝对路径的方式显示用户当前工作目录
+
+
+
+
+
+### vim
+
+> 常用命令
+
+- `:help`			帮助
+- `:q`			        退出(quit)
+  - `:q!`		取消并退出，不保存
+
+
+

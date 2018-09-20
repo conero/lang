@@ -805,5 +805,74 @@ func append(slice []T, elements ...T) []T
 
 ## Initialization/ 初始化
 
+### 常量
+
+*常量类型： number、character (rune), string or boolean。编译时被创建*
+
+*`iota` 枚举常量*
+
+```go
+const Name = 'Jsohua'
+```
+
+### 变量
+
+```go
+var (
+    home   = os.Getenv("HOME")
+    user   = os.Getenv("USER")
+    gopath = os.Getenv("GOPATH")
+)
+```
+
+
+
+### `init` 函数
+
+*包初始化函数*
+
+```go
+func init(){
+    // 初始化函数
+}
+```
+
+
+
+## Method/ 方法
+
+> pointer Vs value
+
+*value methods can be invoked on pointers and values, but pointer methods can only be invoked on pointers.*
+
+
+
+## interface and type 
+
+### interface
+
+*A type can implement multiple interfaces.* 一个类型可以实现多个接口
+
+*转换表达式的类型以访问不同的方法集*
+
+
+
+>  *type assertion* 类型断言
+
+```go
+var value interface{}
+value.(typeName)
+// 访问接口为 string 类型
+str := value.(string)
+// 类型判断
+str, ok := value.(string)
+```
+
+
+
+*A type assertion takes an interface value and extracts from it a value of the specified explicit type.* 类型断言获取接口值并从中提取指定显式类型的值。
+
+
+
 // @TODO ...
 
