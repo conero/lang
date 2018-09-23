@@ -187,7 +187,7 @@ C++新特效(C++11/14)可满足要求
        Objective-C它完全兼容标准C语言（C++对C语言的兼容仅在于大部分语法上，而在ABI（Application Binary Interface）上，还需要使用extern "C"这种显式声明来与C函数进行兼容），而在此基础上增加了面向对象编程语言的特性以及Smalltalk消息机制。
 
 
-    
+​    
 
 #### C++
 
@@ -218,11 +218,11 @@ C/C++标准
 
 
 *Joe Armstrong**创造语言经过：* *Smalltalk -> Prolog  ->* 
-        
+​        
 *最初是由爱立信专门为通信应用设计的，比如控制交换机或者变换协议等，因此非常适* *合于构建分布式，实时软并行计算系统。使用**Erlang**编写出的应用运行时通常由成千上万个轻量级进程组成，并通过消息传递相互通讯。进程间上下文切换对于**Erlang**来说仅仅* *只是一两个环节，比起**C**程序的线程切换要高效得多得多了。*
 
 *得名于丹麦数学家及统计学家**Agner Krarup Erlang**，同时**Erlang**还可以表示**Ericsson Language**。*
-	*参考网站：*  *http://www.erlang.org/*
+​	*参考网站：*  *http://www.erlang.org/*
 
  
 
@@ -251,7 +251,7 @@ Java平台
 1. Java最初被称为Oak，是1991年为消费类电子产品的嵌入式芯片而设计的
 2. 1995年更名为Java，并重新设计用于开发Internet应用程序
 
-       
+  ​     
 
 组成部分： 语法，文件格式，**JVM****虚拟机**，java API
 
@@ -558,11 +558,11 @@ Lua是作为嵌入式脚本的最佳选择
 Lua由标准C编写而成，几乎在所有操作系统和平台上都可以编译，运行。Lua并没有提供强大的库，这是由它的定位决定的。所以Lua不适合作为开发独立应用程序的语言。Lua 有一个同时进行的JIT项目，提供在特定平台上的即时编译功能。
 
 应用场景
-	游戏开发
-	独立应用脚本
-	Web 应用脚本
-	扩展和数据库插件如：MySQL Proxy 和 MySQL WorkBench
-	安全系统，如入侵检测系统
+​	游戏开发
+​	独立应用脚本
+​	Web 应用脚本
+​	扩展和数据库插件如：MySQL Proxy 和 MySQL WorkBench
+​	安全系统，如入侵检测系统
 
 #### php
 
@@ -687,11 +687,11 @@ apps指的是用户接口，比如shell、gui、services、包管理工具等（
 虚拟机与容器，
 
 容器特征：
-	镜像体积更小，只包括apps以及所依赖的环境，没有内核。
-	创建和启动快，不需要启动GuestOS，应用启动开销基本就是应用本身启动的时间开销。
-	无GuestOS，无Hypervisor，无额外资源开销，资源控制粒度更小，部署密度大。
-	使用的是真实物理资源，因此不存在性能损耗。
-	轻量级。
+​	镜像体积更小，只包括apps以及所依赖的环境，没有内核。
+​	创建和启动快，不需要启动GuestOS，应用启动开销基本就是应用本身启动的时间开销。
+​	无GuestOS，无Hypervisor，无额外资源开销，资源控制粒度更小，部署密度大。
+​	使用的是真实物理资源，因此不存在性能损耗。
+​	轻量级。
 
 ### *Windows*
 
@@ -738,7 +738,7 @@ Windows product activation			Windows相关
 #### DLL
 
 (Dynamic Link Library)文件为动态链接库文件，又称“应用程序拓展”，是软件文件类型。在Windows中，许多应用程序并不是一个完整的可执行文件，它们被分割成一些相对独立的动态链接库，即DLL文件，放置于系统中。当我们执行某一个程序时，相应的DLL文件就会被调用。一个应用程序可使用多个DLL文件，一个DLL文件也可能被不同的应用程序使用，这样的DLL文件被称为共享DLL文件。
-		
+​		
 #### EXE
 
 可执行程序（executable program，EXE File）是指一种可在操作系统存储空间中浮动定位的可执行程序。在MS-DOS和MS-WINDOWS下，此类文件扩展名为•exe。
@@ -782,8 +782,8 @@ C++ 调用 dll 两种方法： 静态调用，动态调用
 
 
 运行库： 
-	Visual C++ Redistributable Package 安装运行使用 Visual Studio 2015 生成的 C++ 应用程序所需的运行时组件
-	
+​	Visual C++ Redistributable Package 安装运行使用 Visual Studio 2015 生成的 C++ 应用程序所需的运行时组件
+​	
 Standalone Compiler(独立编译)
 visual c++ 编译器
 
@@ -796,7 +796,7 @@ MSBuild (Visual C++)
 #### cygwin
 
 GCC 编译器/ the GNU Compiler Collection
-	支持语言： C/C++, Object-C,Fortran,Ada,Go
+​	支持语言： C/C++, Object-C,Fortran,Ada,Go
 GCC 官网
 
 Mingw  .修改编译器,让window下的编译器把诸如fork的调用翻译成等价的形式--这就是mingw的做法.
@@ -892,14 +892,13 @@ git 忽略表：
 
 git 远程获取分支代码并与本地合并
 
-
 git 创建本地仓库：
-	$ git init		初始化git仓库
+​	$ git init		初始化git仓库
 
 	  	 $ git config --global user.email "邮箱"				设置邮箱
 		 $ git config --global user.name "JC"				设置姓名
 检出
-		$ git clone git@ 119.29.239.37:/c/gittest/test.git
+​		$ git clone git@ 119.29.239.37:/c/gittest/test.git
 
 
 
@@ -914,24 +913,33 @@ git diff 版本号码1 版本号码2  <src>	对比两个版本指定文件的差
 $ git stash    合并失败时，可执行该命令。用于缓存当前的版本号
 
 git 错误解决：  error: failed to push some refs to "" (fetch+merge)
-		$ git pull --rebase origin master
-		$ git push -u origin master
+​		$ git pull --rebase origin master
+​		$ git push -u origin master
 
 开源中国文档：
-	 
+​	 
 
 项目迁移(保持就git仓库log信息转移到新的仓库)
-	1.  git push --mirror <url>	采用镜像的方法就数据推入新的仓库
-	2.  git push -f origin master 将所在的分支代码强制更新master分支
-	
-
+​	1.  git push --mirror <url>	采用镜像的方法就数据推入新的仓库
+​	2.  git push -f origin master 将所在的分支代码强制更新master分支
+​	
 
 svn/git区别[4]:
-	GIT是分布式的，SVN不是
+​	GIT是分布式的，SVN不是
    GIT把内容按元数据方式存储，而SVN是按文件
-	GIT没有一个全局的版本号，而SVN有
-	GIT的内容完整性要优于SVN
+​	GIT没有一个全局的版本号，而SVN有
+​	GIT的内容完整性要优于SVN
 就操作上而言： git主要依托命令式管理(GUI也行)，而SVN主要采用图形化客服端管理
+
+##### config
+
+> 保存全局 *https* 用户的密码
+
+*git config --global credential.helper store*
+
+
+
+
 
 
 #### Svn
@@ -950,9 +958,9 @@ TortoiseSVN，  官网：  https://tortoisesvn.net/。
 svn 更新指定版本
 
 TortoiseSVN 客服端：
-    1) 在文件件中右键选择下拉菜单
-    2) 选择 TortoiseSVN 图标
-    3) 选择 "更新至版本(U)"
+​    1) 在文件件中右键选择下拉菜单
+​    2) 选择 TortoiseSVN 图标
+​    3) 选择 "更新至版本(U)"
 
 ### 数据库
 
@@ -963,17 +971,17 @@ TortoiseSVN 客服端：
 #### Redis - 内存数据库
 
 内存中的数据结构存储系统，可作为数据库，缓存和消息中间件。
-	类似 Memcached(内存数据库)
+​	类似 Memcached(内存数据库)
 
 支持数据结构：
-    string 字符串
-    hash 散列
-    list 列表
-    set 集合
-    sorted set 有序集合/范围查询
-    bitmap
-    hyperloglogs
-    geospatial 地理空间索引半径查询
+​    string 字符串
+​    hash 散列
+​    list 列表
+​    set 集合
+​    sorted set 有序集合/范围查询
+​    bitmap
+​    hyperloglogs
+​    geospatial 地理空间索引半径查询
 
 支持事务transaction，自动分区cluster，数据持久化。
 
