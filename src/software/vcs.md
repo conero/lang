@@ -88,14 +88,219 @@ $ git config --global user.email johndoe@example.com
 
 ### Git 基础
 
-> 获取git仓库
+#### 获取git仓库
 
 - `git init`			初始化git仓库
 - `git clone <url>`	从远程仓库中获取git代码仓库
 
 
 
-`... @TODO`  [Git-基础-记录每次更新到仓库](https://git-scm.com/book/zh/v2/Git-%E5%9F%BA%E7%A1%80-%E8%AE%B0%E5%BD%95%E6%AF%8F%E6%AC%A1%E6%9B%B4%E6%96%B0%E5%88%B0%E4%BB%93%E5%BA%93)
+#### 记录每次更新到仓库
+
+> **已跟踪或未跟踪**
+
+
+
+*你工作目录下的每一个文件都不外乎这两种状态：已跟踪或未跟踪。 已跟踪的文件是指那些被纳入了版本控制的文件，在上一次快照中有它们的记录，在工作一段时间后，它们的状态可能处于未修改，已修改或已放入暂存区。 工作目录中除已跟踪文件以外的所有其它文件都属于未跟踪文件，它们既不存在于上次快照的记录中，也没有放入暂存区。 初次克隆某个仓库的时候，工作目录中的所有文件都属于已跟踪文件，并处于未修改状态。*
+
+
+
+> **文件的状态变化周期**
+
+![文件的状态变化周期](../image/software/vcs/lifecycle.png)
+
+
+
+> **`$ git status` 查看本次仓库的状态**
+
+*状态简览* `# git status -s|--short`
+
+
+
+
+
+> **`$ git add <file>` 跟踪文件，即添加文件到暂存区**
+
+
+
+>  **忽略文件 `.gitignore` 可共享策略**
+
+文件 `.gitignore` 的格式规范如下：
+
+- 所有空行或者以 `＃` 开头的行都会被 Git 忽略。
+- 可以使用标准的 glob 模式匹配。
+- 匹配模式可以以（`/`）开头防止递归。
+- 匹配模式可以以（`/`）结尾指定目录。
+- 要忽略指定模式以外的文件或目录，可以在模式前加上惊叹号（`!`）取反。
+
+
+
+> **`$ git diff`   此命令比较的是工作目录中当前文件和暂存区域快照之间的差异， 也就是修改之后还没有暂存起来的变化内容。**
+
+
+
+
+
+`$ git diff --cached`   或 `$ git diff --staged`	*查看已暂存的将要添加到下次提交里的内容 (--staged 和 --cached 是同义词）*
+
+
+
+> **`$ git commit` 提交更新**
+
+提交之前可以`git status` 查看状态
+
+`$ git commit -m "massage"`   *将提交信息与命令放在同一行*
+
+
+
+**跳过使用暂存区域**
+
+`$ git commit -a`   *Git 就会自动把所有已经跟踪过的文件暂存起来一并提交，从而跳过 `git add` 步骤*
+
+
+
+> **`$ git rm <file>`  移除文件, <file>  可以为`glob` 模式**
+
+*从暂存区移除文件*
+
+
+
+- `git rm -f`   *使用强制(强制删除)删除*
+- `git rm --cached`  *从暂存区删除文件，但是保持在工作目录中*
+
+
+
+> **`$ git mv <source-file> <target-file>` *移动文件***
+
+
+
+```console
+$ git mv README.md README
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+    renamed:    README.md -> README
+```
+
+运行 `git mv` 就相当于运行了下面三条命令：
+
+```console
+$ mv README.md README
+$ git rm README.md
+$ git add README
+```
+
+
+
+#### 查看提交历史
+
+> `$ git log`
+
+- `git log -p -2` *一个常用的选项是 `-p`，用来显示每次提交的内容差异。 你也可以加上 `-2` 来仅显示最近两次提交*
+
+- `git log --stat`  *如果你想看到每次提交的简略的统计信息，你可以使用 `--stat` 选项*
+
+
+
+*另外一个常用的选项是 `--pretty`。 这个选项可以指定使用不同于默认格式的方式展示提交历史。 这个选项有一些内建的子选项供你使用。 比如用 `oneline` 将每个提交放在一行显示，查看的提交数很大时非常有用。 另外还有 `short`，`full` 和 `fuller` 可以用，展示的信息或多或少有些不同，请自己动手实践一下看看效果如何。*
+
+
+
+#### 撤消操作
+
+- `$ git commit --amend`    *提交有问题是时，重新提交*
+
+
+
+> **`$ git reset HEAD <file>` *取消暂存的文件***
+
+*在调用时加上 `--hard` 选项**可以**令 `git reset` 成为一个危险的命令*
+
+
+
+> **`$ git checkout -- <file>...` *撤消对文件的修改***
+
+*你需要知道 `git checkout -- [file]` 是一个危险的命令，这很重要。*
+
+
+
+#### 远程仓库
+
+> **`$ git remote -v` *查看远程仓库*** 
+
+
+
+> **`$ git remote add <shortname> <url>` *添加远程仓库*** 
+
+
+
+> **`$ git fetch [remote-name]` *从远程仓库中抓取与拉取***
+
+
+
+> **`$ git remote show origin` *查看远程仓库***
+
+
+
+> **`$ git remote rename <old-name> <new-name>` *远程仓库的移除与重命名***
+
+
+
+#### 打标签
+
+> `$ git tag `
+
+
+
+> **`$ git tag` *列出标签时***
+
+`$ git tag -l v1.8.5*` 使用 *glob* 模式筛选
+
+
+
+> **创建标签**
+
+*Git 使用两种主要类型的标签：轻量标签（lightweight）与附注标签（annotated）。*
+
+`$ git tag <tag-name> `
+
+`$ git tag -a v1.4 -m 'my version 1.4'`   *附注标签, 创建标签时添加标签*
+
+
+
+> **共享标签**
+
+`$ git push origin <tag-name>` *推送标签到远程仓库*
+
+`$ git push origin --tags`  *一次性推送很多标签*
+
+
+
+
+
+
+
+
+
+`... @TODO`  [3.1 Git 分支 - 分支简介](https://git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%AE%80%E4%BB%8B)
+
+
+
+###  Git 支持多种数据传输协议
+
+> https://
+
+
+
+> git://
+
+
+
+> SSH 传输协议
+
+
 
 ### 文件管理
 
@@ -135,6 +340,34 @@ git checkout *.php
 
 
 
+## 附录
+
+### 中英文对照
+
+| 英文          | 中文                      | 说明 |
+| :------------ | :------------------------ | :--- |
+| track/untrack | 跟踪(文件)/未跟踪的(文件) |      |
+| stage         | 暂存                      |      |
+| commit        | 提交                      |      |
+| repository    | 仓库                      |      |
+|               |                           |      |
+|               |                           |      |
+|               |                           |      |
+|               |                           |      |
+|               |                           |      |
+
+
+
+
+
+### 参考
+
+#### git-scm
+
+> https://git-scm.com/book/zh/v2
+
+
+
 # svn
 
 > 非分布式版本控制应用
@@ -149,11 +382,3 @@ git checkout *.php
   - branches		分支
   - tags			标签
   - trunk			主干线
-
-
-
-## 参考
-
-### git-scm
-
-> https://git-scm.com/book/zh/v2
