@@ -864,13 +864,125 @@ var value interface{}
 value.(typeName)
 // 访问接口为 string 类型
 str := value.(string)
+
+// Interface checks 
 // 类型判断
-str, ok := value.(string)
+str, isString := value.(string)
 ```
 
 
 
 *A type assertion takes an interface value and extracts from it a value of the specified explicit type.* 类型断言获取接口值并从中提取指定显式类型的值。
+
+
+
+
+
+*多个`struct`拥有共同的方式时，可将其公共的方法抽象为`interface`。实例化时，将struct实例访问`interface`即可。*
+
+```go
+// 公共/抽象接口
+type Abstr interface{
+    String(str string) string
+    Set(value interface{}) *Abstr
+}
+// A implement Abstr
+type A struct{    
+}
+
+// B implement Abstr
+type B struct{    
+}
+
+// Abstr 结构体
+func NewAbstr(vtype string) *Abstr{
+    if 'A' == vtype{
+        return &A{}
+    }
+    return &B{}
+}
+
+```
+
+
+
+## 空操作(忽略值)
+
+```go
+// _ 忽略值
+var m map[string]interface{}
+
+func hasKey(key string) bool{
+    _, has := map[key]
+    return has
+}
+
+```
+
+
+
+**Unused imports and variables** *未使用的导入包以及变量*
+
+*会引发 go 编译错误；开发/调试环境下可以使用忽略操作值消除影响*
+
+
+
+```go
+package main
+
+import (
+    "fmt"
+    "io"
+    "log"
+    "os"
+)
+
+var _ = fmt.Printf // For debugging; delete when done.
+var _ io.Reader    // For debugging; delete when done.
+
+func main() {
+    fd, err := os.Open("test.go")
+    if err != nil {
+        log.Fatal(err)
+    }
+    // TODO: use fd.
+    _ = fd
+}
+```
+
+
+
+**Import for side effect**
+
+```go
+// 不在包中实际使用，仅仅用于触发器引入包的 func init()
+import _ "net/http/pprof"
+
+```
+
+
+
+## Embedding/组合继承
+
+> 使用类型： *interface/struct*
+
+```go
+type Reader interface {
+    Read(p []byte) (n int, err error)
+}
+
+type Writer interface {
+    Write(p []byte) (n int, err error)
+}
+
+	
+// 组合继承
+// ReadWriter is the interface that combines the Reader and Writer interfaces.
+type ReadWriter interface {
+    Reader
+    Writer
+}
+```
 
 
 
