@@ -986,5 +986,68 @@ type ReadWriter interface {
 
 
 
-// @TODO ...
+*有一种重要的方式，嵌入与子类化不同。当我们嵌入一个类型时，该类型的方法成为外部类型的方法，但是当它们被调用时，方法的接收者是内部类型，而不是外部类型。*
+
+
+
+```go
+// 继承 log.Logger
+type Job struct {
+    Command string
+    *log.Logger
+}
+
+// 重写方法
+func (job *Job) Logf(format string, args ...interface{}) {
+    job.Logger.Logf("%q: %s", job.Command, fmt.Sprintf(format, args...))
+}
+
+```
+
+
+
+## Concurrency/并发
+
+*Do not communicate by sharing memory; instead, share memory by communicating.  不是通过共享内存进行通信; 相反，通过通信实现数据共享。*
+
+*由通道传值，源自于 Hoare 的 CSP(Communicating Sequential Processes)。*
+
+
+
+### Goroutines
+
+```go
+// 开启线程
+go func()
+
+```
+
+
+
+### Channels/ 通道
+
+> Goroutines 的通信机制
+
+```go
+// T 类型的 通道
+c := make(chan T)
+```
+
+
+
+
+
+## Errors/ 异常
+
+```go
+type error interface {
+    Error() string
+}
+```
+
+
+
+### Panic
+
+> 抛出异常
 
