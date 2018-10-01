@@ -319,6 +319,60 @@ $ git add README
 
 
 
+#### 新增分支
+
+```ini
+# 拉取分支，若不存在就新建分支
+# Method 1
+$ git checkout -b <branchName>
+
+# 分支简写
+# Method 2
+$ git branch <branchName>
+$ git checkout <branchName> 
+```
+
+
+
+#### 切换分支
+
+```ini
+# 切换分支，回到主线分支
+git checkout <branchName>
+```
+
+
+
+#### 分支合并
+
+```ini
+# 转到需要合并的分支(目标分支)
+$ git checkout <targetBN>
+
+# 与源分支合并
+$ git merge <srcBN>
+```
+
+
+
+*合并提交，它的特别之处在于他有不止一个父提交。*
+
+
+
+#### 删除分支
+
+```ini
+$ git branch -d <branchName>
+```
+
+
+
+> *长期分支*, *平行分支*， *特性分支*
+
+*平行分支*     `master <->  develop/next`
+
+
+
 `... @TODO`  [3.1 Git 分支 - 分支简介](https://git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%AE%80%E4%BB%8B)
 
 
