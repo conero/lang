@@ -74,6 +74,16 @@ $ git config --global user.email johndoe@example.com
 
 
 
+> *保存用户密码*
+
+*credential cache* 
+
+`git config --global credential.helper cache`
+
+
+
+
+
 **https认证**
 
 > 保存全局 *https* 用户的密码
@@ -370,6 +380,48 @@ $ git branch -d <branchName>
 > *长期分支*, *平行分支*， *特性分支*
 
 *平行分支*     `master <->  develop/next`
+
+
+
+#### 推送远程
+
+`$ git push origin <remoteBranchName>`  推送到远程仓库
+
+`$ git push origin local:remote`	推送:   本地 -> 远程
+
+
+
+#### 跟踪分支
+
+*从一个远程跟踪分支检出一个本地分支会自动创建一个叫做 “跟踪分支”（有时候也叫做 “上游分支”）。跟踪分支是与远程分支有直接关系的本地分支。 如果在一个跟踪分支上输入 `git pull`，Git 能自动地识别去哪个服务器上抓取、合并到哪个分支。*
+
+
+
+`$ git checkout -b [branch] [remotename]/[branch]`
+
+`$ git checkout --track origin/serverfix`
+
+
+
+```ini
+# 查看所有跟踪的远程分支
+$ git branch -vv
+
+# 查看所有分支
+$ git fetch --all; git branch -vv
+```
+
+
+
+#### 变基
+
+*在 Git 中整合来自不同分支的修改主要有两种方法：`merge` 以及 `rebase`。*
+
+
+
+
+
+
 
 
 
