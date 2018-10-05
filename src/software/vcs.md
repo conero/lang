@@ -423,11 +423,41 @@ $ git fetch --all; git branch -vv
 
 **裸仓库**  *一个远程仓库通常只是一个裸仓库（*bare repository*）— 即一个没有当前工作目录的仓库。 因为该仓库仅仅作为合作媒介，不需要从磁碟检查快照；存放的只有 Git 的资料。 简单的说，裸仓库就是你工程目录内的 `.git` 子目录内容，不包含其他资料。*
 
+`$ git clone --bare <urlName>`     获取裸仓库(以裸仓库克隆服务器)
+
+
+
+> 协议
+
+*本地协议（Local），HTTP 协议，SSH（Secure Shell）协议及 Git 协议*
+
+
+
+- `ssh`   *授权访问*
+
+- `git`    *无授权访问*
+
+- `Smart HTTP`   访问上同时支持 *授权/无授权* 协议
+
+​	*主要原理是使用一个 Git 附带的，名为 `git-http-backend` 的 CGI。它被引用来处理协商通过 HTTP 发送和接收的数据。 它本身并不包含任何授权功能，但是授权功能可以在 Web 服务器层引用它时被轻松实现。*
+
+
+
+*Git 提供了一个叫做 GitWeb 的 CGI 脚本来实现基于网页的简易查看器*
+
+
+
+### 分布式 Git 
+
+> 分布式工作流
+
+*集中式工作流、集成管理者工作流、司令官与副官工作流*
 
 
 
 
-`... @TODO`  [3.1 Git 分支 - 分支简介](https://git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%AE%80%E4%BB%8B)
+
+`... @TODO`  [5.x Git 分支 - 分布式 Git](https://git-scm.com/book/zh/v2/%E5%88%86%E5%B8%83%E5%BC%8F-Git-%E5%88%86%E5%B8%83%E5%BC%8F%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B)
 
 
 
