@@ -461,18 +461,6 @@ $ git fetch --all; git branch -vv
 
 
 
-###  Git 支持多种数据传输协议
-
-> https://
-
-
-
-> git://
-
-
-
-> SSH 传输协议
-
 
 
 ### 文件管理
