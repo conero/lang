@@ -151,6 +151,8 @@ $ git config --global user.email johndoe@example.com
 
 
 
+*`$ git diff --check`  找到可能的空白错误并将它们为你列出来*
+
 
 
 `$ git diff --cached`   或 `$ git diff --staged`	*查看已暂存的将要添加到下次提交里的内容 (--staged 和 --cached 是同义词）*
@@ -161,7 +163,9 @@ $ git config --global user.email johndoe@example.com
 
 提交之前可以`git status` 查看状态
 
-`$ git commit -m "massage"`   *将提交信息与命令放在同一行*
+`$ git commit -m "massage"`   *将提交信息与命令放在同一行。 原则:  一般情况下，信息应当以少于 50 个字符（25个汉字）的单行开始且简要地描述变更，接着是一个空白行，再接着是一个更详细的解释. Git 项目要求一个更详细的解释，包括做改动的动机和它的实现与之前行为的对比 - 这是一个值得遵循的好规则。*
+
+
 
 
 
