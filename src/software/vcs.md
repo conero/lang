@@ -459,9 +459,29 @@ $ git fetch --all; git branch -vv
 
 
 
+### github
+
+> fork
+
+*派生（Fork）项目:  GitHub 将在你的空间中创建一个完全属于你的项目副本，且你对其具有推送权限*
 
 
-`... @TODO`  [5.x Git 分支 - 分布式 Git](https://git-scm.com/book/zh/v2/%E5%88%86%E5%B8%83%E5%BC%8F-Git-%E5%88%86%E5%B8%83%E5%BC%8F%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B)
+
+> 合并请求（Pull Request）
+
+
+
+
+
+### Git 工具
+
+
+
+
+
+
+
+`... @TODO`  [7.1 Git 工具 - 选择修订版本](https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E9%80%89%E6%8B%A9%E4%BF%AE%E8%AE%A2%E7%89%88%E6%9C%AC)
 
 
 
