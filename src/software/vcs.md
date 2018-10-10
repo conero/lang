@@ -475,13 +475,96 @@ $ git fetch --all; git branch -vv
 
 ### Git 工具
 
+#### 选择修订版本
+
+> 简短的 SHA-1(bit>=4)
+
+*使用sha-1大于等于4位字符可代替其对应的 commit_id*
 
 
 
 
 
+> 引用日志
 
-`... @TODO`  [7.1 Git 工具 - 选择修订版本](https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E9%80%89%E6%8B%A9%E4%BF%AE%E8%AE%A2%E7%89%88%E6%9C%AC)
+*当你在工作时， Git 会在后台保存一个引用日志(reflog)，引用日志记录了最近几个月你的 HEAD 和分支引用所指向的历史。*
+
+
+
+**引用日志只存在于本地仓库，一个记录你在你自己的仓库里做过什么的日志。 其他人拷贝的仓库里的引用日志不会和你的相同；而你新克隆一个仓库的时候，引用日志是空的，因为你在仓库里还没有操作。**
+
+
+
+
+
+> 祖先引用
+
+*祖先引用是另一种指明一个提交的方式。 如果你在引用的尾部加上一个 `^`， Git 会将其解析为该引用的上一个提交。另一种指明祖先提交的方法是 `~`。 同样是指向第一父提交，因此 `HEAD~` 和 `HEAD^` 是等价的*
+
+
+
+```ini
+# 查看 sha-1 全部
+$ git log
+
+
+# Git 可以为 SHA-1 值生成出简短且唯一的缩写
+$ git log --abbrev-commit
+
+
+# 分支引用
+$ git rev-parse <branchName>
+
+
+# 引用日志
+$ git reflog
+$ git show HEAD@{n}
+# 查看类似于 git log 输出格式的引用日志信息
+$ git log -g
+```
+
+
+
+
+
+>  提交区间
+
+*Git 允许你在任意引用前加上 `^` 字符或者 `--not` 来指明你不希望提交被包含其中的分支*
+
+
+
+```ini
+# 在 【b2】 中而不在 【b1】
+$ git log <branch1>..<branch2>
+# 当前分支跟随最新的进度以及查看你即将合并的内容
+$ git log origin/master..HEAD
+
+# 查看所有被 refA 或 refB 包含的但是不被 refC 包含的提交
+$ git log refA refB ^refC
+$ git log refA refB --not refC
+
+# 选择出被两个引用中的一个包含但又不被两者同时包含的提交
+$ git log <branch1>...<branch2>
+
+```
+
+
+
+
+
+#### 交互式暂存
+
+```ini
+# Git 将会进入一个交互式终端模式(--interactive)
+$ git add -i
+
+```
+
+
+
+
+
+`... @TODO`  [7.3 Git 工具 - 储藏与清理](https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E5%82%A8%E8%97%8F%E4%B8%8E%E6%B8%85%E7%90%86)
 
 
 
