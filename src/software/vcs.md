@@ -562,6 +562,71 @@ $ git add -i
 
 
 
+### 储藏与清理
+
+
+
+> **stash**
+
+*修改的跟踪文件与暂存改动 - 然后将未完成的修改保存到一个栈上*
+
+*默认情况下，`git stash` 只会储藏已经在索引中的文件*
+
+
+
+```ini
+# 将当前的改动推送到【储藏栈】上
+$ git stash
+$ git stash save
+
+# 查看储藏的列表
+$  git stash list
+
+# 使用当前的储藏
+$ git stash apply
+# 指定的储藏序列
+$ git stash apply stash@{n}
+
+
+# 删除储藏器
+$ git stash drop stash@{n}
+
+# 它告诉 Git 不要储藏任何你通过 git add 命令已暂存的东西
+$ git stash save
+# Git 会储藏任何创建的未跟踪文件。
+$ git stash -u
+# 不会储藏所有修改过的任何东西，但是会交互式地提示哪些改动想要储藏、哪些改动需要保存在工作目录中。
+$ git stash --patch
+
+# 创建一个新分支，检出储藏工作时所在的提交
+$ git stash branch <branchName>
+
+# 移除每一样东西并存放在栈中
+$ git stash --all
+```
+
+
+
+> 清理工作目录
+
+*默认情况下，`git clean` 命令只会移除没有忽略的未跟踪文件。*
+
+```ini
+# 清理工作目录
+$ git clean
+
+# 移除工作目录中所有未追踪的文件以及空的子目录; -f 意味着 强制 或 “确定移除”
+$ git clean -f -d
+
+# 做一次演习然后告诉你 将要 移除什么
+$ git clean -d -n
+```
+
+
+
+
+
+
 
 
 `... @TODO`  [7.3 Git 工具 - 储藏与清理](https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E5%82%A8%E8%97%8F%E4%B8%8E%E6%B8%85%E7%90%86)
