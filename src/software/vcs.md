@@ -562,7 +562,7 @@ $ git add -i
 
 
 
-### 储藏与清理
+#### 储藏与清理
 
 
 
@@ -626,12 +626,53 @@ $ git clean -d -n
 
 
 
+#### 搜索
+
+> `git grep`
+
+*可从提交历史或者工作目录中查找一个字符串或者正则表达式*
 
 
 
-`... @TODO`  [7.3 Git 工具 - 储藏与清理](https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E5%82%A8%E8%97%8F%E4%B8%8E%E6%B8%85%E7%90%86)
+```ini
+# 查询 含<text>的文件，当前工作目录
+$ git grep <text>
+
+# 输出 Git 所找到的匹配行行号
+$ git grep -n <text>
+
+# 统计文本出现的次数
+$ git grep --count <text>
+
+# 想看匹配的行是属于哪一个方法或者函数
+$ git grep -p <text>
+```
 
 
+
+> Git 日志搜索
+
+```ini
+# 使用 -S 选项来显示新增和删除该字符串的提交。
+$ git log -S<str> --oneline
+$ git log -Sgit --oneline
+
+# 正则查询
+$ git log -G<pregexp>
+```
+
+
+
+#### 重写历史
+
+```ini
+# 修改最近一次提交的提交信息
+$ git commit --amend
+```
+
+
+
+///@TODO [7.7 Git 工具 - 重置揭密](https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E9%87%8D%E7%BD%AE%E6%8F%AD%E5%AF%86)
 
 
 
