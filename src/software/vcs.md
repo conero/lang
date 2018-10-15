@@ -668,11 +668,208 @@ $ git log -G<pregexp>
 ```ini
 # 修改最近一次提交的提交信息
 $ git commit --amend
+
+# 从整个提交历史中移除一个叫做 passwords.txt 的文件
+$ git filter-branch --tree-filter 'rm -f passwords.txt' HEAD
 ```
 
 
 
-///@TODO [7.7 Git 工具 - 重置揭密](https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E9%87%8D%E7%BD%AE%E6%8F%AD%E5%AF%86)
+#### 重置
+
+`checkout` 和 `reset`
+
+
+
+> 三棵树
+
+| 树                | 用途                                 |
+| ----------------- | ------------------------------------ |
+| HEAD              | 上一次提交的快照，下一次提交的父结点 |
+| Index             | 预期的下一次提交的快照               |
+| Working Directory | 沙盒                                 |
+
+`HEAD` *当前分支引用的指针，它总是指向该分支上的最后一次提交。*
+
+```ini
+# 查看 HEAD 快照
+$ git cat-file -p HEAD
+$ git ls-tree -r HEAD
+
+# 查看暂缓区相关信息
+$ git ls-files -s
+```
+
+
+
+![](../image/software/vcs/reset-workflow.png)
+
+
+
+`reset` 		*做的第一件事是移动 HEAD 的指向；用 HEAD 指向的当前快照的内容来更新索引。`--hard` 标记是 `reset` 命令唯一的危险用法。*
+
+```ini
+# master -> {commitId}  
+$ git reset {commitId}
+```
+
+
+
+
+
+> **reset** 和 **checkout** 的区别
+
+*不同于 `reset --hard`，`checkout` 对工作目录是安全的，它会通过检查来确保不会将已更改的文件弄丢。*
+
+*`reset` 会移动 HEAD 分支的指向，而 `checkout` 只会移动 HEAD 自身来指向另一个分支。*
+
+
+
+#### 高级合并
+
+
+
+*Git 的哲学是聪明地决定无歧义的合并方案，但是如果有冲突，它不会尝试智能地自动解决它。 因此，如果很久之后才合并两个分叉的分支，你可能会撞上一些问题。*
+
+
+
+
+
+
+
+> 合并冲突
+
+*首先，在做一次可能有冲突的合并前尽可能保证工作目录是干净的。*
+
+*`git merge --abort` 选项会尝试恢复到你运行合并前的状态。 但当运行命令前，在工作目录中有未储藏、未提交的修改时它不能完美处理，除此之外它都工作地很好。*
+
+
+
+```ini
+# 简单地退出合并（尝试恢复到你运行合并前的状态）
+$ git merge --abort
+
+# 忽略空白合并；使用 -Xignore-all-space 或 -Xignore-space-change
+$ git merge -Xignore-space-change <branchName>
+
+# 会重新检出文件并替换合并冲突标记
+$ git checkout --conflict
+```
+
+
+
+#### 使用 Git 调试
+
+```ini
+# 追踪文件
+$ git blame <filename>
+```
+
+
+
+#### 子模块
+
+*子模块允许你将一个 Git 仓库作为另一个 Git 仓库的子目录。 它能让你将另一个仓库克隆到自己的项目中，同时还保持提交的独立。*
+
+
+
+`.gitmodules` 	*该配置文件保存了项目 URL 与已经拉取的本地目录之间的映射。该文件也像 `.gitignore` 文件一样受到（通过）版本控制。 它会和该项目的其他部分一同被拉取推送。 这就是克隆该项目的人知道去哪获得子模块的原因。*
+
+
+
+```ini
+# 当前仓库下创建一个子模块
+$ git submodule add <URL>  [<dirName>]
+
+# 查看文件
+$ cat .gitmodules
+
+# 子模块差异
+$ git diff --cached --submodule
+$ git diff --cached <submoduleName>
+
+# 初始化本地配置文件
+$ git submodule init
+# 从该项目中抓取所有数据并检出父项目中列出的合适的提交
+$ git submodule update
+# 自动初始化并更新仓库中的每一个子模块
+$ git clone --recursive <URL>
+
+# Git 将会进入子模块然后抓取并更新
+$ git submodule update --remote
+# 指定子模块的分支
+$ git config -f .gitmodules submodule.<submoduleName>.branch <branchName>
+
+
+```
+
+
+
+#### 打包
+
+
+
+```ini
+# ~~ 打包所有整个仓库
+# 该文件包含了所有重建该仓库 master 分支所需的数据
+# $ git bundle create <name>.bundle [提交区间]
+$ git bundle create <name>.bundle HEAD master
+# 回复打包文件
+$ git clone <name>.bundle [<dirName>]
+
+# 验证 bundleNamePath 是否合法
+$ git bundle verify <bundleNamePath>
+
+# 查看这边包里可以导入哪些分支
+$ git bundle list-heads <bundleNamePath>
+
+# 所以你可以使用 fetch 或者 pull 命令从包中导入提交
+$ git fetch <bundleNamePath> master:other-master
+```
+
+
+
+
+
+### Git 与其他系统
+
+#### Subversion
+
+
+
+*Git 中最棒的特性就是有一个与 Subversion 的双向桥接，它被称作 `git svn`*
+
+```ini
+# 它会将整个 Subversion 仓库导入到一个本地 Git 仓库
+# -T trunk -b branches -t tags 部分告诉 Git Subversion 仓库遵循基本的分支与标签惯例。
+$ git svn clone file:///tmp/test-svn -T trunk -b branches -t tags
+
+# git 克隆
+$ git svn clone file:///tmp/test-svn -s
+
+
+# 与两者前者接口一样
+$ git svn init
+$ git svn fetch <URL>
+
+# 提交
+$ git commit -am 'Adding git-svn instructions to the README'
+
+# 拉取新改动
+# 推送项目
+$ git svn dcommit
+
+# 显示参照
+$ git show-ref
+```
+
+
+
+
+### Git 内部原理
+///@TODO  [10.1 Git 内部原理 - 底层命令和高层命令](https://git-scm.com/book/zh/v2/Git-%E5%86%85%E9%83%A8%E5%8E%9F%E7%90%86-%E5%BA%95%E5%B1%82%E5%91%BD%E4%BB%A4%E5%92%8C%E9%AB%98%E5%B1%82%E5%91%BD%E4%BB%A4)
+
+
 
 
 
