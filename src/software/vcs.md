@@ -865,11 +865,114 @@ $ git show-ref
 
 
 
-
 ### Git 内部原理
-///@TODO  [10.1 Git 内部原理 - 底层命令和高层命令](https://git-scm.com/book/zh/v2/Git-%E5%86%85%E9%83%A8%E5%8E%9F%E7%90%86-%E5%BA%95%E5%B1%82%E5%91%BD%E4%BB%A4%E5%92%8C%E9%AB%98%E5%B1%82%E5%91%BD%E4%BB%A4)
 
 
+
+*<git-v1.5  更侧重于作为一个文件系统，而不是一个打磨过的版本控制系统*
+
+
+
+#### 底层命令和高层命令
+
+ *Git 最初是一套面向版本控制系统的工具集，而不是一个完整的、用户友好的版本控制系统，所以它还包含了一部分用于完成底层工作的命令。 这些命令被设计成能以 UNIX 命令行的风格连接在一起，抑或藉由脚本调用，来完成工作。 这部分命令一般被称作“底层（plumbing）”命令，而那些更友好的命令则被称作“高层（porcelain）”命令。*
+
+
+
+`$ git init`  *初始化git版本仓库*
+
+```console
+index				保存暂存区信息
+HEAD				指示目前被检出的分支
+config*				项目特有的配置选项
+description			文件仅供 GitWeb 程序使用
+hooks/				客户端或服务端的钩子脚本
+info/				包含一个全局性排除（global exclude）文件，用以
+		放置那些不希望被记录在 .gitignore 文件中的忽略模式（ignored patterns）
+objects/			目录存储所有数据内容
+refs/				目录存储指向数据（分支）的提交对象的指针
+```
+
+
+
+#### Git 对象
+
+*Git 是一个内容寻址文件系统。Git 的核心部分是一个简单的键值对数据库（key-value data store）。*
+
+> 文本对象(blob object)
+
+```ini
+## ~~ 文本
+# 往 Git 数据库存入一些文本
+$ echo 'test content' | git hash-object -w --stdin
+
+# 查看 Git 是如何存储数据的
+$ find .git/objects -type f
+
+# 从 Git {.git/objects/b2/87ae1788ad5896de1f27414f38aa3c0cff155} 取回数据
+$ git cat-file -p b287ae1788ad5896de1f27414f38aa3c0cff155
+
+
+
+
+## ~~ 文件
+# 创建文件以及编写内容
+$ echo 'Emma. and Beth.' > content.md
+# 获取 SHA-1 码
+$ git hash-object -w content.md
+# 再次写入内容到文件
+$ echo 'It\'s  name of Lady. yet' > content.md
+# 获取 SHA-1 码； 与前面不一样
+$ git hash-object -w content.md
+# 从数据库恢复内容到文件
+$ git cat-file -p 31e09252a668f7dbf6034af3a50fb86178d8d9 > content.md
+```
+
+
+
+`.git/objects/b2/87ae1788ad5896de1f27414f38aa3c0cff1555`
+
+*这就是开始时 Git 存储内容的方式——一个文件对应一条内容，以该内容加上特定头部信息一起的 SHA-1 校验和为文件命名。 校验和的前两个字符用于命名子目录，余下的 38 个字符则用作文件名。*
+
+
+
+*上述类型的对象我们称之为数据对象（blob object）。 利用 `cat-file -t` 命令，可以让 Git 告诉我们其内部存储的任何对象类型，只要给定该对象的 SHA-1 值：*
+
+
+
+
+
+>  树对象(tree object)
+
+```ini
+# 查看 master 分支上最新的提交所指向的树对象
+$ git cat-file -p master^{tree}
+```
+
+
+
+> 提交对象(commit object)
+
+```ini
+# 查看 commit_id
+$ git log
+
+# 选择一个 commit_id 查看类型
+$ git cat-file -t <commit_id>
+```
+
+
+
+#### Git 引用
+
+```ini
+# 查看 refs 文件下目录
+$ find .git/refs -type f
+```
+
+
+
+///@TODO  [10.3 Git 内部原理 - Git 引用](https://git-scm.com/book/zh/v2/Git-%E5%86%85%E9%83%A8%E5%8E%9F%E7%90%86-Git-%E5%BC%95%E7%94%A8)
 
 
 
