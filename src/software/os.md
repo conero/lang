@@ -90,6 +90,11 @@
 5. `cp`                         文件/目录复制
 6. `dirs`                     显示目录
 7. `pwd`                       以绝对路径的方式显示用户当前工作目录
+8. `cat <file>`                       读取整个文件(*tac* 反序读取文件)
+   1. `cat --help  查看命名帮助`
+9. `less <file>`      读取部分文件内容
+10. `head <file>`       读取头部部分行到屏幕中
+11. `tail <file>`       与*head*反之，尾部
 
 ### 进程管理
 
@@ -98,7 +103,6 @@
 *ps [options]*
 
 - `$ ps-eo pid,comm,cmd  `  *(-e表示列出全部进程，-o pid,comm,cmd表示我们需要PID，COMMAND，CMD信息)*
-- 
 
 
 
@@ -128,3 +132,48 @@
 
 
 
+
+
+# windows
+
+## 注册表
+
+*是Microsoft Windows中的一个重要的数据库，用于存储系统和应用程序的设置信息*
+
+
+
+*HKEY_CLASSES_ROOT和HKEY_CURRENT_CONFIG中存放的信息都是HKEY_LOCAL_MACHINE中存放的信息的一部分，而HKEY_CURRENT_USER中存放的信息只是HKEY_USERS存放的信息的一部分*
+
+
+
+> 集合包含关系
+
+- HKEY_LOCAL_MACHINE
+  - HKEY_CLASSES_ROOT
+  - HKEY_CURRENT_CONFIG
+- HKEY_USERS
+  - HKEY_CURRENT_USER
+
+
+
+> **根键的作用** 
+
+- HKEY_USERS
+  - *保存了存放在本地计算机口令列表中的用户标识和密码列表,每个用户的预配置信息都存储在HKEY_USERS根键中。HKEY_USERS是远程计算机中访问的根键之一*
+- HKEY_CURRENT_USER 
+  - *当前登录的用户信息*
+- HKEY_CURRENT_CONFIG 
+  - *前用户桌面配置(如显示器等)的数据,最后使用的文档列表（MRU）和其他有关当前用户的Windows 98中文版的安装的信息*
+- HKEY_CLASSES_ROOT
+  - *其文件类型的名称*
+- HKEY_LOCAL_MACHINE 
+  - *地计算机硬件数据*
+
+
+
+
+
+
+> \HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts
+
+更改文件后缀名的默认软件打开方式
