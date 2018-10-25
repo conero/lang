@@ -69,7 +69,6 @@ func main() {
  */
 func LolsA(s string) (string, int)  {
 	// 收尾指针(指向字符串的为)
-	//s = strings.TrimSpace(s)
 	pe := len(s)
 	sLen := pe 					// 长度
 	maxLen := 0			// 最大长度
@@ -86,55 +85,19 @@ func LolsA(s string) (string, int)  {
 		default:
 			pe = tmpIdx + ps
 		}
-		//fmt.Println(ps, pe, "<=")
 		// 子字符串处理
 		for j := ps + 1; j < pe; j++ {
 			tmpS2 := s[j: j +1]
 			k := j + 1
-			//for ; k < pe && tmpS2 != s[k: k +1]; k++{
 			for ; k < pe && tmpS2 != s[k: k +1]; k++{
-				//pe = k - 1
 			}
-			//fmt.Println(tmpC, tmpS2, k, "5", s[k-1: k])
-			if tmpS2 == s[k: k +1]{
-				//if tmpS2 == s[k-1: k]{
+			if tmpS2 == s[k: k +1] {
 				pe = k - 1
-				//break
-			}else {
-				//fmt.Println(tmpC, tmpS2, k, "5", s[k-1: k])
-				//pe = k
 			}
-
-			//fmt.Println(tmpC, tmpS2, k, "5", s[k-1: k])
-			//if tmpS2 == s[k: k+1]{
-			//	pe = k - 1
-			//}
-			//if k == sLen{
-			//	k -= 1
-			//}
-			//if tmpS2 == s[k: k +1]{
-			//	pe = k
-			//}
-			//fmt.Println(tmpS2, s[k: k +1], ": s2")
-			//pe = k + 1
 		}
-		// !!
-		// 边界检测
-		//if pe < sLen - 1{
-		//	pe += 1
-		//}
 
 		pe += 1
 		tmpS := s[ps: pe]
-		//if ps == pe{
-		//	if ps > 0{
-		//		tmpS = s[ps - 1: pe]
-		//	}
-		//}
-
-		// 去中间空字符
-		//reg := regexp.MustCompile("\\s")
-		//tmpS = reg.ReplaceAllString(tmpS, "")
 
 		tmpLen := len(tmpS)
 		if tmpLen >= maxLen{
