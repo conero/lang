@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="419b9284-fa6b-4e88-b954-9d762bb11861" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/leetcode/longest-substring-without-repeating-characters.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/leetcode/longest-substring-without-repeating-characters.go" afterDir="false" />
-    </list>
+    <list default="true" id="419b9284-fa6b-4e88-b954-9d762bb11861" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,22 +70,22 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="go" value="7" />
+          <entry key="go" value="10" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Go" value="7" />
+          <entry key="Go" value="10" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="go" value="5179" />
+          <entry key="go" value="6697" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Go" value="5179" />
+          <entry key="Go" value="6697" />
         </counts>
       </usages-collector>
     </session>
@@ -97,8 +95,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/leetcode/add-two-numbers2.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="190" column="32" lean-forward="true" selection-start-line="190" selection-start-column="32" selection-end-line="190" selection-end-column="32" />
+            <state relative-caret-position="348">
+              <caret line="187" column="22" lean-forward="true" selection-start-line="187" selection-start-column="22" selection-end-line="187" selection-end-column="22" />
               <folding>
                 <element signature="e#50#78#0" expanded="true" />
               </folding>
@@ -106,11 +104,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/leetcode/longest-substring-without-repeating-characters.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="100" column="8" selection-start-line="100" selection-start-column="8" selection-end-line="100" selection-end-column="8" />
+            <state relative-caret-position="228">
+              <caret line="12" column="3" lean-forward="true" selection-start-line="12" selection-start-column="3" selection-end-line="12" selection-end-column="3" />
               <folding>
                 <element signature="e#14#42#0" expanded="true" />
               </folding>
@@ -121,26 +119,29 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/leetcode/two-sum.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="551">
-              <caret line="29" column="46" selection-start-line="29" selection-start-column="46" selection-end-line="29" selection-end-column="46" />
+            <state relative-caret-position="57">
+              <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://C:/Go/src/strconv/itoa.go">
+        <entry file="file://$PROJECT_DIR$/src/leetcode/reverse-integer.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="456">
-              <caret line="24" column="5" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
+            <state relative-caret-position="190">
+              <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+              <folding>
+                <element signature="e#14#39#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://C:/Go/src/strconv/atoi.go">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/leetcode/buddy-strings.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2489">
-              <caret line="131" column="5" lean-forward="true" selection-start-line="131" selection-start-column="5" selection-end-line="131" selection-end-column="5" />
+            <state relative-caret-position="95">
+              <caret line="53" column="28" selection-start-line="53" selection-start-column="28" selection-end-line="53" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -254,6 +255,8 @@
         <option value="$PROJECT_DIR$/src/leetcode/two-sum.go" />
         <option value="$PROJECT_DIR$/src/leetcode/add-two-numbers2.go" />
         <option value="$PROJECT_DIR$/src/leetcode/longest-substring-without-repeating-characters.go" />
+        <option value="$PROJECT_DIR$/src/leetcode/reverse-integer.go" />
+        <option value="$PROJECT_DIR$/src/leetcode/buddy-strings.go" />
       </list>
     </option>
   </component>
@@ -340,7 +343,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Go Build.go build longest-substring-without-repeating-characters.go">
+  <component name="RunManager" selected="Go Build.go build buddy-strings.go">
     <configuration name="go build add-two-numbers2.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="hi-golang" />
       <working_directory value="$PROJECT_DIR$/" />
@@ -349,11 +352,11 @@
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
-    <configuration name="go build add-two-numbers.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+    <configuration name="go build buddy-strings.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="hi-golang" />
       <working_directory value="$PROJECT_DIR$/" />
       <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/src/leetcode/add-two-numbers.go" />
+      <filePath value="$PROJECT_DIR$/src/leetcode/buddy-strings.go" />
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
@@ -365,11 +368,11 @@
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
-    <configuration name="go build nil.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+    <configuration name="go build reverse-integer.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="hi-golang" />
       <working_directory value="$PROJECT_DIR$/" />
       <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/test/nil.go" />
+      <filePath value="$PROJECT_DIR$/src/leetcode/reverse-integer.go" />
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
@@ -382,19 +385,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Go Build.go build nil.go" />
-      <item itemvalue="Go Build.go build add-two-numbers.go" />
       <item itemvalue="Go Build.go build two-sum.go" />
       <item itemvalue="Go Build.go build add-two-numbers2.go" />
       <item itemvalue="Go Build.go build longest-substring-without-repeating-characters.go" />
+      <item itemvalue="Go Build.go build reverse-integer.go" />
+      <item itemvalue="Go Build.go build buddy-strings.go" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Build.go build buddy-strings.go" />
+        <item itemvalue="Go Build.go build reverse-integer.go" />
         <item itemvalue="Go Build.go build longest-substring-without-repeating-characters.go" />
         <item itemvalue="Go Build.go build add-two-numbers2.go" />
         <item itemvalue="Go Build.go build two-sum.go" />
-        <item itemvalue="Go Build.go build add-two-numbers.go" />
-        <item itemvalue="Go Build.go build nil.go" />
       </list>
     </recent_temporary>
   </component>
@@ -617,13 +620,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/leetcode/two-sum.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="29" column="46" selection-start-line="29" selection-start-column="46" selection-end-line="29" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/Go/src/strconv/itoa.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="456">
@@ -675,23 +671,47 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/leetcode/add-two-numbers2.go">
+    <entry file="file://$PROJECT_DIR$/src/leetcode/two-sum.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="190" column="32" lean-forward="true" selection-start-line="190" selection-start-column="32" selection-end-line="190" selection-end-column="32" />
+        <state relative-caret-position="57">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/leetcode/reverse-integer.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
           <folding>
-            <element signature="e#50#78#0" expanded="true" />
+            <element signature="e#14#39#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/leetcode/longest-substring-without-repeating-characters.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="100" column="8" selection-start-line="100" selection-start-column="8" selection-end-line="100" selection-end-column="8" />
+        <state relative-caret-position="228">
+          <caret line="12" column="3" lean-forward="true" selection-start-line="12" selection-start-column="3" selection-end-line="12" selection-end-column="3" />
           <folding>
             <element signature="e#14#42#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/leetcode/add-two-numbers2.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="348">
+          <caret line="187" column="22" lean-forward="true" selection-start-line="187" selection-start-column="22" selection-end-line="187" selection-end-column="22" />
+          <folding>
+            <element signature="e#50#78#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/leetcode/buddy-strings.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="53" column="28" selection-start-line="53" selection-start-column="28" selection-end-line="53" selection-end-column="28" />
         </state>
       </provider>
     </entry>
