@@ -5,8 +5,15 @@
 
 ## jQuery
 
+
+
 ## ReactJs
-- A JavaScript library for building user interfaces
+
+*React is a declarative, efficient, and flexible JavaScript library for building user interfaces. It lets you compose complex UIs from small and isolated pieces of code called “components”.*
+
+
+
+- A JavaScript library for building user interfaces (*用于构建用户界面的JavaScript库*)
     - facebook
 - jsx   javascript xml， XML-like syntax called JSX 
 - 自定义类型，必须以大写开头，否则将视作 html 文档格式
@@ -16,7 +23,11 @@
     - this.state 状态值
       - this.setstate 设置状态值
 
+
+
 ### Component 组件
+
+*组件接受称为属性(`props` properties 的简称)的参数，通过方法`render` 渲染为一个有层次化(结构)的视图。*
 
 - 函数式 ``const element = () => <h1>标题</h1>``
 
@@ -32,6 +43,8 @@
   ```
 
 - 类式   ``extends React.Component``
+
+
 
 
 
