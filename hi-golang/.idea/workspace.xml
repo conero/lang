@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="419b9284-fa6b-4e88-b954-9d762bb11861" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/leetcode/letter-combinations-of-a-phone-number.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/leetcode/letter-combinations-of-a-phone-number.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -76,22 +75,22 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="go" value="21" />
+          <entry key="go" value="24" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Go" value="21" />
+          <entry key="Go" value="24" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="go" value="10553" />
+          <entry key="go" value="12256" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Go" value="10553" />
+          <entry key="Go" value="12256" />
         </counts>
       </usages-collector>
     </session>
@@ -110,14 +109,44 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/leetcode/letter-combinations-of-a-phone-number.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="37" column="43" selection-start-line="37" selection-start-column="43" selection-end-line="37" selection-end-column="43" />
+            <state relative-caret-position="152">
+              <caret line="8" selection-start-line="8" selection-end-line="13" selection-end-column="3" />
               <folding>
                 <element signature="e#14#42#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/leetcode/restore-ip-addresses.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="266">
+              <caret line="62" selection-start-line="62" selection-end-line="62" />
+              <folding>
+                <element signature="e#14#41#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://C:/Go/src/regexp/regexp.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="217">
+              <caret line="467" column="5" lean-forward="true" selection-start-line="467" selection-start-column="5" selection-end-line="467" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://C:/Go/src/regexp/syntax/doc.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="363">
+              <caret line="89" column="44" lean-forward="true" selection-start-line="89" selection-start-column="44" selection-end-line="89" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -221,6 +250,7 @@
         <option value="$PROJECT_DIR$/src/leetcode/buddy-strings.go" />
         <option value="$PROJECT_DIR$/src/leetcode/roman-to-integer.go" />
         <option value="$PROJECT_DIR$/src/leetcode/letter-combinations-of-a-phone-number.go" />
+        <option value="$PROJECT_DIR$/src/leetcode/restore-ip-addresses.go" />
       </list>
     </option>
   </component>
@@ -307,7 +337,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Go Build.go build letter-combinations-of-a-phone-number.go">
+  <component name="RunManager" selected="Go Build.go build restore-ip-addresses.go">
     <configuration name="go build buddy-strings.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="hi-golang" />
       <working_directory value="$PROJECT_DIR$/" />
@@ -324,11 +354,11 @@
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
-    <configuration name="go build longest-substring-without-repeating-characters.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+    <configuration name="go build restore-ip-addresses.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="hi-golang" />
       <working_directory value="$PROJECT_DIR$/" />
       <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/src/leetcode/longest-substring-without-repeating-characters.go" />
+      <filePath value="$PROJECT_DIR$/src/leetcode/restore-ip-addresses.go" />
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
@@ -349,19 +379,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Go Build.go build longest-substring-without-repeating-characters.go" />
       <item itemvalue="Go Build.go build reverse-integer.go" />
       <item itemvalue="Go Build.go build buddy-strings.go" />
       <item itemvalue="Go Build.go build roman-to-integer.go" />
       <item itemvalue="Go Build.go build letter-combinations-of-a-phone-number.go" />
+      <item itemvalue="Go Build.go build restore-ip-addresses.go" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Build.go build restore-ip-addresses.go" />
         <item itemvalue="Go Build.go build letter-combinations-of-a-phone-number.go" />
         <item itemvalue="Go Build.go build roman-to-integer.go" />
         <item itemvalue="Go Build.go build buddy-strings.go" />
         <item itemvalue="Go Build.go build reverse-integer.go" />
-        <item itemvalue="Go Build.go build longest-substring-without-repeating-characters.go" />
       </list>
     </recent_temporary>
   </component>
@@ -722,10 +752,34 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/leetcode/letter-combinations-of-a-phone-number.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="37" column="43" selection-start-line="37" selection-start-column="43" selection-end-line="37" selection-end-column="43" />
+        <state relative-caret-position="152">
+          <caret line="8" selection-start-line="8" selection-end-line="13" selection-end-column="3" />
           <folding>
             <element signature="e#14#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Go/src/regexp/regexp.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="467" column="5" lean-forward="true" selection-start-line="467" selection-start-column="5" selection-end-line="467" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Go/src/regexp/syntax/doc.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="363">
+          <caret line="89" column="44" lean-forward="true" selection-start-line="89" selection-start-column="44" selection-end-line="89" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/leetcode/restore-ip-addresses.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="62" selection-start-line="62" selection-end-line="62" />
+          <folding>
+            <element signature="e#14#41#0" expanded="true" />
           </folding>
         </state>
       </provider>
