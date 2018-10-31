@@ -1,6 +1,10 @@
 package main
 
-import "strings"
+import (
+	"fmt"
+	"regexp"
+	"strings"
+)
 
 /**
 	@date 2018年10月30日 星期二
@@ -9,14 +13,30 @@ import "strings"
 	@name letter-combinations-of-a-phone-number (lcpn)
  */
 
+
+
 func main() {
-	
+	s := ""
+
+	s = "5 "
+	fmt.Printf("输入： %s, 输出：%s\n", s, letterCombinations(s))
+
+	s = "2 3"
+	s = "2 3"
+	fmt.Printf("输入： %s, 输出：%s\n", s, letterCombinations(s))
+
+	s = "2345"
+	fmt.Printf("输入： %s, 输出：%s\n", s, letterCombinations(s))
 }
 
 
 
-
+// 二分法：每次只合并两排
 func letterCombinations(digits string) []string {
+	// 去掉空字符
+	reg := regexp.MustCompile("\\s")
+	digits = reg.ReplaceAllString(digits, "")
+
 	dick := map[string]string{
 		"1": "",
 		"2": "abc",
@@ -33,10 +53,40 @@ func letterCombinations(digits string) []string {
 	vLen := len(queue)
 
 	value := []string{}
-	for i:=0; i<vLen ; i++{
-		s1 := value[i]
-		if s1Tmp, has := dick[s1]; has{
-			s1 = s1Tmp
+
+	getValFn := func(s string) []string {
+		if s1Tmp, has := dick[s]; has{
+			s = s1Tmp
+		}else{
+			s = ""
+		}
+		return strings.Split(s, "")
+	}
+	c1 := ""
+	for i := 0; i<vLen && c1 == ""; i++{
+		c1 = queue[i]
+		if vLen == 1{
+			value = getValFn(c1)
+			break
+		}
+		for j := i+1; j<vLen; j++{
+			if j == 1{
+				for _, s1 := range getValFn(c1) {
+					for _, s2 := range getValFn(queue[j]) {
+						// 两两合并
+						value = append(value, s1+s2)
+					}
+				}
+			}else{
+				newQue := []string{}
+				for _, cc1 := range value{
+					for _, s2 := range getValFn(queue[j]) {
+						// 两两合并
+						newQue = append(newQue, cc1+s2)
+					}
+				}
+				value = newQue
+			}
 		}
 	}
 	return value
