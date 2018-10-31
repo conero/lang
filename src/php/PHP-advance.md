@@ -4,15 +4,25 @@
 
 ## 工具
 
-### PHPunit 单元测试
+### PHPunit 单元测试框架
 
 > 地址 https://phpunit.de/
+>
+> 中文 http://www.phpunit.cn/
+
+
+
+*PHPUnit是一个面向PHP程序员的测试框架，这是一个xUnit的体系结构的单元测试框架。*
+
+
 
 
 
 > 安装
 
 通过 `composer` 包管理安装，以及`phar` 分发
+
+
 
 
 
