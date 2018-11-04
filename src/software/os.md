@@ -136,6 +136,10 @@
 
 # windows
 
+> 基于 windows 10
+
+
+
 ## 注册表
 
 *是Microsoft Windows中的一个重要的数据库，用于存储系统和应用程序的设置信息*
@@ -177,3 +181,14 @@
 > \HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts
 
 更改文件后缀名的默认软件打开方式
+
+
+
+## 应用自动启动
+
+> 查看方式 1
+
+- *`设置>应用>启动`*  可查看/设置启动的应用
+
+
+
