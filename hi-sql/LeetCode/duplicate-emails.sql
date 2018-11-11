@@ -34,5 +34,5 @@
     insert into Person (Id, Email) values ('2', 'c@d.com');
     insert into Person (Id, Email) values ('3', 'a@b.com');
 
--- mysql
+-- mysql/oracle
     select tt.Email from (select Email, count(1) as ctt from Person group by Email) tt where ctt>1
