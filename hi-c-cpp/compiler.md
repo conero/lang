@@ -7,6 +7,12 @@
 
 ```ini
 # 文件编译 <file> -> <name>
+# c 语言
 $ gcc <file> -o <name>
+$ ./<name>
+
+
+# c++ 
+$ g++ <file> -o <name>
 $ ./<name>
 ```
