@@ -10,5 +10,5 @@ import (
 )
 
 func main() {
-	fmt.Println("Hello World, From The Golang.")
+	fmt.Printf("  %s", "Hello World From Golang langage")
 }

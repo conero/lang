@@ -4,5 +4,5 @@
  */
 
 fun main(args: Array<String>) {
-    println("Hello Kotlin/Native!")
+    println("  Hello World From Kotlin/Native langage!")
 }

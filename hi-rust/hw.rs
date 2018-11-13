@@ -3,6 +3,6 @@
 
 fn main(){
     // 输入语句
-    println!("Hello World");
+    println!("  Hello World From Rust langage");
 }
 
