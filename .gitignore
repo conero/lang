@@ -3,3 +3,6 @@
 
 # idea IDE 不加入git中
 .idea
+
+# 本地测试忽律文件
+/ign-*

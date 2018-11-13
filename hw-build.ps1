@@ -1,7 +1,7 @@
 # 2018年11月13日 星期二
 # 静态语言编辑处理
 
-$tardir = './test-hw'
+$tardir = './ign-test-hw'
 rmdir -r $tardir
 mkdir $tardir
 cd $tardir
