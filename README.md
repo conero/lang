@@ -38,6 +38,7 @@
   - [oracle-11g](./src/software/oracle-11g.md)
   - [PowerShell](./src/software/PowerShell.md)
   - [vcs](./src/software/vcs.md)
+  - [software](./src/software/software.md)
 - study
   - [Algorithm](./src/study/Algorithm.md)
   - [Data_Structure](./src/study/Data_Structure.md)

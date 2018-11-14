@@ -10,10 +10,10 @@
 2. [Windows 1985](#menu_windows)
 2. [Linux 1991](#menu_linux)
 
-## <span id="menu_overview">简介</span>
+# <span id="menu_overview">简介</span>
 
 
-## <span id="menu_unix">UNIX</span> 1970
+# <span id="menu_unix">UNIX</span> 1970
 
 ### 简介
 > 特征
@@ -34,7 +34,7 @@
 - 以网络为核心的设计思想
 - 1970-01-01 00:00:00  (unix 元年-1970)
 
-## <span id="menu_windows">Windows</span> 1985
+# <span id="menu_windows">Windows</span> 1985
 - 创始人: Bill Gates
 - Microsoft-DOS -> windows
 - 特征
@@ -102,7 +102,66 @@
 
 
 
-## <span id="menu_linux">Linux</span> 1991
+
+
+### windows 快捷键
+
+> win+
+
+| 快捷键            | 助记                      | 说明                         |
+| ----------------- | ------------------------- | ---------------------------- |
+| win               | windows                   | 打开或关闭“开始”屏幕         |
+| win+A             | windows Action            | 打开操作中心                 |
+| win+B             | windows Blur Notification | 将焦点设置到通知区域         |
+| win+D             | windows Display           | 显示和隐藏桌面               |
+| win+Alt+D         | windows display date      | 显示和隐藏桌面上的日期和时间 |
+| win+E             | windows Explorer          | 打开文件资源管理器           |
+| win+I             | windows Items             | 打开“设置”                   |
+| win+K             |                           | 打开“连接”快速操作(蓝牙)     |
+| win+L             | windows Lock              | 锁定你的电脑或切换帐户       |
+| win+M/win+Shift+M |                           | 最小化所有窗口(和 win+D 像)  |
+| win+P             | windows Play              | 选择演示显示模式             |
+| win+R             | windows Run               | 打开“运行”对话框             |
+| win+S             | windows Search            | 打开搜索                     |
+| win+T             | windows Tabbar            | 循环浏览任务栏上的应用       |
+| win+X             |                           | 打开“快速链接”菜单           |
+| win+,(逗号)       |                           | 临时速览桌面                 |
+| win+Tab           |                           | 打开任务视图                 |
+
+
+
+> 其他
+
+| 快捷键            | 助记                      | 说明                         |
+| ---- | ---- | ---- |
+| *__复制、粘贴及其他常规的键盘快捷方式__* |      |      |
+| Ctrl+C/ Ctrl+Insert | Copy | 复制选定文本 |
+| Ctrl+V/ Shift+Insert | Paste | 粘贴选定文本 |
+| Ctrl+X | Cut | 剪切选定项 |
+| Ctrl+Z | Undo | 撤消操作 |
+| Alt + Tab | | 在打开的应用之间切换 |
+| Ctrl + A | All | 选择文档或窗口中的所有项目 |
+| Ctrl + D（或删除键） | Delete | 删除所选的项目，将其移至回收站 |
+| Ctrl + R（或 F5） | Refresh | 刷新活动窗口 |
+| Ctrl + Y | Redo | 恢复操作 |
+| Ctrl + Shift（及箭头键） | | 选择文本块 |
+|  | |  |
+| *__文件资源管理器键盘快捷方式__* | |  |
+| Alt+D | | 选中地址栏 |
+| Ctrl+F/Ctrl+E | Find | 选择搜索框 |
+| Ctrl+N | New | 打开新窗口 |
+| Ctrl+W | | 关闭活动窗口 |
+| Ctrl+Shift+N | | 创建新文件夹 |
+| Alt + P |  | 显示预览面板 |
+| Alt + Enter | | 打开选定项目的“属性”对话框 |
+
+
+
+
+
+
+
+# <span id="menu_linux">Linux</span> 1991
 
 - 作者：Linus Benedict Torvalds
 - 发布日期： 1991-10-05
@@ -244,3 +303,12 @@
   - `:q!`		取消并退出，不保存
   - `:qw`                退出且保存
 
+
+
+
+
+# 附录
+
+## 参考
+
+1. [Windows 中的键盘快捷方式](https://support.microsoft.com/zh-cn/help/12445/windows-keyboard-shortcuts)
