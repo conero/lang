@@ -2,6 +2,11 @@
 
 > 2018年10月19日 星期五
 
+```powershell
+# 查看 本地 PS 版本信息
+$PSVersionTable
+```
+
 
 
 ## 简介
@@ -45,6 +50,8 @@ $jc
 $jc = Get-ChildItem env:
 $jc
 
+# 查看所有变量
+Get-Variable
 ```
 
 
@@ -126,6 +133,12 @@ restart-computer
 | `Get-Alias`    | gal   |
 
 
+
+
+
+## 参考
+
+- <https://microsoft.com/powershell>
 
 
 
