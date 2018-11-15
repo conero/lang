@@ -81,3 +81,6 @@
 
 ## 计划中
 
+### golang 资料阅读
+
+https://github.com/llitfkitfk/go-best-practice
