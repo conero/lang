@@ -56,6 +56,40 @@ Get-Variable
 
 
 
+> *转义字符*
+
+- "`"   字符可转移变量，原样输出; 也换行输入代码
+- `'`   单引号内的变量不会成为模板
+- `"`   双引号可为变量
+
+```powershell
+$n = 8 * 9
+
+echo '$n is $n.'
+# $n is $n.
+
+echo "`$n is $n."
+# $n is 72.
+```
+
+
+
+> 指示特殊字符
+
+|          |                                                              |                                                              |
+| -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 特殊字符 | 说明                                                         | 示例                                                         |
+| `0       | Null。Powershell可以识别null特殊字符(`0),并用字符代码0来表示该特殊字符，Powershell输出中显示为空白。所以Powershell可以读取并处理包含null字符(字符串终止或记录终止指示符)的文本文件。需要注意，null 特殊字符与 $null 变量不同，后者存储 NULL 值。 |                                                              |
+| `a       | 警报。可向计算机的扬声器发送蜂鸣信号，可用此字符向用户发出有关危险操作的警告 | PS C:\> for ( $i =0 ; $i -le 1; $i++) { "`a" }               |
+| `b       | 退格。将光标后退一个字符。                                   | PS C:\> "Windows`b Powershell"Window Powershell              |
+| `f       | 换页。打印字符，指示在当前字符的下一页继续打印，该字符只影响打印的文档，不影响屏幕输出 |                                                              |
+| `n       | 换行。其后的内容在下一行显示。                               | PS C:\> "This line has been breaked into`n two lines"This line has been breaked into two lines |
+| `r       | 回车符。会删除该字符之前的整行内容                           | PS C:\> Write-Host "will be deleted `r others" others        |
+| `t       | 水平制表符。默认情况下，Powershell每隔7个空格为一个制表符。  | PS C:\> "columnA`tcolumnB`tcolumnC"columnA columnB columnC   |
+| `v       | 垂直制表符。 光标前进到下一个垂直制表位并从该处开始写入后面的所有输出。该字符仅影响打印的文档，不影响屏幕输出。 |                                                              |
+
+
+
 > 行号符号
 
 ```ini
