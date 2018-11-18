@@ -1259,17 +1259,64 @@ struct Area<T, U>{
 
 #### trait定义共享的行为(接口)
 
+> **默认实现**
+
+_有时为 trait 中的某些或全部方法提供默认的行为，而不是在每个类型的每个实现中都定义自己的行为是很有用的。这样当为某个特定类型实现 trait 时，可以选择保留或重载每个方法的默认行为。_
+
+
+
 *定义 trait*
 
 ```rust
+// 定义 trait
+trait A{
+    // 定义方法，但是不具体实现它
+    fn name(&self) -> String;
+    fn name2(&self);    
+    
+    // 默认实现
+    fn about(&self) -> String {
+        String::from("Joshua Conero. Use A.")
+    }
+}
 
+// AStr 结构体
+struct AStr{
+    _name: String,
+}
+
+// AStr 实现 A trait
+impl A for AStr{
+    // 必须实现 name 相关方法
+}
 ```
 
 
 
+> **trait-bounds**
+
+_我们可以限制泛型不再适用于任何类型，编译器会确保其被限制为那些实现了特定 trait 的类型，由此泛型就会拥有我们希望其类型所拥有的功能。这被称为指定泛型的 *trait bounds*。_
 
 
-//@TODO   *[通用集合类型-字符串](https://kaisery.github.io/trpl-zh-cn/ch08-02-strings.html)*
+
+#### 生命周期与引用有效性
+
+// @TODO NeedToDo 
+
+//@TODO   *[测试-编写测试](https://kaisery.github.io/trpl-zh-cn/ch11-01-writing-tests.html)*
+
+
+
+### 测试
+
+
+
+Rust 中的测试函数是用来验证非测试代码是否按照期望的方式运行的。测试函数体通常执行如下三种操作：
+
+1. 设置任何所需的数据或状态
+2. 运行需要测试的代码
+3. 断言其结果是我们所期望的
+
 
 
 
