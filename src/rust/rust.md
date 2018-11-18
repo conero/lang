@@ -969,6 +969,306 @@ for i in &y{
 
 - _`String` 类型，为了支持一个可变，可增长的文本片段，需要在堆上分配一块在编译时未知大小的内存来存放内容。_
 
+_Rust 的核心语言中只有一种字符串类型：`str`，字符串 slice，它通常以被借用的形式出现，`&str`。_
+
+
+
+```rust
+// 新建字符串(空字符)
+let mut s = String::new();
+
+// 带初始值字符串
+let data = "initial contents";
+let s = data.to_string();
+let s = String::from("initial contents");
+
+// the method also works on a literal directly:
+let s = "initial contents".to_string();
+```
+
+
+
+> 更新字符串
+
+- 使用-push-附加字符串
+- 使用--运算符或-format-宏连接字符串
+
+
+
+_`String` 的大小可以增长其内容也可以改变，就像可以放入更多数据来改变 `Vec` 的内容一样。另外，`String` 实现了 `+` 运算符作为连接运算符以便于使用。_
+
+```rust
+let mut s = String::from("foo");
+s.push_str("bar");
+// s => "foo bar"
+
+let mut s1 = String::from("Joshu");
+s1.push('a');
+// s1 -> "Joshua"
+```
+
+
+
+使用`+` 符号更新字符串
+
+```rust
+let s1 = String::from("Hello");
+let s2 = String::from("world!");
+
+let s3 = s1 + " " + &s2; // note s1 has been moved here and can no longer be used
+let s3 = format!("{} {}", s1, s2);
+
+// 遍历字符串
+for b in s1.bytes(){
+    println!("{}", b);
+}
+```
+
+
+
+#### 哈希 map
+
+_`HashMap<K, V>` 类型储存了一个键类型 `K` 对应一个值类型 `V` 的映射。它通过一个 **哈希函数**（*hashing function*）来实现映射，决定如何将键和值放入内存中。_
+
+_同样类似于 vector，哈希 map 是同质的：所有的键必须是相同类型，值也必须都是相同类型。_
+
+
+
+*新建哈希 map,通过 insert 更新值。可以通过 `get` 方法并提供对应的键来从哈希 map 中获取值。*
+
+```rust
+use std::collections::HashMap;
+// method 1
+let mut scores = HashMap::new();
+
+scores.insert(String::from("Blue"), 10);
+scores.insert(String::from("Yellow"), 50);
+// 读取值
+let key = "Blue".to_string();
+println!("{}", scores.get(&key));	// => 10
+// 循环, map
+for (k, v) in &scores {
+    println!("{}: {}", k, v);
+}
+println!("{:?}", scores);
+// 检测 scores 是否存在 "Red" 键值，不存在就新增子 => Red ~ 50
+scores.entry(String::from("Red")).or_insert(50);
+
+
+
+// method 2
+let teams  = vec![String::from("Blue"), String::from("Yellow")];
+let initial_scores = vec![10, 50];
+
+let scores: HashMap<_, _> = teams.iter().zip(initial_scores.iter()).collect();
+```
+
+
+
+### 错误处理
+
+_Rust 将错误组合成两个主要类别：**可恢复错误**（*recoverable*）和 **不可恢复错误**（*unrecoverable*）。可恢复错误通常代表向用户报告错误和重试操作是合理的情况，比如未找到文件。不可恢复错误通常是 bug 的同义词，比如尝试访问超过数组结尾的位置。_
+
+
+
+>  **Panic 中的栈展开与终止**
+
+当出现 `panic!` 时，程序默认会开始 **展开**（*unwinding*），这意味着 Rust 会回溯栈并清理它遇到的每一个函数的数据，不过这个回溯并清理的过程有很多工作。另一种选择是直接 **终止**（*abort*），这会不清理数据就退出程序。那么程序所使用的内存需要由操作系统来清理。如果你需要项目的最终二进制文件越小越好，panic 时通过在 *Cargo.toml* 的 `[profile]` 部分增加 `panic = 'abort'`，可以由展开切换为终止。例如，如果你想要在release模式中 panic 时直接终止：
+
+```toml
+[profile.release]
+panic = 'abort'
+```
+
+
+
+> result-与可恢复的错误
+
+```rust
+enum Result<T, E> {
+    Ok(T),
+    Err(E),
+}
+```
+
+
+
+> **Result 例子**
+
+```rust
+use std::fs::File;
+
+fn main() {
+    let f = File::open("hello.txt");
+	// 使用 match 处理 Result
+    let f = match f {
+        Ok(file) => file,
+        Err(error) => {
+            panic!("There was a problem opening the file: {:?}", error)
+        },
+    };
+}
+```
+
+
+
+*匹配不同的错误*
+
+```rust
+use std::fs::File;
+use std::io::ErrorKind;
+
+fn main() {
+    let f = File::open("hello.txt");
+
+    let f = match f {
+        Ok(file) => file,
+        Err(ref error) if error.kind() == ErrorKind::NotFound => {
+            match File::create("hello.txt") {
+                Ok(fc) => fc,
+                Err(e) => {
+                    panic!(
+                        "Tried to create file but there was a problem: {:?}",
+                        e
+                    )
+                },
+            }
+        },
+        Err(error) => {
+            panic!(
+                "There was a problem opening the file: {:?}",
+                error
+            )
+        },
+    };
+}
+```
+
+
+
+*失败时-panic-的简写unwrap-和-expect*
+
+- 如果 `Result` 值是成员 `Ok`，`unwrap` 会返回 `Ok` 中的值。如果 `Result` 是成员 `Err`，`unwrap` 会为我们调用 `panic!`。
+- 另一个类似于 `unwrap` 的方法它还允许我们选择 `panic!` 的错误信息：`expect`。使用 `expect` 而不是 `unwrap` 并提供一个好的错误信息可以表明你的意图并更易于追踪 panic 的根源。
+
+`expect` 与 `unwrap` 的使用方式一样：返回文件句柄或调用 `panic!` 宏。`expect` 用来调用 `panic!` 的错误信息将会作为参数传递给 `expect` ，而不像`unwrap` 那样使用默认的 `panic!` 信息。
+
+
+
+*回调处理 Result*
+
+```rust
+use std::io;
+use std::io::Read;
+use std::fs::File;
+
+fn read_username_from_file() -> Result<String, io::Error> {
+    let f = File::open("hello.txt");
+
+    let mut f = match f {
+        Ok(file) => file,
+        Err(e) => return Err(e),
+    };
+
+    let mut s = String::new();
+
+    match f.read_to_string(&mut s) {
+        Ok(_) => Ok(s),
+        Err(e) => Err(e),
+    }
+}
+```
+
+
+
+*传播错误的简写 `?`*
+
+```rust
+use std::io;
+use std::io::Read;
+use std::fs::File;
+
+fn read_username_from_file() -> Result<String, io::Error> {
+    let mut f = File::open("hello.txt")?;
+    let mut s = String::new();
+    f.read_to_string(&mut s)?;
+    Ok(s)
+}
+```
+
+
+
+*错误处理指导原则*
+
+- 有害状态并不包含 **预期** 会偶尔发生的错误
+- 之后的代码的运行依赖于处于这种有害状态
+- 当没有可行的手段来将有害状态信息编码进所使用的类型中的情况
+
+
+
+### 泛型trait-和生命周期
+
+*泛型是具体类型或其他属性的抽象替代。泛型用于为函数签名或结构体等创建定义，允许我们创建许多不同的具体数据类型。*
+
+*定义函数时可以在函数签名的参数数据类型和返回值中使用泛型。以这种方式编写的代码将更灵活并能向函数调用者提供更多功能，同时不引入重复代码。*
+
+
+
+> *函数使用范类*
+
+```rust
+fn largest<T>(list: &[T]) -> T {
+    let mut largest = list[0];
+
+    for &item in list.iter() {
+        if item > largest {
+            largest = item;
+        }
+    }
+
+    largest
+}
+
+fn main() {
+    let number_list = vec![34, 50, 25, 100, 65];
+
+    let result = largest(&number_list);
+    println!("The largest number is {}", result);
+
+    let char_list = vec!['y', 'm', 'a', 'q'];
+
+    let result = largest(&char_list);
+    println!("The largest char is {}", result);
+}
+```
+
+
+
+> 结构体定义中的泛型
+
+```rust
+struct Area<T, U>{
+    w: T,
+    h: T,
+    a: T,
+    s: U,
+}
+```
+
+
+
+#### trait定义共享的行为(接口)
+
+*定义 trait*
+
+```rust
+
+```
+
+
+
+
+
 //@TODO   *[通用集合类型-字符串](https://kaisery.github.io/trpl-zh-cn/ch08-02-strings.html)*
 
 
