@@ -77,8 +77,6 @@ $ cargo --version
 
 
 
-
-
 ## 基础学习
 
 - __不能在相同作用域中同时存在可变和不可变引用的规则。__
@@ -1397,10 +1395,6 @@ let s: &'static str = "I have a static lifetime.";
 
 
 
-//@TODO   *[测试-编写测试](https://kaisery.github.io/trpl-zh-cn/ch11-01-writing-tests.html)*
-
-
-
 ### 测试
 
 
@@ -1410,6 +1404,48 @@ Rust 中的测试函数是用来验证非测试代码是否按照期望的方式
 1. 设置任何所需的数据或状态
 2. 运行需要测试的代码
 3. 断言其结果是我们所期望的
+
+
+
+//@TODO   *[测试-编写测试](https://kaisery.github.io/trpl-zh-cn/ch11-01-writing-tests.html)*
+
+
+
+### rust-的面向对象特性
+
+> OOP(*Object-Oriented Programming*)
+
+_面向对象的程序是由对象组成的。一个 **对象** 包含数据和操作这些数据的过程。这些过程通常被称为 **方法** 或 **操作**_
+
+_Rust 是面向对象的：结构体和枚举包含数据而 impl 块提供了在结构体和枚举之上的方法。虽然带有方法的结构体和枚举并不被 **称为** 对象，但是他们提供了与对象相同的功能_
+
+
+
+_Rust 的结构体自身被标记为 `pub`，这样其他代码就可以使用这个结构体，但是在结构体内部的字段仍然是私有的。_
+
+```rust
+// 对象
+pub struct A{}
+// 接口
+pub trait A2A{
+    pub mode(&self){
+    }
+}
+
+// 方法等
+// A 实现 A2A； 类似 A 继承于 A2A
+impl A2A for A{
+    // 公有方法 - n1
+    pub fn n1(&self){}
+    // 私有方法
+    fn priv_n1(self){}
+}
+
+```
+
+
+
+_继承： Rust 代码可以使用默认 trait 方法实现来进行共享。_
 
 
 
@@ -1437,6 +1473,12 @@ _元编程对于减少大量编写和维护的代码是非常有用的，它也�
 
 - 通用元编程的申明式宏 `macro_rule!`
 - 自定义`drive`的过程宏
+
+
+
+## 文档/代码库学习
+
+
 
 
 
@@ -1537,3 +1579,55 @@ $ cargo check
 
 - [Rust 程序设计语言-简体中文](https://kaisery.github.io/trpl-zh-cn/)
 - [cargo-doc](https://doc.rust-lang.org/cargo/)
+
+
+
+### rust 语言附录
+
+> Primitive Types（原始类型）
+
+```rust
+array,
+bool,
+char,
+float: f32, f64			// 浮点型
+function: fn, 
+int: i8, i16, i32, i64, i128, isize
+pointer: 	*T			// 指针
+reference： &T		   // 引用
+slice:  [T]			    // 切片
+str：					// 字符串切片
+tuple:					// 元组
+uint: u8, u16, u32, u128, unit, usize
+never: !
+```
+
+
+
+> 操作符号
+
+```rust
+&expr, &mut expr    							// 借用
+&type, &mut type, &'a type, &'a mut type		// 借用指针类型
+*expr											// 解引用
+*const type, *mut type							// 原生指针
+```
+
+
+
+表 B-2：独立语法
+
+| 符号                                        | 解释                                           |
+| ------------------------------------------- | ---------------------------------------------- |
+| `'ident`                                    | 命名生命周期或循环标签                         |
+| `...u8`, `...i32`, `...f64`, `...usize`, 等 | 指定类型的数值常量                             |
+| `"..."`                                     | 字符串常量                                     |
+| `r"..."`, `r#"..."#`, `r##"..."##`, etc.    | 原生字符串常量, 未处理的遗漏字符               |
+| `b"..."`                                    | 字节字符串; 构造一个 `[u8]` 类型而非字符串     |
+| `br"..."`, `br#"..."#`, `br##"..."##`, 等   | 原生字节字符串常量，原生字节和字节结合的字符串 |
+| `'...'`                                     | 字符常量                                       |
+| `b'...'`                                    | ASCII码字节常量                                |
+| `|...| expr`                                | 结束                                           |
+| `!`                                         | 对一个离散函数来说最后总是空类型               |
+| `_`                                         | “忽略”模式绑定， 也用于整数常量的可读性        |
+
