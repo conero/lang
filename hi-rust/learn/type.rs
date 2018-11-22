@@ -52,6 +52,7 @@ fn t_f32(){
     println!("{}", f1 + (1.24 as f32))
 }
 
+fn tArray(){}
 
 fn main(){
     println!("Rust Data-Type Learning: ");
