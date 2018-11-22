@@ -1,0 +1,6 @@
+[package]
+name = "cargo"
+version = "0.1.0"
+authors = ["Joshua Conero <brximl@163.com>"]
+
+[dependencies]

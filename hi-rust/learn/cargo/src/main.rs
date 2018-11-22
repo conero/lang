@@ -1,3 +1,9 @@
+//fn main() {
+//    println!("Hello, world!");
+//}
+// >>
+
+
 // 20181116
 // data-type learn
 // Joshua Conero  > type.rs
