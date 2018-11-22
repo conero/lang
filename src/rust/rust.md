@@ -2,6 +2,14 @@
 
 > A safe, concurrent, practical language(安全、并行、实用)
 
+> 主要开发者
+
+- _Brian Anderson (Mozilla 2011-2017)_
+- _Niko Matsakis_
+- _Brendan Eich(js 之父)_
+- _Dave Herman_
+- _Graydon Hoare_
+
 
 
 *参考地址*：
@@ -1407,7 +1415,28 @@ Rust 中的测试函数是用来验证非测试代码是否按照期望的方式
 
 
 
-//@TODO   *[测试-编写测试](https://kaisery.github.io/trpl-zh-cn/ch11-01-writing-tests.html)*
+_Rust 中的测试就是一个带有 `test` 属性注解的函数。属性（attribute）是关于 Rust 代码片段的元数据。为了将一个函数变成测试函数，需要在 `fn` 行之前加上 `#[test]`。当使用 `cargo test` 命令运行测试时，Rust 会构建一个测试执行程序用来调用标记了 `test` 属性的函数，并报告每一个测试是通过还是失败。_
+
+```rust
+#[cfg(test)]
+mod tests {
+    // 申明为测试函数
+    #[test]
+    fn it_works() {
+        // 断言
+        assert_eq!(2 + 2, 4);
+    }
+}
+// 运行： $ cargo test
+```
+
+> **使用-assert-宏来检查结果**: _在希望确保测试中一些条件为 `true` 时非常有用。需要向 `assert!` 宏提供一个求值为布尔值的参数。如果值是 `true`，`assert!` 什么也不做，同时测试会通过。如果值为 `false`，`assert!` 调用 `panic!` 宏，这会导致测试失败。_
+
+
+
+> **使用-assert_eq-和-assert_ne-宏来测试相等**: _测试功能的一个常用方法是将需要测试代码的值与期望值做比较，并检查是否相等。可以通过向 `assert!`宏传递一个使用 `==` 运算符的表达式来做到。不过这个操作实在是太常见了，以至于标准库提供了一对宏来更方便的处理这些操作：`assert_eq!` 和 `assert_ne!`。这两个宏分别比较两个值是相等还是不相等。当断言失败时他们也会打印出这两个值具体是什么，以便于观察测试 **为什么** 失败，而 `assert!` 只会打印出它从 `==` 表达式中得到了 `false` 值，而不是导致 `false` 的两个值。_
+
+//@TODO   *[测试-编写测试|自定义失败信息](https://kaisery.github.io/trpl-zh-cn/ch11-01-writing-tests.html#a%E8%87%AA%E5%AE%9A%E4%B9%89%E5%A4%B1%E8%B4%A5%E4%BF%A1%E6%81%AF)*
 
 
 
