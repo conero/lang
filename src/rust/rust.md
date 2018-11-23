@@ -1436,7 +1436,256 @@ mod tests {
 
 > **使用-assert_eq-和-assert_ne-宏来测试相等**: _测试功能的一个常用方法是将需要测试代码的值与期望值做比较，并检查是否相等。可以通过向 `assert!`宏传递一个使用 `==` 运算符的表达式来做到。不过这个操作实在是太常见了，以至于标准库提供了一对宏来更方便的处理这些操作：`assert_eq!` 和 `assert_ne!`。这两个宏分别比较两个值是相等还是不相等。当断言失败时他们也会打印出这两个值具体是什么，以便于观察测试 **为什么** 失败，而 `assert!` 只会打印出它从 `==` 表达式中得到了 `false` 值，而不是导致 `false` 的两个值。_
 
-//@TODO   *[测试-编写测试|自定义失败信息](https://kaisery.github.io/trpl-zh-cn/ch11-01-writing-tests.html#a%E8%87%AA%E5%AE%9A%E4%B9%89%E5%A4%B1%E8%B4%A5%E4%BF%A1%E6%81%AF)*
+
+
+> **使用-should_panic-检查-panic** _除了检查代码是否返回期望的正确的值之外，检查代码是否按照期望处理错误也是很重要的。可以通过对函数增加另一个属性 `should_panic` 来实现这些。这个属性在函数中的代码 panic 时会通过，而在其中的代码没有 panic 时失败。_
+
+```rust
+pub struct Guess {
+    value: u32,
+}
+
+impl Guess {
+    pub fn new(value: u32) -> Guess {
+        if value < 1 || value > 100 {
+            panic!("Guess value must be between 1 and 100, got {}.", value);
+        }
+
+        Guess {
+            value
+        }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    #[should_panic]
+    fn greater_than_100() {
+        Guess::new(200);
+    }
+}
+```
+
+
+
+> **运行测试**
+
+_默认情况下，当测试通过时，Rust 的测试库会截获打印到标准输出的所有内容。比如在测试中调用了 `println!` 而测试通过了，我们将不会在终端看到 `println!` 的输出：只会看到说明测试通过的提示行。如果测试失败了，则会看到所有标准输出和其他错误信息。_
+
+```shell
+$ crago test
+
+# 查看参数/帮助
+$ cargo test --help
+$ cargo help test
+
+
+# [options]
+# $ cargo test [options]
+# 传递 --test-threads 参数和希望使用线程的数量给测试二进制文件
+--test-threads=1      
+# 禁止 println! 的输出
+--nocapture
+# 排除指定的测试
+--ignored
+
+# 指定单个测试，通过名称。有多个函数时
+$ cargo test <testName>
+```
+
+
+
+*忽略指定的测试*
+
+```rust
+#[test]
+fn it_works() {
+    assert_eq!(2 + 2, 4);
+}
+
+#[test]
+#[ignore]
+fn expensive_test() {
+    // code that takes an hour to run
+}
+```
+
+
+
+> **单元测试**
+
+_单元测试的目的是在与其他部分隔离的环境中测试每一个单元的代码，以便于快速而准确的某个单元的代码功能是否符合预期。单元测试与他们要测试的代码共同存放在位于 *src* 目录下相同的文件中。规范是在每个文件中创建包含测试函数的 `tests` 模块，并使用 `cfg(test)` 标注模块。_
+
+
+
+_测试模块的 `#[cfg(test)]` 注解告诉 Rust 只在执行 `cargo test` 时才编译和运行测试代码，而在运行 `cargo build` 时不这么做。这在只希望构建库的时候可以节省编译时间，并且因为它们并没有包含测试，所以能减少编译产生的文件的大小。与之对应的集成测试因为位于另一个文件夹，所以它们并不需要 `#[cfg(test)]` 注解。然而单元测试位于与源码相同的文件中，所以你需要使用 `#[cfg(test)]` 来指定他们不应该被包含进编译结果中。_
+
+```powershell
+# 单元测试，在包内部
+- src
+	- 在包内测试(单元测试)
+
+
+# 集成测试
+- src
+# 集成测试所需要放置的代码位置
+- tests
+```
+
+
+
+
+
+> **集成测试**
+
+_在 Rust 中，集成测试对于你需要测试的库来说完全是外部的。同其他使用库的代码一样使用库文件，也就是说它们只能调用一部分库中的公有 API 。集成测试的目的是测试库的多个部分能否一起正常工作。一些单独能正确运行的代码单元集成在一起也可能会出现问题，所以集成测试的覆盖率也是很重要的。为了创建集成测试，你需要先创建一个 *tests* 目录。_
+
+
+
+```rust
+// 引入需要测试的包
+extern crate adder;
+
+#[test]
+fn it_adds_two() {
+    assert_eq!(4, adder::add_two(2));
+}
+```
+
+
+
+### 迭代器与闭包
+
+> rust-中的函数式语言功能迭代器与闭包
+
+- **闭包**（*Closures*），一个可以储存在变量里的类似函数的结构
+- **迭代器**（*Iterators*），一种处理元素序列的方式
+
+
+
+#### 闭包/Closures
+
+_不同于函数，闭包允许捕获调用者作用域中的值。参数之后是存放闭包体的大括号 ———— 如果闭包体只有一行则大括号是可以省略的。_
+
+```rust
+fn main(){
+    // 申明闭包
+    let closures1 = |n1, n2| {
+        println!("params of the closure: {}， {} ", n1, n2);
+    }
+    let closure2 = |n1, n2| n1*n2;
+    
+    // 调用闭包
+    closures1(74, 85);        
+}
+```
+
+
+
+_闭包的定义以一对竖线（`|`）开始，在竖线中指定闭包的参数；之所以选择这个语法是因为它与 Smalltalk 和 Ruby 的闭包定义类似。_
+
+_闭包不要求像 `fn` 函数那样在参数和返回值上注明类型。函数中需要类型注解是因为他们是暴露给用户的显式接口的一部分。严格的定义这些接口对于保证所有人都认同函数使用和返回值的类型来说是很重要的。但是闭包并不用于这样暴露在外的接口：他们储存在变量中并被使用，不用命名他们或暴露给库的用户调用。_
+
+
+
+```rust
+fn  add_one_v1   (x: u32) -> u32 { x + 1 }
+let add_one_v2 = |x: u32| -> u32 { x + 1 };
+let add_one_v3 = |x|             { x + 1 };
+let add_one_v4 = |x|               x + 1  ;
+```
+
+_可以创建一个存放闭包和调用闭包结果的结构体。该结构体只会在需要结果时执行闭包，并会缓存结果值，这样余下的代码就不必再负责保存结果并可以复用该值。你可能见过这种模式被称 *memoization* 或 *lazy evaluation*。_
+
+
+
+#### 迭代器/iterator
+
+_迭代器模式允许你对一个项的序列进行某些处理。**迭代器**（*iterator*）负责遍历序列中的每一项和决定序列何时结束的逻辑。当使用迭代器时，我们无需重新实现这些逻辑。_
+
+_在 Rust 中，迭代器是 **惰性的**（*lazy*），这意味着直到调用方法消费迭代器之前它都不会有效果。_
+
+
+
+_迭代器都实现了一个叫做 `Iterator` 的定义于标准库的 trait。`type Item` 和 `Self::Item`，他们定义了 trait 的 **关联类型**（*associated type*）。_
+
+```rust
+trait Iterator {
+    type Item;
+
+    fn next(&mut self) -> Option<Self::Item>;
+    // methods with default implementations elided
+}
+```
+
+
+
+_调用 `next` 方法的方法被称为 **消费适配器**（*consuming adaptors*），因为调用他们会消耗迭代器。_
+
+
+
+> **实现-iterator-trait-来创建自定义迭代器**
+
+```rust
+struct Counter {
+    count: u32,
+}
+
+impl Counter {
+    fn new() -> Counter {
+        Counter { count: 0 }
+    }
+}
+
+// 实现实现迭代器
+impl Iterator for Counter {
+    type Item = u32;
+
+    fn next(&mut self) -> Option<Self::Item> {
+        self.count += 1;
+
+        if self.count < 6 {
+            Some(self.count)
+        } else {
+            None
+        }
+    }
+}
+
+// 使用 next 方法
+#[test]
+fn calling_next_directly() {
+    let mut counter = Counter::new();
+
+    assert_eq!(counter.next(), Some(1));
+    assert_eq!(counter.next(), Some(2));
+    assert_eq!(counter.next(), Some(3));
+    assert_eq!(counter.next(), Some(4));
+    assert_eq!(counter.next(), Some(5));
+    assert_eq!(counter.next(), None);
+}
+```
+
+
+
+**迭代器要快于 for 循环，相同情况下。**
+
+_迭代器，作为一个高级的抽象，被编译成了与手写的底层代码大体一致性能代码。迭代器是 Rust 的 **零成本抽象**（*zero-cost abstractions*）之一，它意味着抽象并不会强加运行时开销，它与本贾尼·斯特劳斯特卢普，C++ 的设计和实现者所定义的 **零开销**（*zero-overhead*）如出一辙：_
+
+
+
+### 智能指针
+
+_**指针** （*pointer*）是一个包含内存地址的变量的通用概念。这个地址引用，或 “指向”（points at）一些其他数据。Rust 中最常见的指针是第四章介绍的 **引用**（*reference*）。引用以 `&` 符号为标志并借用了他们所指向的值。除了引用数据它们没有任何其他特殊功能。它们也没有任何额外开销，所以应用的最多。_
+
+
+
+
+
+//@TODO   *[智能指针](https://kaisery.github.io/trpl-zh-cn/ch15-00-smart-pointers.html#a%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88)*
 
 
 
@@ -1507,7 +1756,11 @@ _元编程对于减少大量编写和维护的代码是非常有用的，它也�
 
 ## 文档/代码库学习
 
+-  [`Crate std` 标准版包](https://doc.rust-lang.org/std/index.html)
 
+_标准库使用了 `extern crate std;`，rust 脚本中的默认导入。_
+
+// @TODO
 
 
 

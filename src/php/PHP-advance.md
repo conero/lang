@@ -32,3 +32,12 @@
 
 > 地址 https://xdebug.org/
 
+
+
+
+
+## 资源
+
+- 网站
+  - [版本支持时间表(官网)](http://cn2.php.net/supported-versions.php)
+
