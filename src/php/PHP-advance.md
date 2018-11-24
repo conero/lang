@@ -8,6 +8,8 @@
 
 > 地址 https://phpunit.de/
 >
+> - 中文文档： https://phpunit.readthedocs.io/zh_CN/latest/index.html
+>
 > 中文 http://www.phpunit.cn/
 
 
