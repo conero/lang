@@ -1014,6 +1014,42 @@ git checkout *.php
 
 
 
+> **修改本地配置推送对个分支**
+
+- `.git/config`
+
+```ini
+[core]
+	repositoryformatversion = 0
+	filemode = false
+	bare = false
+	logallrefupdates = true
+	symlinks = false
+	ignorecase = true
+[remote "origin"]
+	url = <url1>
+	url = <url1>
+	fetch = +refs/heads/*:refs/remotes/origin/*
+```
+
+- *也可多次 `$ git remote set-url <name> <url>`*
+
+  ```shell
+  # 设置多个
+  $ git remote set-url add all u.1
+  $ git remote set-url add all u.2
+  
+  # 查看
+  $ git remote -v
+  # 移除远程地址
+  $ git remote rm <name>
+  ```
+
+
+
+
+
+
 ## 附录
 
 ### 中英文对照
