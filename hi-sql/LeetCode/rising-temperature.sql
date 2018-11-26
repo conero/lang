@@ -37,4 +37,7 @@
     insert into Weather (Id, RecordDate, Temperature) values ('4', '2015-01-04', '30');
 
 -- MySQL
-    //@TODO    
+    select wn.Id from Weather wo, Weather wn
+        where wn.Temperature > wo.Temperature 
+        and (to_days(wn.RecordDate) - to_days(wo.RecordDate)) = 1
+    ;

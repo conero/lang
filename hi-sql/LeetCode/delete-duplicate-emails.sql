@@ -27,40 +27,15 @@
 
 */
 
-//@TODO  失败
 -- MySQL  
     -- / 原型
-    select Email, MaxId from (select Email, count(1) ctt, max(Id) MaxId from Person group by Email) tt
-        where tt.ctt > 1
+    -- MySQL 语法报错
+    delete from Person ps where 
+        exists (
+            select 1 from Person p1 where ps.Email=p1.Email and p1.Id < ps.Id
+        )
     ;
-
-    -- 执行代码
-    delete from Person a where 
-    exists (select 1 from (select count(1) ctt from Person where Email = a.Email group by Email) tt where tt.ctt > 1)
-    and 
-    a.Id <> (
-        select MaxId from (select count(1) ctt, max(Id) MaxId from Person where Email = a.Email group by Email) tt
-        where tt.ctt > 1
-    ) 
+    -- 看了官网答案后
+    delete ps from Person ps, Person p1
+        where ps.Email=p1.Email and ps.Id > p1.Id
     ;
-
-    delete from Person a where 
-    exists (select 1 from (select count(Email) ctt from Person where Email = a.Email) tt where tt.ctt > 1)
-    and 
-    a.Id <> (
-        select MaxId from (select count(1) ctt, max(Id) MaxId from Person where Email = a.Email group by Email) tt
-        where tt.ctt > 1
-    ) 
-    ;
-
-    delete from Person a where 
-    exists (
-        select 1 from (select count(Email) as ctt, max(Id) as maxId from Person where Email=a.Email) tt where tt.ctt > 1 and tt.maxId <> a.Id
-    ) 
-    ;
-
-
-
-    -- 代码块
-    begin
-    end;
