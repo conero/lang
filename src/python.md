@@ -28,5 +28,30 @@
 
 
 
+## 基础
+
+### 流程控制
+
+#### for
+
+```python
+words = ['w', 'w1', 'w2', '...', 'wn']
+
+# 循环
+# for w in words[:]:
+for w in words:
+    # w,w1,w2
+    print(w)
+    
+# 通过长度
+for i in range(len(words)):
+    # i 系统处理
+    print(words[i])
+```
+
+
+
+*`break`、`continue` 中断/跳过当前的步骤*
+
 
 
