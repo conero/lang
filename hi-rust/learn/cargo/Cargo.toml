@@ -1,5 +1,6 @@
+# rust 语言学习实际
 [package]
-name = "cargo"
+name = "hi-lang"
 version = "0.1.0"
 authors = ["Joshua Conero <brximl@163.com>"]
 
