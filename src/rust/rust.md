@@ -1778,6 +1778,8 @@ _Rust 的内存安全保证使其 **难以** 意外的制造永远也不会被�
 
 ### 并发
 
+_安全并高效的处理并发编程是 Rust 的另一个主要目标。**并发编程**（*Concurrent programming*），代表程序的不同部分相互独立的执行，而 **并行编程**（*parallel programming*）代表程序不同部分于同时执行，这两个概念随着计算机越来越多的利用多处理器的优势时显得愈发重要。_
+
 
 
 //@TODO   *[并发](https://kaisery.github.io/trpl-zh-cn/ch16-00-concurrency.html#a%E6%97%A0%E7%95%8F%E5%B9%B6%E5%8F%91)*
