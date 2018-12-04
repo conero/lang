@@ -363,5 +363,278 @@ f('spam')
 
 ## 数据结构
 
-// @TODO [5. Data Structures](https://docs.python.org/3/tutorial/datastructures.html)
+### list/列表对象
+
+> `Built-In` 通过编辑器如“Ctrl + ” 追踪脚本
+
+```python
+
+class list(object):
+    """
+    list() -> new empty list
+    list(iterable) -> new list initialized from iterable's items
+    """
+
+    def append(self, p_object):  # real signature unknown; restored from __doc__
+        """ L.append(object) -> None -- append object to end """
+        pass
+
+    def clear(self):  # real signature unknown; restored from __doc__
+        """ L.clear() -> None -- remove all items from L """
+        pass
+
+    def copy(self):  # real signature unknown; restored from __doc__
+        """ L.copy() -> list -- a shallow copy of L """
+        return []
+
+    def count(self, value):  # real signature unknown; restored from __doc__
+        """ L.count(value) -> integer -- return number of occurrences of value """
+        return 0
+
+    def extend(self, iterable):  # real signature unknown; restored from __doc__
+        """ L.extend(iterable) -> None -- extend list by appending elements from the iterable """
+        pass
+
+    def index(self, value, start=None, stop=None):  # real signature unknown; restored from __doc__
+        """
+        L.index(value, [start, [stop]]) -> integer -- return first index of value.
+        Raises ValueError if the value is not present.
+        """
+        return 0
+
+    def insert(self, index, p_object):  # real signature unknown; restored from __doc__
+        """ L.insert(index, object) -- insert object before index """
+        pass
+
+    def pop(self, index=None):  # real signature unknown; restored from __doc__
+        """
+        L.pop([index]) -> item -- remove and return item at index (default last).
+        Raises IndexError if list is empty or index is out of range.
+        """
+        pass
+
+    def remove(self, value):  # real signature unknown; restored from __doc__
+        """
+        L.remove(value) -> None -- remove first occurrence of value.
+        Raises ValueError if the value is not present.
+        """
+        pass
+
+    def reverse(self):  # real signature unknown; restored from __doc__
+        """ L.reverse() -- reverse *IN PLACE* """
+        pass
+
+    def sort(self, key=None, reverse=False):  # real signature unknown; restored from __doc__
+        """ L.sort(key=None, reverse=False) -> None -- stable sort *IN PLACE* """
+        pass
+```
+
+
+
+*主要方法名*
+
+| 方法名  | 功能描述           | 用法                                       |
+| ------- | ------------------ | ------------------------------------------ |
+| append  | 尾部追加元素       | L.append(object) -> None                   |
+| clear   | 清空元素           | L.clear() -> None                          |
+| copy    | 浅复制             | L.copy() -> list                           |
+| count   | 统计元素次数       | L.count(value) -> integer                  |
+| extend  | 迭代添加元素       | L.extend(iterable) -> None                 |
+| index   | 首次出现的位置     | L.index(value, [start, [stop]]) -> integer |
+| insert  | 在index前插入元素  | L.insert(index, object) -> None            |
+| pop     | 移除元素(默认最后) | L.pop([index]) -> item                     |
+| remove  | 移除指定的第一个值 | L.remove(value) -> None                    |
+| reverse | 翻转元素           | L.reverse() -> None                        |
+| sort    | 元素排序           | L.sort(key=None, reverse=False) -> None    |
+
+
+
+> _**集合推导**_
+
+```python
+# 使用 for 添加元素
+squares = []
+for x in range(10):
+    squares.append(x**2)
+squares
+
+# 等同
+squares = list(map(lambda x: x**2, range(10)))
+
+# 等同
+squares = [x**2 for x in range(10)]
+```
+
+_使用 `for if` 组合_
+
+```python
+combs = [(x, y) for x in [1,2,3] for y in [3,1,4] if x != y]
+
+# 等价于
+combs = []
+for x in [1,2,3]:
+    for y in [3,1,4]:
+        if x != y:
+            combs.append((x, y))
+
+combs
+```
+
+
+
+### `del` 语句
+
+*可删除 `list` 的元素。*
+
+```powershell
+>>> a = [-1, 1, 66.25, 333, 333, 1234.5]
+>>> del a[0]
+>>> a
+[1, 66.25, 333, 333, 1234.5]
+>>> del a[2:4]
+>>> a
+[1, 66.25, 1234.5]
+>>> del a[:]
+>>> a
+[]
+```
+
+
+
+### 元组 和 序列
+
+> _Tuples and Sequences_
+
+_元组是由逗号分隔的多个值组成的变量。它们可创建，但是不可对其赋值。元组和list类似，但是两者的运用场景不一致，前者不可变，后者则反之。_
+
+```powershell
+t = 12, 5.4, 'Joshua Conero'    # 创建元组
+t[2]							# 'Joshua Conero'; 获取指定元组
+# t[2] = 7.5	Error: 不可赋值
+t								# (12, 5.4, 'Joshua Conero')
+
+# 元组嵌套
+u = t, (1, 2), (False, True)
+u		# ((12, 5.4, 'Joshua Conero'), (1, 2), (False, True))
+
+empty = ()			# 定义空元组
+empty = 8,			# (8,)
+
+# 解构元组
+x, y , z = t
+y					# 5.4
+```
+
+
+
+### Sets/集合
+
+`Sets`是一个无序的集合，没有重复的元素。它也支持集合运算，如: 并集、交集、差集等
+
+```python
+basket = {'apple', 'orange', 'apple', 'pear', 'orange', 'banana'}
+print(basket)                      # show that duplicates have been removed
+# -> {'orange', 'banana', 'pear', 'apple'}
+
+'orange' in basket                 # fast membership testing
+# -> True
+'crabgrass' in basket
+# -> False
+
+# Demonstrate set operations on unique letters from two words
+
+a = set('abracadabra')
+b = set('alacazam')
+a                                  # unique letters in a
+# -> {'a', 'r', 'b', 'c', 'd'}
+a - b                              # letters in a but not in b(a 与 b 的差集)
+# -> {'r', 'd', 'b'}
+a | b                              # letters in a or b or both(a 与 b 的并集)
+# -> {'a', 'c', 'r', 'd', 'b', 'm', 'z', 'l'}
+a & b                              # letters in both a and b(a 与 b 的交集)
+# -> {'a', 'c'}
+a ^ b                              # letters in a or b but not both(a 与 b 的余集)
+# -> {'r', 'd', 'b', 'm', 'z', 'l'}
+```
+
+
+
+支持与 list 对应的运算符
+
+```python
+a = {x for x in 'abracadabra' if x not in 'abc'}
+a		# {'r', 'd'}; 
+```
+
+
+
+### 字典/dick
+
+> `map 类型字典`(k-v 类型)
+
+*键值(key)作为索引，由不可变类型充当，如：字符串、数字、仅仅包含字符串/数组的__元组__。*
+
+```python
+tel = {'jack': 4098, 'sape': 4139}
+tel['guido'] = 4127
+tel		# {'sape': 4139, 'guido': 4127, 'jack': 4098}
+
+tel['jack']      # 4098; 获取值
+del tel['jack']  # 删除 jack 键值
+list(tel.keys()) # ['sape', 'guido']
+'jack' in tel	 # False; 键值存在判断
+
+
+# dick 构造字典
+dict([('sape', 4139), ('guido', 4127), ('jack', 4098)])
+# {'sape': 4139, 'jack': 4098, 'guido': 4127}
+
+{x: x**2 for x in (2, 4, 6)}
+# {2: 4, 4: 16, 6: 36}
+
+# 使用函数参数
+dict(sape=4139, guido=4127, jack=4098)
+# {'sape': 4139, 'jack': 4098, 'guido': 4127}
+```
+
+
+
+> **遍历字典**
+
+*使用 `items()` k-v 值；*
+
+```python
+knights = {'gallahad': 'the pure', 'robin': 'the brave'}
+for k, v in knights.items():
+    print(k, v)
+```
+
+
+
+*`enumerate()`函数变量 list， index-value*
+
+```python
+for i, v in enumerate(['tic', 'tac', 'toe']):
+    print(i, v)
+```
+
+
+
+*同时变量两个序列*
+
+```python
+>>> questions = ['name', 'quest', 'favorite color']
+>>> answers = ['lancelot', 'the holy grail', 'blue']
+>>> for q, a in zip(questions, answers):
+...     print('What is your {0}?  It is {1}.'.format(q, a))
+...
+What is your name?  It is lancelot.
+What is your quest?  It is the holy grail.
+What is your favorite color?  It is blue.
+```
+
+
+
+
+// @TODO [6. Modules](https://docs.python.org/3.6/tutorial/modules.html#modules)
 
