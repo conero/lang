@@ -2042,12 +2042,6 @@ _**手动实现`send`和`sync`是不安全的**_
 
 
 
-//@TODO   *[模式用来匹配值的结构](https://kaisery.github.io/trpl-zh-cn/ch18-00-patterns.html)*
-
-
-
-
-
 ### rust-的面向对象特性
 
 > OOP(*Object-Oriented Programming*)
@@ -2083,6 +2077,444 @@ impl A2A for A{
 
 
 _继承： Rust 代码可以使用默认 trait 方法实现来进行共享。_
+
+
+
+### 模式用来匹配值的结构
+
+_模式是 Rust 中特殊的语法，它用来匹配类型中的结构，无论类型是简单还是复杂。结合使用模式和 `match` 表达式以及其他结构可以提供更多对程序控制流的支配权。模式由如下一些内容组合而成：_
+
+- 字面量
+- 解构的数组、枚举、结构体或者元组
+- 变量
+- 通配符
+- 占位符
+
+
+
+> **`match` 分支**
+
+_`match` 表达式必须是 **穷尽**（*exhaustive*）的，意为 `match` 表达式所有可能的值都必须被考虑到。_
+
+*有一个特定的模式 `_` 可以匹配所有情况，不过它从不绑定任何变量。*
+
+
+
+```rust
+match VALUE {
+    PATTERN => EXPRESSION,
+    PATTERN => EXPRESSION,
+    PATTERN => EXPRESSION,
+    // 任意参数
+    _ => ,
+}
+```
+
+
+
+_可以使用 `if-else if` 实现match的功能_
+
+```rust
+fn main() {
+    let favorite_color: Option<&str> = None;
+    let is_tuesday = false;
+    let age: Result<u8, _> = "34".parse();
+
+    if let Some(color) = favorite_color {
+        println!("Using your favorite color, {}, as the background", color);
+    } else if is_tuesday {
+        println!("Tuesday is green day!");
+    } else if let Ok(age) = age {
+        if age > 30 {
+            println!("Using purple as the background color");
+        } else {
+            println!("Using orange as the background color");
+        }
+    } else {
+        println!("Using blue as the background color");
+    }
+}
+```
+
+
+
+> *`while let`条件循环*
+
+```rust
+let mut stack = Vec::new();
+
+stack.push(1);
+stack.push(2);
+stack.push(3);
+
+// 循环 Vec
+while let Some(top) = stack.pop() {
+    println!("{}", top);
+}
+```
+
+
+
+> *`for` 循环*
+
+```rust
+let v = vec!['a', 'b', 'c'];
+
+// 循环值 Vec
+for (index, value) in v.iter().enumerate() {
+    println!("{} is at index {}", value, index);
+}
+```
+
+
+
+> *`let`语句*
+
+```rust
+let a = 'Joshua Conero';
+// 格式
+let PATTERN = EXPRESSION;
+
+// 使用模式解构元组并一次创建三个变量
+let (x, y, z) = (1, 2, 3);
+// 如果模式中元素的数量不匹配元组中元素的数量，则整个类型不匹配，并会得到一个编译时错误。
+let (x, y) = (1, 2, 3);		// ERROR: 错误
+```
+
+
+
+#### `Refutability`可反驳性
+
+> 模式是否会匹配失效
+
+_模式有两种形式：refutable（可反驳的）和 irrefutable（不可反驳的）。能匹配任何传递的可能值的模式被称为是 **不可反驳的**（*irrefutable*）。一个例子就是 `let x = 5;` 语句中的 `x`，因为 `x` 可以匹配任何值所以不可能会失败。对某些可能的值进行匹配会失败的模式被称为是 **可反驳的**（*refutable*）。一个这样的例子便是 `if let Some(x) = a_value` 表达式中的 `Some(x)`；如果变量 `a_value` 中的值是 `None` 而不是 `Some`，那么 `Some(x)` 模式不能匹配。_
+
+
+
+_`let` 语句、 函数参数和 `for` 循环只能接受不可反驳的模式，因为通过不匹配的值程序无法进行有意义的工作。`if let` 和 `while let` 表达式被限制为只能接受可反驳的模式，因为根据定义他们意在处理可能的失败 ———— 条件表达式的功能就是根据成功或失败执行不同的操作。_
+
+
+
+#### 模式语法
+
+> 匹配字面值
+
+```rust
+let x = 1;
+
+match x {
+    1 => println!("one"),
+    2 => println!("two"),
+    3 => println!("three"),
+    _ => println!("anything"),
+}
+```
+
+
+
+> 匹配命名变量
+
+```rust
+fn main() {
+    let x = Some(5);
+    let y = 10;
+
+    match x {
+        Some(50) => println!("Got 50"),
+        Some(y) => println!("Matched, y = {:?}", y),
+        _ => println!("Default case, x = {:?}", x),
+    }
+
+    println!("at the end: x = {:?}, y = {:?}", x, y);
+}
+```
+
+
+
+> 多个模式
+
+_在 `match` 表达式中，可以使用 `|` 语法匹配多个模式，它代表 **或**（*or*）的意思_
+
+```rust
+let x = 1;
+
+match x {
+    1 | 2 => println!("one or two"),
+    3 => println!("three"),
+    _ => println!("anything"),
+}
+```
+
+
+
+> 通过`...`匹配值的范围
+
+_`...` 语法允许你匹配一个闭区间范围内的值。范围只允许用于数字或 `char` 值，因为编译器会在编译时检查范围不为空。`char` 和 数字值是 Rust 唯一知道范围是否为空的类型。_
+
+```rust
+// 数字值
+let x = 5;
+
+match x {
+    1 ... 5 => println!("one through five"),
+    _ => println!("something else"),
+}
+
+// char 类型
+let y = 'c';
+
+match y {
+    'a' ... 'j' => println!("early ASCII letter"),
+    'k' ... 'z' => println!("late ASCII letter"),
+    _ => println!("something else"),
+}
+```
+
+
+
+> _解构结构体_
+
+_`let Point { x: x, y: y } = p;` 包含了很多重复，所以对于匹配结构体字段的模式存在简写：只需列出结构体字段的名称，则模式创建的变量会有相同的名称。_
+
+```rust
+struct Point {
+    x: i32,
+    y: i32,
+}
+// 带有两个字段 x 和 y 的结构体 Point，可以通过带有模式的 let 语句将其分解
+fn main() {
+    let p = Point { x: 0, y: 7 };
+
+    let Point { x: a, y: b } = p;
+    assert_eq!(0, a);
+    assert_eq!(7, b);
+    
+    // 变量名一样
+    let Point { x, y } = p;
+    assert_eq!(0, x);
+    assert_eq!(7, y);
+}
+
+```
+
+
+
+*结构体模式匹配*
+
+```rust
+fn main() {
+    let p = Point { x: 0, y: 7 };
+
+    match p {
+        Point { x, y: 0 } => println!("On the x axis at {}", x),
+        Point { x: 0, y } => println!("On the y axis at {}", y),
+        Point { x, y } => println!("On neither axis: ({}, {})", x, y),
+    }
+}
+```
+
+
+
+> *解构枚举*
+
+```rust
+enum Message {
+    Quit,
+    Move { x: i32, y: i32 },
+    Write(String),
+    ChangeColor(i32, i32, i32),
+}
+
+fn main() {
+    let msg = Message::ChangeColor(0, 160, 255);
+
+    match msg {
+        Message::Quit => {
+            println!("The Quit variant has no data to destructure.")
+        },
+        Message::Move { x, y } => {
+            println!(
+                "Move in the x direction {} and in the y direction {}",
+                x,
+                y
+            );
+        }
+        Message::Write(text) => println!("Text message: {}", text),
+        Message::ChangeColor(r, g, b) => {
+            println!(
+                "Change the color to red {}, green {}, and blue {}",
+                r,
+                g,
+                b
+            )
+        }
+    }
+}
+```
+
+
+
+> 解构结构体和元组
+
+```rust
+let ((feet, inches), Point {x, y}) = ((3, 10), Point { x: 3, y: -10 });
+```
+
+
+
+**忽略模式中的值**
+
+> *使用`_`忽略整个值*
+
+```rust
+// 在函数签名中使用 _
+fn foo(_: i32, y: i32) {
+    println!("This code only uses the y parameter: {}", y);
+}
+
+fn main() {
+    foo(3, 4);
+}
+```
+
+> *使用嵌套`_`忽律部分值*
+
+```rust
+let mut setting_value = Some(5);
+let new_setting_value = Some(10);
+
+match (setting_value, new_setting_value) {
+    (Some(_), Some(_)) => {
+        println!("Can't overwrite an existing customized value");
+    }
+    _ => {
+        setting_value = new_setting_value;
+    }
+}
+
+println!("setting is {:?}", setting_value);
+
+
+// 将忽略掉一个五元元组中的第二和第四个值
+let numbers = (2, 4, 8, 16, 32);
+
+match numbers {
+    (first, _, third, _, fifth) => {
+        println!("Some numbers: {}, {}, {}", first, third, fifth)
+    },
+}
+```
+
+
+
+> 通过在名字前以一个下划线开头来忽略未使用的变量
+
+```rust
+fn main() {
+    let _x = 5;	// 编译忽略，且不警告
+    let y = 10;	// 未使用，编译器给警告
+}
+```
+
+
+
+> 使`..` 忽律剩余值
+
+```rust
+struct Point {
+    x: i32,
+    y: i32,
+    z: i32,
+}
+
+let origin = Point { x: 0, y: 0, z: 0 };
+
+match origin {
+    Point { x, .. } => println!("x is {}", x),
+}
+
+
+// .. 会扩展为所需要的值的数量
+let numbers = (2, 4, 8, 16, 32);
+
+match numbers {
+    (first, .., last) => {
+        println!("Some numbers: {}, {}", first, last);
+    },
+}
+```
+
+
+
+**匹配守卫提供的额外条件**
+
+_**匹配守卫**（*match guard*）是一个指定与 `match` 分支模式之后的额外 `if` 条件，它也必须被满足才能选择此分支。匹配守卫用于表达比单独的模式所能允许的更为复杂的情况。_
+
+> *在模式中加入匹配守卫*
+
+```rust
+let num = Some(4);
+let y = 10;
+
+match num {
+    Some(x) if x < 5 => println!("less than five: {}", x),
+    // 使用匹配守卫来测试与外部变量的相等性
+    Some(n) if n == y => println!("Matched, n = {:?}", n),
+    Some(x) => println!("{}", x),
+    None => (),
+}
+```
+
+
+
+> 使用 `|` 运算符号
+
+_也可以在匹配守卫中使用或运算符 `|` 来指定多个模式，同时匹配守卫的条件会作用域所有的模式。_
+
+```rust
+let x = 4;
+let y = false;
+
+match x {
+    // (4 | 5 | 6) if y => ... 优先级
+    4 | 5 | 6 if y => println!("yes"),
+    _ => println!("no"),
+}
+```
+
+
+
+> `@` 绑定
+
+_at 运算符 `@` 允许我们在创建一个存放值的变量的同时测试其值是否匹配模式。_
+
+_这里我们希望测试 `Message::Hello` 的 `id` 字段是否位于 `3...7` 范围内，同时也希望能其值绑定到 `id_variable` 变量中以便此分支相关联的代码可以使用它。_
+
+```rust
+enum Message {
+    Hello { id: i32 },
+}
+
+let msg = Message::Hello { id: 5 };
+
+match msg {
+    Message::Hello { id: id_variable @ 3...7 } => {
+        println!("Found an id in range: {}", id_variable)
+    },
+    Message::Hello { id: 10...12 } => {
+        println!("Found an id in another range")
+    },
+    Message::Hello { id } => {
+        println!("Found some other id: {}", id)
+    },
+}
+```
+
+
+
+
+
+//@TODO   *[高级特征](https://kaisery.github.io/trpl-zh-cn/ch19-00-advanced-features.html)*
 
 
 
