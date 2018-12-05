@@ -27,7 +27,7 @@
   - [ABriefHistoryOfArtificialIntelligence/人工智能简史](./src/AI/ABriefHistoryOfArtificialIntelligence.md)
   - [TensorFlow](./src/AI/TensorFlow.md)
 - golang
-  - [effectiveGo](./src/golang/TensorFlow.md)
+  - [effectiveGo](./src/golang/effectiveGo.md)
   - [golang](./src/golang/golang.md)
   - [reflection](./src/golang/reflection.md)
 - php

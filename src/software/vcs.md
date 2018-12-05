@@ -1085,6 +1085,11 @@ git checkout *.php
 
 > 非分布式版本控制应用
 
+- 官网：http://subversion.apache.org/
+- 文档：http://svnbook.red-bean.com/
+
+
+
 ## 教程
 
 ### 分支控制
@@ -1095,3 +1100,65 @@ git checkout *.php
   - branches		分支
   - tags			标签
   - trunk			主干线
+
+
+
+## 基本命令
+
+> 版本大于 `v1.8.3 `
+
+
+
+### `snv list(ls)`
+
+> 获取 svn 库中的文件/目录 列表
+
+```powershell
+# 数据
+svn list [options]
+
+# 以xml格式输出信息
+--xml			
+# 递归输入所有文件
+--recursive (-R)
+# 输出版本信息
+--verbose (-v)
+```
+
+
+
+### `svn export`
+
+> 导出到空目录
+
+```powershell
+svn export [options]
+# 导出源代码到目标文件
+svn export . ../targetDir
+
+# 导出指定的版本
+--revision(-r) REV
+# 强制导出
+--force
+```
+
+
+
+### `svn log`
+
+> 查看项目日志
+
+- `--limt(-l) NUM` 展示限定的数量
+- `--revision (-r) REV` 显示指定的版本，或版本范围
+
+
+
+
+
+```powershell
+# 指定版本范围
+svn log -r 10:100
+```
+
+
+
