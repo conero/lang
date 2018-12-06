@@ -1162,3 +1162,18 @@ svn log -r 10:100
 
 
 
+
+
+### `svn info`
+
+_本地仓库与远程仓库信息_
+
+```powershell
+# 输出 xml 格式文档
+svn info --xml
+```
+
+
+
+
+
