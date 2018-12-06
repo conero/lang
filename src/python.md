@@ -635,6 +635,14 @@ What is your favorite color?  It is blue.
 
 
 
+## Modules/模块
 
-// @TODO [6. Modules](https://docs.python.org/3.6/tutorial/modules.html#modules)
+_**模块** 是指包含的 python 语句或表达式，且以`.py`后缀结尾的文件。模块的名字(文件的名字,字符串)可通过全局变量`__name__`获取。_
+
+
+
+
+
+
+// @TODO [6. Modules/more-on-modules](https://docs.python.org/3.6/tutorial/modules.html#more-on-modules)
 

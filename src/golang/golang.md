@@ -370,13 +370,13 @@ func main() {
     . "fmt"
   )
   这个点操作的含义就是这个包导入之后在你调用这个包的函数时，你可以省略前缀的包名，也就是前面你调用的fmt.Println("helloworld")可以省略的写成Println("helloworld")
-2.   别名操作
+2.    别名操作
   别名操作顾名思义我们可以把包命名成另一个我们用起来容易记忆的名字
   import(
     f "fmt"
   )
   别名操作的话调用包函数时前缀变成了我们的前缀，即f.Println("helloworld")
-3.   _ 操作
+3.    _ 操作
   这个操作经常是让很多人费解的一个操作符，请看下面这个import
   import (
   "database/sql"
@@ -388,13 +388,32 @@ func main() {
   应该分为两个不同的目录才可以。
   go，模块中要导出的函数，必须首字母大写。也即是 大写开头方法为共有方法，否则包内私有方法
 
-### Golang 命令
+
+
+## go-line command
+
+>go 编译器命令行参考
+
+
+
+**查看帮助**
+
+```powershell
+go help
+```
+
+
+
+
 
 go get = git clone + go install
 
 	go build 加上可以编译的go源文件可以得到一个可执行文件。
 	go install 在编译源代码之后还安装到指定的目录
 	go get 从指定源上面下载或者更新指定的代码和依赖，并对他们进行编译和安装
+
+
+
 
 
 ## 内建函数或GO基础包
