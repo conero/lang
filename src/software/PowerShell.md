@@ -168,6 +168,24 @@ restart-computer
 
 
 
+## issue
+
+### iwr
+
+> iwr : 请求被中止: 未能创建 SSL/TLS 安全通道。
+
+```powershell
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+```
+
+
+
+对应 C #*
+
+```c#
+System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+```
+
 
 
 ## 参考
