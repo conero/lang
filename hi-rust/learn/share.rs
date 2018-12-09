@@ -1,9 +1,3 @@
-//fn main() {
-//    println!("Hello, world!");
-//}
-// 单文件写入
-//-------
-
 // 20181209
 // Rust 与 C 交互；生成 dll/so 等
 // Joshua Coner
