@@ -2512,9 +2512,228 @@ match msg {
 
 
 
+### 高级特征
+
+#### unsafe-rust
+
+*不安全的__rust__*
+
+_目前为止讨论过的代码都有 Rust 在编译时会强制执行的内存安全保证。然而，Rust 还隐藏有第二种语言，它不会强制执行这类内存安全保证：这被称为 **不安全 Rust**（*unsafe Rust*）。它与常规 Rust 代码无异，但是会提供额外的超级力量。_
+
+_一个 Rust 存在不安全一面的原因是：是因为静态分析本质上是保守的。当编译器尝试确定一段代码是否支持某个保证时，拒绝一些有效的程序比接受无效程序要好一些。_
+
+_另一原因是：底层计算机硬件固有的不安全性。如果 Rust 不允许进行不安全操作，那么有些任务则根本完成不了。_
 
 
-//@TODO   *[高级特征](https://kaisery.github.io/trpl-zh-cn/ch19-00-advanced-features.html)*
+
+**不安全的超级力量**
+
+_可以通过 `unsafe` 关键字来切换到不安全 Rust，接着可以开启一个新的存放不安全代码的块。这里有四类可以在不安全 Rust 中进行而不能用于安全 Rust 的操作，它们称之为 “不安全的超级力量。” _
+
+- 解引用裸指针
+- 调用不安全的函数或方法
+- 访问或修改可变静态变量
+- 实现不安全 trait
+
+
+
+**解引用裸指针**
+
+_不安全 Rust 有两个被称为 **裸指针**（*raw pointers*）的类似于引用的新类型。和引用一样，裸指针是可变或不可变的，分别写作 `*const T` 和 `*mut T`。这里的星号不是解引用运算符；它是类型名称的一部分。在裸指针的上下文中，**不可变** 意味着指针解引用之后不能直接赋值。_
+
+
+
+*与引用和智能指针的区别在于，记住裸指针*
+
+- 允许忽略借用规则，可以同时拥有不可变和可变的指针，或多个指向相同位置的可变指针
+- 不保证指向有效的内存
+- 允许为空
+- 不能实现任何自动清理功能
+
+
+
+_从引用同时创建不可变和可变裸指针_
+
+```rust
+// 通过引用创建裸指针
+let mut num = 5;
+
+//  as 将不可变和可变引用强转为对应的裸指针类型
+let r1 = &num as *const i32;
+let r2 = &mut num as *mut i32;
+
+// 创建指向任意内存地址的裸指针
+let address = 0x012345usize;
+let r = address as *const i32;
+```
+
+
+
+_可以在安全代码中 **创建** 裸指针，只是不能在不安全块之外 **解引用** 裸指针。既然存在这么多的危险，为何还要使用裸指针呢？一个主要的应用场景便是调用 C 代码接口。_
+
+使用裸指针使用解因引用运算符`*`，_创建一个指针不会造成任何危险；只有当访问其指向的值时才有可能遇到无效的值。_
+
+```rust
+
+#![allow(unused_variables)]
+fn main() {
+    let mut num = 5;
+
+    let r1 = &num as *const i32;
+    let r2 = &mut num as *mut i32;
+    
+	// 使用 unsafe 块
+    unsafe {
+        println!("r1 is: {}", *r1);
+        println!("r2 is: {}", *r2);
+    }
+}
+```
+
+
+
+**调用不安全函数或方法**
+
+```rust
+#![allow(unused_variables)]
+fn main() {
+    unsafe fn dangerous() {}
+	
+    // 调用不函数或方法
+    unsafe {
+        dangerous();
+    }
+}
+```
+
+
+
+**创建不安全代码的安全抽象**
+
+_仅仅因为函数包含不安全代码并不意味着整个函数都需要标记为不安全的。事实上，将不安全代码封装进安全函数是一个常见的抽象。_
+
+```rust
+use std::slice;
+
+fn split_at_mut(slice: &mut [i32], mid: usize) -> (&mut [i32], &mut [i32]) {
+    let len = slice.len();
+    let ptr = slice.as_mut_ptr();
+
+    assert!(mid <= len);
+
+    unsafe {
+        (slice::from_raw_parts_mut(ptr, mid),
+         slice::from_raw_parts_mut(ptr.offset(mid as isize), len - mid))
+    }
+}
+
+#![allow(unused_variables)]
+fn main() {
+    let mut v = vec![1, 2, 3, 4, 5, 6];
+
+    let r = &mut v[..];
+
+    let (a, b) = r.split_at_mut(3);
+
+    assert_eq!(a, &mut [1, 2, 3]);
+    assert_eq!(b, &mut [4, 5, 6]);
+}
+```
+
+
+
+**使用`extern`函数调用外部代码**
+
+_有时你的 Rust 代码可能需要与其他语言编写的代码交互。为此 Rust 有一个关键字，`extern`，有助于创建和使用 **外部函数接口**（*Foreign Function Interface*， FFI）。外部函数接口是一个编程语言用以定义函数的方式，其允许不同（外部）编程语言调用这些函数。_
+
+_`"C"` 部分定义了外部函数所使用的 **应用程序接口**（*application binary interface*，ABI） —— ABI 定义了如何在汇编语言层面调用此函数。`"C"` ABI 是最常见的，并遵循 C 编程语言的 ABI。_
+
+```rust
+// 在 extern "C" 块中，列出了我们希望能够调用的另一个语言中的外部函数的签名和名称。
+extern "C" {
+    fn abs(input: i32) -> i32;
+}
+
+fn main() {
+    unsafe {
+        println!("Absolute value of -3 according to C: {}", abs(-3));
+    }
+}
+```
+
+*调用Rust 函数。 一旦其编译为动态库并从 C 语言中链接，`call_from_c` 函数就能够在 C 代码中访*
+
+```rust
+#![allow(unused_variables)]
+fn main() {
+    // extern 的使用无需 unsafe。
+    #[no_mangle]
+    pub extern "C" fn call_from_c() {
+        println!("Just called a Rust function from C!");
+    }
+}
+```
+
+
+
+**访问或修改可变静态变量**
+
+_如果有两个线程访问相同的可变全局变量，则可能会造成数据竞争。全局变量在 Rust 中被称为 **静态**（*static*）变量。静态变量只能储存拥有 `'static` 生命周期的引用，这意味着 Rust 编译器可以自己计算出其生命周期而无需显式标注。访问不可变静态变量是安全的。_
+
+_常量与不可变静态变量可能看起来很类似，不过一个微妙的区别是静态变量中的值有一个固定的内存地址。使用这个值总是会访问相同的地址。另一方面，常量则允许在任何被用到的时候复制其数据。_
+
+_常量与静态变量的另一个区别在于静态变量可以是可变的。访问和修改可变静态变量都是 **不安全** 的。_
+
+
+
+```rust
+// 读取或修改一个可变静态变量是不安全的
+static mut COUNTER: u32 = 0;
+
+fn add_to_count(inc: u32) {
+    unsafe {
+        COUNTER += inc;
+    }
+}
+
+fn main() {
+    add_to_count(3);
+
+    unsafe {
+        println!("COUNTER: {}", COUNTER);
+    }
+}
+```
+
+
+
+**实现不安全-trait**
+
+_最后一个只能用在 `unsafe` 中的操作是实现不安全 trait。当至少有一个方法中包含编译器不能验证的不变量时 trait 是不安全的。可以在 `trait` 之前增加 `unsafe` 关键字将 trait 声明为 `unsafe`，同时 trait 的实现也必须标记为 `unsafe`。_
+
+```rust
+unsafe trait Foo {
+    // methods go here
+}
+
+unsafe impl Foo for i32 {
+    // method implementations go here
+}
+```
+
+
+
+**何时使用不安全代码**
+
+_使用 `unsafe` 来进行这四个操作（超级力量）之一是没有问题的，甚至是不需要深思熟虑的，不过使得 `unsafe` 代码正确也实属不易因为编译器不能帮助保证内存安全。当有理由使用 `unsafe` 代码时，是可以这么做的，通过使用显式的 `unsafe` 标注使得在出现错误时易于追踪问题的源头。_
+
+
+
+#### 高级生命周期
+
+
+
+//@TODO   *[高级特征-高级生命周期](https://kaisery.github.io/trpl-zh-cn/ch19-02-advanced-lifetimes.html#a%E9%AB%98%E7%BA%A7%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F)*
 
 
 
