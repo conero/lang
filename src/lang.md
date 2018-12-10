@@ -729,7 +729,13 @@ Haskell 社区相当活跃，那里有很多 Haskell 的变体等着你去探究
 
 ### GCC
 
-*初衷是提供一款免费的开源的编译器*
+> *`the GNU Compiler Collection`*
+
+_初衷是提供一款免费的开源的编译器。提供包含**C**、**C++**、**Object-C**、**Fortran**、**Ada**、**D**以及(`libstdc++`)等；其最初是作为 `GUN 操作系统`的编译器。_
+
+- 创始人： *Richard Stallman*
+
+
 
 <!--[@TODO TDM-GCC http://tdm-gcc.tdragon.net/]-->
 
