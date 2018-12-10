@@ -784,6 +784,23 @@ Haskell 社区相当活跃，那里有很多 Haskell 的变体等着你去探究
 
 
 
+## FFI、ABI
+
+- FFI      _Foreign Function Interface_
+- ABI    _Application Binary Interface_
+
+> FFI
+
+_指的是：外部功能接口。用于不同语言的之间的交互，通常有两种方式：：一种是将函数做成一个服务，通过进程间通信(IPC)或网络协议通信(RPC, RESTful等)；另一种就是直接通过 FFI 调用。前者需要至少两个独立的进程才能实现，而后者直接将其它语言的接口内嵌到本语言中，所以调用效率比前者高。_
+
+
+
+> ABI
+
+_ABI（Application Binary Interface）: 应用程序二进制接口 描述了应用程序和操作系统之间，一个应用和它的库之间，或者应用的组成部分之间的低接口。_
+
+
+
 
 
 ## 操作系统
