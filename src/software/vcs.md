@@ -12,6 +12,16 @@
 
 > 时间： *2005*
 
+*windows 通过命令更新git*
+
+```bash
+git update-git-for-windows
+```
+
+
+
+
+
 > Staging Area(暂存区)
 
 ![](..\image\software\vcs-GitStaging.png)
