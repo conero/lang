@@ -2742,6 +2742,10 @@ _使用 `unsafe` 来进行这四个操作（超级力量）之一是没有问题
 
 #### 宏
 
+_计算机科学里的宏（Macro)，是一种批量处理的称谓。一般说来，宏是一种规则或模式，或称语法替换 ，用于说明某一特定输入（通常是字符串）如何根据预定义的规则转换成对应的输出（通常也是字符串)。这种替换在预编译时进行，称作宏展开。_
+
+
+
 _从根本上来说，宏是一种为写其他代码而写代码的方式，即所谓的*元编程*。_
 
 _元编程对于减少大量编写和维护的代码是非常有用的，它也扮演了函数的角色。但宏有一些函数所没有的附加能力。_
@@ -2806,11 +2810,66 @@ fn main() {
 
 
 
+> *`designator`* 指示器
 
+*在 `macro_rules!`匹配符中：使用`$ name:designator `的语法匹配在 Rust 称之为__指示器__。可用的匹配有：*
+
+- `item`:  _[*Item*](https://doc.rust-lang.org/reference/items.html)类型_
+- `block`:  _[*BlockExpression*](https://doc.rust-lang.org/reference/expressions/block-expr.html)_
+- `stmt`:  _无分号的语句([*Statement*](https://doc.rust-lang.org/reference/statements.html) )_
+- `pat`: _[*Pattern*](https://doc.rust-lang.org/reference/patterns.html)_
+- `expr`: _[*Expression*](https://doc.rust-lang.org/reference/expressions.html)_
+- `ty`: _[*Type*](https://doc.rust-lang.org/reference/types.html#type-expressions)_
+- `ident`: _标识符([IDENTIFIER_OR_KEYWORD](https://doc.rust-lang.org/reference/identifiers.html))_
+- `path`: _[*TypePath*](https://doc.rust-lang.org/reference/paths.html#paths-in-types) style path。如：`::`_
+- `tt`: _[*TokenTree*](https://doc.rust-lang.org/reference/macros.html#macro-invocation) (a single [token](https://doc.rust-lang.org/reference/tokens.html) or tokens in matching delimiters `()`, `[]`, or `{}`)_
+- `meta`: _[*MetaItem*](https://doc.rust-lang.org/reference/attributes.html), 属性的内容(注解)_
+- `lifetime`: _[LIFETIME_TOKEN](https://doc.rust-lang.org/reference/tokens.html#lifetimes-and-loop-labels)生命周期符`'static`_
+- `vis`: _[*Visibility*](https://doc.rust-lang.org/reference/visibility-and-privacy.html) 可见符号，`pub`_
+
+
+
+**类属性宏**
+
+_类属性宏与自定义派生宏相似，不同于为 `derive` 属性生成代码，它们允许你创建新的属性。它们也更为灵活；`derive` 只能用于结构体和枚举；属性还可以用于其它的项，比如函数。_
+
+```rust
+#[route(GET, "/")]
+fn index() {
+}
+```
+
+
+
+_`#[route]` 属性将由框架本身定义为一个过程宏。其宏定义的函数签名看起来像这样：_
+
+```rust
+#[proc_macro_attribute]
+pub fn route(attr: TokenStream, item: TokenStream) -> TokenStream {
+}
+```
+
+
+
+>  *类函数宏*
+
+_类函数宏定义看起来像函数调用的宏_
+
+```rust
+// 定义 sql 宏
+#[proc_macro]
+pub fn sql(input: TokenStream) -> TokenStream {
+}
+
+// 使用宏
+let sql = sql!(SELECT * FROM posts WHERE id=1);
+```
 
 
 
 ## 文档/代码库学习
+
+- [语言参考文档](https://doc.rust-lang.org/reference/index.html)
 
 -  [`Crate std` 标准版包](https://doc.rust-lang.org/std/index.html)
 
