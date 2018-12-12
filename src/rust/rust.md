@@ -2879,6 +2879,22 @@ _标准库使用了 `extern crate std;`，rust 脚本中的默认导入。_
 
 
 
+### [github 源代码](https://github.com/rust-lang/rust)
+
+- *src*
+  - `liballoc`  *Rust Core 分配与收集器*
+  - `libstd` *Rust 标准库*
+
+
+
+> `liballoc` _The Rust core allocation and collections library_
+
+Rust 分配和收集器
+
+> `libstd` _The Rust Standard Library_
+
+Rust 标准库
+
 
 
 ## cargo/ 包管理器 
