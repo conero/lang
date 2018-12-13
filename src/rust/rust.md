@@ -2732,11 +2732,226 @@ _使用 `unsafe` 来进行这四个操作（超级力量）之一是没有问题
 
 #### 高级生命周期
 
+- 生命周期高级特征
+  - 生命周期子类型（lifetime subtyping），一个确保某个生命周期长于另一个生命周期的方式
+  - 生命周期 bound（lifetime bounds），用于指定泛型引用的生命周期
+  - trait 对象生命周期（trait object lifetimes），以及他们是如何推断的，以及何时需要指定
+  - 匿名生命周期：使（生命周期）省略更为明显
 
 
-//@TODO   *[高级特征-高级生命周期](https://kaisery.github.io/trpl-zh-cn/ch19-02-advanced-lifetimes.html#a%E9%AB%98%E7%BA%A7%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F)*
+
+#### 高级 `trait`
+
+**关联类型在 `trait`定义中指定占位符类型**
+
+_**关联类型**（*associated types*）是一个将类型占位符与 trait 相关联的方式，这样 trait 的方法签名中就可以使用这些占位符类型。trait 的实现者会针对特定的实现在这个类型的位置指定相应的具体类型。如此可以定义一个使用多种类型的 trait，直到实现此 trait 时都无需知道这些类型具体是什么。_
 
 
+
+```rust
+pub trait Iterator {
+    // Item 是一个占位类型
+    type Item;
+
+    fn next(&mut self) -> Option<Self::Item>;
+}
+```
+
+
+
+_通过关联类型，则无需标注类型因为不能多次实现这个 trait。_
+
+
+
+**默认泛型类型参数和运算符重载**
+
+_**运算符重载**（*Operator overloading*）是指在特定情况下自定义运算符（比如 `+`）行为的操作。_
+
+> _实现 `Add` trait 重载 `Point` 实例的 `+` 运算符_
+
+```rust
+use std::ops::Add;
+
+#[derive(Debug, PartialEq)]
+struct Point {
+    x: i32,
+    y: i32,
+}
+
+impl Add for Point {
+    type Output = Point;
+
+    fn add(self, other: Point) -> Point {
+        Point {
+            x: self.x + other.x,
+            y: self.y + other.y,
+        }
+    }
+}
+
+fn main() {
+    assert_eq!(Point { x: 1, y: 0 } + Point { x: 2, y: 3 },
+               Point { x: 3, y: 3 });
+}
+
+```
+
+
+
+```rust
+trait Add<RHS=Self> {
+    type Output;
+
+    fn add(self, rhs: RHS) -> Self::Output;
+}
+```
+
+_`RHS=Self`：这个语法叫做 **默认类型参数**（*default type parameters*）。`RHS` 是一个泛型类型参数（“right hand side” 的缩写），它用于定义 `add` 方法中的 `rhs` 参数。如果实现 `Add` trait 时不指定 `RHS` 的具体类型，`RHS` 的类型将是默认的 `Self` 类型，也就是在其上实现 `Add` 的类型。_
+
+
+
+默认参数类型主要用于如下两个方面：
+- 扩展类型而不破坏现有代码。
+- 在大部分用户都不需要的特定情况进行自定义。
+
+
+
+**完全限定语法与消歧义：调用相同名称的方法**
+
+```rust
+
+trait Pilot {
+    fn fly(&self);
+}
+
+trait Wizard {
+    fn fly(&self);
+}
+
+struct Human;
+
+impl Pilot for Human {
+    fn fly(&self) {
+        println!("This is your captain speaking.");
+    }
+}
+
+impl Wizard for Human {
+    fn fly(&self) {
+        println!("Up!");
+    }
+}
+
+impl Human {
+    fn fly(&self) {
+        println!("*waving arms furiously*");
+    }
+}
+
+// 指定需要访问的类型(多类型的时候)
+fn main() {
+    let person = Human;
+    Pilot::fly(&person);
+    Wizard::fly(&person);
+    person.fly();
+}
+
+/*
+// 输出：
+This is your captain speaking.
+Up!
+*waving arms furiously*
+*/
+```
+
+
+
+**完全限定语法**
+
+_这是调用函数时最为明确的方式。_
+
+> 通常，完全限定语法定义为：
+
+```rust
+<Type as Trait>::function(receiver_if_method, next_arg, ...);
+```
+
+```rust
+trait Animal {
+    fn baby_name() -> String;
+}
+
+struct Dog;
+
+impl Dog {
+    fn baby_name() -> String {
+        String::from("Spot")
+    }
+}
+
+impl Animal for Dog {
+    fn baby_name() -> String {
+        String::from("puppy")
+    }
+}
+
+fn main() {
+    println!("A baby dog is called a {}", Dog::baby_name());
+    // => A baby dog is called a Spot
+    
+    //完全限定语法
+    println!("A baby dog is called a {}", <Dog as Animal>::baby_name());
+    // => A baby dog is called a puppy
+}
+```
+
+
+
+**父`trait` 用于在另一个 `trait` 中使用某 `trait` 的功能**
+
+_有时我们可能会需要某个 trait 使用另一个 trait 的功能。在这种情况下，需要能够依赖相关的 trait 也被实现。这个所需的 trait 是我们实现的 trait 的 **父（超） trait**（*supertrait*）。_
+
+
+
+#### 高级类型
+
+**为了类型安全和抽象而使用 newtype 模式**
+
+_连同 newtype 模式，Rust 还提供了声明 **类型别名**（*type alias*）的能力，使用 `type` 关键字来给予现有类型另一个名字。<font color="blue">类型别名的主要用途是减少重复</font>。_
+
+```rust
+// 类型别名
+// Kilometers 不是一个新的、单独的类型。Kilometers 类型的值将被完全当作 i32 类型值来对待：
+type Kilometers = i32;
+
+
+
+type Kilometers = i32;
+
+let x: i32 = 5;
+let y: Kilometers = 5;
+
+println!("x + y = {}", x + y);
+// => x + y = 10
+```
+
+
+
+**从不返回的 `never type`**
+
+_Rust 有一个叫做 `!` 的特殊类型。在类型理论术语中，它被称为 *empty type*，因为它没有值。我们更倾向于称之为 *never type*。这个名字描述了它的作用：在函数从不返回的时候充当返回值。_
+
+```rust
+fn bar() -> ! {
+    // --snip--
+}
+```
+
+
+
+**动态大小类型和`sized` trait**
+
+_因为 Rust 需要知道例如应该为特定类型的值分配多少空间这样的信息其类型系统的一个特定的角落可能令人迷惑：这就是 **动态大小类型**（*dynamically sized types*）的概念。这有时被称为 “DST” 或 “unsized types”，这些类型允许我们处理只有在运行时才知道大小的类型。_
 
 
 
