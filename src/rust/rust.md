@@ -9,6 +9,7 @@
 - _Brendan Eich(js 之父)_
 - _Dave Herman_
 - _Graydon Hoare_
+- _Wesley Moore_
 
 
 
@@ -3094,7 +3095,9 @@ _标准库使用了 `extern crate std;`，rust 脚本中的默认导入。_
 
 
 
-### [github 源代码](https://github.com/rust-lang/rust)
+### github 源代码
+
+[https://github.com/rust-lang/rust](https://github.com/rust-lang/rust)
 
 - *src*
   - `liballoc`  *Rust Core 分配与收集器*
@@ -3109,6 +3112,16 @@ Rust 分配和收集器
 > `libstd` _The Rust Standard Library_
 
 Rust 标准库
+
+
+
+###  readrust
+
+- [https://readrust.net/](https://readrust.net/)
+
+`read rust` 收集了与`rust`相关的有趣邮件。
+
+
 
 
 
@@ -3151,7 +3164,7 @@ $ cargo check
 
 
 
-## 历史
+## 历史/Version
 
 - 2006      *Graydon Hoare*     ``personal project``
   - The language grew out of a personal project started in 2006 by Mozilla employee Graydon Hoare
@@ -3161,21 +3174,39 @@ $ cargo check
 - *2012.01.21  release v0.1*
 - 2015.05.16   release **v1.0**
 
+*三/两年一大版本。[rust 版本 说明](https://doc.rust-lang.org/stable/edition-guide/)*
+
+- 参照 [https://doc.rust-lang.org/stable/edition-guide/rust-2018](https://doc.rust-lang.org/stable/edition-guide/rust-2018/index.html)
 
 
 
+### Rust 2015(1.0)
 
-### Rust 2015
-
-
-
-### Rust 2018
-
-> Rust 1.29-1.31
+**主题：<font color="red">Stability</font>**
 
 
 
-> Rust 2015
+### Rust 2018(1.31) 
+
+**主题：<font color="red">Productivity</font>**
+
+
+
+> 较大的改变
+
+**NLL**： Non-lexical lifetimes
+
+**模块系统**：
+
+- `extern crate` 所有环境几乎不再需要
+- 使用`use`导入**宏**(macros)
+- 绝对路径以*crate* 开始，关键字`crate`参照当前包
+- `foo.rs` 和 `foo/`可共存，`mod.rs` 不再需要在子目录放置子模块时。
+
+> 新工具
+
+- **clippy** 
+- **rustfmt**  _Rust 代码格式化工具_
 
 
 
