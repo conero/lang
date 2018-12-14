@@ -639,10 +639,96 @@ What is your favorite color?  It is blue.
 
 _**模块** 是指包含的 python 语句或表达式，且以`.py`后缀结尾的文件。模块的名字(文件的名字,字符串)可通过全局变量`__name__`获取。_
 
+模块通过`import` 引入到指定的模块中，各个模块之间的变量为其内部私有，但可通过`modname.itemname`访问。
+
+```python
+# 从 A模块中导出对象
+from A from a1,a2
+# 导出所有对象，处以“_”开头的变量
+from B from *
+# 别名导出
+import A as Ax
+from C import a1 as c1
+```
+
+
+
+*python 解析器执行的脚本，其内部的`__name__="__main__"`*
+
+```python
+# python fibo.py <arguments>
+if __name__ == "__main__":
+    print(__name__ + "被设置为： __main__")
+```
+
+
+
+*导入模块是的目录搜索顺序，首先是built-in里面搜索，为找到时搜索对应的模块名字：`built-in`, `<name>.py`。*
+
+
+
+**python 编译文件**
+
+为加快模块的加载速度，python 提供模块下`__pycache__`的缓存目录，缓存的文件格式`module.version.pyc`，如： python 3.6 缓存 suba模块的缓存文件 `suba.cpython-36.pyc`。python会自动根据编译的版本决定是否需要重新缓存，另外其缓存的文件是平台独立(跨平台)的。
+
+两种情况下python不会检测/编译缓存文件；
+
+1. 直接加载到命令行(python解析器直接读取的文件/入口文件)
+2. 不存在源模块时，即非标准库。
+
+
+
+### 标准模块
+
+> Standard Modules
+
+标准库包括 *built-in* 和 语言核心库。
+
+
+
+### package/包
+
+包为不同的模块，多模块集合提供“点操作规则”的命名空间。
+
+包中必须包含`__init__.py` 文件，类似于go语言中包的`func init()` 函数，初始化时会调用包。
+
+```python
+from package import item
+import item.subitem.subsubitem
+
+# 与前面的模块导入不同
+# 起导出的仅仅是 package/__init__.py 中 __all__ = ['mod1', 'mod2', 'mod3'] 定义的包
+# 若 __all__ 未定义将不会导出如何模块
+from package import *
+```
+
+
+
+使用“.”调用父级模块,如：
+
+- A
+  - ac
+  - at
+  - B
+    - bb
+    - b1
+  - C
+    - c1
+
+```python
+# bb -> b1
+from . import bb
+# ac -> b1
+from .. import ac
+# c1 -> b1
+from ..C import c1
+```
 
 
 
 
 
-// @TODO [6. Modules/more-on-modules](https://docs.python.org/3.6/tutorial/modules.html#more-on-modules)
+
+
+// @TODO [7.Input and Output](https://docs.python.org/3.6/tutorial/inputoutput.html)
 
