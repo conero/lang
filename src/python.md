@@ -728,7 +728,37 @@ from ..C import c1
 
 
 
+## io(输入输出)
+
+字符串格式化，可自己根据字符串拼接实现或者`str.format()`，后者同于 **formatted string literals**(格式化的字字符串模板)
+
+其他类型转字符串的方法: `str()` 和 `repr()`。str函数生成人类刻度的字符串，而后者则是解析器。
+
+查看`string` 模块，学习方法`str.rjust`,`str.ljust`,`str.center`，`str.zfill`函数。
+
+```python
+print('12'.zfill(5)) #>>> 00012
+```
 
 
-// @TODO [7.Input and Output](https://docs.python.org/3.6/tutorial/inputoutput.html)
+
+`sprintf()`函数支持 C-like 的格式化。
+
+
+
+### 文件
+
+*使用 `open()` 函数读取文件*
+
+
+
+### json
+
+使用`json`包处理数据。
+
+
+
+// @TODO 前者血需要编写相关的实例脚本。
+
+// @TODO [8.Errors and Exceptions](https://docs.python.org/3.6/tutorial/errors.html)
 
