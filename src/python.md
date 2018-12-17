@@ -758,7 +758,44 @@ print('12'.zfill(5)) #>>> 00012
 
 
 
+
+
 // @TODO 前者血需要编写相关的实例脚本。
 
 // @TODO [8.Errors and Exceptions](https://docs.python.org/3.6/tutorial/errors.html)
 
+
+
+
+
+## 扩展
+
+### 第三方工具打包
+
+> 使用`pyinstaller`打包python源代码
+
+- 官网： [http://www.pyinstaller.org/](http://www.pyinstaller.org/)
+- github: [https://github.com/pyinstaller/pyinstaller](https://github.com/pyinstaller/pyinstaller)
+
+- 特性
+  - 支持主流系统
+
+
+
+```powershell
+# 安装 pyinstaller 包
+pip install pyinstaller
+# 使用包
+pyinstaller myscript.py
+```
+
+
+
+
+
+> 使用 `py2exe` 打包exe文件
+
+- 官网[http://www.py2exe.org/](http://www.py2exe.org/)
+
+- 特性
+  - 仅仅支持： *windows* (windows 下 exe 打包工具)
