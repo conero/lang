@@ -168,6 +168,23 @@ restart-computer
 
 
 
+## CMD
+
+### where
+
+>  查找项目/命令所在目录
+
+```shell
+# cmd
+# 查询 svn 所在目录
+where svn
+where go
+```
+
+
+
+
+
 ## issue
 
 ### iwr
