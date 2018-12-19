@@ -363,6 +363,16 @@ f('spam')
 
 ## 数据结构
 
+- `不可变的基本类型`(*immutable basic types*)
+  - numbers
+  - strings
+  - tuples
+- `可变对象`(*mutable objects*)
+  - lists
+  - dictionaries
+
+
+
 ### list/列表对象
 
 > `Built-In` 通过编辑器如“Ctrl + ” 追踪脚本
@@ -854,9 +864,56 @@ finally:
 
 
 
+## class
+
+> python 具有面向对象特性，混合了 C++ 和 Modula-3 的面向的机制。
 
 
-// @TODO [8.Errors and Exceptions](https://docs.python.org/3.6/tutorial/errors.html)
+
+*类定义语法*
+
+```python
+# 类定义
+class ClassName:
+    <statement-1>
+    .
+    .
+    .
+    <statement-N>
+    
+    
+# 继承语法
+class DerivedClassName(BaseClassName):
+    <statement-1>
+    .
+    .
+    .
+    <statement-N>
+```
+
+
+
+*类的基本属性*
+
+```python
+class ClassName:
+    # 类的构造函数
+	def __init__(self):
+        pass
+class CN1:
+    # 使用变量
+    __privateV1 = 2
+    def __init__(self, args1, args2):
+        """ x = CN1(args1, args2) 实例化类 """
+        pass
+```
+
+
+
+
+
+
+// @TODO [9.Classes](https://docs.python.org/3.6/tutorial/classes.html)
 
 
 
