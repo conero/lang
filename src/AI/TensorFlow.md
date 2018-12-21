@@ -14,8 +14,14 @@ TensorFlow™ 是一个开放源代码软件库，用于进行高性能数值计
 
 
 
+_Tensor的意思是张量，代表N维数组；Flow的意思是流，代表基于数据流图的计算。把N维数字从流图的一端流动到另一端的过程，就是人工智能神经网络进行分析和处理的过程。_
+
+
+
 
 
 ## 参考
 
 - [https://tensorflow.google.cn/](https://tensorflow.google.cn/)   谷歌开发者
+- [Tensorflow 中文网](http://www.tensorfly.cn/)
+

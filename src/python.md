@@ -944,6 +944,43 @@ class CN1:
 
 
 
+*标准库与python解析器一起发布，包括python 类型，以及 built-in(内置) 函数/异常。built-in通常有__C__写成，其他的由python写成，并由源代码形式提供。*
+
+
+
+**built-in 函数**
+
+|                                                              | Built-in Functions                                           |                                                              |                                                              |                                                              |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [`abs()`](https://docs.python.org/3.6/library/functions.html#abs) | [`dict()`](https://docs.python.org/3.6/library/functions.html#func-dict) | [`help()`](https://docs.python.org/3.6/library/functions.html#help) | [`min()`](https://docs.python.org/3.6/library/functions.html#min) | [`setattr()`](https://docs.python.org/3.6/library/functions.html#setattr) |
+| [`all()`](https://docs.python.org/3.6/library/functions.html#all) | [`dir()`](https://docs.python.org/3.6/library/functions.html#dir) | [`hex()`](https://docs.python.org/3.6/library/functions.html#hex) | [`next()`](https://docs.python.org/3.6/library/functions.html#next) | [`slice()`](https://docs.python.org/3.6/library/functions.html#slice) |
+| [`any()`](https://docs.python.org/3.6/library/functions.html#any) | [`divmod()`](https://docs.python.org/3.6/library/functions.html#divmod) | [`id()`](https://docs.python.org/3.6/library/functions.html#id) | [`object()`](https://docs.python.org/3.6/library/functions.html#object) | [`sorted()`](https://docs.python.org/3.6/library/functions.html#sorted) |
+| [`ascii()`](https://docs.python.org/3.6/library/functions.html#ascii) | [`enumerate()`](https://docs.python.org/3.6/library/functions.html#enumerate) | [`input()`](https://docs.python.org/3.6/library/functions.html#input) | [`oct()`](https://docs.python.org/3.6/library/functions.html#oct) | [`staticmethod()`](https://docs.python.org/3.6/library/functions.html#staticmethod) |
+| [`bin()`](https://docs.python.org/3.6/library/functions.html#bin) | [`eval()`](https://docs.python.org/3.6/library/functions.html#eval) | [`int()`](https://docs.python.org/3.6/library/functions.html#int) | [`open()`](https://docs.python.org/3.6/library/functions.html#open) | [`str()`](https://docs.python.org/3.6/library/functions.html#func-str) |
+| [`bool()`](https://docs.python.org/3.6/library/functions.html#bool) | [`exec()`](https://docs.python.org/3.6/library/functions.html#exec) | [`isinstance()`](https://docs.python.org/3.6/library/functions.html#isinstance) | [`ord()`](https://docs.python.org/3.6/library/functions.html#ord) | [`sum()`](https://docs.python.org/3.6/library/functions.html#sum) |
+| [`bytearray()`](https://docs.python.org/3.6/library/functions.html#func-bytearray) | [`filter()`](https://docs.python.org/3.6/library/functions.html#filter) | [`issubclass()`](https://docs.python.org/3.6/library/functions.html#issubclass) | [`pow()`](https://docs.python.org/3.6/library/functions.html#pow) | [`super()`](https://docs.python.org/3.6/library/functions.html#super) |
+| [`bytes()`](https://docs.python.org/3.6/library/functions.html#func-bytes) | [`float()`](https://docs.python.org/3.6/library/functions.html#float) | [`iter()`](https://docs.python.org/3.6/library/functions.html#iter) | [`print()`](https://docs.python.org/3.6/library/functions.html#print) | [`tuple()`](https://docs.python.org/3.6/library/functions.html#func-tuple) |
+| [`callable()`](https://docs.python.org/3.6/library/functions.html#callable) | [`format()`](https://docs.python.org/3.6/library/functions.html#format) | [`len()`](https://docs.python.org/3.6/library/functions.html#len) | [`property()`](https://docs.python.org/3.6/library/functions.html#property) | [`type()`](https://docs.python.org/3.6/library/functions.html#type) |
+| [`chr()`](https://docs.python.org/3.6/library/functions.html#chr) | [`frozenset()`](https://docs.python.org/3.6/library/functions.html#func-frozenset) | [`list()`](https://docs.python.org/3.6/library/functions.html#func-list) | [`range()`](https://docs.python.org/3.6/library/functions.html#func-range) | [`vars()`](https://docs.python.org/3.6/library/functions.html#vars) |
+| [`classmethod()`](https://docs.python.org/3.6/library/functions.html#classmethod) | [`getattr()`](https://docs.python.org/3.6/library/functions.html#getattr) | [`locals()`](https://docs.python.org/3.6/library/functions.html#locals) | [`repr()`](https://docs.python.org/3.6/library/functions.html#repr) | [`zip()`](https://docs.python.org/3.6/library/functions.html#zip) |
+| [`compile()`](https://docs.python.org/3.6/library/functions.html#compile) | [`globals()`](https://docs.python.org/3.6/library/functions.html#globals) | [`map()`](https://docs.python.org/3.6/library/functions.html#map) | [`reversed()`](https://docs.python.org/3.6/library/functions.html#reversed) | [`__import__()`](https://docs.python.org/3.6/library/functions.html#__import__) |
+| [`complex()`](https://docs.python.org/3.6/library/functions.html#complex) | [`hasattr()`](https://docs.python.org/3.6/library/functions.html#hasattr) | [`max()`](https://docs.python.org/3.6/library/functions.html#max) | [`round()`](https://docs.python.org/3.6/library/functions.html#round) |                                                              |
+| [`delattr()`](https://docs.python.org/3.6/library/functions.html#delattr) | [`hash()`](https://docs.python.org/3.6/library/functions.html#hash) | [`memoryview()`](https://docs.python.org/3.6/library/functions.html#func-memoryview) | [`set()`](https://docs.python.org/3.6/library/functions.html#func-set) |                                                              |
+
+- 数值运算
+  - `abs(s)`    数值的绝对值
+  - `bin(x)`   整形数字转换为以“0B”开头的二进制
+- 类型处理
+  - `bool([x])`  x 转化为 **布尔**类型值
+  - `callable`(*object*) 判断是否为可调用的函数/方法
+  - `dir`([*object*])    无参数时返回当前作用域的命名列表，或者是提供参数的参数列表
+- 字符串处理
+  - `chr(i)`   整形转 **Unicode** 编码
+
+// @TODO  [built-in functions divmod](https://docs.python.org/3.6/library/functions.html#divmod)
+
+
+
 
 
 
