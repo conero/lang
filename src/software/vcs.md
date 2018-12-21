@@ -177,6 +177,18 @@ $ git config --global user.email johndoe@example.com
 
 
 
+```bash
+$ git commit -am "添加并提交内容"
+
+# 相同与同时执行了
+$ git add .
+$ git commit -m "<msg>"
+```
+
+
+
+
+
 
 
 **跳过使用暂存区域**

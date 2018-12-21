@@ -910,16 +910,96 @@ class CN1:
 
 
 
+## 标准库
+
+> 主要标准库介绍
+
+- `os`  操作系统接口
+- `shutil` 高水平文件操作
+- `glob`  *文件/目录通配符搜索*
+- `sys`  命令行参数解析
+- `re` *字符串正则表达式*
+- 数字运算
+  - `math` 数学计算包
+  - `random` 随机数包
+  - `statistics` 统计运算包
+- 网络处理
+  - `urllib.request`    网络请求
+  - `smtplib`   邮件处理库
+- 时间
+
+  - `datetime`  时间处理库
+- 数据压缩
+  - zlib
+  - gzip
+  - bz2
+  - lzma
+  - zipfile
+  - tarfile
+- 输出格式化
+
+  - `reprlib`   
+
+  - `pprint`
 
 
 
-// @TODO [9.Classes](https://docs.python.org/3.6/tutorial/classes.html)
+
+
+
+
+// @TODO [10.Brief Tour of the Standard Library](https://docs.python.org/3.6/tutorial/stdlib.html)
+
+// @TODO [总结标准库](https://docs.python.org/3.6/library/index.html)
+
+
+
+## 虚拟环境和包
+
+> Virtual Environments and Packages
+
+- `venv`   虚拟环境
 
 
 
 
 
 ## 扩展
+
+### pip
+
+> python 包管理工具， 包仓库 [`pypi`](https://pypi.org/)
+
+```powershell
+# 查看详情
+pip --help
+
+
+# 安装
+pip install <package-name>
+pip install requests
+# 按照版本安装
+pip install <package-name>==<package-version>
+pip install requests==2.6.0
+# 更新安装报
+pip install --upgrade requests
+
+
+# 卸载
+pip uninstall <package-name>
+pip unistall requests
+
+# 显示包信息
+pip show <package-name>
+pip show requests
+
+# 显示已经安装的包列表
+pip list
+```
+
+
+
+
 
 ### 第三方工具打包
 
