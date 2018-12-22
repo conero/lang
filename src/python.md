@@ -948,6 +948,44 @@ class CN1:
 
 
 
+- **文本处理服务** _<span style="color:blue;font-size:0.84em;">Text Processing Services</span>_
+  - `string`  通用字符串操作
+  - `re`           正在表达式
+  - `difflib`  差(增量)计算协助
+  - `textwarp`  文本封装和填充
+- **二进制服务** _<span style="color:blue;font-size:0.84em;">Binary Data Services</span>_
+- **数据类型**  _<span style="color:blue;font-size:0.84em;">Data Types</span>_
+- **数值运算**  _<span style="color:blue;font-size:0.84em;">Numeric and Mathematical Modules</span>_
+- **函数式编程** _<span style="color:blue;font-size:0.84em;">Functional Programming Modules</span>_
+- **文件和目录系统** _<span style="color:blue;font-size:0.84em;">File and Directory Access</span>_
+- **数据持久层** _<span style="color:blue;font-size:0.84em;">Data Persistence</span>_
+- **数据压缩和归档**  _<span style="color:blue;font-size:0.84em;">Data Compression and Archiving</span>_
+- **文件格式** _<span style="color:blue;font-size:0.84em;">File Formats</span>_
+- **加密**   _<span style="color:blue;font-size:0.84em;">Cryptographic Services</span>_
+- **通用操作系统服务**  _<span style="color:blue;font-size:0.84em;">Generic Operating System Services</span>_
+- **并行**  _<span style="color:blue;font-size:0.84em;">Concurrent Exexution</span>_
+- **进程间通信和网络** _<span style="color:blue;font-size:0.84em;">Interprocess Communication and Networking</span>_
+- **互联网(网络)数据处理**   _<span style="color:blue;font-size:0.84em;">Internet Data Handling</span>_
+- **标记语言处理**   _<span style="color:blue;font-size:0.84em;">Structured Markup Processing Tools</span>_
+- **网络协议和支持**   _<span style="color:blue;font-size:0.84em;">Internet Protocols and Support</span>_
+- **多媒体服务**  _<span style="color:blue;font-size:0.84em;">Multimedia Services</span>_
+- **国际化** _<span style="color:blue;font-size:0.84em;">Internationalization</span>_
+- **框架** _<span style="color:blue;font-size:0.84em;">Program Frameworks</span>_
+- **TK UI图形化**  _<span style="color:blue;font-size:0.84em;">Graphical User Interface with TK</span>_
+- **开发工具**  _<span style="color:blue;font-size:0.84em;">Development Tools</span>_
+- **调试和剖析**  _<span style="color:blue;font-size:0.84em;">Debugging and Profiling</span>_
+- **打包与分发** _<span style="color:blue;font-size:0.84em;">Software Packaging and Distribution</span>_
+- **python 运行时处理** _<span style="color:blue;font-size:0.84em;">Python Runtime Services</span>_
+- **自定义Python解释器** _<span style="color:blue;font-size:0.84em;">Custom Python Interpreters</span>_
+- **导入模块** _<span style="color:blue;font-size:0.84em;">Importimg Modules</span>_
+- **python 语言服务**  _<span style="color:blue;font-size:0.84em;">Python Language Services</span>_
+- **混合合服务** _<span style="color:blue;font-size:0.84em;">Miscellaneous Services</span>_
+- **微软Windows 操作特定服务** _<span style="color:blue;font-size:0.84em;">MS Windows Specific Services</span>_
+- **Unix操心系统支持**  _<span style="color:blue;font-size:0.84em;">Unix Specific Services</span>_
+- **超级模块** _<span style="color:blue;font-size:0.84em;">Superseded Modules</span>_
+
+
+
 **built-in 函数**
 
 |                                                              | Built-in Functions                                           |                                                              |                                                              |                                                              |
