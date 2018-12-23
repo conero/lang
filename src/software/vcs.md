@@ -1132,8 +1132,16 @@ git checkout *.php
 
 - 顶级目录
   - branches		分支
-  - tags			标签
+  - tags			        标签
   - trunk			主干线
+
+
+
+> _基于 **Tortise SVN** 的版本分支管理_
+
+
+
+
 
 
 
