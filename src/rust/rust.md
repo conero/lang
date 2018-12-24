@@ -17,6 +17,11 @@
 
 - [https://github.com/rust-lang/rust](https://github.com/rust-lang/rust)
 - [[https://www.rust-lang.org](https://www.rust-lang.org/)]
+- 中文文档： 
+  - [github](https://github.com/KaiserY/trpl-zh-cn)
+  - [Rust 程序设计语言-简体中文](https://kaisery.github.io/trpl-zh-cn/)
+
+
 
 
 

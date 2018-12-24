@@ -8,6 +8,12 @@
 
 ## V3.0
 
+### v3.1.0-(alpha)
+
+- (实现) *src/rust/rust.md 学习，参照在线图书[Rust 程序设计语言-简体中文](https://kaisery.github.io/trpl-zh-cn/)* 
+
+
+
 ### v3.0.0/20181113
 
 > 正式引入版本控制，使用版本号
