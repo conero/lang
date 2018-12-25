@@ -1137,9 +1137,32 @@ git checkout *.php
 
 
 
+
+
 > _基于 **Tortise SVN** 的版本分支管理_
 
+1. 创建本地测试库: `右键菜单 >> 在此创建版本库(Y) >> 创建目录结构(C)`。 默认生成: *trunk/branches/tags* 目录
 
+   ![](./img-vcs/svn-init.png)
+
+
+
+2. 检测svn库主线： `$url/trunk`。 默认只检出 trunk  
+
+![](./img-vcs/svn-checkout.png)
+
+
+
+
+
+3. 创建分支 : *TortoiseSVN>>分支/标记(T)*， 如创建 **V2-dev** 分支，并且切换当前的分支。 类似的创建*标签*也类似，记住两者的目录为区别： **branches/tags**
+
+   ​	![](./img-vcs/new-branch-v2-dev.png)
+
+
+
+4.  切换分支： `TortoiseSVN >> 切换(W)`
+5. 分支合并: `TortoiseSVN >> 合并(M)`。选择合并类型，并执行即可；亦可选择版本
 
 
 
