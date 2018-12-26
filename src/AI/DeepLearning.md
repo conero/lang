@@ -20,7 +20,7 @@ _Tensor的意思是张量，代表N维数组；Flow的意思是流，代表基�
 
 //@TODO  [《使用 Python 进行深度学习》(中文)](https://github.com/cnbeining/deep-learning-with-python-cn)
 
-//@TODIO 阅读 [机器学习速成课程
+//@TODO 阅读 [机器学习速成课程
 使用 TensorFlow API](https://developers.google.cn/machine-learning/crash-course/)
 
 

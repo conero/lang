@@ -10,6 +10,8 @@
 
 - 官网:  https://www.python.org/
 
+//@TODO *语言学习: http://www.pythondoc.com/pythontutorial3/index.html*
+
 
 
 
@@ -985,8 +987,8 @@ class CN1:
 - **超级模块** _<span style="color:blue;font-size:0.84em;">Superseded Modules</span>_
 
 
+### built-in 函数
 
-**built-in 函数**
 
 |                                                              | Built-in Functions                                           |                                                              |                                                              |                                                              |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -1015,17 +1017,26 @@ class CN1:
 - 字符串处理
   - `chr(i)`   整形转 **Unicode** 编码
 
-// @TODO  [built-in functions divmod](https://docs.python.org/3.6/library/functions.html#divmod)
+
+
+#### divmod
+
+>  `divmod(a, b)` 求 a 和 b 的整数除法和余数。
+
+- 整数   `(a // b, a % b) = divmod(a, b)`
+- 浮点数  `(math.floor(a / b), a % b) = divmod(a, b)`
 
 
 
+#### eval 执行代码
+
+#### id(object)  获取对象ID
+
+> 相同的值，当前什么周期内一致
 
 
 
-
-// @TODO [10.Brief Tour of the Standard Library](https://docs.python.org/3.6/tutorial/stdlib.html)
-
-// @TODO [总结标准库](https://docs.python.org/3.6/library/index.html)
+#### `input`([*prompt*]) 从命令行中输入数据
 
 
 
