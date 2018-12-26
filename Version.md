@@ -6,11 +6,14 @@
 
 
 
-## V3.0
+## V3
 
-### v3.1.0-(alpha)
+### v3.1.0/20181226
 
 - (实现) *src/rust/rust.md 学习，参照在线图书[Rust 程序设计语言-简体中文](https://kaisery.github.io/trpl-zh-cn/)* 
+- (实现) *src/python.md 官网文档的基本学习，了解python语言的基本语法*
+- (实现) *src/software/vcs.md 添加对 svn 版本分支的基本学习*
+- (修复) *首页目录结构无效*
 
 
 

@@ -19,7 +19,7 @@
 - [electron](./src/electron.md)
 - [julia](./src/julia.md)
 - [JVM](./src/JVM.md)
-- [lang/编程语言](./src/land.md)
+- [lang/编程语言](./src/lang.md)
 - [node-npm](./src/node-npm.md)
 - [python](./src/python.md)
 - [SoftwareTesting](./src/SoftwareTesting.md)
