@@ -8,6 +8,12 @@
 
 ## V3
 
+### v3.2.0-(alpha)
+
+> *<span style="color: red;">每一次提交必须完善该内容</span>*
+
+
+
 ### v3.1.0/20181226
 
 - (实现) *src/rust/rust.md 学习，参照在线图书[Rust 程序设计语言-简体中文](https://kaisery.github.io/trpl-zh-cn/)* 
