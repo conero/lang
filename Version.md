@@ -12,9 +12,12 @@
 
 > *<span style="color: red;">每一次提交必须完善该内容</span>*
 
-- *src/python.md*
-  - (优化) *对其官网文档的基本学习：built-in 函数*
-  - //@TODO  [学习python 3.6 中文版教材]
+- *src/*
+  - *python.md*
+    - (优化) *对其官网文档的基本学习：built-in 函数*
+    - //@TODO  [学习python 3.6 中文版教材]
+  - *software/software.md*
+    - (+) *添加 JetBrains IED，添加常用快捷键。*
 - *首页*
   - (+) *添加附录，如参考文档*
 

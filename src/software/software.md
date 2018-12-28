@@ -34,3 +34,38 @@ Database/Edit Current DBMS…
 FK_%.U40:REFR%
 ```
 
+
+
+
+
+### IDEs
+
+
+
+### JetBrains
+
+> [JetBrains 系列IDE](https://www.jetbrains.com/)
+
+
+
+*常用快捷键*
+
+- `Ctrl+F4`  关闭当前的窗口
+- `Ctrl+D`    *复制行（double）*
+- `Ctrl+X`     *删除行*
+- `Ctrl+E`     *最近打开的文件*
+- `Ctrl+[/]`  *跳到大括号的开头结尾*
+- `Ctrl＋F12`  *可以显示当前文件的结构*
+- `Ctrl＋N`       *快速打开类*
+
+
+
+#### PhpStrom(PS)
+
+> *技巧 (Windows)*
+>
+> [官网文档](https://www.jetbrains.com/help/phpstorm/meet-phpstorm.html)
+
+- `Shift`    两次，全局文件搜索
+- `Ctrl+B, Ctrl+Click`  调整至源代码
+
