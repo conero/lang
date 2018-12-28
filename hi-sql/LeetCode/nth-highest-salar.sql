@@ -43,5 +43,22 @@
         );
     END
 
+-- Oracle
+    CREATE FUNCTION getNthHighestSalary(N IN NUMBER) RETURN NUMBER IS
+    result NUMBER;
+    BEGIN
+        result := 0;
+        /* Write your PL/SQL query statement below */
+        SELECT COUNT(1) INTO result FROM (
+            SELECT distinct Salary FROM Employee
+        );        
+        IF N > result THEN
+            RETURN NULL;
+        END IF;
+
+        -- @todo
+        RETURN result;
+    END;    
+
 
 
