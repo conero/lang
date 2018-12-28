@@ -47,7 +47,7 @@ DECLARE job_n NUMBER;
 
 -- 查找所有 JOB
 SELECT J.* FROM DBA_JOBS J;
-
+/
 DECLARE 
     job_id NUMBER := 0;
 BEGIN
@@ -57,4 +57,7 @@ BEGIN
         COMMIT;
     END IF;
 END;
+/
+DROP PROCEDURE jc_job1_proc;
+DROP TABLE jc_job1_tb;
 */    
