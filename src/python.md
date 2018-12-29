@@ -10,7 +10,7 @@
 
 - 官网:  https://www.python.org/
 
-//@TODO *语言学习: http://www.pythondoc.com/pythontutorial3/index.html*
+//@TODO *语言学习: http://www.pythondoc.com/pythontutorial3/datastructures.html*
 
 
 
@@ -22,11 +22,17 @@
 
 ​	特点： “优雅”、“明确”、“简单”
 
+*Python 是一门解释型语言，不像 C/C++, Go， Rust 那样需要编译和链接。*
+
 
 
 ### 安装
 
 安装 python 运行包以后，可以在安装的目录下查看语言的核心库等源码
+
+
+
+*python解析器作为 shell 指定的脚本时，会通过`sys.argv` 传递参数。*
 
 
 
@@ -36,7 +42,24 @@
 # -*- coding: encoding -*-
 # 首行申明编码格式: utf-8
 # 当行注释
+
+# 如首行规定脚本编码格式，默认为 UTF-8 格式
+# -*- coding: cp-1252 -*-
 ```
+
+
+
+*在 Python 中，类似于 C，任何非零整数都是 true；0 是 false。*
+
+**多重赋值**
+
+```python
+a, b = 0, 1			# 同时为两个变量赋值
+```
+
+
+
+
 
 ### numbers/数字
 
@@ -49,7 +72,7 @@
 
 
 
-
+*整数类型为`int`, 带小数点的数字为`float`。*
 
 ```powershell
 # 进入 python 交互模式
@@ -113,7 +136,7 @@ py[-4:]		# =thon;
 
 
 
-### Lists/集合
+### Lists/列表
 
 ```python
 squares = [1, 4, 9, 16, 25]
@@ -122,8 +145,10 @@ squares[:]		# ; 同上
 squares[-2:]	# ; [16, 25]
 squares + [-25, -16]	# 数组append运算
 squares.append(36)		# append 操作
+squares[0]				# 访问索引值
 squares
 len(squares)
+letters[:] = []			# 清空列表
 ```
 
 
@@ -133,6 +158,13 @@ len(squares)
 ## 流程控制
 
 ### if
+
+- `elif`     *`else if` 缩写。*
+- `if ... elif` 与 `switch case` 等效
+
+
+
+
 
 ```python
 x = int(input("Please enter an integer: "))
@@ -173,18 +205,34 @@ for w in words:
     print(w)
     
 # 通过长度
+# 索引遍历
 for i in range(len(words)):
     # i 系统处理
     print(words[i])
+    
+# range 函数
+range(n)    		# 0..n
+range(n1, n2) 		# n1..n2
+range(n1, n2, det)	# n1, n1+det, ...
 ```
 
 
+
+*内置函数 range() 会生成一个等差级数链表:*
 
 *`break`、`continue` 中断/跳过当前的步骤*
 
 
 
+
+
 ### function
+
+- *`pass` 为代码执行忽略语句，不做任何事情。*
+- _函数体的第一行语句可以是可选的字符串文本，这个字符串是函数的文档字符串，或者称为 *docstring*。_
+- 实参总是 *传值调用* （这里的 *值* 总是一个对象 引用 ，而不是该对象的值）
+
+
 
 ```python
 # 申明函数
@@ -206,6 +254,7 @@ _函数默认值，在函数定义的作用域中有效。_
 i = 5
 
 def f(arg=i):
+    '''docstring(文档字符串)'''
     print(arg)
 
 i = 6

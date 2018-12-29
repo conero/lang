@@ -15,6 +15,7 @@
 - *src/*
   - *python.md*
     - (优化) *对其官网文档的基本学习：built-in 函数*
+    - (优化) *通过的[中文版文档](http://www.pythondoc.com/pythontutorial3/index.html)的再次学习优化文档*
     - //@TODO  [学习python 3.6 中文版教材]
   - *software/software.md*
     - (+) *添加 JetBrains IED，添加常用快捷键。*
