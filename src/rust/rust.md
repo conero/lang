@@ -3197,6 +3197,138 @@ $ cargo check
 
 
 
+#### 模块系统
+
+*__原始标识符(Raw Identifiers)__*       `r#`       *用防止函数等于关键字冲突*
+
+```rust
+fn r#match(needle: &str, haystack: &str) -> bool {
+    haystack.contains(needle)
+}
+
+fn main() {
+    assert!(r#match("foo", "foobar"));
+}
+```
+
+
+
+**新关键字** 
+
+- `async` 和 `await`
+- `try`
+
+
+
+`do catch { .. }` 重命名为 `try {}` 
+
+
+
+**模块系统**
+
+- *`extern crate`大部分环境将不再需要*
+- `crate` 关键字参照当前的包
+- 绝对路径以包名开始，其中`crate` 代指当前的包
+- `foo.rs`和`foo/` 二级目录可共存，`mod.rs`不再必须当二级目录在二级包时
+
+
+
+*`extern crate`*
+
+```rust
+// Rust 2015
+extern crate futures;
+
+mod submodule {
+    use futures::Future;
+}
+
+// Rust 2018
+mod submodule {
+    use futures::Future;
+}
+```
+
+
+
+*路径改变*
+
+```rust
+// Rust 2018
+// no more `extern crate futures;`
+
+mod submodule {
+    // 'futures' is the name of a crate, so this works
+    use futures::Future;
+
+    // 'futures' is the name of a crate, so this works
+    fn my_poll<T, E>() -> futures::Poll {
+        unimplemented!()
+    }
+
+    fn function() {
+        // 'std' is the name of a crate, so this works
+        let five = std::sync::Arc::new(5);
+    }
+}
+
+fn main() {
+    // 'std' is the name of a crate, so this works
+    let five = std::sync::Arc::new(5);
+}
+
+```
+
+
+
+*`mod.rs`不再需要*
+
+```rust
+///  foo.rs 
+///  foo/bar.rs
+mod foo;
+
+/// in foo.rs
+mod bar;
+
+```
+
+
+
+*其他，在指定的模块中为公共接口*
+
+```rust
+pub(crate) struct Foo;
+
+// 指定为 a::b::c 中为公共
+pub(in a::b::c) struct Bar;
+```
+
+
+
+*`import`嵌套 `use` 导入*
+
+```rust
+// on one line
+use std::{fs::File, io::Read, path::{Path, PathBuf}};
+
+// with some more breathing room
+use std::{
+    fs::File,
+    io::Read,
+    path::{
+        Path,
+        PathBuf
+    }
+};
+```
+
+
+
+//@TODO  https://doc.rust-lang.org/edition-guide/rust-2018/error-handling-and-panics/index.html
+
+
+
 > 较大的改变
 
 **NLL**： Non-lexical lifetimes
