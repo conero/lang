@@ -3325,6 +3325,12 @@ use std::{
 
 
 
+#### 异常处理
+
+`?`   *用于异常处理`match`的简称版，其应用于`Result`变量，若结果为`OK`，其忽略，反正由当期语句处理。与 `try!`宏功能类似*
+
+
+
 //@TODO  https://doc.rust-lang.org/edition-guide/rust-2018/error-handling-and-panics/index.html
 
 
