@@ -1,7 +1,6 @@
-// 20181116
-// data-type learn
-// Joshua Conero  > type.rs
-use std::env;
+use std::{
+    env
+};
 
 // array
 fn t_array(){
@@ -52,31 +51,43 @@ fn t_f32(){
     println!("{}", f1 + (1.24 as f32))
 }
 
-fn tArray(){}
+//变量测试
+fn t_var(){}
 
-fn main(){
-    println!("Rust Data-Type Learning: ");
+// 程序入口
+fn index(){
+    println!(" 支持测试 $ [type]");
+    println!("  array  数组测试");
+    println!("  bool");
+    println!("  char");
+    println!("  f32");
+}
+
+// `arg` is borrowed here
+fn get_cmd() -> &'static str{
+    let mut cmd = "";
     let mut ctt = 0;
     for arg in env::args(){
         ctt += 1;
         if ctt == 1{
             continue;
         }
-        if arg == "array" {
-            t_array();
-        }else if arg == "bool" {
-            t_bool();
-        }else if arg == "char"{
-            t_char();
-        }else if arg == "f32"{
-            t_f32();
-        }else {
-            println!(" 支持测试 $ [type]");
-            println!("  array  数组测试");
-            println!("  bool");
-            println!("  char");
-            println!("  f32");
-        }
+        cmd = arg.as_str();
+    }
+    cmd
+}
+
+fn main(){
+    println!("Rust Data-Type Learning: ");
+    //let cmd = get_cmd();
+    let cmd = format!("{}", get_cmd());
+    match cmd.as_str() {
+        "array" => t_array(),
+        "bool"  => t_bool(),
+        "char"  => t_char(),
+        "f32"   => t_f32(),
+        "var"   => t_var(),
+        _ => index(),
     }
 }
 
