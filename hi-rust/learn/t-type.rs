@@ -72,7 +72,7 @@ fn get_cmd() -> &'static str{
         if ctt == 1{
             continue;
         }
-        cmd = arg.as_str();
+        cmd = arg.as_str()
     }
     cmd
 }
