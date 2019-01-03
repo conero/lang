@@ -6,11 +6,21 @@
 
 ## 常用软件列表
 
-| 软件名称      | 商用类型 | 分类       | 备注               |
-| ------------- | -------- | ---------- | ------------------ |
-| PowerDesigner | 商业     | 数据库工具 | 数据库模型设计工具 |
-|               |          |            |                    |
-|               |          |            |                    |
+| 软件名称      | 商用类型 | 分类          | 备注               | 语言 |
+| ------------- | -------- | ------------- | ------------------ | ---- |
+| PowerDesigner | 商业     | 数据库工具    | 数据库模型设计工具 | SQL  |
+| PhpStrom(PS)  | 商业     | JetBrains IDE | PHP 代码编辑器     | PHP  |
+|               |          |               |                    |      |
+
+
+
+> 使用软件推荐
+
+| 名称                                                         | 语言      | 商用 | 其他                                                         |
+| ------------------------------------------------------------ | --------- | ---- | ------------------------------------------------------------ |
+| [Oracle SQL Developer](https://www.oracle.com/database/technologies/appdev/sql-developer.html) | JAVA(JVM) | 免费 | 查询分析器,[文档](https://docs.oracle.com/en/database/oracle/sql-developer/) |
+|                                                              |           |      |                                                              |
+|                                                              |           |      |                                                              |
 
 
 
@@ -38,7 +48,19 @@ FK_%.U40:REFR%
 
 
 
-### IDEs
+### Oracle SQL Developer
+
+- [文档 https://docs.oracle.com/en/database/oracle/sql-developer/](https://docs.oracle.com/en/database/oracle/sql-developer/)
+
+
+
+> **显示行数**
+
+*版本 18.2.0.183* `首选项>>代码编辑器>>行装订线>>显示行数`
+
+
+
+## IDEs
 
 
 
@@ -68,4 +90,6 @@ FK_%.U40:REFR%
 
 - `Shift`    两次，全局文件搜索
 - `Ctrl+B, Ctrl+Click`  调整至源代码
+
+
 

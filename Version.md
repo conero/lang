@@ -19,6 +19,7 @@
     - //@TODO  [学习python 3.6 中文版教材]
   - *software/software.md*
     - (+) *添加 JetBrains IED，添加常用快捷键。*
+    - (+) *添加常用软件列表*
   - *rust/rust.md*
     - (优化) *完善文档，二次阅读*
 - *首页*
