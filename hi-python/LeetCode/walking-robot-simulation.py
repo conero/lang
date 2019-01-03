@@ -47,4 +47,102 @@ class Solution:
         :type obstacles: List[List[int]]
         :rtype: int
         """
-        
+        dcts = ['N', 'E', 'S', 'W']     # 方位，[北-东-南-西] 循环链表
+        direction = 'N'                 # 方向，当前的方位
+        cpoint = [0, 0]                 # 当前位置，坐标
+
+        # 检测障碍物
+        def check_obstacles(x=None, y=None, x1=None, y1=None):
+            new_pot = None
+            cx = cpoint[0]
+            cy = cpoint[1]
+            for pot in obstacles:
+                if x: # x 轴坐标移动
+                    if cy == pot[1] and x <= cx and x1 >= cx:
+                        new_pot = [pot[0]-1, cy]
+                        break
+                elif y:
+                    if cx == pot[0] and y <= cy and y1 >= cy:
+                        new_pot = [cx, pot[1]-1]
+                        break
+            return new_pot
+
+
+        for cmd in commands:
+            # 旋转
+            # 右顺时针，左逆时针
+            if cmd == -2: # <=
+                idx = dcts.index(direction)
+                vlen = len(dcts)
+                if idx == 0:
+                    direction = dcts[vlen - 1]
+                else:
+                    direction = dcts[idx - 1]
+                continue
+            elif cmd == -1: # =>
+                idx = dcts.index(direction)
+                vlen = len(dcts)
+                if idx == vlen-1:
+                    direction = dcts[0]
+                else:
+                    direction = dcts[idx+1]
+                continue
+
+            # 值转换
+            if direction == 'N':
+                new_cmd = cpoint[1] + cmd
+                cpoint[1] = new_cmd
+                # 障碍物检测
+                co = check_obstacles(y=cmd, y1=new_cmd)
+                if co:
+                    cpoint = co
+            elif direction == 'E':
+                new_cmd = cpoint[0] + cmd
+                cpoint[0] = new_cmd
+                # 障碍物检测
+                co = check_obstacles(x=cmd, x1=new_cmd)
+                if co:
+                    cpoint = co
+            elif direction == 'S':
+                new_cmd = cpoint[1] - cmd
+                cpoint[1] = new_cmd
+                # 障碍物检测
+                co = check_obstacles(y=cmd, y1=new_cmd)
+                if co:
+                    cpoint = co
+            elif direction == 'W':
+                new_cmd = cpoint[0] - cmd
+                cpoint[0] = new_cmd
+                # 障碍物检测
+                co = check_obstacles(x=cmd, x1=new_cmd)
+                if co:
+                    cpoint = co
+
+
+        # 欧式距离的平方
+        return abs(cpoint[0])**2 + abs(cpoint[1])**2
+
+
+
+# 单元测试
+import unittest
+
+# 测试用例
+class TestCase(unittest.TestCase):
+    def test_robotSim(self):
+        commands = [4,-1,3]
+        obstacles = []
+        self.assertEqual(25, Solution().robotSim(commands, obstacles))
+
+        commands = [4,-1,4,-2,4]
+        obstacles = [[2,4]]
+        self.assertEqual(65, Solution().robotSim(commands, obstacles))
+
+        commands = [7, -2, -2, 7, 5]
+        obstacles = [[-3, 2], [-2, 1], [0, 1], [-2, 4], [-1, 0], [-2, -3], [0, -3], [4, 4], [-3, 3], [2, 2]]
+        self.assertEqual(4, Solution().robotSim(commands, obstacles))
+
+# 运行测试用例
+if __name__ == '__main__':
+    unittest.main()
+
