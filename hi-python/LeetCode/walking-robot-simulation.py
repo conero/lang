@@ -57,14 +57,25 @@ class Solution:
             cx = cpoint[0]
             cy = cpoint[1]
             for pot in obstacles:
-                if x: # x 轴坐标移动
-                    if cy == pot[1] and x <= cx and x1 >= cx:
-                        new_pot = [pot[0]-1, cy]
-                        break
-                elif y:
-                    if cx == pot[0] and y <= cy and y1 >= cy:
-                        new_pot = [cx, pot[1]-1]
-                        break
+                if x != None: # x 轴坐标移动
+                    ox = pot[0]
+                    if cy == pot[1]:
+                        if ox >= x and ox <= x1:
+                            new_pot = [ox - 1, cy]
+                            break
+                        elif ox >= x1 and ox <= x:
+                            new_pot = [ox + 1, cy]
+                            break
+                elif y != None:
+                    oy = pot[1]
+                    if cx == pot[0]:
+                        if oy >= y and oy <= y1:
+                            new_pot = [cx, oy-1]
+                            break
+                        elif oy >= y1 and oy <= y:
+                            new_pot = [cx, oy + 1]
+                            break
+            print(new_pot, x, y, x1, y1, cpoint)
             return new_pot
 
 
@@ -87,10 +98,11 @@ class Solution:
                 else:
                     direction = dcts[idx+1]
                 continue
-
+            print(cpoint, ':', direction, '; cmd=', cmd)
             # 值转换
             if direction == 'N':
                 new_cmd = cpoint[1] + cmd
+                cmd = cpoint[1]
                 cpoint[1] = new_cmd
                 # 障碍物检测
                 co = check_obstacles(y=cmd, y1=new_cmd)
@@ -98,6 +110,7 @@ class Solution:
                     cpoint = co
             elif direction == 'E':
                 new_cmd = cpoint[0] + cmd
+                cmd = cpoint[0]
                 cpoint[0] = new_cmd
                 # 障碍物检测
                 co = check_obstacles(x=cmd, x1=new_cmd)
@@ -105,6 +118,7 @@ class Solution:
                     cpoint = co
             elif direction == 'S':
                 new_cmd = cpoint[1] - cmd
+                cmd = cpoint[1]
                 cpoint[1] = new_cmd
                 # 障碍物检测
                 co = check_obstacles(y=cmd, y1=new_cmd)
@@ -112,6 +126,7 @@ class Solution:
                     cpoint = co
             elif direction == 'W':
                 new_cmd = cpoint[0] - cmd
+                cmd = cpoint[0]
                 cpoint[0] = new_cmd
                 # 障碍物检测
                 co = check_obstacles(x=cmd, x1=new_cmd)
@@ -130,17 +145,22 @@ import unittest
 # 测试用例
 class TestCase(unittest.TestCase):
     def test_robotSim(self):
-        commands = [4,-1,3]
-        obstacles = []
-        self.assertEqual(25, Solution().robotSim(commands, obstacles))
+        # commands = [4,-1,3]
+        # obstacles = []
+        # self.assertEqual(25, Solution().robotSim(commands, obstacles))
+        #
+        # commands = [4,-1,4,-2,4]
+        # obstacles = [[2,4]]
+        # self.assertEqual(65, Solution().robotSim(commands, obstacles))
+        #
+        # commands = [7, -2, -2, 7, 5]
+        # obstacles = [[-3, 2], [-2, 1], [0, 1], [-2, 4], [-1, 0], [-2, -3], [0, -3], [4, 4], [-3, 3], [2, 2]]
+        # self.assertEqual(4, Solution().robotSim(commands, obstacles))
 
-        commands = [4,-1,4,-2,4]
-        obstacles = [[2,4]]
-        self.assertEqual(65, Solution().robotSim(commands, obstacles))
+        commands = [-2, -1, -2, 3, 7]
+        obstacles = [[1, -3], [2, -3], [4, 0], [-2, 5], [-5, 2], [0, 0], [4, -4], [-2, -5], [-1, -2], [0, 2]]
+        self.assertEqual(100, Solution().robotSim(commands, obstacles))
 
-        commands = [7, -2, -2, 7, 5]
-        obstacles = [[-3, 2], [-2, 1], [0, 1], [-2, 4], [-1, 0], [-2, -3], [0, -3], [4, 4], [-3, 3], [2, 2]]
-        self.assertEqual(4, Solution().robotSim(commands, obstacles))
 
 # 运行测试用例
 if __name__ == '__main__':
