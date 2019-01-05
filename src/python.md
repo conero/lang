@@ -10,7 +10,7 @@
 
 - 官网:  https://www.python.org/
 
-//@TODO *语言学习: http://www.pythondoc.com/pythontutorial3/datastructures.html*
+//@TODO *语言学习: http://www.pythondoc.com/pythontutorial3/inputoutput.html*
 
 
 
@@ -545,7 +545,7 @@ combs
 
 ### `del` 语句
 
-*可删除 `list` 的元素。*
+*可删除 `list` 的元素，根据列表的索引。*
 
 ```powershell
 >>> a = [-1, 1, 66.25, 333, 333, 1234.5]
@@ -558,6 +558,8 @@ combs
 >>> del a[:]
 >>> a
 []
+
+del a	# 删除整个变量
 ```
 
 
@@ -566,7 +568,7 @@ combs
 
 > _Tuples and Sequences_
 
-_元组是由逗号分隔的多个值组成的变量。它们可创建，但是不可对其赋值。元组和list类似，但是两者的运用场景不一致，前者不可变，后者则反之。_
+_元组是由逗号分隔的多个值组成的变量。它们可创建，但是不可对其赋值。元组和list类似，但是两者的运用场景不一致，前者不可变(元组就像字符串， 不可变的)，后者则反之（列表是 可变的 ，它们的元素通常是相同类型的并通过迭代访问）。_
 
 ```powershell
 t = 12, 5.4, 'Joshua Conero'    # 创建元组
@@ -590,7 +592,9 @@ y					# 5.4
 
 ### Sets/集合
 
-`Sets`是一个无序的集合，没有重复的元素。它也支持集合运算，如: 并集、交集、差集等
+*集合是一个无序不重复元素的集。基本功能包括关系测试和消除重复元素。集合对象还支持 union（联合），intersection（交），difference（差）和 sysmmetric difference（对称差集）等数学运算。*
+
+*大括号或 [set()](https://docs.python.org/3/library/stdtypes.html#set) 函数可以用来创建集合。注意：想要创建空集合，你必须使用 `set()` 而不是 `{}`。*
 
 ```python
 basket = {'apple', 'orange', 'apple', 'pear', 'orange', 'banana'}
@@ -681,7 +685,7 @@ for i, v in enumerate(['tic', 'tac', 'toe']):
 
 
 
-*同时变量两个序列*
+*同时`zip`遍历两个序列*
 
 ```python
 >>> questions = ['name', 'quest', 'favorite color']
@@ -696,16 +700,46 @@ What is your favorite color?  It is blue.
 
 
 
+> **条件判断**
+
+- `in` 和 `not in` 比较操作符号， 判断是否在某一区间
+- `is` 和 `not is`比较两个对象是否相同
+
+- 比较操作可以传递: ` -100 < -10 == (0-10) < 1 < 5 <99`
+- _比较操作可以通过逻辑操作符 `and` 和 `or` 组合，比较的结果可以用 `not` 来取反义。这些操作符的优先级又低于比较操作符，在它们之中，`not` 具有最高的优先级， `or` 优先级最低，所以 `A and not B or C` 等于 `(A and (notB)) or C`。当然，括号也可以用于比较表达式。_
+
+- _逻辑操作符 `and` 和 `or` 也称作短路操作符：它们的参数从左向右解析，一旦结果可以确定就停止。_
+
+
+
+> 序列对象可以与相同类型的其它对象比较
+
+_比较操作按 *字典序* 进行：首先比较前两个元素，如果不同，就决定了比较的结果；如果相同，就比较后两个元素，依此类推，直到所有序列都完成比较。如果两个元素本身就是同样类 型的序列，就递归字典序比较。如果两个序列的所有子项都相等，就认为序列相等。如果一个序列是另一个序列的初始子序列，较短的一个序列就小于另一个。字符 串的字典序按照单字符的 ASCII 顺序。_
+
+```python
+(1, 2, 3)              < (1, 2, 4)
+[1, 2, 3]              < [1, 2, 4]
+'ABC' < 'C' < 'Pascal' < 'Python'
+(1, 2, 3, 4)           < (1, 2, 4)
+(1, 2)                 < (1, 2, -1)
+(1, 2, 3)             == (1.0, 2.0, 3.0)
+(1, 2, ('aa', 'ab'))   < (1, 2, ('abc', 'a'), 4)
+```
+
+
+
+
+
 ## Modules/模块
 
-_**模块** 是指包含的 python 语句或表达式，且以`.py`后缀结尾的文件。模块的名字(文件的名字,字符串)可通过全局变量`__name__`获取。_
+_**模块** 是包括 Python 定义和声明的文件。文件名就是模块名加上 `.py` 后缀。模块的模块名（做为一个字符串）可以由全局变量 `__name__` 得到。。_
 
 模块通过`import` 引入到指定的模块中，各个模块之间的变量为其内部私有，但可通过`modname.itemname`访问。
 
 ```python
-# 从 A模块中导出对象
+# 从 A模块中导出指定对象
 from A from a1,a2
-# 导出所有对象，处以“_”开头的变量
+# 导出所有对象，除以“_”开头的变量
 from B from *
 # 别名导出
 import A as Ax
@@ -724,7 +758,7 @@ if __name__ == "__main__":
 
 
 
-*导入模块是的目录搜索顺序，首先是built-in里面搜索，为找到时搜索对应的模块名字：`built-in`, `<name>.py`。*
+*导入模块是的目录搜索顺序，首先是built-in里面搜索，为找到时搜索对应的模块名字：`built-in`, `<name>.py`，再次失败时会搜索[sys.path](https://docs.python.org/3/library/sys.html#sys.path)下的目录文件。*
 
 
 
@@ -744,6 +778,8 @@ if __name__ == "__main__":
 > Standard Modules
 
 标准库包括 *built-in* 和 语言核心库。
+
+
 
 
 
@@ -1065,6 +1101,8 @@ class CN1:
   - `dir`([*object*])    无参数时返回当前作用域的命名列表，或者是提供参数的参数列表
 - 字符串处理
   - `chr(i)`   整形转 **Unicode** 编码
+
+1. _内置函数 [dir()](https://docs.python.org/3/library/functions.html#dir) 用于按模块名搜索模块定义，它返回一个字符串类型的存储列表:_
 
 
 
