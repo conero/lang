@@ -23,6 +23,7 @@
 - [node-npm](./src/node-npm.md)
 - [python](./src/python.md)
 - [SoftwareTesting](./src/SoftwareTesting.md)
+- [JS](./src/Js.md)
 - AI
   - [ABriefHistoryOfArtificialIntelligence/人工智能简史](./src/AI/ABriefHistoryOfArtificialIntelligence.md)
   - [TensorFlow](./src/AI/TensorFlow.md)
@@ -42,8 +43,7 @@
 - study
   - [Algorithm](./src/study/Algorithm.md)
   - [Data_Structure](./src/study/Data_Structure.md)
-  - [html-picture](./src/study/html-picture.md)
-  - [Js-Framework](./src/study/Js-Framework.md)
+  - [html-picture](./src/study/html-picture.md)  
   - [markdown](./src/study/markdown.md)
   - [operating-system](./src/study/operating-system.md)
 
