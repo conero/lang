@@ -24,6 +24,7 @@
 - [python](./src/python.md)
 - [SoftwareTesting](./src/SoftwareTesting.md)
 - [JS](./src/Js.md)
+- [WEB](./src/Web.md)
 - AI
   - [ABriefHistoryOfArtificialIntelligence/人工智能简史](./src/AI/ABriefHistoryOfArtificialIntelligence.md)
   - [TensorFlow](./src/AI/TensorFlow.md)

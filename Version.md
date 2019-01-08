@@ -20,6 +20,8 @@
   - Js.md
     - (更名) *study/Js-Framework.md -> Js.md*
     - (+) *添加对 WebGL的学习*
+  - Web.md
+    - (+) *添加对Web的知识的学习*
   - *software/software.md*
     - (+) *添加 JetBrains IED，添加常用快捷键。*
     - (+) *添加常用软件列表*
