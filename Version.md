@@ -26,6 +26,8 @@
   - *software/software.md*
     - (+) *添加 JetBrains IED，添加常用快捷键。*
     - (+) *添加常用软件列表*
+  - *software/Powershell.md*
+    - (+) *优化 ps文档*
   - *rust/rust.md*
     - (优化) *完善文档，二次阅读*
 - *首页*

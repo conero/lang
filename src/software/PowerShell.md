@@ -25,8 +25,6 @@ $PSVersionTable
 
 
 
-
-
 ## 变量
 
 *PowerShell 处理对象。 使用 PowerShell 可以创建称为“变量”的命名对象。 变量名称可以包含下划线字符，也可以是任何字母数字字符。 在 PowerShell 中使用时，始终使用变量名称后跟的 $ 字符指定变量。*
@@ -94,6 +92,18 @@ echo "`$n is $n."
 
 ```ini
 `			行号符号
+```
+
+
+
+### 输入输出
+
+> 调用 VB 做图形化输入
+
+```powershell
+[void][System.Reflection.Assembly]::LoadWithPartialName('Microsoft.VisualBasic')
+$cn = [Microsoft.VisualBasic.interaction]::inputbox('Enter Yorr Name', 'Name', 'Jc')
+echo ">>:  $cn"
 ```
 
 
@@ -208,6 +218,7 @@ System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 ## 参考
 
 - <https://microsoft.com/powershell>
+- [PowerShell 中文博客](https://www.pstips.net/)
 
 
 
