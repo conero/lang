@@ -10,7 +10,7 @@
 
 - 官网:  https://www.python.org/
 
-//@TODO *语言学习: http://www.pythondoc.com/pythontutorial3/inputoutput.html*
+//@TODO *语言学习: http://www.pythondoc.com/pythontutorial3/classes.html*
 
 
 
@@ -829,6 +829,23 @@ from ..C import c1
 
 字符串格式化，可自己根据字符串拼接实现或者`str.format()`，后者同于 **formatted string literals**(格式化的字字符串模板)
 
+- *字符串拼接出固定的格式*
+- *str.format() 字符串格式化函数*
+- _`string.Template(template)`格式化_ 
+- *操作符 `%` 也可以用于字符串格式化*
+
+
+
+操作符 `%` 也可以用于字符串格式化。它以类似 `sprintf()`-style 的方式解析左参数，将右参数应用于此，得到格式化操作生成的字符串。
+
+```python
+>>> import math
+>>> print('The value of PI is approximately %5.3f.' % math.pi)
+The value of PI is approximately 3.142.
+```
+
+
+
 其他类型转字符串的方法: `str()` 和 `repr()`。str函数生成人类刻度的字符串，而后者则是解析器。
 
 查看`string` 模块，学习方法`str.rjust`,`str.ljust`,`str.center`，`str.zfill`函数。
@@ -863,9 +880,15 @@ print('12'.zfill(5)) #>>> 00012
 
 ## 错误/异常
 
+Python 中（至少）有两种错误：语法错误和异常（ *syntax errors* 和 *exceptions* ）。语法错误，也被称作解析错误。
+
+
+
 > *Exceptions*
 
-*`BaseException`* 所有异常的基类。
+*`BaseException`* 所有异常的基类。 
+
+
 
 ```shell
 BaseException
@@ -944,10 +967,31 @@ try:
     pass
 except BaseException:
     pass
+except BaseException2:
+    pass
+except:	# 任何异常，皆可抛出异常
+    print("Unexpected error:", sys.exc_info()[0])
+else:
+    # 当未抛出异常时，执行
+    pass
 # run this anyway
 finally:
     pass
 ```
+
+
+
+*[raise](https://docs.python.org/3/reference/simple_stmts.html#raise) 语句允许程序员强制抛出一个指定的异常*
+
+```python
+raise Exception("foo occurred").with_traceback(tracebackobj)
+```
+
+
+
+*异常类通常应该直接或间接的从 [Exception](https://docs.python.org/3/library/exceptions.html#Exception) 类派生，其可以用于自定义异常的实现。*
+
+
 
 
 
