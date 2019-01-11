@@ -20,6 +20,7 @@
   - Js.md
     - (更名) *study/Js-Framework.md -> Js.md*
     - (+) *添加对 WebGL的学习*
+    - (+) *添加对 TensorFlowJs(tfjs) 的学习*
   - Web.md
     - (+) *添加对Web的知识的学习*
     - (+) *学习基本的 http概念，参照网络资源并对其进行学习和了解*
