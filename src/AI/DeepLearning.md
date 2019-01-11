@@ -41,6 +41,12 @@ _Tensor的意思是张量，代表N维数组；Flow的意思是流，代表基�
 
 
 
+### 起始
+
+1. `npm install @tensorflow/tfjs`   *安装纯 js 版本TensorFlow* (<font style="color:red;">NodeJs/Browser</font>)
+
+2. `npm install @tensorflow/tfjs-node`  *安装原生 C++ 绑定的TensorFlow* (<font style="color:red;">NodeJs</font>)
+
 
 
 
