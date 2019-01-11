@@ -1,7 +1,0 @@
-# package.json
-package-lock.json
-
-# node 模块
-node_modules
-
-.idea
