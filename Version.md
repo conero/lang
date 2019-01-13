@@ -4,6 +4,22 @@
 
 
 
+**主要命令介绍**
+
+[参照](https://docs.npmjs.com/cli-documentation/cli)
+
+```shell
+# 根据默认初始化库
+npm init -y
+# 交互式初始化
+npm init
+
+# npm install <tarball url>
+# https://github.com/<user>/<project>.git#<branch>
+```
+
+
+
 
 
 ## V3
@@ -19,8 +35,12 @@
     - //@TODO  [学习python 3.6 中文版教材]
   - Js.md
     - (更名) *study/Js-Framework.md -> Js.md*
+
     - (+) *添加对 WebGL的学习*
+
     - (+) *添加对 TensorFlowJs(tfjs) 的学习*
+
+      
   - Web.md
     - (+) *添加对Web的知识的学习*
     - (+) *学习基本的 http概念，参照网络资源并对其进行学习和了解*
@@ -28,10 +48,13 @@
     - (+) *添加 JetBrains IED，添加常用快捷键。*
     - (+) *添加常用软件列表*
   - *software/Powershell.md*
+
     - (+) *优化 ps文档*
   - *rust/rust.md*
+
     - (优化) *完善文档，二次阅读*
 - *首页*
+
   - (+) *添加附录，如参考文档*
 
 
