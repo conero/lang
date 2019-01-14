@@ -7,7 +7,21 @@
 
 ### npm
 
+**主要命令介绍**
 
+[参照](https://docs.npmjs.com/cli-documentation/cli)
+
+```powershell
+# 根据默认初始化库
+npm init -y
+# 交互式初始化
+npm init
+
+# npm install <tarball url>
+# https://github.com/<user>/<project>.git#<branch>
+#   [options]
+#	--save-dev     已开发的模式保存
+```
 
 
 

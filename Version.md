@@ -3,23 +3,6 @@
 > 2018年11月13日 星期二
 
 
-
-**主要命令介绍**
-
-[参照](https://docs.npmjs.com/cli-documentation/cli)
-
-```shell
-# 根据默认初始化库
-npm init -y
-# 交互式初始化
-npm init
-
-# npm install <tarball url>
-# https://github.com/<user>/<project>.git#<branch>
-```
-
-
-
 ## V3
 
 ### v3.2.0-(alpha)
@@ -38,7 +21,6 @@ npm init
 
     - (+) *添加对 TensorFlowJs(tfjs) 的学习*
 
-      
   - Web.md
     - (+) *添加对Web的知识的学习*
     - (+) *学习基本的 http概念，参照网络资源并对其进行学习和了解*
