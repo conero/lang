@@ -999,6 +999,17 @@ raise Exception("foo occurred").with_traceback(tracebackobj)
 
 > python 具有面向对象特性，混合了 C++ 和 Modula-3 的面向的机制。
 
+- *类继承机制允许多重继承*
+- *派生类可以覆盖（override）基类中的任何方法或类*
+- *可以使用相同的方法名称调用基类的方法*
+- *对象可以包含任意数量的私有数据*
+
+
+
+_Python 中任何一个“.”之后的命名为 *属性*。_
+
+
+
 
 
 *类定义语法*
