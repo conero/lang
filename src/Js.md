@@ -25,6 +25,14 @@ npm init
 
 
 
+### [jest](https://jestjs.io)
+
+*js 测试框架*
+
+> https://github.com/facebook/jest
+
+
+
 ## Browser
 
 
