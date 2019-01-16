@@ -27,12 +27,13 @@
 
 - ![UNIX进化史](./Unix_history-simple.svg)
 - ![UNIX进化时间表](./Unix-history.svg)
-
 - 只有符合单一UNIX规范的UNIX系统才能使用UNIX这个名称，否则只能称为类UNIX（UNIX-like）
 - UNIX-like 类UNIX
 - “一切皆是文件”是 Unix/Linux 的基本哲学之一
 - 以网络为核心的设计思想
 - 1970-01-01 00:00:00  (unix 元年-1970)
+
+
 
 # <span id="menu_windows">Windows</span> 1985
 - 创始人: Bill Gates
@@ -40,6 +41,10 @@
 - 特征
     - 图形化模式 GUI
     - 内核： Windows NT kernel (ntoskrnl.exe)
+
+
+
+
 
 > 个人使用过的操作系统版本
 
@@ -50,11 +55,23 @@
 
 
 
-## 注册表
+> *项目文档*
+
+- *[官方文档](https://docs.microsoft.com/zh-cn/windows/)*
+- [参考文档](https://msdn.microsoft.com/zh-cn/library/)
+
+
+
+## 注册表 
+
+>  _**Registry**_
+
+- `regedit`       *注册表（register edit）*
+- `reg`               *windows 自带的注册表编辑器*
+
+
 
 *是Microsoft Windows中的一个重要的数据库，用于存储系统和应用程序的设置信息*
-
-
 
 *HKEY_CLASSES_ROOT和HKEY_CURRENT_CONFIG中存放的信息都是HKEY_LOCAL_MACHINE中存放的信息的一部分，而HKEY_CURRENT_USER中存放的信息只是HKEY_USERS存放的信息的一部分*
 
@@ -80,10 +97,9 @@
   - *前用户桌面配置(如显示器等)的数据,最后使用的文档列表（MRU）和其他有关当前用户的Windows 98中文版的安装的信息*
 - HKEY_CLASSES_ROOT
   - *其文件类型的名称*
+  - *存储Windows可识别的文件类型的详细列表，以及相关联的程序。*
 - HKEY_LOCAL_MACHINE 
-  - *地计算机硬件数据*
-
-
+  - *本地计算机硬件数据*
 
 
 
@@ -91,6 +107,19 @@
 > \HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts
 
 更改文件后缀名的默认软件打开方式
+
+
+
+> *注册表类型分类*
+
+- `REG_SZ`    *字符串文本*
+- *`REG_BINARY`*   *二进制文本*
+- `REG_MULTI_SZ`    *多字符串值：含有多个文本值的字符串*
+- `REG_DWORD`     *双字值；一个32位的二进制值，显示为8位的十六进制值。*
+
+
+
+*URL Protocol： 使用`URL`地址打开应用如：`tencent://`。如在web浏览器中使用 URL 协议打开应用: ` window.open("tencent://message/?uin=346915968")`*
 
 
 
