@@ -39,10 +39,20 @@ npm init
 
 ### MouseEvent
 
-*坐标点：* ![](./image/js/x-y.png)
+*坐标点：* 
+
+![图解1](./image/js/x-y.png)
+
+
+
+![图解2](./image/js/mouse-event-xy.jpg)
+
+
 
 ```js
 clientX, clientY    // 鼠标指针向对于浏览器页面（当前窗口）的坐标
+					// 客户端区域
+
 
 layerX, layerY		//
 
@@ -50,11 +60,12 @@ movementX, movementY
 
 offsetX,offsetY
 
-pageX, pageY		// 文档坐标而非窗口坐标,这2个属性不是标准属性，但得到了广泛支持。IE事件中没有这2个属性
+pageX, pageY		// 文档坐标而非窗口坐标,这2个属性不是标准属性，但得到了广泛支持。
+					// IE事件中没有这2个属性
 
 x, y
     
-screenX, screenY
+screenX, screenY	//	screen 屏幕坐标系
 ```
 
 
