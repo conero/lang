@@ -195,6 +195,26 @@ screenX, screenY	//	screen 屏幕坐标系
 
 
 
+## SVG
+
+> *Scalable Vector Graphics*
+
+*基于XML的矢量图*
+
+- `<svg>`     *画布*
+- **viewBox**    画布可视范围
+
+
+
+## Canvas
+
+> *画布，位图*
+
+
+
+
+
+
 # NodeJs
 
 
