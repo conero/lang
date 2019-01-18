@@ -45,6 +45,7 @@ class Solution:
         """
         if len(A) < 3:
             return 0
+        # 三角形三边关系： 任意两边之和大于第三边，任意两边之差小于第三边         
 
 
 
