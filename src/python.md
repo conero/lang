@@ -10,7 +10,7 @@
 
 - 官网:  https://www.python.org/
 
-//@TODO *语言学习: http://www.pythondoc.com/pythontutorial3/classes.html*
+//@TODO *语言学习: http://www.pythondoc.com/pythontutorial3/stdlib.html*
 
 
 
@@ -1006,9 +1006,11 @@ raise Exception("foo occurred").with_traceback(tracebackobj)
 
 
 
-_Python 中任何一个“.”之后的命名为 *属性*。_
+_Python 中任何一个“.”之后的命名为 *属性*。模块的属性和模块中的全局命名有直接的映射关系：它们共享同一命名空间。属性可以是只读过或写的，读写可以赋值，也可以`del`删除属性值。_
 
 
+
+_[global](https://docs.python.org/3/reference/simple_stmts.html#global) 语句用以指明某个特定的变量为全局作用域，并重新绑定它。[nonlocal](https://docs.python.org/3/reference/simple_stmts.html#nonlocal) 语句用以指明某个特定的变量为封闭作用域，并重新绑定它。_
 
 
 
@@ -1025,7 +1027,16 @@ class ClassName:
     
     
 # 继承语法
+# BaseClassName -> DerivedClassName
 class DerivedClassName(BaseClassName):
+    <statement-1>
+    .
+    .
+    .
+    <statement-N>
+    
+# 多继承
+class DerivedClassName(Base1, Base2, Base3):
     <statement-1>
     .
     .
@@ -1035,7 +1046,7 @@ class DerivedClassName(BaseClassName):
 
 
 
-*类的基本属性*
+*类的基本属性。与PHP/Java等语言不同，实例化类无需`new`关键字。*
 
 ```python
 class ClassName:
@@ -1045,10 +1056,85 @@ class ClassName:
 class CN1:
     # 使用变量
     __privateV1 = 2
+    pub_v1 = 'public variable'		# 公共变量
     def __init__(self, args1, args2):
         """ x = CN1(args1, args2) 实例化类 """
         pass
 ```
+
+
+
+> **私有变量**
+
+大多数 Python 代码：以一个下划线开头的命名（例如 `_spam` ）会被处理为 API 的非公开部分（无论它是一个函数、方法或数据成员）。它会被视为一个实现细节，无需公开。
+
+
+
+*用户自定义异常也可以是类。利用这个机制可以创建可扩展的异常体系。*
+
+
+
+> **迭代器**
+
+_定义一个 [__iter__()](https://docs.python.org/3/reference/datamodel.html#object.__iter__) 方法，使其返回一个带有 [__next__()](https://docs.python.org/3/library/stdtypes.html#iterator.__next__) 方法的对象。如果这个类已经定义了 [__next__()](https://docs.python.org/3/library/stdtypes.html#iterator.__next__) ，那么 [__iter__()](https://docs.python.org/3/reference/datamodel.html#object.__iter__) 只需要返回 `self`:_
+
+```python
+class Reverse:
+    """Iterator for looping over a sequence backwards."""
+    def __init__(self, data):
+        self.data = data
+        self.index = len(data)
+    def __iter__(self):
+        return self
+    def __next__(self):
+        if self.index == 0:
+            raise StopIteration
+        self.index = self.index - 1
+        return self.data[self.index]
+```
+
+
+
+```powershell
+>>> rev = Reverse('spam')
+>>> iter(rev)
+<__main__.Reverse object at 0x00A1DB50>
+>>> for char in rev:
+...     print(char)
+...
+m
+a
+p
+s
+```
+
+
+
+> **生成器**
+
+*[Generator](https://docs.python.org/3/glossary.html#term-generator) 是创建迭代器的简单而强大的工具。它们写起来就像是正规的函数，需要返回数据的时候使用 [yield](https://docs.python.org/3/reference/simple_stmts.html#yield) 语句。每次 [next()](https://docs.python.org/3/library/functions.html#next) 被调用时，生成器回复它脱离的位置*
+
+
+
+```python
+def reverse(data):
+    for index in range(len(data)-1, -1, -1):
+        yield data[index]
+```
+
+
+
+```powershell
+>>> for char in reverse('golf'):
+...     print(char)
+...
+f
+l
+o
+g
+```
+
+
 
 
 
