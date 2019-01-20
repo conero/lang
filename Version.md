@@ -16,10 +16,9 @@
     - //@TODO  [学习python 3.6 中文版教材]
   - Js.md
     - (更名) *study/Js-Framework.md -> Js.md*
-
     - (+) *添加对 WebGL的学习*
-
     - (+) *添加对 TensorFlowJs(tfjs) 的学习*
+    - (实现) *列举Js相关领域，初步对其进行学习和了解*
 
   - Web.md
     - (+) *添加对Web的知识的学习*
@@ -28,10 +27,8 @@
     - (+) *添加 JetBrains IED，添加常用快捷键。*
     - (+) *添加常用软件列表*
   - *software/Powershell.md*
-
     - (+) *优化 ps文档*
   - *rust/rust.md*
-
     - (优化) *完善文档，二次阅读*
 - *首页*
 
