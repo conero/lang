@@ -5,7 +5,7 @@
 
 ## V3
 
-### v3.2.0-(alpha)
+### v3.2.0/20190121
 
 > *<span style="color: red;">每一次提交必须完善该内容</span>*
 
@@ -13,7 +13,6 @@
   - *python.md*
     - (优化) *对其官网文档的基本学习：built-in 函数*
     - (优化) *通过的[中文版文档](http://www.pythondoc.com/pythontutorial3/index.html)的再次学习优化文档*
-    - //@TODO  [学习python 3.6 中文版教材]
   - Js.md
     - (更名) *study/Js-Framework.md -> Js.md*
     - (+) *添加对 WebGL的学习*
