@@ -10,8 +10,6 @@
 
 - 官网:  https://www.python.org/
 
-//@TODO *语言学习: http://www.pythondoc.com/pythontutorial3/stdlib.html*
-
 
 
 
@@ -1136,14 +1134,12 @@ g
 
 
 
-
-
 ## 标准库
 
 > 主要标准库介绍
 
 - `os`  操作系统接口
-- `shutil` 高水平文件操作
+- `shutil` *高水平文件操作，针对日常的文件和目录管理任务*
 - `glob`  *文件/目录通配符搜索*
 - `sys`  命令行参数解析
 - `re` *字符串正则表达式*
@@ -1211,6 +1207,7 @@ g
 - **微软Windows 操作特定服务** _<span style="color:blue;font-size:0.84em;">MS Windows Specific Services</span>_
 - **Unix操心系统支持**  _<span style="color:blue;font-size:0.84em;">Unix Specific Services</span>_
 - **超级模块** _<span style="color:blue;font-size:0.84em;">Superseded Modules</span>_
+
 
 
 ### built-in 函数
