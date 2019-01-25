@@ -411,6 +411,9 @@ $ git merge <srcBN>
 
 ```ini
 $ git branch -d <branchName>
+
+# 删除远程标签
+$ git push origin :<tagName>
 ```
 
 
