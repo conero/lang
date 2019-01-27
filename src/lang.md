@@ -1165,6 +1165,41 @@ ZQ —— 如果不想保存文件，也可以这个命令退出；
 
 
 
+## 信息安全
+
+包含 `密码学`、`数字签名`
+
+
+
+### 密码学
+
+> *Crypto*
+
+
+
+
+
+**常用加密** 解释性名词
+
+- **DES**  *Data Encryption Standard，即数据加密标准*
+- **AES**   _**Advanced Encryption Standard**(高级加密标准)，在密码学中又称Rijndael加密法。2006年，高级加密标准已然成为对称密钥加密中最流行的算法之一_
+  - 1998	
+- **DSA** *Digital Signature Algorithm (DSA)是Schnorr和ElGamal签名算法的变种，被美国NIST作为DSS(DigitalSignature Standard)。基于整数有限域离散对数难题的*
+- **ECDSA** *椭圆曲线数字签名算法(Elliptic Curve Digital Signature Algorithm)*
+- **HMAC**  *哈希消息认证码 (Hash-based Message Authentication Code)*
+- **MD5**  *MD5消息摘要算法（英语：MD5 Message-Digest Algorithm），一种被广泛使用的密码散列函数，可以产生出一个128位（16字节）的散列值（hash value），用于确保信息传输完整一致*
+  - 1991
+- **RC4**   *(Rivest Cipher 4)，属于对称加密算法*
+- **RSA**  *RSA加密算法是一种非对称加密算法。在公开密钥加密和电子商业中RSA被广泛使用。RSA是1977年由罗纳德·李维斯特（Ron Rivest）、阿迪·萨莫尔（Adi Shamir）和伦纳德·阿德曼（Leonard Adleman）一起提出的。*
+  - 1977
+- **SHA1**   *安全哈希算法（Secure Hash Algorithm）主要适用于数字签名标准 （Digital Signature Standard DSS）里面定义的数字签名算法（Digital Signature Algorithm DSA）*
+- **SHA256**  *哈希函数，又称散列算法*
+- **SHA512**
+
+
+
+
+
 
 
 ## 区块链
