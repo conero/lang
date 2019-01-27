@@ -1175,6 +1175,10 @@ ZQ —— 如果不想保存文件，也可以这个命令退出；
 
 > *Crypto*
 
+*块密码常用工作模式：ECB (Electronic codebook), CBC (Cipher-block chaining), OFB, CFB, CTR, XTS等。*
+
+*__初始化向量(IV)__  (Initialization Vector) 是许多工作模式中用于随机化加密的一块数据，因此可以由相同的明文，相同的密钥产生不同的密文，而无需重新产生密钥，避免了通常相当复杂的这一过程。*
+
 
 
 
