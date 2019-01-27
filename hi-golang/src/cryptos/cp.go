@@ -75,5 +75,24 @@ func main() {
 	bin.Adapter(router)
 	bin.Run()
 	//fmt.Println(aesEnTxt("gfgfgfgdsddksdsdjkj", sha256EnApp("yh")))
-	ExampleNewGCM_encrypt()
+	//
+	//// GCM
+	//ExampleNewGCM_encrypt()
+	//ExampleNewGCM_decrypt()
+	//
+	//// CBC
+	//ExampleNewCBCEncrypter()
+	//ExampleNewCBCDecrypter()
+	//
+	//// CFB
+	//ExampleNewCFBEncrypter()
+	//ExampleNewCFBDecrypter()
+	//
+	//// CTR
+	//ExampleNewCTR()
+	//// OFB
+	//ExampleNewOFB()
+	//
+	//ExampleStreamWriter()
+	//ExampleStreamReader()
 }
