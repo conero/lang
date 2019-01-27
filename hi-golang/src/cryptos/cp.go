@@ -6,10 +6,24 @@ import (
 	"github.com/conero/uymas/str"
 )
 
+const (
+	CmdMd5En   = "md5"
+	CmdShaEn   = "sha1"
+	CmdAllBase = "all"
+	CmdAESCBC  = "aes"
+	CmdRsaOaep  = "rsa"
+	CmdEn      = "en"
+	CmdDe      = "de"
+	DefKey     = "Joshua Conero"
+)
+
 func EmptyAction() {
 	fmt.Println(" go 加密库学测试：")
 	fmt.Println(" $ cmd [options]")
 	fmt.Println(" $ md5 <text> 文本编码，其他[sha1, all]类似")
+	fmt.Println(" $ aes <text> [options] aes 加密测试(rsa类似)")
+	fmt.Println(" 		--k=keys   指定加密秘钥")
+	fmt.Println(" 		--de       跟换为解密")
 	fmt.Println(" $ en   加密")
 	fmt.Println(" $ de   解密")
 }
@@ -31,16 +45,6 @@ func (c BaseCmds) BadEnter(s string) {
 
 var baseCmds BaseCmds
 var app bin.App
-
-const (
-	CmdMd5En   = "md5"
-	CmdShaEn   = "sha1"
-	CmdAllBase = "all"
-	CmdAESCBC  = "aes"
-	CmdEn      = "en"
-	CmdDe      = "de"
-	DefKey     = "Joshua Conero"
-)
 
 func RouterHundler(opt string) {
 	app = bin.GetApp()
@@ -67,17 +71,41 @@ func RouterHundler(opt string) {
 
 		var ctxt string
 		txtType := "明文"
-		if app.HasSetting("de"){
-			ctxt = aesDnTxt(txt, key)
+		if app.HasSetting("de") {
+			ctxt = rsaDe(txt, key)
 			txtType = "密文"
 			txt = "..."
-		}else {
+		} else {
 			ctxt = aesEnTxt(txt, key)
 		}
 
 		fmt.Printf(" (aes)%s： %s\n", txtType, txt)
 		fmt.Printf(" (aes)秘钥： %s\n", key)
 		fmt.Printf(" %s ", ctxt)
+	case str.InQuei(opt, []string{CmdRsaOaep}) > -1:
+		k, isK := app.Data["k"]
+		key := string(rsaLabel)
+		if isK {
+			if _, isString := k.(string); isString {
+				key = k.(string)
+			}
+		}
+		txt := app.Next(CmdRsaOaep)
+
+		var ctxt string
+		txtType := "明文"
+		if app.HasSetting("de") {
+			ctxt = rsaDe(txt, key)
+			txtType = "密文"
+			txt = "..."
+		} else {
+			ctxt = rsaEn(txt, key)
+		}
+
+		fmt.Printf(" (rsa)%s： %s\n", txtType, txt)
+		fmt.Printf(" (rsa)秘钥： %s\n", key)
+		fmt.Printf(" %s ", ctxt)
+
 	case str.InQuei(opt, []string{CmdAllBase}) > -1: // all
 		txt := app.Next(CmdAllBase)
 		fmt.Printf(" 明文： %s\n", txt)
