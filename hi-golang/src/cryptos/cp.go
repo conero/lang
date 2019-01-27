@@ -9,6 +9,7 @@ import (
 func EmptyAction() {
 	fmt.Println(" go 加密库学测试：")
 	fmt.Println(" $ cmd [options]")
+	fmt.Println(" $ md5 <text> 文本编码，其他[sha1, all]类似")
 	fmt.Println(" $ en   加密")
 	fmt.Println(" $ de   解密")
 }
@@ -32,34 +33,60 @@ var baseCmds BaseCmds
 var app bin.App
 
 const (
-	CmdMd5En = "md5"
-	CmdShaEn = "sha1"
+	CmdMd5En   = "md5"
+	CmdShaEn   = "sha1"
 	CmdAllBase = "all"
-	CmdEn = "en"
-	CmdDe = "de"
-
+	CmdAESCBC  = "aes"
+	CmdEn      = "en"
+	CmdDe      = "de"
+	DefKey     = "Joshua Conero"
 )
 
-func RouterHundler(opt string)  {
+func RouterHundler(opt string) {
 	app = bin.GetApp()
 	switch {
 	case str.InQuei(opt, []string{CmdEn}) > -1:
 		baseCmds.EnApp()
-	case str.InQuei(opt, []string{CmdMd5En}) > -1:			// md5
+	case str.InQuei(opt, []string{CmdMd5En}) > -1: // md5
 		txt := app.Next(CmdMd5En)
 		fmt.Printf(" (md5)明文： %s\n", txt)
 		fmt.Printf(" %s ", MdsEnApp(txt))
-	case str.InQuei(opt, []string{CmdShaEn}) > -1:			// sha1
+	case str.InQuei(opt, []string{CmdShaEn}) > -1: // sha1
 		txt := app.Next(CmdShaEn)
 		fmt.Printf(" (sha1)明文： %s\n", txt)
 		fmt.Printf(" %s ", Sha1EnApp(txt))
-	case str.InQuei(opt, []string{CmdAllBase}) > -1:			// all
+	case str.InQuei(opt, []string{CmdAESCBC}) > -1:
+		k, isK := app.Data["k"]
+		key := DefKey
+		if isK {
+			if _, isString := k.(string); isString {
+				key = k.(string)
+			}
+		}
+		txt := app.Next(CmdAESCBC)
+
+		var ctxt string
+		txtType := "明文"
+		if app.HasSetting("de"){
+			ctxt = aesDnTxt(txt, key)
+			txtType = "密文"
+			txt = "..."
+		}else {
+			ctxt = aesEnTxt(txt, key)
+		}
+
+		fmt.Printf(" (aes)%s： %s\n", txtType, txt)
+		fmt.Printf(" (aes)秘钥： %s\n", key)
+		fmt.Printf(" %s ", ctxt)
+	case str.InQuei(opt, []string{CmdAllBase}) > -1: // all
 		txt := app.Next(CmdAllBase)
 		fmt.Printf(" 明文： %s\n", txt)
 		fmt.Printf(" md5: %s\n", MdsEnApp(txt))
 		fmt.Printf(" sha1: %s\n", Sha1EnApp(txt))
 		fmt.Printf(" sha256: %s\n", sha256EnApp(txt))
 		fmt.Printf(" sha512: %s\n", sha512EnApp(txt))
+		fmt.Printf("\n")
+		fmt.Printf(" aes(key=%s): %s\n", DefKey, aesEnTxt(txt, DefKey))
 	case str.InQuei(opt, []string{CmdShaEn}) > -1:
 		baseCmds.DeApp()
 	default:
@@ -69,13 +96,14 @@ func RouterHundler(opt string)  {
 
 func main() {
 	router := &bin.Router{
-		EmptyAction:    EmptyAction,
+		EmptyAction:  EmptyAction,
 		UnfindAction: RouterHundler,
 	}
 	bin.Adapter(router)
 	bin.Run()
-	//fmt.Println(aesEnTxt("gfgfgfgdsddksdsdjkj", sha256EnApp("yh")))
-	//
+	//fmt.Println(aesEnTxt("dududjdjhdsh 杨华", "yh"))
+	//fmt.Println(aesDnTxt(aesEnTxt("dududjdjhdsh 杨华", "yh"), "yh"))
+
 	//// GCM
 	//ExampleNewGCM_encrypt()
 	//ExampleNewGCM_decrypt()

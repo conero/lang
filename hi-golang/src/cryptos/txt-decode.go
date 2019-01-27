@@ -30,7 +30,6 @@ func sha256EnApp(s string) string {
 	return fmt.Sprintf("%x", dd)
 }
 
-
 // sha512
 func sha512EnApp(s string) string {
 	dd := sha512.Sum512([]byte(s))
