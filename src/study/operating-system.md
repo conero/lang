@@ -335,16 +335,87 @@
 
 ## vim
 
+旧版命令 *`vi`*，*`vim`全部兼容前者。`Insert` 插入文本命令*
+
 > 常用命令
 
 - `:help`			帮助
 - `:q`			        退出(quit)
   - `:q!`		取消并退出，不保存
   - `:qw`                退出且保存
+  - `ZZ`                  退出且保存
+- `:e!`                       丢弃修改并打开原文件
 
 
 
-//@TODO   *微信文章需要学习*
+
+
+> 方位移动
+
+```
+  k
+h   l
+  j  
+```
+
+- `0`   *行首(数字)*
+- `$`   *行尾*
+- `w`   *下一个单词起始处*
+- `nw`  *n个单词以后*
+- `e`   *单词末尾，与`w`类似*
+- `gg` *文件起始处*
+- `G`  *文件结尾处*
+
+
+
+> 翻页
+
+- `ctrl + e`    *向下滚动一行*
+- `ctrl + y`    *向上滚动一行*
+- `Ctrl + f`    上一页
+- `Ctrl + b`    下一页
+- `ctrl + u`    上半页
+- `ctrl + d`    下半页
+
+
+
+## shell
+
+> Bourne Shell 变量，`$<NAME>`  内部命令
+
+- `HOME`   *当前用户所在主页*
+- `PATH`    *环境变量*
+
+
+
+
+
+### [bash](http://www.gnu.org/software/bash/manual/)
+
+> 内部变量
+
+- `BASH`    *当前正在执行的 bash 实例*
+- `BASHPID`   *当前 bash 的进程 ID*
+- `BASH_VERSION`    *bash 版本信息*
+- `LANG`         *语言信息*
+
+
+
+
+
+>*常用 Builtin 内建命令*
+
+- `cd`     *改变当前的工作目录(current directory.)*
+- `pwd`   *输出当前的工作目录，`$PWD` 对应常量*
+- `exit`  *关闭当前的 shell 终端，同`logout`*
+- `times`  *输出时间*
+- `echo`    *输出到终端*
+- `help`    *用于查看内建命令*
+- `source <filename>`    *执行指定的，shell 文件*
+
+
+
+
 
 
 

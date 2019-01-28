@@ -9,6 +9,9 @@
 - **src**
   - *lang.md*
     - (+) *添加 `密码` 相关的知识，学习常见的加密算法*
+  - *study/operating-system.md*
+    - (+) *添加/完善 `vim/vi` 常用命令*
+    - (完善) *完善 bash/shell 命令*
 
 
 
