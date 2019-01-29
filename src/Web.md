@@ -131,11 +131,23 @@
 
 
 
-### HTML
+## HTML/CSS
 
-#### HTML5
+> 关于css中的计量单位: *px*, *em*, *rem*
+
+- *`px`          px像素 (Pixel)，像素px是相对于显示器屏幕分辨率而言的。*
+- *`em`        相对长度单位。相对于当前对象内文本的字体尺寸*
+- *`rem`    相对单位（root em，根em)；与`em`的区别在于使用rem为元素设定字体大小时，仍然是相对大小，但相对的只是HTML根元素*
+
+
+
+
+
+### HTML5
 
 > [html 5.1](https://www.w3.org/TR/html51/index.html)
+
+
 
 
 

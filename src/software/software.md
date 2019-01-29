@@ -6,11 +6,14 @@
 
 ## 常用软件列表
 
-| 软件名称      | 商用类型 | 分类          | 备注               | 语言 |
-| ------------- | -------- | ------------- | ------------------ | ---- |
-| PowerDesigner | 商业     | 数据库工具    | 数据库模型设计工具 | SQL  |
-| PhpStrom(PS)  | 商业     | JetBrains IDE | PHP 代码编辑器     | PHP  |
-|               |          |               |                    |      |
+| 软件名称      | 商用类型 | 分类                | 备注                                                     | 语言     |
+| ------------- | -------- | ------------------- | -------------------------------------------------------- | -------- |
+| PowerDesigner | 商业     | 数据库工具          | 数据库模型设计工具                                       | SQL      |
+| PhpStrom(PS)  | 商业     | JetBrains IDE       | PHP 代码编辑器                                           | PHP      |
+| fiddler       | 免费     | web 调试代理 (http) | [查看官网](https://docs.telerik.com/fiddler)             | .NET(C#) |
+| *Wireshark*   | 免费     | 网络抓包工具        | [https://www.wireshark.org/](https://www.wireshark.org/) |          |
+
+
 
 
 

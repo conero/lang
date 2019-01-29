@@ -4,7 +4,7 @@
 
 ## V3
 
-### v3.3.0(alpha)
+### v3.3.0-(alpha)
 
 - **src**
   - *lang.md*
@@ -12,6 +12,10 @@
   - *study/operating-system.md*
     - (+) *添加/完善 `vim/vi` 常用命令*
     - (完善) *完善 bash/shell 命令*
+  - software/software.md
+    - (完善) *添加网络抓包工具*
+  - *web.md*
+    - (完善) *css 中px, em, rem 的区别*
 
 
 
