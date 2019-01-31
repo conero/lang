@@ -14,6 +14,7 @@
     - (完善) *完善 bash/shell 命令*
   - software/software.md
     - (完善) *添加网络抓包工具*
+    - (完善) *SQL developer 结束 Excel(csv) 导出到Oracle数据库的方法*
   - *web.md*
     - (完善) *css 中px, em, rem 的区别*
 

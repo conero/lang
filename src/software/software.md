@@ -63,6 +63,17 @@ FK_%.U40:REFR%
 
 
 
+> **结合oracle 数据库和 SQL Developer 做数据处理**
+
+- *场景： 一堆数据 Excel 数据表，通过对其的逻辑处理得到另一个结果集。将 Excel 数据导入 Oracle，然后借助 SQL 特性处理*
+  1. *整体处理 Excel 数据表，使首行为同数据表对应的列字段集合*
+  2. *将 Excel 格式另保存为 `csv` 格式*
+  3. *创建对应的数据表*
+  4. *使用 SQL Developer 导入，`csv` 数据*
+  5. *通过 SQL 处理数据*
+
+
+
 ## IDEs
 
 
