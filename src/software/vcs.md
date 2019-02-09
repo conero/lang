@@ -324,9 +324,12 @@ $ git tag -d <tagName>
 
 # 删除远程标签
 $ git push origin :<tagName>
+
+# 本地删除远程已经不存在的分支
+# 同时将远程，tag 同步到本地
+$ git fetch --prune
+$ git fetch -p
 ```
-
-
 
 
 
