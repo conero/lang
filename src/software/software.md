@@ -6,12 +6,26 @@
 
 ## 常用软件列表
 
-| 软件名称      | 商用类型 | 分类                | 备注                                                     | 语言     |
-| ------------- | -------- | ------------------- | -------------------------------------------------------- | -------- |
-| PowerDesigner | 商业     | 数据库工具          | 数据库模型设计工具                                       | SQL      |
-| PhpStrom(PS)  | 商业     | JetBrains IDE       | PHP 代码编辑器                                           | PHP      |
-| fiddler       | 免费     | web 调试代理 (http) | [查看官网](https://docs.telerik.com/fiddler)             | .NET(C#) |
-| *Wireshark*   | 免费     | 网络抓包工具        | [https://www.wireshark.org/](https://www.wireshark.org/) |          |
+| 软件名称                                                    | 商用类型  | 分类                    | 备注                                                     | 语言        |
+| ----------------------------------------------------------- | --------- | ----------------------- | -------------------------------------------------------- | ----------- |
+| PowerDesigner                                               | 商业      | 数据库工具              | 数据库模型设计工具                                       | SQL         |
+| PhpStrom(PS)                                                | 商业      | JetBrains IDE           | PHP 代码编辑器                                           | PHP         |
+| fiddler                                                     | 免费      | web 调试代理 (http)     | [查看官网](https://docs.telerik.com/fiddler)             | .NET(C#)    |
+| *Wireshark*                                                 | 免费      | 网络抓包工具            | [https://www.wireshark.org/](https://www.wireshark.org/) |             |
+| [*Typora*](https://typora.io/)                              | 免费/开源 | markdown 编辑/查看器    |                                                          | electron/Js |
+| [Anaconda](https://www.anaconda.com/)                       | 含免费    | python 科学运算包       |                                                          | python      |
+| Android Studio                                              | 免费      | Android 开发工具        | [中文官网](https://developer.android.google.cn/studio/)  |             |
+| [Axure](https://www.axure.com/)                             | 商业      | 设计工具                | 类似 Visio                                               |             |
+| [*Code*::*Blocks*](http://www.codeblocks.org/)              | 免费      | C/C++ 开发工具          | IDE                                                      |             |
+| [Cygwin](https://www.cygwin.com/)                           | 免费      | windows 的liunx支持软件 | 操作系统插件，类 Linux件                                 |             |
+| [exe4j](https://exe4j.apponic.com/)                         | 商业/免费 | Java 打包为exe的工具    | java 插件                                                | java        |
+| [Lantern](https://github.com/getlantern/lantern)            | 商业/免费 | VSN 工具                |                                                          | go          |
+| [LLVM](https://llvm.org/)                                   | 免费      | 编程语言编译器组件      | [llvm-mirror](https://github.com/llvm-mirror/llvm)       |             |
+| [Postman](https://www.getpostman.com/)                      | 免费      | API 调试工具            |                                                          | electron/Js |
+| [Q-Dir](https://q-dir.en.softonic.com/)                     | 免费      | 多窗口文件整理工具      |                                                          |             |
+| [SQLiteExpert](http://www.sqliteexpert.com/)                | 商业/免费 | sqlite 可视化管理工具   |                                                          | sqlite      |
+| [TDM-GCC](http://tdm-gcc.tdragon.net/)                      | 免费      | GCC 编译器套件          | 如windows 下为 cgo 提供gcc环境                           | gcc         |
+| [Search and Replace](http://www.funduc.com/srshareware.htm) | 免费      | 文本查询/替换工具       |                                                          |             |
 
 
 
