@@ -17,6 +17,7 @@
     - (完善) *SQL developer 结束 Excel(csv) 导出到Oracle数据库的方法*
   - *web.md*
     - (完善) *css 中px, em, rem 的区别*
+    - (+) *添加 cgi 和 fastCgi 知识*
 
 
 
