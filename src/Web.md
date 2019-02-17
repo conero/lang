@@ -32,6 +32,29 @@
 
 
 
+### Cgi 和 FastCgi
+
+- _**CGI** 是HTTP Server和一个独立的进程之间的协议，把HTTP Request的Header设置成进程的环境变量，HTTP Request的正文设置成进程的标准输入，而进程的标准输出就是HTTP Response包括Header和正文_
+- *__php-fpm__相当于是Apache+mod_php。无非php-fpm自带了FASTCGI Server，而Apache是HTTP Serve*
+
+
+
+> CGI(*Common Gateway Interface*)  通用网关接口
+
+*CGI 是Web 服务器运行时外部程序的规范,按CGI 编写的程序可以扩展服务器功能。CGI 应用程序能与浏览器进行交互,还可通过数据库API 与数据库服务器等外部数据源进行通信,从数据库服务器中获取数据。格式化为HTML文档后，发送给浏览器，也可以将从浏览器获得的数据放到数据库中。*
+
+
+
+*CGI是外部应用程序（CGI程序）与WEB服务器之间的接口标准，是在CGI程序和Web服务器之间传递信息的过程。CGI规范允许Web服务器执行外部程序，并将它们的输出发送给Web浏览器，CGI将Web的一组简单的静态超媒体文档变成一个完整的新的交互式媒体。*
+
+
+
+> FastCGI (*Fast Common Gateway Interface*)
+
+_FastCGI像是一个常驻(long-live)型的CGI，它可以一直执行着，只要激活后，不会每次都要花费时间去fork一次(这是CGI最为人诟病的fork-and-execute 模式)。它还支持分布式的运算, 即 FastCGI 程序可以在网站服务器以外的主机上执行并且接受来自其它网站服务器来的请求。_
+
+
+
 ## WEB
 
 ### *Web1.0*
