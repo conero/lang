@@ -1,13 +1,30 @@
-// 2019年2月17日 星期日
-// 杨辉三角生成
-// 2019.2 PHP工程师面试题
 package main
 
 import "fmt"
 
-func YhTriangle(n int) [][]int {
+/**
+@date 2019年2月18日 星期一
+@description 给定一个非负整数 numRows，生成杨辉三角的前 numRows 行。
+@link https://leetcode-cn.com/problems/pascals-triangle/
+@name pascals-triangle
+
+
+示例:
+输入: 5
+输出:
+[
+	 [1],
+	[1,1],
+   [1,2,1],
+  [1,3,3,1],
+ [1,4,6,4,1]
+]
+
+*/
+
+func generate(numRows int) [][]int {
 	var quque [][]int = [][]int{}
-	for i := 1; i <= n; i++ {
+	for i := 1; i <= numRows; i++ {
 		if len(quque) == 0 {
 			quque = append(quque, []int{1})
 			continue
@@ -30,6 +47,5 @@ func YhTriangle(n int) [][]int {
 }
 
 func main() {
-	fmt.Println(YhTriangle(7))
-	fmt.Println(YhTriangle(10))
+	fmt.Println(generate(5))
 }
