@@ -6,6 +6,8 @@
 
 ### v3.3.0-(alpha)
 
+- *Readme 调整*
+
 - **src**
   - *lang.md*
     - (+) *添加 `密码` 相关的知识，学习常见的加密算法*
@@ -18,6 +20,11 @@
   - *web.md*
     - (完善) *css 中px, em, rem 的区别*
     - (+) *添加 cgi 和 fastCgi 知识*
+  - (+) *database.md*
+    - (新增) 通用数据库说明文档，编写相关的数据库理论
+  - (+) *database*
+    - 新增数据库子目录文件
+      - (调整) *src/software/Oracle-11g* 更名为 *src/database/Oracle-11g*
 
 
 
