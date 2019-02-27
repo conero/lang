@@ -38,6 +38,43 @@ import (
 func strWithout3a3b(A int, B int) string {
 	var s string = ""
 	//ab := A + B
+	// 字典
+	dick := map[string]string{
+		"A": "a",
+		"B": "b",
+	}
+	var max, min int
+	var maxK, minK string
+	if A -B > 0{
+		max, min = A, B
+		maxK, minK = "A", "B"
+	}else {
+		max, min = B, A
+		maxK, minK = "B", "A"
+	}
+	//fmt.Println([]interface{}{max, min, maxK, minK})
+	//fmt.Println(dick)
+	for {
+		maxCt, minCt := max - 2, min - 2
+		max -= 2
+		min -= 2
+		if maxCt > 0{
+			s += strings.Repeat(dick[maxK], maxCt)
+		}
+		if minCt > 0{
+			s += strings.Repeat(dick[minK], minCt)
+		}
+		if max <= 0 && min <= 0 {
+			break
+		}
+	}
+	return s
+}
+
+// d1
+func strWithout3a3b_draft1(A int, B int) string {
+	var s string = ""
+	//ab := A + B
 	for {
 		// a
 		if A < 3 {
