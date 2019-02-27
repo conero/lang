@@ -46,9 +46,79 @@ import "fmt"
 
 // 解
 func findJudge(N int, trust [][]int) int {
-	return -1
+	psMap := map[int][]int{}
+	trustList := map[int]bool{}
+	judge := -1
+	if len(trust) == 0 && N == 1{
+		judge = 1
+	}
+	for _, ts := range trust {
+		p, t := ts[0], ts[1]
+		dd, has := psMap[t]
+		if has {
+			psMap[t] = append(dd, p)
+		} else {
+			psMap[t] = []int{p}
+		}
+		trustList[p] = true
+		// 检查到法官
+		//fmt.Println(len(psMap[t]), psMap[t])
+		//if len(psMap[t]) == N-1 {
+		//	judge = t
+		//	_, noTs := trustList[t]
+		//	if noTs{
+		//		judge = -1
+		//	}
+		//}
+	}
+	//fmt.Println(psMap)
+	for jd, ps := range psMap {
+		if len(ps) == N-1 {
+			judge = jd
+			_, noTs := trustList[jd]
+			if noTs {
+				judge = -1
+			}
+		}
+	}
+	return judge
 }
 
 func main() {
-	fmt.Println(findJudge(3, [][]int{[]int{1, 3}, []int{2, 3}}))
+	var pp, comp int
+
+	// 1
+	pp = findJudge(2, [][]int{[]int{1, 2}})
+	comp = 2
+	fmt.Println(comp, pp, pp == comp)
+
+	// 2
+	pp = findJudge(3, [][]int{[]int{1, 3}, []int{2, 3}})
+	comp = 3
+	fmt.Println(comp, pp, pp == comp)
+
+	//
+	pp = findJudge(3, [][]int{[]int{1, 2}, []int{2, 3}, []int{3, 1}})
+	comp = -1
+	fmt.Println(comp, pp, pp == comp)
+
+	//
+	pp = findJudge(3, [][]int{[]int{1, 2}, []int{2, 3}})
+	comp = -1
+	fmt.Println(comp, pp, pp == comp)
+
+	//
+	pp = findJudge(4, [][]int{[]int{1, 3}, []int{1, 4}, []int{2, 3}, []int{2, 4}, []int{4, 3}})
+	comp = 3
+	fmt.Println(comp, pp, pp == comp)
+
+	//
+	pp = findJudge(3, [][]int{[]int{1, 3}, []int{2, 3}, []int{3, 1}})
+	comp = -1
+	fmt.Println(comp, pp, pp == comp)
+
+	//
+	pp = findJudge(1, [][]int{})
+	comp = 1
+	fmt.Println(comp, pp, pp == comp)
 }

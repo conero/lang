@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="419b9284-fa6b-4e88-b954-9d762bb11861" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/leetcode/string-without-aaa-or-bbb.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/leetcode/string-without-aaa-or-bbb.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/leetcode/find-the-town-judge.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/leetcode/find-the-town-judge.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -13,11 +12,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/leetcode/string-without-aaa-or-bbb.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="62">
-              <caret line="39" selection-start-line="39" selection-end-line="39" />
+            <state relative-caret-position="277">
+              <caret line="55" lean-forward="true" selection-start-line="55" selection-end-line="55" />
               <folding>
                 <element signature="e#14#42#0" expanded="true" />
                 <element signature="n#!!block;n#strWithout3a3b_draft1#0" />
@@ -27,11 +26,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/leetcode/find-the-town-judge.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="798">
-              <caret line="42" column="34" selection-start-line="42" selection-start-column="34" selection-end-line="42" selection-end-column="34" />
+            <state relative-caret-position="270">
+              <caret line="52" column="17" selection-start-line="52" selection-start-column="17" selection-end-line="52" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -119,8 +118,8 @@
         <option value="$PROJECT_DIR$/test/interview/yang-hui-triangle.go" />
         <option value="$PROJECT_DIR$/src/leetcode/pascals-triangle.go" />
         <option value="$PROJECT_DIR$/src/leetcode/pascals-triangle-ii.go" />
-        <option value="$PROJECT_DIR$/src/leetcode/find-the-town-judge.go" />
         <option value="$PROJECT_DIR$/src/leetcode/string-without-aaa-or-bbb.go" />
+        <option value="$PROJECT_DIR$/src/leetcode/find-the-town-judge.go" />
       </list>
     </option>
   </component>
@@ -200,7 +199,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Go Build.go build string-without-aaa-or-bbb.go">
+  <component name="RunManager" selected="Go Build.go build find-the-town-judge.go">
     <configuration name="go build find-the-town-judge.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="hi-golang" />
       <working_directory value="$PROJECT_DIR$/" />
@@ -250,8 +249,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Go Build.go build string-without-aaa-or-bbb.go" />
         <item itemvalue="Go Build.go build find-the-town-judge.go" />
+        <item itemvalue="Go Build.go build string-without-aaa-or-bbb.go" />
         <item itemvalue="Go Build.go build pascals-triangle-ii.go" />
         <item itemvalue="Go Build.go build pascals-triangle.go" />
         <item itemvalue="Go Build.go build yang-hui-triangle.go" />
@@ -673,8 +672,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/leetcode/string-without-aaa-or-bbb.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="62">
-          <caret line="39" selection-start-line="39" selection-end-line="39" />
+        <state relative-caret-position="277">
+          <caret line="55" lean-forward="true" selection-start-line="55" selection-end-line="55" />
           <folding>
             <element signature="e#14#42#0" expanded="true" />
             <element signature="n#!!block;n#strWithout3a3b_draft1#0" />
@@ -685,8 +684,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/leetcode/find-the-town-judge.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="798">
-          <caret line="42" column="34" selection-start-line="42" selection-start-column="34" selection-end-line="42" selection-end-column="34" />
+        <state relative-caret-position="270">
+          <caret line="52" column="17" selection-start-line="52" selection-start-column="17" selection-end-line="52" selection-end-column="17" />
         </state>
       </provider>
     </entry>
