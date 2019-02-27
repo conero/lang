@@ -33,42 +33,25 @@ import (
 		0 <= B <= 100
 		对于给定的 A 和 B，保证存在满足要求的 S。
 */
-// @TODO 未解决
+// @TODO 未解决 - NeedToDoStill.
 // 解题
 func strWithout3a3b(A int, B int) string {
-	var s string = ""
-	//ab := A + B
-	// 字典
-	dick := map[string]string{
-		"A": "a",
-		"B": "b",
-	}
-	var max, min int
-	var maxK, minK string
-	if A -B > 0{
-		max, min = A, B
-		maxK, minK = "A", "B"
-	}else {
-		max, min = B, A
-		maxK, minK = "B", "A"
-	}
-	//fmt.Println([]interface{}{max, min, maxK, minK})
-	//fmt.Println(dick)
-	for {
-		maxCt, minCt := max - 2, min - 2
-		max -= 2
-		min -= 2
-		if maxCt > 0{
-			s += strings.Repeat(dick[maxK], maxCt)
+	sArr := []string{}
+	for A > 0 || B > 0 {
+		firstA := A > B
+		sArrLen := len(sArr)
+		if sArrLen >= 2 && sArr[sArrLen-1] == sArr[sArrLen-2] {
+			firstA = sArr[sArrLen-1] == "b"
 		}
-		if minCt > 0{
-			s += strings.Repeat(dick[minK], minCt)
-		}
-		if max <= 0 && min <= 0 {
-			break
+		if firstA {
+			sArr = append(sArr, "a")
+			A -= 1
+		} else {
+			sArr = append(sArr, "b")
+			B -= 1
 		}
 	}
-	return s
+	return strings.Join(sArr, "")
 }
 
 // d1
@@ -100,10 +83,47 @@ func strWithout3a3b_draft1(A int, B int) string {
 	return s
 }
 
+// d2
+func strWithout3a3b_draft2(A int, B int) string {
+	var s string = ""
+	//ab := A + B
+	// 字典
+	dick := map[string]string{
+		"A": "a",
+		"B": "b",
+	}
+	var max, min int
+	var maxK, minK string
+	if A-B > 0 {
+		max, min = A, B
+		maxK, minK = "A", "B"
+	} else {
+		max, min = B, A
+		maxK, minK = "B", "A"
+	}
+	//fmt.Println([]interface{}{max, min, maxK, minK})
+	//fmt.Println(dick)
+	for {
+		maxCt, minCt := max-2, min-2
+		max -= 2
+		min -= 2
+		if maxCt > 0 {
+			s += strings.Repeat(dick[maxK], maxCt)
+		}
+		if minCt > 0 {
+			s += strings.Repeat(dick[minK], minCt)
+		}
+		if max <= 0 && min <= 0 {
+			break
+		}
+	}
+	return s
+}
+
 // 运行
 func main() {
 	fmt.Println(strWithout3a3b(5, 7))
 	fmt.Println(strWithout3a3b(1, 2))
 	fmt.Println(strWithout3a3b(4, 1))
-	fmt.Println(strWithout3a3b(1, 3))	//bbab
+	fmt.Println(strWithout3a3b(1, 3)) //bbab
 }
