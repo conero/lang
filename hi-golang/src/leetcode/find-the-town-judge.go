@@ -49,7 +49,7 @@ func findJudge(N int, trust [][]int) int {
 	psMap := map[int][]int{}
 	trustList := map[int]bool{}
 	judge := -1
-	if len(trust) == 0 && N == 1{
+	if len(trust) == 0 && N == 1 {
 		judge = 1
 	}
 	for _, ts := range trust {
@@ -61,17 +61,8 @@ func findJudge(N int, trust [][]int) int {
 			psMap[t] = []int{p}
 		}
 		trustList[p] = true
-		// 检查到法官
-		//fmt.Println(len(psMap[t]), psMap[t])
-		//if len(psMap[t]) == N-1 {
-		//	judge = t
-		//	_, noTs := trustList[t]
-		//	if noTs{
-		//		judge = -1
-		//	}
-		//}
 	}
-	//fmt.Println(psMap)
+	// 得到法官
 	for jd, ps := range psMap {
 		if len(ps) == N-1 {
 			judge = jd
