@@ -1,0 +1,14 @@
+{
+  "name": "tfjs",
+  "version": "1.0.0",
+  "description": "learning the tfjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Joshua Conero",
+  "license": "ISC",
+  "dependencies": {
+    "@tensorflow/tfjs": "^0.14.2"
+  }
+}
