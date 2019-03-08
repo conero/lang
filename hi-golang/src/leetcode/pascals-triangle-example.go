@@ -1,4 +1,9 @@
 package main
+// @name 824. 山羊拉丁文
+// @link: https://leecode-cn.com/problems/goat-latin/
+// @data 2019年3月8日 星期五
+
+
 
 import "fmt"
 
