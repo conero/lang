@@ -1306,9 +1306,36 @@ _挖矿是个将待确认的交易数据包含到区块链中，从而完成对�
 
 *Central Processing Unit*
 
+##### Intel 处理器
 
 
 
+> 英特尔公司(**Intel Corporation**)
+
+- 首家推出 *`X86`* 架构处理器的公司
+- 成立时间： 1968
+  - 由罗伯特·诺伊斯、高登·摩尔、安迪·葛洛夫，以“**集成电子**”（**Int**egrated **El**ectronics）之名在1968年7月18日共同创办公司
+
+
+
+_**生产芯片：**_
+
+- *SRAM(Intel 4004)*
+- X86
+  - Intel 8086(*1978*)、Intel 8088
+- 386处理器
+- 486处理器(*1989*)
+- Pentium
+  - 	P5(*1993*)、P6
+- Itanium 
+- Celeron
+- Core(酷睿)
+  - i3/i5/i7/i9
+  - ix 5xxxx  5th(五代)
+  - ix 6xxxx  6th(六代)
+  - ix 7xxxx  7th(七代)
+  - ix 8xxxx  8th(八代)
+  - ix 9xxxx  9th(九代)
 
 
 
