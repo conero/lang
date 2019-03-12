@@ -71,7 +71,21 @@ class Solution {
                     $changes[10] += 1;
                 }
             }elseif ($my == 20){
-                if($changes[5]*5 + $changes[10]*10 < 15){
+//                if($changes[5]*5 + $changes[10]*10 < 15){
+//                    return false;
+//                }
+                $cgble = false;
+                if($changes[5] >= 3){   // 全部找 5 + 5 + 5
+                    $cgble = true;
+                    $changes[20] += 1;
+                    $changes[5] -= 3;
+                }elseif ($changes[5] >= 1 && $changes[10] >= 1){  // 5 + 10
+                    $cgble = true;
+                    $changes[20] += 1;
+                    $changes[5] -= 1;
+                    $changes[10] -= 1;
+                }
+                if(!$cgble){
                     return false;
                 }
             }
@@ -91,5 +105,6 @@ class LemonadeChange
         LeetCode::simpleTest([[5,5,10]], $method, true);
         LeetCode::simpleTest([[10,10]], $method, false);
         LeetCode::simpleTest([[5,5,10,10,20]], $method, false);
+        LeetCode::simpleTest([[5,5,5,10,5,5,10,20,20,20]], $method, false);
     }
 }
