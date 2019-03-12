@@ -116,7 +116,7 @@ class LeetCode
 // 本地测试
 // 本地测试^
 LeetCodeVar::Kv('c', '<cmd>');
-LeetCodeVar::Kv('c', 'licenseKeyFormatting');
+LeetCodeVar::Kv('c', 'CountPrimes');
 //
 // 控制台
 LeetCodeVar::init($argv);
