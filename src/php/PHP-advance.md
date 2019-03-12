@@ -2,6 +2,35 @@
 
 
 
+## 基础
+
+> 类型
+
+- 标量类型
+  - boolean           布尔类型
+  - integer             整型
+  - float/double    浮点类型
+  - string               字符串
+- 复合类型
+  - array                 数组
+  - object               对象
+  - callable             可调用
+- 特殊类型
+  - resource          资源
+  - NULL                无类型
+- 伪类型
+  - mixed               混合类型
+  - number            数据类型
+  - callback            回调类型
+  - array|object    数组、对象类型
+  - void                   无类型
+
+
+
+
+
+
+
 ## 工具
 
 ### PHPunit 单元测试框架
