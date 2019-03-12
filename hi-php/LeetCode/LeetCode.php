@@ -101,7 +101,7 @@ class LeetCode
         }
         $output = call_user_func([self::$solution, $method], ...$inputs);
         $right = $out === $output;
-        $info = self::$count.'. '.($right? 'true': 'false'). ' ) ['.implode(' , ', $inputs).'] => ['.$output.'] (VS) ('.$out.')'.self::BR;
+        $info = self::$count.'. '.($right? 'true': 'false'). ' ) ['.self::simpleTestInutsToStr($inputs).'] => ['.$output.'] (VS) ('.$out.')'.self::BR;
         if($onlyFalsePrint) {
             if(!$right){
                 echo $info;
@@ -111,12 +111,30 @@ class LeetCode
         }
         self::$count += 1;
     }
+
+    /**
+     * 输入格式化
+     * @param $inputs
+     * @return string
+     */
+    private static function simpleTestInutsToStr($inputs){
+        $cls2Array = [];
+        foreach ($inputs as $v){
+            if(is_array($v)){
+                $cls2Array[] = '['.implode(' , ', $v).']';
+            }else{
+                $cls2Array[] = $v;
+            }
+        }
+        return implode(' , ', $cls2Array);
+    }
 }
 
 // 本地测试
 // 本地测试^
 LeetCodeVar::Kv('c', '<cmd>');
-LeetCodeVar::Kv('c', 'CountPrimes');
+//LeetCodeVar::Kv('c', 'CountPrimes');
+LeetCodeVar::Kv('c', 'LemonadeChange');
 //
 // 控制台
 LeetCodeVar::init($argv);
