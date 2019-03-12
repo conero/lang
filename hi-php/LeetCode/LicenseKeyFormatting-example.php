@@ -39,38 +39,6 @@ class Solution {
      * @return String
      */
     function licenseKeyFormatting($S, $K) {
-        $queue = explode('-', $S);
-        $len = count($queue);
-        $lastStr = '';
-        $newQueue = [];
-        for ($i = $len-1; $i >= 0; $i--){
-            $v = strtoupper($queue[$i]);
-            $nv = $v.$lastStr;
-//            print_r([$v, $nv]);
-            $lastK = strlen($nv);
-            if($lastK >= $K){
-                $newQueue[] = substr($nv, -1*$K);
-                $lastStr = substr($nv, 0, $lastK-$K);
-            }else{
-                $lastStr = $nv;
-            }
-        }
-        // 最后的
-        if($lastStr){
-            $i = strlen($lastStr);
-            for($i; $i > 0; ){
-                if($i >= $K){
-                    $newQueue[] = substr($lastStr, -1*$K);
-                    $lastStr = substr($lastStr, 0, $i-$K);
-                    $i = strlen($lastStr);
-                }else{
-                    $newQueue[] = $lastStr;
-                    $i = 0;
-                }
-            }
-        }
-        $newQueue = array_reverse($newQueue);
-        return implode('-', $newQueue);
     }
 }
 
@@ -78,9 +46,6 @@ class Solution {
 class LicenseKeyFormatting{
     function __construct()
     {
-        $method = 'licenseKeyFormatting';
-        LeetCode::simpleTest(['5F3Z-2e-9-w', 4], $method, '5F3Z-2E9W');
-        LeetCode::simpleTest(['2-5g-3-J', 2], $method, '2-5G-3J');
-        LeetCode::simpleTest(['0123456789', 1], $method, '"0-1-2-3-4-5-6-7-8-9"');
+        echo 'dddd';
     }
 }
