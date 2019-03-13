@@ -89,6 +89,7 @@ class LeetCode
     const BR = "\n";
     static $solution;
     static $count = 1;
+    static $opt_gettimes = false;       // 选项获取运行的时间
     /**
      * @param array $inputs
      * @param string $method
@@ -99,9 +100,16 @@ class LeetCode
         if(empty(self::$solution)){
             self::$solution = new Solution();
         }
+        $getSconds = self::getSeconds();
         $output = call_user_func([self::$solution, $method], ...$inputs);
         $right = $out === $output;
-        $info = self::$count.'. '.($right? 'true': 'false'). ' ) ['.self::simpleTestInutsToStr($inputs).'] => ['.$output.'] (VS) ('.$out.')'.self::BR;
+        if(self::$opt_gettimes){
+            $getSconds = round($getSconds(), 4);
+            $getSconds = ' <'.$getSconds. 's> ';
+        }else{
+            $getSconds = '';
+        }
+        $info = self::$count.'. '.($right? 'true': 'false'). ' )'.$getSconds.' ['.self::simpleTestInutsToStr($inputs).'] => ['.$output.'] (VS) ('.$out.')'.self::BR;
         if($onlyFalsePrint) {
             if(!$right){
                 echo $info;
@@ -127,6 +135,33 @@ class LeetCode
             }
         }
         return implode(' , ', $cls2Array);
+    }
+
+    /**
+     * @return float
+     */
+    static function microtime_float()
+    {
+        list($usec, $sec) = explode(" ", microtime());
+        return ((float)$usec + (float)$sec);
+    }
+
+    /**
+     * @param null $startTm
+     * @return Closure|float|null
+     */
+    static function getSeconds($startTm=null){
+        if(empty($startTm)){
+            $startTm = self::microtime_float();
+            return function () use ($startTm){
+                $end = self::microtime_float();
+                return $end - $startTm;
+            };
+        }else{
+            $end = self::microtime_float();
+            return $end - $startTm;
+        }
+
     }
 }
 

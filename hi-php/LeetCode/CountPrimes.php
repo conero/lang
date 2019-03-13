@@ -61,6 +61,11 @@ class CountPrimes
         LeetCode::simpleTest([10], $method, 4);
         LeetCode::simpleTest([2], $method, 0);
         LeetCode::simpleTest([72], $method, 20);
-        LeetCode::simpleTest([499979], $method, 20);
+        // 统计时间
+        LeetCode::$opt_gettimes = true;
+        LeetCode::simpleTest([10000], $method, 1229);
+        LeetCode::simpleTest([499979], $method, 41537);
+        LeetCode::simpleTest([999983], $method, 78497);
+        LeetCode::simpleTest([1500000], $method, 114155);
     }
 }
