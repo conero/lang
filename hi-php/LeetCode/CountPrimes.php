@@ -24,7 +24,7 @@
     质数（prime number）又称素数，有无限个。
     质数定义为在大于1的自然数中，除了1和它本身以外不再有其他因数。
     质数又称素数。一个大于1的自然数，除了1和它自身外，不能被其他自然数整除的数叫做质数；否则称为合数。
-    @TODO StillNeedToDo-算法时间超时
+    @TODO StillNeedToDo-算法超出时间限制
  */
 class Solution {
     /**
@@ -34,15 +34,18 @@ class Solution {
     function countPrimes($n) {
         $primes = [];
         for($i=2; $i<$n; $i++){
-            $isPrimes = true;
-            for($j=2; $j<$i; $j++){
-                if($i%$j == 0){
-                    $isPrimes = false;
+            // 使用素数本身来见检测
+            $continue = false;
+            foreach ($primes as $p){
+                if($i > $p && $i%$p == 0){
+                    $continue = true;
+                    break;
                 }
             }
-            if($isPrimes){
-                $primes[] = $i;
+            if($continue){
+                continue;
             }
+            $primes[] = $i;
         }
         return count($primes);
     }
@@ -58,5 +61,6 @@ class CountPrimes
         LeetCode::simpleTest([10], $method, 4);
         LeetCode::simpleTest([2], $method, 0);
         LeetCode::simpleTest([72], $method, 20);
+        LeetCode::simpleTest([499979], $method, 20);
     }
 }

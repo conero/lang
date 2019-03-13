@@ -64,7 +64,7 @@ class Solution {
             if($my == 5){   // 五元
                 $changes[5] += 1;
             }elseif ($my == 10){
-                if($changes[5] == 0){
+                if($changes[5] < 1){
                     return false;
                 }else{
                     $changes[5] -= 1;
