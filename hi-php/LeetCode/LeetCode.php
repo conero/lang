@@ -125,11 +125,12 @@ class LeetCode
      * @param $inputs
      * @return string
      */
-    private static function simpleTestInutsToStr($inputs){
+    static function simpleTestInutsToStr($inputs){
         $cls2Array = [];
         foreach ($inputs as $v){
             if(is_array($v)){
-                $cls2Array[] = '['.implode(' , ', $v).']';
+                // $cls2Array[] = '['.implode(' , ', $v).']';
+                $cls2Array[] = '['.self::simpleTestInutsToStr($v).']';
             }else{
                 $cls2Array[] = $v;
             }
@@ -168,7 +169,7 @@ class LeetCode
 // 本地测试
 // 本地测试^
 LeetCodeVar::Kv('c', '<cmd>');
-LeetCodeVar::Kv('c', 'CountPrimes');
+LeetCodeVar::Kv('c', 'RottingOranges');
 //LeetCodeVar::Kv('c', 'LemonadeChange');
 //
 // 控制台
