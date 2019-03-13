@@ -48,33 +48,41 @@ class Solution {
      */
     function orangesRotting($grid) {
         $m = count($grid);
-        $count = -1;
+        $n = -1;
+        $count = 0;
         while (true){
-            $rottingMk = false;
+            // 标记烂的东西
+            $rottingPnt = [];
             for($i=0; $i<$m; $i++){
                 $n = count($grid[$i]);
                 for ($j=0; $j<$n; $j++){
                     $v = $grid[$i][$j];
                     switch ($v){
                         case 2:
-                            if($i>0 && $grid[$i-1][$j] == 1){ // 上
-                                $grid[$i-1][$j] = 2;
-                                $rottingMk = true;
-                            }
-                            if($i<$m-1 && $grid[$i+1][$j] == 1){ // 下
-                                $grid[$i+1][$j] = 2;
-                                $rottingMk = true;
-                            }
-                            if($j>0 && $grid[$i][$j-1] == 1){
-                                $grid[$i][$j-1] = 2;
-                                $rottingMk = true;
-                            }
-                            if($j<$n-1 && $grid[$i][$j+1] == 1){
-                                $grid[$i][$j+1] = 2;
-                                $rottingMk = true;
-                            }
+                            $rottingPnt[] = [$i, $j];
                             break;
                     }
+                }
+            }
+            // 模拟腐烂
+            $rottingMk = false;
+            foreach ($rottingPnt as $pnt){
+                list($i, $j) = $pnt;
+                if($i>0 && $grid[$i-1][$j] == 1){ // 上
+                    $grid[$i-1][$j] = 2;
+                    $rottingMk = true;
+                }
+                if($i<$m-1 && $grid[$i+1][$j] == 1){ // 下
+                    $grid[$i+1][$j] = 2;
+                    $rottingMk = true;
+                }
+                if($j>0 && $grid[$i][$j-1] == 1){
+                    $grid[$i][$j-1] = 2;
+                    $rottingMk = true;
+                }
+                if($j<$n-1 && $grid[$i][$j+1] == 1){
+                    $grid[$i][$j+1] = 2;
+                    $rottingMk = true;
                 }
             }
             // 次数检测
@@ -85,8 +93,21 @@ class Solution {
             }
             // print_r($grid);
             // print_r([LeetCode::simpleTestInutsToStr($grid)]);
-
         }
+        // 检测是否全部腐烂完
+        foreach ($grid as $cn){
+            $hasGood = false;
+            foreach ($cn as $v){
+                if($v == 1){
+                    $hasGood = true;
+                    break;
+                }
+            }
+            if($hasGood){
+                $count = -1;
+            }
+        }
+
         return $count;
     }
 }
@@ -100,6 +121,6 @@ class RottingOranges
         $method = 'orangesRotting';
         LeetCode::simpleTest([[[2,1,1],[1,1,0],[0,1,1]]], $method, 4);
         LeetCode::simpleTest([[[2,1,1],[0,1,1],[1,0,1]]], $method, -1);
-        LeetCode::simpleTest([[[0,2]]], $method, -1);
+        LeetCode::simpleTest([[[0,2]]], $method, 0);
     }
 }
