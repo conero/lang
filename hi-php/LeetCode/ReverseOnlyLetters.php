@@ -23,7 +23,6 @@
         输出："Qedo1ct-eeLg=ntse-T!"
  */
 
-// @TODO 待实现！！
 // 解答
 class Solution {
 
@@ -34,21 +33,31 @@ class Solution {
     function reverseOnlyLetters($S) {
         $data = str_split($S);
         $ct = count($data);
-        $last = $ct - 1;
+        $last = $ct;
         for($i=0; $i<$ct; $i++){
             $is = $data[$i];
             if($i == $last){
                 break;
             }
+            $isBreak = false;
             if(preg_match('/[a-zA-Z]{1}/', $is)){
                 while(true){
-                    $lastS = $data[$last];
-                    if(preg_match('/[a-zA-Z]{1}/', $lastS)){
-                        $data[$i] = $lastS;
-                        $data[$last] = $is;
+                    $last -= 1;
+                    if($i == $last){
+                        $isBreak = true;
                         break;
                     }
-                    $last -= 1;
+                    $lastS = $data[$last];
+                    //print_r(LeetCode::simpleTestInutsToStr([$is, $lastS, $i, $last, $i == $last, implode('', $data)]));
+                    //echo "\n";
+                    if(preg_match('/[a-zA-Z]{1}/', $lastS)){
+                       $data[$i] = $lastS;
+                       $data[$last] = $is;
+                       break;
+                    }
+                }
+                if($isBreak){
+                    break;
                 }
             }
         }
