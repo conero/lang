@@ -28,6 +28,8 @@
   - (+) *database*
     - 新增数据库子目录文件
       - (调整) *src/software/Oracle-11g* 更名为 *src/database/Oracle-11g*
+  - *AI/ABriefHistoryOfArtificialIntelligence.md*
+    - 阅读《人工智能》并总结
 
 
 
