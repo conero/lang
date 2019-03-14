@@ -35,24 +35,18 @@ class Solution {
      * @return String
      */
     function findTheDifference($s, $t) {
-        $sLen = strlen($s);
-        for($i=0; $i < $sLen; $i++){
-            $iw = substr($s, $i, ($i == 0? 1: $i));
-            echo "$iw , $i, ".($i+1)." $s~\n";
-            $tLen = strlen($t);
-            for ($j=0; $j < $tLen; $j++){
-                $jw = substr($t, $j, $j+1);
-                print_r(LeetCode::simpleTestInutsToStr([$iw, $jw, $t]));
-                echo "\n";
-                if($iw == $jw){
-                    //$t = substr($t, 0, $j).' '.substr($t, $j+1);
-                    $t = substr($t, 0, $j).substr($t, $j+1);
+        $sq = str_split($s);
+        $st = str_split($t);
+        // 字母对比
+        foreach ($sq as $sqv){
+            foreach ($st as $stk => $stv){
+                if($sqv == $stv){
+                    $st[$stk] = '';
                     break;
                 }
             }
         }
-        //$t = str_replace(' ', '', $t);
-        return $t;
+        return implode('', $st);
     }
 }
 
@@ -63,5 +57,6 @@ class FindTheDifference
     function __construct()
     {
         LeetCode::simpleTest(['abcd', 'abcde'], self::method, 'e');
+        LeetCode::simpleTest(['a', 'aa'], self::method, 'a');
     }
 }
