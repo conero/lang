@@ -55,17 +55,19 @@ class Solution {
         foreach ($commands as $c){
             if ($c == -2 || $c == -1){
                 $xy = ($xy == 1)? 0 : 1;
-                if($c == -2){   // 左
-                    if ($xy == 1){
+                if($c == -2){       // 左，逆时针
+                    if ($xy == 0){  // y -> x
                         $dt = ($dt == 1)? -1: 1;
                     }
                 }else{   // 右
-                    if ($xy == 1){
+                    if ($xy == 1){ // x -> y
                         $dt = ($dt == 1)? -1: 1;
                     }
                 }
             }
+            $point[$xy] = $point[$xy] + $dt*$c;
         }
+        //echo LeetCode::simpleTestInutsToStr($point). "\n";
         return pow($point[0], 2) + pow($point[1], 2);
     }
 }
