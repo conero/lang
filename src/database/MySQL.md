@@ -42,3 +42,13 @@ alter user 'root'@'localhost' identified by 'password';
 
     
 
+### 5.7 
+
+> Windows 版本安装；
+
+*下载官网 msi，根据向导安装需要的应用。安装后需要执行命令：*
+
+1.  初始化 `$ /bin/mysqld --initialize-insecure`
+2. 安装 `$ /bin/mysqld install`
+3. 启动 `$ net start mysql`
+
