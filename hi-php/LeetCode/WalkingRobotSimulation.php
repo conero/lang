@@ -53,6 +53,7 @@ class Solution {
         $xy = 1;            // 转向, 默认北
         $dt = 1;            // 增量
         foreach ($commands as $c){
+            // 移动转向
             if ($c == -2 || $c == -1){
                 $xy = ($xy == 1)? 0 : 1;
                 if($c == -2){       // 左，逆时针
@@ -64,8 +65,34 @@ class Solution {
                         $dt = ($dt == 1)? -1: 1;
                     }
                 }
+                continue;
             }
-            $point[$xy] = $point[$xy] + $dt*$c;
+            echo LeetCode::simpleTestInutsToStr([$c, $point, $xy, $dt]). "\n";
+            // 障碍物检测
+            $cp = $point[$xy];
+            $moveTo = $point[$xy] + $dt*$c;
+            $obBreak = false;
+            foreach ($obstacles as $op){
+                list($opx, $opy) = $op;
+                if($xy){    // y 轴上移动
+                    if($opx == $point[0] && ($cp <= $point[1] && $point[1] <= $moveTo)){
+                        $point[$xy] = $point[1] - 1 * $dt;
+                        $obBreak = true;
+                        break;
+                    }
+                }else{
+                    if($opy == $point[1] && ($cp <= $point[0] && $point[0] <= $moveTo)){
+                        $point[$xy] = $point[0] - 1 * $dt;
+                        $obBreak = true;
+                        break;
+                    }
+                }
+            }
+            echo LeetCode::simpleTestInutsToStr([$c, $point]). "\n";
+            if($obBreak){
+                continue;
+            }
+            $point[$xy] = $moveTo;
         }
         //echo LeetCode::simpleTestInutsToStr($point). "\n";
         return pow($point[0], 2) + pow($point[1], 2);
@@ -78,7 +105,8 @@ class WalkingRobotSimulation
     const METHOD = 'robotSim';
     function __destruct()
     {
-        LeetCode::simpleTest([[4,-1,3], []], self::METHOD, 25);
-        LeetCode::simpleTest([[4,-1,4,-2,4], [[2,4]]], self::METHOD, 65);
+//        LeetCode::simpleTest([[4,-1,3], []], self::METHOD, 25);
+//        LeetCode::simpleTest([[4,-1,4,-2,4], [[2,4]]], self::METHOD, 65);
+        LeetCode::simpleTest([[-2,-1,8,9,6], [[-1,3],[0,1],[-1,5],[-2,-4],[5,4],[-2,-3],[5,-1],[1,-1],[5,5],[5,2]]], self::METHOD, 0);
     }
 }
