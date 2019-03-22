@@ -1471,3 +1471,26 @@ _**库**(**library**) 指的是链接到程序的组件，通过本地函数调�
 - 所有的事都会比你预计的时间长。
 - 可能出错的事总会出错。
 - 如果你担心某种情况发生，那么他就更有可能发生。
+
+
+
+### 文件尺寸大小转换
+
+*文件尺寸大小转换，`K-M-G-T-P-E-Z-Y-B-N-D`。*
+
+```ini
+1 Bytes = 8Bit					byte
+1 B 	= 8Bit					byte			字节
+1 KB    = 1024 Bytes			Kilobyte		千字节
+1 MB	= 1024 KB				Megabyte		百万字节		  兆
+1 GB    = 1024 MB				Gigabyte		千兆			   吉
+1 TB	= 1024 GB				Terabyte		万亿字节		  太
+1 PB	= 1024 TB				Petabyte		千万亿字节		 拍
+1 EB	= 1024 PB				Exabyte			百亿亿字节		 艾
+1 ZB	= 1024 EB				Zettabyte		十万亿亿字节		泽
+1 YB	= 1024 ZB				Yottabyte		一亿亿亿字节		尧
+1 BB	= 1024 YB				Brontobyte
+1 NB	= 1024 BB				NonaByte
+1 DB	= 1024 NB				DoggaByte
+```
+
