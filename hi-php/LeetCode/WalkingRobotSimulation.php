@@ -78,31 +78,43 @@ class Solution {
             foreach ($obstacles as $op){
                 list($opx, $opy) = $op;
                 if($xy){    // y 轴上移动
-//                    if($opx == $point[0] && ($cp <= $point[1] && $point[1] <= $moveTo)){
-                    if($opx == $point[0] && ($cp <= $point[1] && $point[1] <= $moveTo*$dt)){
-//                        $point[$xy] = $point[1] - 1 * $dt;
-//                        echo LeetCode::simpleTestInutsToStr([$c, $point, $op, "$opy - 1 * $dt", [$cp, $moveTo]]). "\n";
-                        $point[$xy] = $opy - 1 * $dt;
-                        $getObstacles = $op;
-                        $obBreak = true;
-                        break;
+                    $originalV = $point[1];
+                    if($opx == $point[0]){
+                        if($dt > 0 && $originalV >= $cp && $originalV <= $moveTo){ // -> +
+                            $point[$xy] = $opy - 1;
+                            $getObstacles = $op;
+                            $obBreak = true;
+                            break;
+                        }elseif ($dt < 0 && $originalV <= $cp && $originalV >= $moveTo){
+                            $point[$xy] = $opy + 1;
+                            $getObstacles = $op;
+                            $obBreak = true;
+                            break;
+                        }
                     }
-                }else{
-//                    if($opy == $point[1] && ($cp <= $point[0] && $point[0] <= $moveTo*$dt)){
-                    if($opy == $point[1] && ($cp <= $point[0] && $point[0] <= $moveTo)){
-//                        $point[$xy] = $point[0] - 1 * $dt;
-                        $point[$xy] = $opx - 1 * $dt;
-                        $obBreak = true;
-                        $getObstacles = $op;
-                        break;
+                }else{          // x 轴上的移动
+                    $originalV = $point[0];
+                    if($opx == $point[1]){
+                        if($dt > 0 && $originalV >= $cp && $originalV <= $moveTo){ // -> +
+                            $point[$xy] = $opx - 1;
+                            $getObstacles = $op;
+                            $obBreak = true;
+                            break;
+                        }elseif ($dt < 0 && $originalV <= $cp && $originalV >= $moveTo){
+                            $point[$xy] = $opx + 1;
+                            $getObstacles = $op;
+                            $obBreak = true;
+                            break;
+                        }
                     }
                 }
             }
-            echo LeetCode::simpleTestInutsToStr(['end>', $point, $getObstacles]). "\n";
             if($obBreak){
+                echo LeetCode::simpleTestInutsToStr(['end>', $point, $getObstacles, $obBreak]). "\n";
                 continue;
             }
             $point[$xy] = $moveTo;
+            echo LeetCode::simpleTestInutsToStr(['end>', $point, $getObstacles, $obBreak]). "\n";
         }
         //echo LeetCode::simpleTestInutsToStr($point). "\n";
         return pow($point[0], 2) + pow($point[1], 2);
@@ -116,9 +128,11 @@ class WalkingRobotSimulation
     function __destruct()
     {
 //        LeetCode::simpleTest([[4,-1,3], []], self::METHOD, 25);
-//        LeetCode::simpleTest([[4,-1,4,-2,4], [[2,4]]], self::METHOD, 65);
+        LeetCode::simpleTest([[4,-1,4,-2,4], [[2,4]]], self::METHOD, 65);
 //        LeetCode::simpleTest([[-2,-1,8,9,6], [[-1,3],[0,1],[-1,5],[-2,-4],[5,4],[-2,-3],[5,-1],[1,-1],[5,5],[5,2]]], self::METHOD, 0);
 //        LeetCode::simpleTest([[7,-2,-2,7,5], [[-3,2],[-2,1],[0,1],[-2,4],[-1,0],[-2,-3],[0,-3],[4,4],[-3,3],[2,2]]], self::METHOD, 4);
-        LeetCode::simpleTest([[-2,8,3,7,-1], [[-4,-1],[1,-1],[1,4],[5,0],[4,5],[-2,-1],[2,-5],[5,1],[-3,-1],[5,-3]]], self::METHOD, 324);
+//        LeetCode::simpleTest([[-2,8,3,7,-1], [[-4,-1],[1,-1],[1,4],[5,0],[4,5],[-2,-1],[2,-5],[5,1],[-3,-1],[5,-3]]], self::METHOD, 324);
+//        LeetCode::simpleTest([[1,1,3,4,3], [[-1,5],[-4,-4],[-3,3],[3,0],[2,5],[-4,4],[-3,1],[-2,-4],[-1,-4],[0,-3]]], self::METHOD, 144);
+
     }
 }
