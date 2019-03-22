@@ -1,0 +1,14 @@
+{
+    "name": "conero/leet-code",
+    "description": "php leetcode",
+    "type": "project",
+    "authors": [
+        {
+            "name": "conero",
+            "email": "conero@163.com"
+        }
+    ],
+    "require": {
+        "php": "^7.2"
+    }
+}

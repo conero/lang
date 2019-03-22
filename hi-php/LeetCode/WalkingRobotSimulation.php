@@ -65,30 +65,40 @@ class Solution {
                         $dt = ($dt == 1)? -1: 1;
                     }
                 }
+//                echo LeetCode::simpleTestInutsToStr([$xy, $dt, '<=']). "\n";
                 continue;
             }
-            echo LeetCode::simpleTestInutsToStr([$c, $point, $xy, $dt]). "\n";
+
             // 障碍物检测
             $cp = $point[$xy];
             $moveTo = $point[$xy] + $dt*$c;
+            echo LeetCode::simpleTestInutsToStr(['start>', "c:$c", $point, "xy: $xy", "=>$dt", [$cp, '~', $moveTo]]). "\n";
             $obBreak = false;
+            $getObstacles = [];             // 用于测试，障碍点
             foreach ($obstacles as $op){
                 list($opx, $opy) = $op;
                 if($xy){    // y 轴上移动
-                    if($opx == $point[0] && ($cp <= $point[1] && $point[1] <= $moveTo)){
-                        $point[$xy] = $point[1] - 1 * $dt;
+//                    if($opx == $point[0] && ($cp <= $point[1] && $point[1] <= $moveTo)){
+                    if($opx == $point[0] && ($cp <= $point[1] && $point[1] <= $moveTo*$dt)){
+//                        $point[$xy] = $point[1] - 1 * $dt;
+//                        echo LeetCode::simpleTestInutsToStr([$c, $point, $op, "$opy - 1 * $dt", [$cp, $moveTo]]). "\n";
+                        $point[$xy] = $opy - 1 * $dt;
+                        $getObstacles = $op;
                         $obBreak = true;
                         break;
                     }
                 }else{
+//                    if($opy == $point[1] && ($cp <= $point[0] && $point[0] <= $moveTo*$dt)){
                     if($opy == $point[1] && ($cp <= $point[0] && $point[0] <= $moveTo)){
-                        $point[$xy] = $point[0] - 1 * $dt;
+//                        $point[$xy] = $point[0] - 1 * $dt;
+                        $point[$xy] = $opx - 1 * $dt;
                         $obBreak = true;
+                        $getObstacles = $op;
                         break;
                     }
                 }
             }
-            echo LeetCode::simpleTestInutsToStr([$c, $point]). "\n";
+            echo LeetCode::simpleTestInutsToStr(['end>', $point, $getObstacles]). "\n";
             if($obBreak){
                 continue;
             }
@@ -107,6 +117,8 @@ class WalkingRobotSimulation
     {
 //        LeetCode::simpleTest([[4,-1,3], []], self::METHOD, 25);
 //        LeetCode::simpleTest([[4,-1,4,-2,4], [[2,4]]], self::METHOD, 65);
-        LeetCode::simpleTest([[-2,-1,8,9,6], [[-1,3],[0,1],[-1,5],[-2,-4],[5,4],[-2,-3],[5,-1],[1,-1],[5,5],[5,2]]], self::METHOD, 0);
+//        LeetCode::simpleTest([[-2,-1,8,9,6], [[-1,3],[0,1],[-1,5],[-2,-4],[5,4],[-2,-3],[5,-1],[1,-1],[5,5],[5,2]]], self::METHOD, 0);
+//        LeetCode::simpleTest([[7,-2,-2,7,5], [[-3,2],[-2,1],[0,1],[-2,4],[-1,0],[-2,-3],[0,-3],[4,4],[-3,3],[2,2]]], self::METHOD, 4);
+        LeetCode::simpleTest([[-2,8,3,7,-1], [[-4,-1],[1,-1],[1,4],[5,0],[4,5],[-2,-1],[2,-5],[5,1],[-3,-1],[5,-3]]], self::METHOD, 324);
     }
 }
