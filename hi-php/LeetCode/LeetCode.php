@@ -109,7 +109,7 @@ class LeetCode
         }else{
             $getSconds = '';
         }
-        $info = self::$count.'. '.($right? 'true': 'false'). ' )'.$getSconds.' ['.self::simpleTestInutsToStr($inputs).'] => ['.$output.'] (VS) ('.$out.')'.self::BR;
+        $info = self::$count.'. '.($right? 'true': 'false'). ' )'.$getSconds.' ['.$out.'] (VS) ('.$output.') <<= ['.self::simpleTestInutsToStr($inputs).']'.self::BR;
         if($onlyFalsePrint) {
             if(!$right){
                 echo $info;
