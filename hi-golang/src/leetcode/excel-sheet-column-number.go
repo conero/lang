@@ -1,10 +1,12 @@
 package main
+
 // @name 171. Excel表列序号
 // @link: https://leetcode-cn.com/problems/excel-sheet-column-number/
 // @data 2019年3月23日 星期六
 
 import (
 	"fmt"
+	"math"
 )
 
 /**
@@ -32,13 +34,20 @@ import (
 	输出: 701
 */
 
-
-// @TODO 未实现
 // 解答
 func titleToNumber(s string) int {
 	// 65 - 90
 	// A-Z
-	return 0
+	chars := []byte(s)
+	dec := 0
+	charsLen := len(chars)
+	for i := charsLen - 1; i >= 0; i-- {
+		c := chars[i]
+		cn := int(c)
+		dec += (cn - 65 + 1) * int(math.Pow(float64(26), float64(charsLen-i-1)))
+	}
+	//fmt.Println(chars)
+	return dec
 }
 
 // 测试实例
@@ -48,12 +57,17 @@ func main() {
 	var vout, vneed int
 	// test 1
 	//vin, vout, vneed = "Hello World", 5, lengthOfLastWord(vin)
-	vin, vout = "Hello World", 5
-	vneed = lengthOfLastWord(vin)
+	vin, vout = "A", 1
+	vneed = titleToNumber(vin)
 	fmt.Println(fmt.Sprintf(vfmt, vneed == vout, vout, vneed, vin))
 
 	// test 2
-	vin, vout = "a ", 1
-	vneed = lengthOfLastWord(vin)
+	vin, vout = "AB", 28
+	vneed = titleToNumber(vin)
+	fmt.Println(fmt.Sprintf(vfmt, vneed == vout, vout, vneed, vin))
+
+	// test 3
+	vin, vout = "ZY", 701
+	vneed = titleToNumber(vin)
 	fmt.Println(fmt.Sprintf(vfmt, vneed == vout, vout, vneed, vin))
 }
