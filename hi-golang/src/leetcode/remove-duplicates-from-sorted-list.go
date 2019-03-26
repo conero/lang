@@ -43,7 +43,10 @@ func deleteDuplicates(head *ListNode) *ListNode {
 		if isContinue == false {
 			valNs = append(valNs, valN)
 			if newNode != nil {
-				newNode = &ListNode{valN, newNode}
+				//newNode = &ListNode{valN, newNode}
+				valNOld := newNode.Val
+				newNode.Val = valN
+				newNode = &ListNode{valNOld, newNode}
 			} else {
 				newNode = &ListNode{valN, nil}
 			}
