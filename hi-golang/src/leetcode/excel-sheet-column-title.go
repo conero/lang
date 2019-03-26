@@ -34,7 +34,6 @@ import (
 	输出: "ZY"
 */
 
-// @TODO StillNeedToDoYet
 // 解答
 // 26 进制转10进制
 func convertToTitle(n int) string {
@@ -52,13 +51,17 @@ func convertToTitle(n int) string {
 			c26 = n
 			n = -1
 		}
-		fmt.Println(c26, last, c26-last, string(64 + c26), n)
+		//fmt.Println(c26, last, c26-last, string(64 + c26), n)
 		c26 -= last
+		if c26 == 0 && n < 0{
+			break
+		}
 		last = 0
 		if c26 == 0{
 			c26 = 26
 			last = 1
 		}
+
 		s = string(64 + c26) + s
 		// 转换非法值检测
 		if n < 0 {
@@ -74,21 +77,20 @@ func main() {
 	var vin int
 	var vout, vneed string
 	// test 1
-	//vin, vout, vneed = "Hello World", 5, lengthOfLastWord(vin)
-	//vin, vout = 1, "A"
-	//vneed = convertToTitle(vin)
-	//fmt.Println(fmt.Sprintf(vfmt, vneed == vout, vout, vneed, vin))
-	//
-	//// test 2
-	//vin, vout = 28, "AB"
-	//vneed = convertToTitle(vin)
-	//fmt.Println(fmt.Sprintf(vfmt, vneed == vout, vout, vneed, vin))
-	//
-	//// test 3
-	//vin, vout = 701, "ZY"
-	//vneed = convertToTitle(vin)
-	//fmt.Println(fmt.Sprintf(vfmt, vneed == vout, vout, vneed, vin))
-	//
+	vin, vout = 1, "A"
+	vneed = convertToTitle(vin)
+	fmt.Println(fmt.Sprintf(vfmt, vneed == vout, vout, vneed, vin))
+
+	// test 2
+	vin, vout = 28, "AB"
+	vneed = convertToTitle(vin)
+	fmt.Println(fmt.Sprintf(vfmt, vneed == vout, vout, vneed, vin))
+
+	// test 3
+	vin, vout = 701, "ZY"
+	vneed = convertToTitle(vin)
+	fmt.Println(fmt.Sprintf(vfmt, vneed == vout, vout, vneed, vin))
+
 	// test 3
 	vin, vout = 52, "AZ"
 	vneed = convertToTitle(vin)
