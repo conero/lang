@@ -1,15 +1,32 @@
 package main
 
+// @name 83. 删除排序链表中的重复元素
+// @link: https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list/
+// @data 2019年3月26日 星期二
+
 import (
 	"fmt"
 	"strconv"
 )
+// 题目
+/*
+给定一个排序链表，删除所有重复的元素，使得每个元素只出现一次。
+示例 1:
+	输入: 1->1->2
+	输出: 1->2
+
+示例 2:
+	输入: 1->1->2->3->3
+	输出: 1->2->3
+ */
 
 // 声明
 type ListNode struct {
 	Val  int
 	Next *ListNode
 }
+
+// 解答
 
 /**
  * Definition for singly-linked list.
@@ -43,16 +60,6 @@ func deleteDuplicates(head *ListNode) *ListNode {
 		}
 		if isContinue == false {
 			valNs = append(valNs, valN)
-			/*
-			if newNode != nil {
-				//newNode = &ListNode{valN, newNode}
-				valNOld := newNode.Val
-				newNode.Val = valN
-				newNode = &ListNode{valNOld, newNode}
-			} else {
-				newNode = &ListNode{valN, nil}
-			}
-			*/
 		}
 		if isBreak {
 			break
