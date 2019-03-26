@@ -29,19 +29,21 @@ func deleteDuplicates(head *ListNode) *ListNode {
 		isBreak := false
 		isContinue := false
 		valN := tmp.Val
-		if tmp.Next != nil {
-			for _, oN := range valNs {
-				if valN == oN {
-					isContinue = true
-					break
-				}
+		for _, oN := range valNs {
+			if valN == oN {
+				isContinue = true
+				break
 			}
+		}
+
+		if tmp.Next != nil {
 			tmp = tmp.Next
 		} else {
 			isBreak = true
 		}
 		if isContinue == false {
 			valNs = append(valNs, valN)
+			/*
 			if newNode != nil {
 				//newNode = &ListNode{valN, newNode}
 				valNOld := newNode.Val
@@ -50,9 +52,20 @@ func deleteDuplicates(head *ListNode) *ListNode {
 			} else {
 				newNode = &ListNode{valN, nil}
 			}
+			*/
 		}
 		if isBreak {
 			break
+		}
+	}
+	//fmt.Println(valNs)
+	//for _, nv := range valNs{
+	for i := len(valNs) - 1; i >= 0; i--{
+		nv := valNs[i]
+		if newNode != nil{
+			newNode = &ListNode{nv, newNode}
+		}else {
+			newNode = &ListNode{nv, nil}
 		}
 	}
 	return newNode
@@ -63,6 +76,9 @@ func rdfsl_out(head *ListNode) string {
 	var s string
 	var tmp *ListNode = head
 	for {
+		if nil == tmp{
+			break
+		}
 		valN := tmp.Val
 		n2s := strconv.Itoa(valN)
 		s += n2s + " -> "
@@ -86,5 +102,8 @@ func main() {
 			},
 		},
 	}
+	fmt.Println(rdfsl_out(vin), rdfsl_out(deleteDuplicates(vin)))
+
+	vin = &ListNode{1, &ListNode{1, &ListNode{2, &ListNode{3, &ListNode{3, nil}}}}}
 	fmt.Println(rdfsl_out(vin), rdfsl_out(deleteDuplicates(vin)))
 }
