@@ -193,6 +193,15 @@ where go
 
 
 
+> 删除服务器
+
+```powershell
+# 删除 window 10 服务的口令
+sc delete <name>
+```
+
+
+
 
 
 ## issue

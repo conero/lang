@@ -370,6 +370,16 @@ $ git fetch -p
 
 
 
+> 分支比较
+
+```shell
+$ git diff <branch1> <branch2>
+# 仅仅查看文件概略
+$ git diff <branch1> <branch2> --stat
+```
+
+
+
 #### 新增分支
 
 ```ini
@@ -402,6 +412,9 @@ $ git checkout <targetBN>
 
 # 与源分支合并
 $ git merge <srcBN>
+
+# 撤销分支合并
+$ git reset --hard
 ```
 
 
