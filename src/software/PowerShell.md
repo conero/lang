@@ -25,6 +25,28 @@ $PSVersionTable
 
 
 
+*Windows系统下 shell 脚本无效，windows系统用文件名的后缀来判断文件类型，如只要是.py后缀的就关联到python程序去执行。而Linux之类通过文件首行标记来决定，因此如下脚本无效：*
+
+```shell
+#!/user/bin/env python
+```
+或者
+```shell
+#!/user/bin/python
+```
+
+而采用
+
+```powershell
+>> ./run-python.py
+```
+
+
+
+
+
+
+
 ## 变量
 
 *PowerShell 处理对象。 使用 PowerShell 可以创建称为“变量”的命名对象。 变量名称可以包含下划线字符，也可以是任何字母数字字符。 在 PowerShell 中使用时，始终使用变量名称后跟的 $ 字符指定变量。*
@@ -197,6 +219,7 @@ where go
 
 ```powershell
 # 删除 window 10 服务的口令
+# cmd.exe 成功， powershell 无效
 sc delete <name>
 ```
 
