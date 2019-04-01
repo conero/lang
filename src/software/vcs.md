@@ -264,6 +264,23 @@ $ git add README
 
 
 
+
+
+> git 回滚到任意版本
+
+```shell
+# 查看 git 仓库的 <commit_id>
+$ git log
+
+# 回滚到任意指定版本
+$ git reset --hard <commit_id>
+
+# 强制提交
+$ git push -f origin <branch>
+```
+
+
+
 #### 远程仓库
 
 > **`$ git remote -v` *查看远程仓库*** 
