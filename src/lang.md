@@ -681,6 +681,25 @@ PHP内核: Zend引擎，Composer 类似于node的NPM，Ruby的Bundle。
 
 
 
+> PHP 的执行过程
+
+*PHP 实现了一个虚拟机 Zend VM，它会将其脚本编译成虚拟机理解的指令，也就是操作码，这个执行阶段就是“编译时（Compile Time）”。在“运行时（Runtime）”执行阶段，虚拟机 Zend VM 会执行这些编译好的操作码。*
+
+1. `php script`    =(**Zend VM**)[编译]=>     `操作码`   	: 编译时/Compile Time
+2. `操作码`    =(**Zend VM**)[执行]=>     `结果`   	              : 运行时/Compile Time
+
+在 *php7以以前，编译/运行时是相互独立的*。
+
+
+
+> JIT
+
+*PHP JIT 对于使用 PHP 的网站来说提速可能并不明显，因为 JIT 在 CPU 密集型的代码上效果最好，而一般情况下，用 PHP 编写的程序都是 I/O 密集型的。简单来说就是，PHP 程序往往受限于 I/O 而不是 CPU，使 PHP 代码运行速度变慢的因素往往是它们正在执行的 I/O 操作，包括连接、读取和写入数据库、高速缓存、文件与套接字等。*
+
+
+
+
+
 > **帮助链接**
 
 PHP Windows安装包： <http://windows.php.net/downloads/releases/archives/>；
@@ -861,6 +880,16 @@ _初衷是提供一款免费的开源的编译器。提供包含**C**、**C++**�
 > LLVM 架构
 
 ![](./image/lang/llvm-clang.png)
+
+
+
+### JIT
+
+> *Just-In-Time* 即时编译
+
+*JIT 是一种编译器策略，它将代码表述为一种中间状态，在运行时将其转换为依赖于体系结构的机器码，并即时执行。*
+
+
 
 
 
