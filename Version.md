@@ -36,6 +36,8 @@
   - *php/PHP-advance.md*
     - (优化) *学习 PHP-FIG 的 PSR 规范*
     - (完善) *学习 PHP 基础知识 `可变变量` 等*
+  - *software/vcs.md*
+    - （完善）*收入已经问题解决的方法*
 
 
 
