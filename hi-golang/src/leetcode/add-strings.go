@@ -1,5 +1,9 @@
 package main
 
+// @name 415. 字符串相加
+// @link: https://leetcode-cn.com/problems/add-strings/
+// @data 2019年4月3日
+
 import (
 	"fmt"
 	"strconv"
@@ -7,7 +11,6 @@ import (
 )
 
 // 解答
-// @TODO StillNeedToDo
 /*
 	给定两个字符串形式的非负整数 num1 和num2 ，计算它们的和。
 	注意：
@@ -25,27 +28,46 @@ func addStrings(num1 string, num2 string) string {
 	}
 
 	last := 0
-	for x := max; x > 0; x-- {
+	for x := 1; x <= max; x++ {
 		x1, x2 := 0, 0
-		if x < n1Len{
-			x1, _ = strconv.Atoi(num1[x-1: x])
+		tmpInt := 0
+		if x <= n1Len {
+			tmpInt = n1Len - x
+			x1, _ = strconv.Atoi(num1[tmpInt : tmpInt+1])
 		}
-		if x < n2Len{
-			x2, _ = strconv.Atoi(num2[x-1: x])
+		if x <= n2Len {
+			tmpInt = n2Len - x
+			x2, _ = strconv.Atoi(num2[tmpInt : tmpInt+1])
 		}
+		//fmt.Println(x, x1, x2, last, x1+x2+last)
 		x1 = x1 + x2 + last
-		if x1 > 9{
-			last = x1 - 10
-		}else {
+		bitN := x1
+		if x1 > 9 {
+			bitN = x1 - 10
+			last = (x1 - bitN) / 10
+		} else {
 			last = 0
 		}
-		ns = append(ns, strconv.Itoa(x1))
+		ns = append(ns, strconv.Itoa(bitN))
 	}
-
-	return strings.Join(ns, "")
+	if last > 0 {
+		ns = append(ns, strconv.Itoa(last))
+	}
+	ns1 := []string{}
+	for j := len(ns) - 1; j > -1; j-- {
+		ns1 = append(ns1, ns[j])
+	}
+	return strings.Join(ns1, "")
 }
 
 // 控制台
 func main() {
+	vfmt := "%t) [%v] VS [%v] <<= [%v, %v]"
+	var vinA, vinB, vout, vneed string
 
+	// test 1
+	// 4-6-9
+	vinA, vinB, vout = "9999", "999999", "1009998"
+	vneed = addStrings(vinA, vinB)
+	fmt.Println(fmt.Sprintf(vfmt, vneed == vout, vout, vneed, vinA, vinB))
 }
