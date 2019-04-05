@@ -169,7 +169,7 @@ class LeetCode
 // 本地测试
 // 本地测试^
 LeetCodeVar::Kv('c', '<cmd>');
-LeetCodeVar::Kv('c', 'ValidParentheses');
+LeetCodeVar::Kv('c', 'SortColors');
 //LeetCodeVar::Kv('c', 'LemonadeChange');
 //
 // 控制台
