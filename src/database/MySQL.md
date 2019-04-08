@@ -52,3 +52,16 @@ alter user 'root'@'localhost' identified by 'password';
 2. 安装 `$ /bin/mysqld install`
 3. 启动 `$ net start mysql`
 
+
+
+## 备份
+
+### mysqldump
+
+
+
+> 单实例： mysqldump -h192.168.48.131 -uroot -proot --opt dbname1 | mysql -h192.168.48.1 -uroot -proot -C dbname2   从131服务器上将dbname1数据库备份到1上。
+
+
+
+//@TODO <https://blog.csdn.net/u011302734/article/details/74936470>
