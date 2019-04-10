@@ -1,7 +1,9 @@
 package main
 
 import (
+	"crypto/sha1"
 	"fmt"
+	"io/ioutil"
 	"os"
 	"strings"
 )
@@ -12,6 +14,7 @@ const (
 
 // @TODO 待实现，用于检测过进行文件检测
 // 文件目录的深度
+// 扫描树，深度
 
 /**
  * @DATE        2019/4/10
@@ -19,30 +22,79 @@ const (
  * @DESCRIPIT   多进程文件系统查看/复制/删除/创建
  **/
 
+// 多进程文件阅读器
 type Mpfs struct {
 	FileCount int
-	DirCount int
-	ProcessX int
-	Dir string
+	DirCount  int
+	ProcessX  int
+	Dir       string
 }
 
-func NewMpfs() *Mpfs  {
+// 树字典
+type TreeDickData struct {
+	TreePath string // 路径标识符
+}
+type HashCode string
+type TreeDick map[HashCode]TreeDickData
+
+func NewMpfs() *Mpfs {
 	mpfs := &Mpfs{}
-	if vdir, has := Data[KeyCmdDir]; has{
+	if vdir, has := Data[KeyCmdDir]; has {
 		mpfs.Dir = vdir
-	}else {
+	} else {
 	}
 	return mpfs
 }
-func (m *Mpfs) Router()  {
 
+func TD2(dir string) TreeDick {
+	var td TreeDick
+	td = map[HashCode]TreeDickData{}
+
+	// 标准化地址
+	dir = strings.Replace(dir, "\\", "/", -1)
+	dirLen := len(dir)
+	if dirLen > 3 && dir[dirLen-1:] != "/" {
+		dir += "/"
+	}
+
+	var todoReader func(d1 string)
+	todoReader = func(d1 string) {
+		d1Src, err := ioutil.ReadDir(d1)
+		//fmt.Println("d1 => ", d1, ", err =>", err)
+		if err != nil {
+			return
+		}
+		for _, ds := range d1Src {
+			pRaw := d1 + ds.Name()
+			pCode := strings.Replace(pRaw, dir, "", -1)
+			td[HashCode(getHash1(pCode))] = TreeDickData{pCode}
+
+			//fmt.Println(pRaw, pCode, ds.IsDir(), dir)
+			// 递归
+			if ds.IsDir() {
+				pRaw += "/"
+				todoReader(pRaw)
+			}
+
+		}
+	}
+
+	todoReader(dir)
+	return td
 }
 
-//
-func (m *Mpfs) Info()  {
-
+// 命令路由器
+func (m *Mpfs) Router() {
+	switch action {
+	case "info":
+		m.Info()
+	}
 }
 
+// 文件信息
+func (m *Mpfs) Info() {
+	fmt.Println(TD2(m.Dir))
+}
 
 var maxProceeX int = 100
 var action string
@@ -68,6 +120,11 @@ func init() {
 	}
 }
 
+// 获取 hash 码
+func getHash1(s string) string {
+	h1 := sha1.New()
+	return fmt.Sprintf("%x", h1.Sum([]byte(s)))
+}
 
 func main() {
 	// 测试
@@ -79,4 +136,8 @@ func main() {
 
 	fmt.Println(" action ", action)
 	fmt.Println(Data)
+
+	//fmt.Println(
+	//	getHash1("1"),
+	//	" ", getHash1("2"))
 }
