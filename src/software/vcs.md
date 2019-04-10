@@ -169,6 +169,10 @@ $ git config --global user.email johndoe@example.com
 
 
 
+`$ git diff HEAD`     *比较当前，已经执行的 `$ git add .` 之后的差别。*
+
+
+
 > **`$ git commit` 提交更新**
 
 提交之前可以`git status` 查看状态

@@ -87,7 +87,7 @@ _FastCGI像是一个常驻(long-live)型的CGI，它可以一直执行着，只�
 
 ## HTTP
 
-*超文本传输协议(HyperText Transfer Protocol) 伴随着计算机网络和浏览器的诞生，HTTP1.0也随之而来，处于计算机网络中的应用层，HTTP是建立在TCP协议之上*
+*超文本传输协议 (HyperText Transfer Protocol / 超文本传输协议) 伴随着计算机网络和浏览器的诞生，HTTP1.0也随之而来，处于计算机网络中的应用层，HTTP是建立在TCP协议之上*
 
 ![](./image/web/https-history.png)
 
@@ -101,7 +101,19 @@ _FastCGI像是一个常驻(long-live)型的CGI，它可以一直执行着，只�
 
 
 
+*HTTP/1 建立在 TCP 协议之上。 HTTP 1.0 与 1.1 的主要区别在于长连接支持、多路复用、带宽节约与数据压缩等。其主要缺陷：连接无法复用、Head-Of-Line Blocking（HOLB，队头阻塞）、协议开销大（header 内容过大）、安全因素（明文传输）。*
+
+
+
 ![](./image/web/http-diff-1.0-and-1.1.png)
+
+
+
+*HTTP 对照*
+
+- HTTP/1 有连接无法复用、队头阻塞、协议开销大和安全因素等多个缺陷
+- HTTP/2 通过多路复用、二进制流与 Header 压缩等技术，极大地提高了性能，但是还是存在一些问题
+- HTTP/3 抛弃 TCP 协议，以全新的视角重新设计 HTTP。其底层支撑是 QUIC 协议，该协议基于 UDP，有 UDP 特有的优势，同时它又取了 TCP 中的精华，实现了即快又可靠的协议
 
 
 
@@ -136,6 +148,12 @@ _FastCGI像是一个常驻(long-live)型的CGI，它可以一直执行着，只�
 
 
 
+*2015 年，继承于 SPDY 的 HTTP/2 协议发布了。HTTP/2 是 HTTP/1 的替代品，但它不是重写，协议中还保留着第一代的一些内容，比如 HTTP 方法、状态码与语义等都与 HTTP/1 一样。*
+
+*HTTP/2 基于SPDY3，专注于**性能**，最大的一个目标是在用户和网站间只用一个连接。*
+
+
+
 **主要新特性**
 
 - *新的二进制格式*
@@ -145,12 +163,42 @@ _FastCGI像是一个常驻(long-live)型的CGI，它可以一直执行着，只�
 
 
 
+_HTTP/1 的请求和响应报文，都是由起始行、首部和实体正文（可选）组成，各部分之间以文本换行符分隔。**HTTP/2 将请求和响应数据分割为更小的帧，并且它们采用二进制编码**。_
+
+
+
+
+
+*相关的概念*
+
+- **流（stream）：**流是连接中的一个虚拟信道，可以承载双向的消息；每个流都有一个唯一的整数标识符（1、2…N）
+- **消息（message）：**指逻辑上的 HTTP 消息，比如请求、响应等，由一或多个帧组成
+- **帧（frame）：**HTTP/2 通信的最小单位，每个帧包含帧首部，至少也会标识出当前帧所属的流，承载着特定类型的数据，如 HTTP 首部、负荷等
+
+
+
+
+
 *HTTP2.0可以说是SPDY的升级版（其实原本也是基于SPDY设计的），但是，HTTP2.0 跟 SPDY 仍有不同的地方，主要是以下两点：*
 
 - *HTTP2.0 支持明文 HTTP 传输，而 SPDY 强制使用 HTTPS*
 - *HTTP2.0 消息头的压缩算法采用 [HPACK](http://http2.github.io/http2-spec/compression.html)，而非 SPDY 采用的 [DEFLATE*](http://zh.wikipedia.org/wiki/DEFLATE)
 
+
+
 ![](./image/web/http-diff-1.x-and-2.0.png)
+
+
+
+### HTTP/3
+
+> HTTP-over-QUIC
+
+*Google 就自己架起炉灶搞了一个基于 UDP 协议的 QUIC 协议，并且使用在了 HTTP/3 上，HTTP/3 之前名为 HTTP-over-QUIC，从这个名字中我们也可以发现，HTTP/3 最大的改造就是使用了 QUIC。*
+
+
+
+
 
 
 
