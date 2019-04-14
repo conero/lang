@@ -12,7 +12,18 @@ import (
  * @LINK		https://leetcode-cn.com/problems/keyboard-row/
  **/
 
-// @TODO 完善题目信息，算法已解决
+/*
+给定一个单词列表，只返回可以使用在键盘同一行的字母打印出来的单词。键盘如下图所示。
+American keyboard
+
+示例：
+	输入: ["Hello", "Alaska", "Dad", "Peace"]
+	输出: ["Alaska", "Dad"]
+
+注意：
+	你可以重复使用键盘上同一字符。
+	你可以假设输入的字符串将只包含字母。
+*/
 
 // 解答
 func findWords(words []string) []string {
@@ -22,16 +33,16 @@ func findWords(words []string) []string {
 		"ZXCVBNM",
 	}
 	wordValue := []string{}
-	for _, s := range words{
+	for _, s := range words {
 		var idx int = -1
 		isBreak := false
-		for _, w := range strings.Split(s, ""){
+		for _, w := range strings.Split(s, "") {
 			w = strings.ToUpper(w)
-			for i, comW := range dick{
-				if strings.Index(comW, w) > -1{
-					if idx == -1{
+			for i, comW := range dick {
+				if strings.Index(comW, w) > -1 {
+					if idx == -1 {
 						idx = i
-					}else if i != idx{
+					} else if i != idx {
 						isBreak = true
 						break
 					}
@@ -50,10 +61,7 @@ func findWords(words []string) []string {
 
 }
 
-
 // 控制台
 func main() {
 	fmt.Println(findWords([]string{"Hello", "Alaska", "Dad", "Peace"}))
 }
-
-
