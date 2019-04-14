@@ -9,6 +9,7 @@ import (
  * @DATE        2019/4/14
  * @NAME        Joshua Conero
  * @DESCRIPIT   描述 descript
+ * @LINK		https://leetcode-cn.com/problems/binary-prefix-divisible-by-5/
  **/
 
 // @TODO StillNeedToDo 算法解法1
