@@ -79,6 +79,10 @@ golang的cgo是调用gcc编译c代码的，gcc工具链在linux上很方便，�
 
 
 
+> 环境安装/window下 MinGW
+
+*window 需要环境  64位 `gcc`编译器，如:  [mingw-64 网站](http://mingw-w64.org) /  [下载地址](<https://sourceforge.net/projects/mingw-w64/>)*
+
 
 
 <!--[@todo https://blog.csdn.net/RA681t58CJxsgCkJ31/article/details/80504482]-->
@@ -463,6 +467,22 @@ go get = git clone + go install
 
 如： 获取当前的时间
 	time.Now().Format("2006-01-02 15:04:05")  
+```
+
+
+
+## 资源/库
+
+### GUI
+
+#### fyne
+
+*跨平台的 GUI 库，[GitHub代码库](<https://github.com/fyne-io/fyne>)。*
+
+> window GUI APP 默认含 cmd 窗口，可使用参数选项来消除
+
+```powershell
+go build -ldflags -H=windowsgui <filename>
 ```
 
 

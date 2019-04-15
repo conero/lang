@@ -7,8 +7,12 @@
 ### v3.4.0-alpha
 
 - **src**
+  - Web.md
+    - （新增）*添加内容项目-“浏览器”，以及相关内核介绍*
   - AI/DeepLearning.md
     - (+) *学习 MATLAB 中文网站上相关的机器学习基础知识*
+  - golang/golang.md
+    - （优化）*添加更多对 `cgo` 环境的配置*
 
 
 
