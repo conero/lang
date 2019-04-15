@@ -1096,6 +1096,22 @@ Cygwin  .修改库,让window提供一个类似unix提供的库,他们对程序�
 
 
 
+### fork
+
+*fork 系统调用方式在 20 世纪 70 年代被创造出来，它通常与 exec() 组合使用，非常简单却很强大，被认为是一种天才式的设计、Unix 的伟大思想，至今 50 余年一直作为 POSIX 操作系统的原语存在，同时几乎每个 Unix shell、主要 Web 和数据库服务器、Google Chrome、Redis 甚至 Node.js 都使用 fork。*
+
+
+
+主要优点： _**简单与缓解并发性**_
+
+
+
+_fork 的语义已经影响了每个创建进程状态的新 API 的设计，POSIX 规范现在列出了关于如何将父状态复制到子进度的 25 个特殊情况，包括文件锁定、定时器、异步 IO 操作与跟踪等。此外，许多系统调用标志控制 fork 关于内存映射（Linux madvise() 标记 MADV_DONTFORK/DOFORK/WIPEONFORK 等）、文件描述符（O_CLOEXEC、FD_CLOEXEC）和线程（pthread_atfork()）的行为。任何重要的操作系统工具都必须通过 fork 记录其行为，并且用户模式库必须做好准备，以便随时 fork 它们的状态。**fork 已经不再简单**。_
+
+
+
+
+
 
 ## 工具与环境
 
