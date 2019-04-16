@@ -72,6 +72,7 @@ func main() {
 	//vout = prefixesDivBy5(vin)
 	//fmt.Printf(vformat, binaryPDBy5(vout, vneed), vin, vout, vneed)
 
+	// 题目读不懂
 	// test
 	vin = []int{1, 1, 0, 0, 0, 1, 0, 0, 1}
 	vneed = []bool{false, false, false, false, false, false, false, false, false}
