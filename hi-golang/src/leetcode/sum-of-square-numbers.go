@@ -26,16 +26,24 @@ import (
 	输出: False
 */
 
-// @TODO 程序算法设计存在问题
-// @TODO StillNeedToDo
+// @TODO 超出时间限制 / StillNeedToDo
 // 解答
 func judgeSquareSum(c int) bool {
 	var value bool
-	for i := 1; i <= c; i++ {
-		vn := math.Pow(float64(i-1), 2) + math.Pow(float64(i), 2)
-		fmt.Println(i-1, i, vn, c)
-		if c == int(vn) {
-			value = true
+	for i := 0; i <= c; i++ {
+		for j := i; j <= c; j++ {
+			// 两个数大于时退出第二个数的寻找
+			vn := math.Pow(float64(i), 2) + math.Pow(float64(j), 2)
+			if int(vn) > c {
+				break
+			}
+			if c == int(vn) {
+				value = true
+				break
+			}
+		}
+		// 外层中断
+		if value {
 			break
 		}
 	}
@@ -59,4 +67,18 @@ func main() {
 	vin = 4
 	vout, vneed = judgeSquareSum(vin), true
 	fmt.Printf(format, vout == vneed, vin, vout, vneed)
+
+	vin = 2
+	vout, vneed = judgeSquareSum(vin), true
+	fmt.Printf(format, vout == vneed, vin, vout, vneed)
+
+	// 压力/性能测试
+	vin = 10000000
+	vout, vneed = judgeSquareSum(vin), true
+	fmt.Printf(format, vout == vneed, vin, vout, vneed)
+
+	vin = 999999999
+	vout, vneed = judgeSquareSum(vin), true
+	fmt.Printf(format, vout == vneed, vin, vout, vneed)
+
 }
