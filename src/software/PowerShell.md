@@ -2,10 +2,6 @@
 
 > 2018年10月19日 星期五
 
-```powershell
-# 查看 本地 PS 版本信息
-$PSVersionTable
-```
 
 
 
@@ -136,12 +132,17 @@ echo ">>:  $cn"
 
 ## 命令参考
 
-```ini
+```powershell
 # 获取命令列表
 Get-Command
 
 # 查看命令已经分配的别名
 Get-Command -CommandType Alias
+
+# 常用命名
+# 打印当前 ps 的版本信息
+$psversiontable
+$host
 ```
 
 

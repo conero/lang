@@ -25,6 +25,17 @@ _Tensor的意思是张量，代表N维数组；Flow的意思是流，代表基�
 
 
 
+### 教程
+
+```powershell
+# 安装 tensorflow
+pip install tensorflow
+```
+
+
+
+
+
 ### 机器学习
 
 *机器学习教计算机执行人和动物与生俱来的活动：<span style="color: red; font-size: 1.2em;">从经验中学习</span>。机器学习算法使用计算方法直接从数据中“学习”信息，而不依赖于预定方程模型。当可用于学习的样本数量增加时，这些算法可自适应提高性能。*
@@ -64,7 +75,19 @@ _Tensor的意思是张量，代表N维数组；Flow的意思是流，代表基�
 
 
 
-//@TODO  ~conero\docs-era\matlab之于人工智能 **93115v00_machine_learning_section2_ebook**
+//@TODO  ~conero\docs-era\matlab之于人工智能 **93116v00_machine_learning_section3_ebook_v05**
+
+
+
+> *机器学习的挑战*
+
+- 数据会以各种形式和大小出现(如离散之类)
+- 预处理数据需要掌握专业的知识和工具
+- 找到拟合数据的最佳模型需要时间
+
+
+
+> *反复尝试和出错才是机器学习的核心*
 
 
 

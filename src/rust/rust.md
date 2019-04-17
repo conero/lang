@@ -3385,6 +3385,24 @@ use std::{
 
 
 
+## 方案/issue
+
+
+
+### cargo 编译出错
+
+> WINDOWS 环境下
+
+*<span style="color: red;">error: linking with `link.exe` failed</span> 环境配置无效*
+
+解决方案： *需要下载 `Visual Studio` 并利用该工具安装依赖，如下:*
+
+![](../image/rust/rust/mcvs-env-lib.png)
+
+
+
+安装即可。
+
 
 
 ## 附录
