@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 /**
  * @DATE        2019/4/16
@@ -24,47 +27,28 @@ import "fmt"
 注意:
 	给定的整型数组长度范围是[3,10^4]，数组中所有的元素范围是[-1000, 1000]。
 	输入的数组中任意三个数的乘积不会超出32位有符号整数的范围。
- */
+*/
 
-
-// @TODO 程序算法设计存在问题
-// @TODO StillNeedToDo
+// @TODO 超出时间限制 / StillNeedToDo
 // 解答
 // 求指出最大三个数
 func maximumProduct(nums []int) int {
-	var value int
-	var n1, n2, n3 int = 0, 0, 0
-	var n10, n20, n30 bool = false, false, false
-	for _, v := range nums {
-		if !n10 {
-			n1 = v
-			n10 = true
-			continue
-		} else if !n20 {
-			n2 = v
-			n20 = true
-			continue
-		} else if !n30 {
-			n3 = v
-			n30 = true
-			continue
-		}
-
-		// 最大的数字
-		if v > n1 {
-			n1, v = v, n1
-		}
-		//第二大的数字
-		if v > n2 {
-			n2, v = v, n2
-		}
-		// 第三大的数字
-		if v > n3 {
-			n3 = v
+	var value, vlen int = 0, len(nums)
+	var valueNil bool = true
+	for i := 0; i < vlen; i++ {
+		for j := i + 1; j < vlen; j++ {
+			for k := j+ 1; k < vlen; k++{
+				if valueNil{
+					value = nums[i]*nums[j]*nums[k]
+					valueNil = false
+					//fmt.Println(nums[i], nums[j], nums[k], value)
+					continue
+				}
+				value = int(math.Max(float64(value), float64(nums[i]*nums[j]*nums[k])))
+				//fmt.Println(nums[i], nums[j], nums[k], value)
+			}
 		}
 	}
-	//fmt.Println(n1, n2, n3)
-	value = n1 * n2 * n3
 	return value
 }
 
