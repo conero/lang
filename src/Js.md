@@ -217,6 +217,47 @@ screenX, screenY	//	screen 屏幕坐标系
 
 
 
+### ThreeJs
+
+> - [官网资源](https://threejs.org)
+>
+> - [mrdoob/*three.js*](https://github.com/mrdoob/three.js)
+
+
+
+*为了真正能够让你的场景借助 three.js 来进行显示，我们需要以下几个对象：场景、相机和渲染器，这样我们就能透过摄像机渲染出场景。*
+
+
+
+
+
+#### 名词解释
+
+- *FOV - 视野角度*       就是无论在什么时候，你所能在显示器上看到的场景的范围，它的值是一个角度。
+- *aspect ratio - 长宽比*     也就是你用一个物体的宽除以它的高的比值。比如说，当你在一个宽屏电视上播放老电影时，可以看到图像仿佛是被压扁的
+- vertice 顶点
+- face       面
+- mesh     网格
+- scene     场景
+- animate   动画渲染
+- ployfills   填充物
+
+
+
+> 几何体
+
+- **BoxGeometry**			立方体
+
+
+
+> 3D 模型格式
+
+- gltf    Graphics Language Transmission Format（图形语言传输格式）
+
+
+
+
+
 
 # NodeJs
 
