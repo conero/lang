@@ -3181,6 +3181,23 @@ $ cargo check
 
 
 
+### rustfmt
+
+> rust 代码格式化工具
+
+```powershell
+# 安装工具栏
+cargo install rustfmt
+
+# 代码运行
+# 在工作目录中执行一个格式化代码
+cargo fmt
+```
+
+
+
+
+
 ## 历史/Version
 
 - 2006      *Graydon Hoare*     ``personal project``
