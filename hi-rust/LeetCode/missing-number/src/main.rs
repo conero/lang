@@ -1,36 +1,33 @@
 // 2019年4月18日 星期四
 // @link https://leetcode-cn.com/problems/missing-number/
 
-
-
-pub struct Solution{
-}
+pub struct Solution {}
 
 use std::collections::HashMap;
 // 解答
 impl Solution {
     pub fn missing_number(nums: Vec<i32>) -> i32 {
-        let mut max :i32 = 0;
+        let mut max: i32 = 0;
         let mut find_max = false;
         let mut num_dick = HashMap::new();
         let mut value = 0;
         // 获取最大值
         for v in nums {
-            if v > max{
+            if v > max {
                 max = v;
             }
             num_dick.insert(v, 1);
         }
-        let mut  i = 0;
+        let mut i = 0;
         while i <= max {
-            if !num_dick.contains_key(&i){
+            if !num_dick.contains_key(&i) {
                 value = i;
                 find_max = true;
                 break;
             }
             i += 1;
         }
-        if !find_max{
+        if !find_max {
             value = max + 1;
         }
         value
