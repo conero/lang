@@ -1,6 +1,26 @@
 # JS
 - 2017年11月8日 星期三
 
+## 基础
+
+### 进制转换
+
+```javascript
+// x进制  => 10 进制
+// parseInt(数字, 进制(2/36));	
+parseInt(1101, 2);		// x2 => 10		13
+parseInt(1101, 8);		// x8 => 10		5777
+parseInt(1101, 36);		// x16 => 10		47953
+
+
+// 10 => x 进制
+// 使用 number 对象，toString 进行进制切换
+var t = 147852.4755;
+console.log(t.toString(16));
+```
+
+
+
 
 
 ## 工具
@@ -229,6 +249,10 @@ screenX, screenY	//	screen 屏幕坐标系
 
 
 
+*Threejs使用的是右手坐标系，这源于opengl默认情况下，也是右手坐标系。*
+
+![](./image/js/three-js-xyz.jpg)
+
 
 
 #### 名词解释
@@ -246,8 +270,30 @@ screenX, screenY	//	screen 屏幕坐标系
 
 > 几何体
 
-- **BoxGeometry**			立方体
-
+- **BoxGeometry**			立方体几何
+- **BoxBufferGeometry**	    立方缓冲几何体
+- **CircleBufferGeometry**	圆形缓冲几何体
+- **CircleGeometry**		圆形几何体
+- **ConeBufferGeometry**	圆锥缓冲几何体
+- **ConeGeometry**			圆锥几何体
+- **CylinderGeometry**		圆柱几何体
+- **DodecahedronGeometry**	十二面几何体
+- **EdgesGeometry**			边缘几何体
+- **ExtrudeGeometry**		挤压几何体
+- **IcosahedronGeometry**	二十面几何体
+- **LatheGeometry**			车削几何体
+- **OctahedronGeometry**	八面几何体
+- **ParametricGeometry**	参数化几何体
+- **PlaneGeometry**			平面几何体
+- **RingGeometry**			圆环几何体
+- **ShapeGeometry**			形状几何体
+- **SphereGeometry**		球几何体
+- **TetrahedronGeometry**	四面几何体
+- **TextGeometry**			文本几何体
+- **TorusGeometry**			圆环几何体
+- **TorusKnotGeometry**		圆环扭结几何体
+- **TubeGeometry**			管道几何体
+- **WireframeGeometry**		网格几何体
 
 
 > 3D 模型格式

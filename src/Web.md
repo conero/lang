@@ -252,6 +252,47 @@ IP 服务器		->  HTTP 相应
 
 
 
+## 服务器
+
+### 测试服务器
+
+#### PHP
+
+> php 内建服务器 测试系统
+
+```powershell
+php -S 0.0.0.0:2019
+```
+
+
+
+### python
+
+> 使用库 `http.server` 实现测试服务的搭建，默认开启 `文件服务器`
+
+```powershell
+python -m http.server <port>
+
+# 如 2020 服务器
+python -m http.server 2020
+```
+
+
+
+### nodeJs
+
+> 安装 [`http-server`](<https://github.com/indexzero/http-server>) 插件实现命令式测试服务器
+
+
+
+```powershell
+# 安装全局插件
+npm install http-server -g
+
+# 开启服务器
+http-server [path] [options]
+```
+
 
 
 
