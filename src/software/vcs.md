@@ -407,6 +407,8 @@ $ git diff <branch1> <branch2> --stat
 # 拉取分支，若不存在就新建分支
 # Method 1
 $ git checkout -b <branchName>
+$ git checkout -b <branchName> remotes/origin/<branchName>
+$ git checkout -b trys-190329/krpano remotes/origin/trys-190329/krpano 
 
 # 分支简写
 # Method 2
@@ -436,6 +438,15 @@ $ git merge <srcBN>
 
 # 撤销分支合并
 $ git reset --hard
+
+
+# 重命名本地/远程分支
+# 本地分支重命名
+git branch -m old_branch new_branch
+# 删除旧的远程分支
+git push origin :old_branch 
+# 本地分支推送
+git push --set-upstream origin new_branch
 ```
 
 
