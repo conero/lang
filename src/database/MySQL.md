@@ -12,6 +12,20 @@
 
 ## 安装
 
+### 配置
+
+数据库表：*performance_schema*
+
+```mysql
+# MySQL ，通过 SQL 修改 数据库的配置信息
+# performance_schema.global_variables 全局配置
+set global max_allowed_packet = 200*1024*1024;
+```
+
+
+
+
+
 ### Zip file(8.0)
 
 > Windows 版本下安装
@@ -56,7 +70,32 @@ alter user 'root'@'localhost' identified by 'password';
 
 ## 备份
 
+> mysql命令行导入数据
+
+```powershell
+# 以 utf8 的编码登录到 mysql 中
+mysql -u root -p --default-character-set=utf8 
+
+# 选择数据库
+use dbname;
+# 使用 source 导入脚本
+source d:/.../name.sql
+```
+
+
+
+
+
 ### mysqldump
+
+> 本地导出数据为SQL
+
+```powershell
+# mysqldump -uroot -p --default-character-set=utf8 dbname > d:/.../file.sql
+mysqldump -uroot -p --default-character-set=utf8 dataset > d:/tmp/dataset.sql
+```
+
+
 
 
 
