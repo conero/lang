@@ -68,6 +68,26 @@ alter user 'root'@'localhost' identified by 'password';
 
 
 
+## issue
+
+### time_zone 错误，jdbc 连接解决
+
+```
+# java.lang.RuntimeException: com.mysql.cj.exceptions.InvalidConnectionAttributeException: The server time zone value 'ÖÐ¹ú±ê×¼Ê±¼ä' is unrecognized or represents more than one time zone. You must configure either the server or JDBC driver (via the serverTimezone configuration property) to use a more specifc time zone value if you want to utilize time zone support.
+```
+
+
+
+> *设置时间区就可以*
+
+```sql
+set global time_zone ='+8:00';
+```
+
+
+
+
+
 ## 备份
 
 > mysql命令行导入数据
