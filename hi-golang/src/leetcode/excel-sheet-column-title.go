@@ -53,16 +53,16 @@ func convertToTitle(n int) string {
 		}
 		//fmt.Println(c26, last, c26-last, string(64 + c26), n)
 		c26 -= last
-		if c26 == 0 && n < 0{
+		if c26 == 0 && n < 0 {
 			break
 		}
 		last = 0
-		if c26 == 0{
+		if c26 == 0 {
 			c26 = 26
 			last = 1
 		}
 
-		s = string(64 + c26) + s
+		s = string(64+c26) + s
 		// 转换非法值检测
 		if n < 0 {
 			break

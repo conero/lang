@@ -37,9 +37,9 @@ func maximumProduct(nums []int) int {
 	var valueNil bool = true
 	for i := 0; i < vlen; i++ {
 		for j := i + 1; j < vlen; j++ {
-			for k := j+ 1; k < vlen; k++{
-				if valueNil{
-					value = nums[i]*nums[j]*nums[k]
+			for k := j + 1; k < vlen; k++ {
+				if valueNil {
+					value = nums[i] * nums[j] * nums[k]
 					valueNil = false
 					//fmt.Println(nums[i], nums[j], nums[k], value)
 					continue

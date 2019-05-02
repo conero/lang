@@ -2,7 +2,6 @@
 // @Author:  Joshua Conero
 // @Name:    库入口文件
 
-
 // reference link
 //    + https://www.cnblogs.com/golove/p/3286303.html
 package main
@@ -11,20 +10,17 @@ import (
 	"fmt"
 )
 
-
-
 func main() {
 	// var datas interface{}
 	// fmt.Scan(&datas)
 	// fmt.Println(datas)
-
 
 	fmt.Println("5555")
 
 	// 数据匹配
 	// var s string
 	// fmt.Scanf("get the string: %s", &s)
-	// fmt.Println(" usage: " + s)	
+	// fmt.Println(" usage: " + s)
 
 	// 输出颜色
 	// liunx/bash 中颜色正常

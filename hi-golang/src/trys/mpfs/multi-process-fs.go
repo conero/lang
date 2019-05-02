@@ -147,7 +147,6 @@ var action string
 var Data map[string]string
 var globalTmer func() string
 
-
 func init() {
 	globalTmer = getTime()
 	// 命令解析

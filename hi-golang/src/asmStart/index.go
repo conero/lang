@@ -1,10 +1,7 @@
 // errorcheck -0 -d=nil
 // +build wasm
 
-
 package main
-
-
 
 // version： 1.11
 // wasm.Js 测试
@@ -17,4 +14,3 @@ import (
 func main() {
 	fmt.Println("wasm.Joshua Conero!")
 }
-

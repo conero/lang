@@ -5,16 +5,16 @@ import "fmt"
 func twoSum(nums []int, target int) []int {
 	vlen := len(nums)
 	var value []int
-	for i, n := range nums{
+	for i, n := range nums {
 		success := false
-		for j := i +1; j<vlen; j++{
-			if (target - n) == nums[j]{
+		for j := i + 1; j < vlen; j++ {
+			if (target - n) == nums[j] {
 				success = true
 				value = []int{i, j}
 				break
 			}
 		}
-		if success{
+		if success {
 			break
 		}
 	}

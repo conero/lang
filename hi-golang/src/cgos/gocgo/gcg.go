@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"time"
 )
+
 // 此处若写错，可能出错。 如 "//export 无空格"
 //export DateString4Go
 func DateString4Go() {

@@ -30,31 +30,31 @@ func addBinary(a string, b string) string {
 	//bLen := len(b)
 	//fmt.Println("LEN:", aLen, bLen, a ,b )
 	lastBit := 0
-	for i :=1; ;i++  {
-		if i > aLen && i > bLen{
+	for i := 1; ; i++ {
+		if i > aLen && i > bLen {
 			break
 		}
 		aBit, bBit := 0, 0
-		if i <= aLen{
-			aBit, _ = strconv.Atoi(a[aLen-i:aLen-i+1])
+		if i <= aLen {
+			aBit, _ = strconv.Atoi(a[aLen-i : aLen-i+1])
 		}
-		if i <= bLen{
-			bBit, _ = strconv.Atoi(b[bLen-i:bLen-i+1])
+		if i <= bLen {
+			bBit, _ = strconv.Atoi(b[bLen-i : bLen-i+1])
 		}
 		//fmt.Println(i, ":", aBit, bBit, lastBit, aBit + bBit + lastBit)
 		aBit = aBit + bBit + lastBit
 		lastBit = 0
-		if aBit > 1{
+		if aBit > 1 {
 			aBit -= 2
 			lastBit = 1
 		}
 		s = strconv.Itoa(aBit) + s
 	}
-	if lastBit == 2{
+	if lastBit == 2 {
 		lastBit = 0
 		s = "10" + s
 	}
-	if lastBit > 0{
+	if lastBit > 0 {
 		s = strconv.Itoa(lastBit) + s
 	}
 	return s

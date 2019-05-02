@@ -29,19 +29,19 @@ func merge(nums1 []int, m int, nums2 []int, n int) []int {
 		if i > m && i > n {
 			break
 		}
-		hasM , hasN := false, false
-		if i <= m{
+		hasM, hasN := false, false
+		if i <= m {
 			hasM = true
 		}
-		if i <= n{
+		if i <= n {
 			hasN = true
 		}
 		insertM := false
-		for j, mTmp := range mv{
-			if !hasM{
+		for j, mTmp := range mv {
+			if !hasM {
 				break
 			}
-			if nums1[i-1] < mTmp{
+			if nums1[i-1] < mTmp {
 				mv[j] = nums1[i-1]
 				lastMv := mv[j+1:]
 				lastMv = append([]int{mTmp}, lastMv...)
@@ -50,16 +50,16 @@ func merge(nums1 []int, m int, nums2 []int, n int) []int {
 				break
 			}
 		}
-		if !insertM && hasM{
+		if !insertM && hasM {
 			mv = append(mv, nums1[i-1])
 		}
 		//----------------------[ N ]
 		insertN := false
-		for j, mTmp := range mv{
-			if !hasN{
+		for j, mTmp := range mv {
+			if !hasN {
 				break
 			}
-			if nums2[i-1] < mTmp{
+			if nums2[i-1] < mTmp {
 				mv[j] = nums2[i-1]
 				lastMv := mv[j+1:]
 				lastMv = append([]int{mTmp}, lastMv...)
@@ -68,7 +68,7 @@ func merge(nums1 []int, m int, nums2 []int, n int) []int {
 				break
 			}
 		}
-		if !insertN && hasN{
+		if !insertN && hasN {
 			mv = append(mv, nums2[i-1])
 		}
 	}

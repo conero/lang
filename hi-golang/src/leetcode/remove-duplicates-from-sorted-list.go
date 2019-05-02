@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"strconv"
 )
+
 // 题目
 /*
 给定一个排序链表，删除所有重复的元素，使得每个元素只出现一次。
@@ -18,7 +19,7 @@ import (
 示例 2:
 	输入: 1->1->2->3->3
 	输出: 1->2->3
- */
+*/
 
 // 声明
 type ListNode struct {
@@ -67,11 +68,11 @@ func deleteDuplicates(head *ListNode) *ListNode {
 	}
 	//fmt.Println(valNs)
 	//for _, nv := range valNs{
-	for i := len(valNs) - 1; i >= 0; i--{
+	for i := len(valNs) - 1; i >= 0; i-- {
 		nv := valNs[i]
-		if newNode != nil{
+		if newNode != nil {
 			newNode = &ListNode{nv, newNode}
-		}else {
+		} else {
 			newNode = &ListNode{nv, nil}
 		}
 	}
@@ -83,7 +84,7 @@ func rdfsl_out(head *ListNode) string {
 	var s string
 	var tmp *ListNode = head
 	for {
-		if nil == tmp{
+		if nil == tmp {
 			break
 		}
 		valN := tmp.Val

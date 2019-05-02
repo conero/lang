@@ -19,18 +19,18 @@ func BasePointer() {
 
 	// 指针引用
 	tAPnt = &tA
-	fmt.Println("tAPnt 去数组 tA的地址以后" ,tAPnt)
+	fmt.Println("tAPnt 去数组 tA的地址以后", tAPnt)
 	//直接计算
 	//tAPnt = append(tAPnt, []int{1, 3, 1, 4, 5, 2, 1})			// Error: first argument to append must be slice; have *[]int
-	*tAPnt = append(*tAPnt, []int{1, 3, 1, 4, 5, 2, 1}...)			// Error: first argument to append must be slice; have *[]int
+	*tAPnt = append(*tAPnt, []int{1, 3, 1, 4, 5, 2, 1}...) // Error: first argument to append must be slice; have *[]int
 
 	// 去除值，并替换
 	//tmpArr := *tAPnt
 	//tmpArr = append(tmpArr, []int{1, 3, 1, 4, 5, 2, 1}...)
 	//tAPnt = &tmpArr
 
-	fmt.Println("tAPnt 去数组 tA的地址以后" ,tAPnt)
-	fmt.Println("tAPnt 去数组 tA的地址以后" ,tA)
+	fmt.Println("tAPnt 去数组 tA的地址以后", tAPnt)
+	fmt.Println("tAPnt 去数组 tA的地址以后", tA)
 }
 
 func main() {

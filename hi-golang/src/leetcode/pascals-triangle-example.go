@@ -1,9 +1,8 @@
 package main
+
 // @name 824. 山羊拉丁文
 // @link: https://leecode-cn.com/problems/goat-latin/
 // @data 2019年3月8日 星期五
-
-
 
 import "fmt"
 
@@ -31,9 +30,9 @@ import "fmt"
 todos 例子
 	@TODO 实现失败：  超出时间限制
 	@TODO 未解决 - NeedToDoStill.
- */
+*/
 
- // 解答
+// 解答
 func generateXXXX(numRows int) [][]int {
 	var quque [][]int = [][]int{}
 	for i := 1; i <= numRows; i++ {

@@ -21,7 +21,6 @@ import (
 
 */
 
-
 // 解答
 func lengthOfLastWord(s string) int {
 	s = strings.TrimSpace(s)

@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 	"html/template"
-	"os"
 	"log"
+	"os"
 )
 
 // 2018年8月3日 星期五
@@ -16,16 +16,17 @@ type Model struct {
 	Data map[interface{}]interface{}
 }
 
-func (m *Model) Get(key interface{}) interface{}  {
+func (m *Model) Get(key interface{}) interface{} {
 	v, has := m.Data[key]
-	if !has{
+	if !has {
 		v = nil
 	}
 	return v
 }
+
 // 设置值
 func (m *Model) Set(key, value interface{}) *Model {
-	if nil == m.Data{
+	if nil == m.Data {
 		m.Data = map[interface{}]interface{}{}
 	}
 	m.Data[key] = value
@@ -35,56 +36,57 @@ func (m *Model) Set(key, value interface{}) *Model {
 // 视图类型
 type View struct {
 	DefKey string
-	Vid string
-	Vdata map[string]string
+	Vid    string
+	Vdata  map[string]string
 }
 
-func (v *View) GetVdfk() string  {
+func (v *View) GetVdfk() string {
 	vk := "default"
-	if "" != v.DefKey{
+	if "" != v.DefKey {
 		vk = v.DefKey
-	}else {
+	} else {
 		v.DefKey = vk
 	}
 	return vk
 }
 
 // 视图处理
-func (v *View) AddStr(str string) *View  {
-	if nil == v.Vdata{
+func (v *View) AddStr(str string) *View {
+	if nil == v.Vdata {
 		v.Vdata = map[string]string{}
 	}
 	s, h := v.Vdata[v.GetVdfk()]
-	if h{
+	if h {
 		s += str
-	}else {
+	} else {
 		s = str
 	}
 	v.Vdata[v.GetVdfk()] = s
 	return v
 }
+
 // v1 = id, v2 = Data
-func (v *View) GetVString(a ...interface{})  {
+func (v *View) GetVString(a ...interface{}) {
 	key := v.GetVdfk()
-	if len(a) > 0{
-		if inStr1 := a[0].(string); inStr1 != ""{
+	if len(a) > 0 {
+		if inStr1 := a[0].(string); inStr1 != "" {
 			key = inStr1
 		}
 	}
 	data := map[interface{}]interface{}{}
-	if len(a) > 1{
+	if len(a) > 1 {
 		data = a[1].(map[interface{}]interface{})
 	}
-	if v.Vid == ""{
+	if v.Vid == "" {
 		v.Vid = "tDefault"
 	}
-	if t1,has := v.Vdata[key]; has && t1 != ""{
+	if t1, has := v.Vdata[key]; has && t1 != "" {
 		tpl, err := template.New(v.Vid).Parse(t1)
-		if err != nil{
+		if err != nil {
 			log.Fatal(err.Error())
 		}
 		err2 := tpl.Execute(os.Stdout, data)
-		if err2 != nil{
+		if err2 != nil {
 			log.Fatal(err2.Error())
 		}
 	}
@@ -93,45 +95,45 @@ func (v *View) GetVString(a ...interface{})  {
 
 // 控制器
 type Controller struct {
-	Events map[string]interface{}
+	Events  map[string]interface{}
 	InitKey string
-	EndKey string
+	EndKey  string
 }
 
 func (c *Controller) _call(Name string) bool {
-	if fn, has := c.Events[Name]; has{
+	if fn, has := c.Events[Name]; has {
 		fn.(func())()
 		return true
 	}
 	return false
 }
-func (c *Controller) Run(Name string)  {
+func (c *Controller) Run(Name string) {
 	// Init,
-	if c.InitKey == ""{
+	if c.InitKey == "" {
 		c.InitKey = "Init"
 	}
 	c._call(c.InitKey)
 	c._call(Name)
 	// End,
-	if c.EndKey == ""{
+	if c.EndKey == "" {
 		c.EndKey = "End"
 	}
 	c._call(c.EndKey)
 }
 
 func (c *Controller) On(Name string, fn interface{}) *Controller {
-	if nil == c.Events{
+	if nil == c.Events {
 		c.Events = map[string]interface{}{}
 	}
 	c.Events[Name] = fn
 	return c
 }
+
 // Mvc 接口
 type MvcInter interface {
 	// 输出内容
 	Name() string
-} 
-
+}
 
 // mvc 结构体
 type Mvc struct {
@@ -141,16 +143,17 @@ type Mvc struct {
 	MvcInter
 }
 
-func (m *Mvc) ShowView(){
+func (m *Mvc) ShowView() {
 	m.GetVString("", m.Data)
 }
 
 // 名称
-func (m Mvc) Name() string  {
+func (m Mvc) Name() string {
 	return "MVC"
 }
+
 // 视图层
-func NewMvc() *Mvc  {
+func NewMvc() *Mvc {
 	mvc := Mvc{}
 	return &mvc
 }
@@ -159,7 +162,7 @@ type TestCase struct {
 }
 
 // 基础测试
-func (tc TestCase) Base()  {
+func (tc TestCase) Base() {
 	mvc := NewMvc()
 	rId := "Base"
 	mvc.On(rId, func() {
@@ -174,7 +177,6 @@ func (tc TestCase) Base()  {
 	})
 	mvc.Run(rId)
 }
-
 
 func main() {
 	var tc TestCase

@@ -41,7 +41,7 @@ func getRow(rowIndex int) []int {
 		line = append(line, 1)
 		quque[i-1] = line
 	}
-	if len(quque) > 0{
+	if len(quque) > 0 {
 		d = quque[len(quque)-1]
 	}
 	return d

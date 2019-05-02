@@ -71,11 +71,11 @@ func validIPAddress(IP string) string {
 	if matched, _ := regexp.MatchString("[\\d]{1,3}\\.[\\d]{1,3}\\.[\\d]{1,3}\\.[\\d]{1,3}", IP); matched {
 		matched2, _ := regexp.MatchString("[a-zA-Z]+", IP)
 		isValidV4 := !matched2
-		if isValidV4 && strings.Count(IP, ".") > 3{
+		if isValidV4 && strings.Count(IP, ".") > 3 {
 			isValidV4 = false
 		}
 		for _, s := range strings.Split(IP, ".") {
-			if !isValidV4{
+			if !isValidV4 {
 				break
 			}
 			// 大于 255
@@ -99,17 +99,17 @@ func validIPAddress(IP string) string {
 		ipType == Neither &&
 		len(IP) <= ipv6MaxLen {
 		isValidV6 := true
-		if cmatched, _ := regexp.MatchString("[:]{2}", IP); cmatched{
+		if cmatched, _ := regexp.MatchString("[:]{2}", IP); cmatched {
 			isValidV6 = false
 		}
-		if isValidV6 && strings.Count(IP, ":") > 7{
+		if isValidV6 && strings.Count(IP, ":") > 7 {
 			isValidV6 = false
 		}
-		for _, ss := range strings.Split(IP, ":"){
-			if !isValidV6{
+		for _, ss := range strings.Split(IP, ":") {
+			if !isValidV6 {
 				break
 			}
-			if len(ss) > 4{
+			if len(ss) > 4 {
 				isValidV6 = false
 				break
 			}

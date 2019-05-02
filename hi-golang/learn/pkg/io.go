@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 	"html/template"
-	"log"
 	"io"
+	"log"
 )
 
 type InsWt struct {
@@ -12,7 +12,7 @@ type InsWt struct {
 	Content string
 }
 
-func (iw *InsWt) Write(p []byte) (n int, err error)  {
+func (iw *InsWt) Write(p []byte) (n int, err error) {
 	content := string(p)
 	iw.Content = content
 	fmt.Println("内部程序写入: " + content)
@@ -33,7 +33,7 @@ func (t TestCase) Writer() {
 
 	wt := &InsWt{}
 	data := map[interface{}]interface{}{
-		"Surong": 8*9,
+		"Surong": 8 * 9,
 	}
 	ins.Execute(wt, data)
 

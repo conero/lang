@@ -52,13 +52,14 @@ import "fmt"
 		解释: M = 1000, CM = 900, XC = 90, IV = 4.
 */
 type rtICsYl struct {
-	s string
-	ref int
+	s       string
+	ref     int
 	success bool
 }
-func rtICs(rr ...rtICsYl)  {
+
+func rtICs(rr ...rtICsYl) {
 	fmt.Println(" 正确 ) 罗马文 => 转换值, ==参考值")
-	for _, r := range rr{
+	for _, r := range rr {
 		s := r.s
 		ref := r.ref
 
@@ -70,12 +71,13 @@ func rtICs(rr ...rtICsYl)  {
 }
 
 type itRCsYl struct {
-	n int
+	n   int
 	ref string
 }
-func itRCs(rr ...itRCsYl)  {
+
+func itRCs(rr ...itRCsYl) {
 	fmt.Println(" 正确 ) 数字 => 转换值, ==参考值")
-	for _, r := range rr{
+	for _, r := range rr {
 		n := r.n
 		ref := r.ref
 
@@ -104,59 +106,58 @@ func main() {
 		itRCsYl{1, "I"},
 		itRCsYl{5, "V"},
 		itRCsYl{20, "XX"},
-		)
+	)
 }
-
 
 // 罗马文转整形
 func romanToInt(s string) int {
 	var value int
 	dick := map[string]int{
-		"I":1,
-		"V":5,
-		"X":10,
-		"L":50,
-		"C":100,
-		"D":500,
-		"M":1000,
+		"I": 1,
+		"V": 5,
+		"X": 10,
+		"L": 50,
+		"C": 100,
+		"D": 500,
+		"M": 1000,
 	}
 	sLen := len(s)
-	for i := 0; i<sLen; i++{
-		c := s[i:i+1]
+	for i := 0; i < sLen; i++ {
+		c := s[i : i+1]
 		//fmt.Println(i, c, value)
-		if i+1 < sLen{
-			c2 := s[i+1: i+2]
+		if i+1 < sLen {
+			c2 := s[i+1 : i+2]
 			//fmt.Println(i, c, c2, value)
 			isSep := false
 			switch {
 			case c == "I" && (c2 == "V" || c2 == "X"):
-				if c2 == "V"{				// IV = 4
+				if c2 == "V" { // IV = 4
 					value += 4
-				}else {
-					value += 9				// IX = 9
+				} else {
+					value += 9 // IX = 9
 				}
 				isSep = true
 			case c == "X" && (c2 == "L" || c2 == "C"):
-				if c2 == "L"{		// XL = 40
+				if c2 == "L" { // XL = 40
 					value += 40
-				}else {
-					value += 90		// XC = 90
+				} else {
+					value += 90 // XC = 90
 				}
 				isSep = true
 			case c == "C" && (c2 == "D" || c2 == "M"):
-				if c2 == "D"{		// CD = 400
+				if c2 == "D" { // CD = 400
 					value += 400
-				}else {
-					value += 900		// CM = 900
+				} else {
+					value += 900 // CM = 900
 				}
 				isSep = true
 			}
-			if isSep{
+			if isSep {
 				i += 1
 				continue
 			}
 		}
-		if nx, has := dick[c]; has{
+		if nx, has := dick[c]; has {
 			value += nx
 		}
 	}
@@ -164,67 +165,65 @@ func romanToInt(s string) int {
 	return value
 }
 
-
-
 /**
-	@descript 整数转罗马数字
-	@link https://leetcode-cn.com/problems/integer-to-roman/
- */
+@descript 整数转罗马数字
+@link https://leetcode-cn.com/problems/integer-to-roman/
+*/
 func intToRoman(num int) string {
 	var s string
 	dick := map[int]string{
 		1000: "M",
-		500: "D",
-		100: "C",
-		50: "L",
-		10: "X",
-		5: "V",
-		1: "I",
+		500:  "D",
+		100:  "C",
+		50:   "L",
+		10:   "X",
+		5:    "V",
+		1:    "I",
 	}
 	queue := []int{1000, 500, 100, 50, 10, 5, 1}
 	seqDick := map[int]string{
 		900: "CM",
 		400: "CD",
-		90: "XC",
-		40: "XL",
-		9: "IX",
-		4: "IV",
+		90:  "XC",
+		40:  "XL",
+		9:   "IX",
+		4:   "IV",
 	}
 
 	// 重复字符串
 	var repeatFn = func(str string, n int) string {
 		nStr := ""
-		for i:=0; i<n; i++{
+		for i := 0; i < n; i++ {
 			nStr += str
 		}
 		return nStr
 	}
 
-	for i := num; i>0; {
+	for i := num; i > 0; {
 		// 特殊字符换处理
-		if seq, has := seqDick[i]; has{
+		if seq, has := seqDick[i]; has {
 			s += seq
 			i = 0
 			break
 		}
-		for _, e := range queue{
+		for _, e := range queue {
 			//fmt.Println(i, e)
-			if i >= e{
+			if i >= e {
 				// 特殊字符串处理
-				for si, sv := range seqDick{
-					if i>si && si > e && i - si < si{
+				for si, sv := range seqDick {
+					if i > si && si > e && i-si < si {
 						s += sv
 						i -= si
 					}
 				}
 
-				if 0 == i%e{
-					i = i/e
+				if 0 == i%e {
+					i = i / e
 					s += repeatFn(dick[e], i)
 					i = 0
-				}else {
-					tn := i%e
-					i = (i-tn)/e
+				} else {
+					tn := i % e
+					i = (i - tn) / e
 					s += repeatFn(dick[e], i)
 					i = tn
 				}

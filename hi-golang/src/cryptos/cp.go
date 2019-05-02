@@ -11,7 +11,7 @@ const (
 	CmdShaEn   = "sha1"
 	CmdAllBase = "all"
 	CmdAESCBC  = "aes"
-	CmdRsaOaep  = "rsa"
+	CmdRsaOaep = "rsa"
 	CmdEn      = "en"
 	CmdDe      = "de"
 	DefKey     = "Joshua Conero"

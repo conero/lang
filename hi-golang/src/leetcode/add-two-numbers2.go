@@ -158,10 +158,10 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 		v := q1[i]
 		if i < minLen {
 			v += q2[i] + mBit
-			if v > 9{
+			if v > 9 {
 				v = v - 10
 				mBit = 1
-			}else {
+			} else {
 				mBit = 0
 			}
 			que = append(que, v)
@@ -172,10 +172,10 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 			v = v + mBit
 		}
 
-		if v > 9{
+		if v > 9 {
 			v = v - 10
 			mBit = 1
-		}else {
+		} else {
 			mBit = 0
 		}
 
