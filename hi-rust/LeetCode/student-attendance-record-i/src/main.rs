@@ -4,7 +4,6 @@
 
 
 // 题目
-// @todo StillDonotWorkAtAll
 /*
 给定一个字符串来代表一个学生的出勤记录，这个记录仅包含以下三个字符：
     'A' : Absent，缺勤
@@ -38,14 +37,25 @@ impl Solution {
             // A 字符
             if bts == 'A' {
                 a_ct += 1;
+                last_char = bts;
+                continue
             }
             // L 字符串
-            if last_char == 'L'{
+            if last_char == 'L' && bts == 'L'{
                 l_ct += 1;
             }else {
-                l_ct = 0;
+                l_ct = if bts == 'L'{
+                    1
+                }else {
+                    0
+                };
             }
             last_char = bts;
+            //println!("[{} {}], {}", l_ct, a_ct, last_char);
+        }
+        //println!("[{} {}]", l_ct, a_ct);
+        if a_ct > 1 || l_ct > 2{
+            return false;
         }
         return true
     }
@@ -55,4 +65,5 @@ impl Solution {
 fn main() {
     assert_eq!(true, Solution::check_record("PPALLP".to_string()));
     assert_eq!(false, Solution::check_record("PPALLL".to_string()));
+    assert_eq!(true, Solution::check_record("LALL".to_string()));
 }
