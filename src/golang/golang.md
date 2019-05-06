@@ -13,6 +13,8 @@
 
 
 
+//@TODO [github 网站学习](<https://github.com/chai2010/advanced-go-programming-book>)
+
 ## 关于
 
 ### 代码
@@ -81,13 +83,27 @@ golang的cgo是调用gcc编译c代码的，gcc工具链在linux上很方便，�
 
 > 环境安装/window下 MinGW
 
-*window 需要环境  64位 `gcc`编译器，如:  [mingw-64 网站](http://mingw-w64.org) /  [下载地址](<https://sourceforge.net/projects/mingw-w64/>)*
+*window 需要环境  64位 `gcc`编译器，如:  [mingw-64 网站](http://mingw-w64.org) /  [下载地址](<https://sourceforge.net/projects/mingw-w64/>)；32 位下 __cgo__ 不可用。*
 
 
 
 <!--[@todo https://blog.csdn.net/RA681t58CJxsgCkJ31/article/details/80504482]-->
 
 <!--[@todo https://blog.csdn.net/RA681t58CJxsgCkJ31/article/details/80504482]-->
+
+
+
+> go 编译为 dll 文件
+
+```shell
+# 编译单文件
+go build -buildmode=c-shared -o exportgo.dll exportgo.go
+
+# 编译目录
+go build -buildmode=c-shared -o shared.dll .
+```
+
+
 
 
 
