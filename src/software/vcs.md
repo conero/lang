@@ -350,6 +350,9 @@ $ git push origin :<tagName>
 # 同时将远程，tag 同步到本地
 $ git fetch --prune
 $ git fetch -p
+
+# 
+$ git pull -p
 ```
 
 
