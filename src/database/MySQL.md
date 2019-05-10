@@ -90,7 +90,7 @@ set global time_zone ='+8:00';
 
 ## 备份
 
-> mysql命令行导入数据
+> mysql命令行导入数据，*数据库管理软件/工具中使用 source 导入数据无效*。
 
 ```powershell
 # 以 utf8 的编码登录到 mysql 中
@@ -129,3 +129,26 @@ mysqldump -uroot -p --default-character-set=utf8 dataset tablename --result-file
 
 
 //@TODO <https://blog.csdn.net/u011302734/article/details/74936470>
+
+
+
+### binlog
+
+> 查看数据库 bin 日志
+
+```mysql
+-- 查看binlog日志是否开启
+show variables like 'log_%'; 
+
+-- 查看所有 binlog 日志列表
+show master logs;
+
+-- 查看二进制状态
+show master status;
+-- 日志刷新
+flush logs;
+```
+
+
+
+//@TODO *window 下如开启 binlog ，实现数据备份的解决方案。*
