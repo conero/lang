@@ -113,6 +113,11 @@ source d:/.../name.sql
 ```powershell
 # mysqldump -uroot -p --default-character-set=utf8 dbname > d:/.../file.sql
 mysqldump -uroot -p --default-character-set=utf8 dataset > d:/tmp/dataset.sql
+
+# 经测试只导出一行
+# needtoKnowMore
+mysqldump -uroot -p --default-character-set=utf8 dataset tablename > d:/tmp/tablename.sql
+mysqldump -uroot -p --default-character-set=utf8 dataset tablename --result-file=d:/tmp/tablename.sql
 ```
 
 
