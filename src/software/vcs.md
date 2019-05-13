@@ -1296,3 +1296,13 @@ svn info --xml
 
 
 
+# ISSUE
+
+
+
+## git 用户认证
+
+> 出现错误 git -- Authentication failed for
+
+*windows 系统中借助 【控制面板/用户账号/凭据管理器/管理window凭据】可更改密码。*
+
