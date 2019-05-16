@@ -26,3 +26,11 @@
 /^\s*\n/				// 空行
 ```
 
+
+
+## 微信
+
+> *微信内部调试地址*
+
+- <http://debugtbs.qq.com/>
+- http://debugx5.qq.com/
