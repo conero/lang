@@ -54,7 +54,8 @@ alter user 'root'@'localhost' identified by 'password';
     ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
     ```
 
-    
+
+
 
 ### 5.7 
 
@@ -65,6 +66,30 @@ alter user 'root'@'localhost' identified by 'password';
 1.  初始化 `$ /bin/mysqld --initialize-insecure`
 2. 安装 `$ /bin/mysqld install`
 3. 启动 `$ net start mysql`
+
+
+
+## 基础
+
+### sql_mode
+
+```sql
+-- 查询配置信息
+show variables like '%sql_mode%'; 
+-- 默认结果
+/*
+ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION
+*/
+
+
+-- 删除 ONLY_FULL_GROUP_BY
+set global `sql_mode`='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
+
+```
+
+
+
+
 
 
 
