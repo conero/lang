@@ -67,7 +67,7 @@ func main() {
 	var nums1, nums2, vout, vneed []int
 
 	// case
-	nums1, nums2, vneed = []int{1,2,2,1}, []int{2, 2}, []int{2}
+	nums1, nums2, vneed = []int{1, 2, 2, 1}, []int{2, 2}, []int{2}
 	vout = intersect(nums1, nums2)
 	fmt.Printf(format, nums1, nums2, vout, vneed)
 
