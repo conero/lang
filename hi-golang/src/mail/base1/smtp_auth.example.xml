@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--授权认证-->
+<SmptAuth>
+    <email id="qq" account="账户邮箱" host="smtp.qq.com" authcode="授权码">
+        <default nickname="默认名称"/>
+    </email>
+</SmptAuth>
