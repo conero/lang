@@ -9,6 +9,7 @@ import (
 	"image/gif"
 	"io"
 	"io/ioutil"
+	"log"
 	"math"
 	"math/rand"
 	"os"
@@ -24,13 +25,13 @@ const (
 
 type txt2file struct {
 	filename string
-	content []byte
+	content  []byte
 }
 
-func (tf *txt2file) Write(p []byte) (n int, err error)  {
+func (tf *txt2file) Write(p []byte) (n int, err error) {
 	fmt.Println("txt2file")
 	//fmt.Println(string(p))
-	if tf.content == nil{
+	if tf.content == nil {
 		tf.content = []byte{}
 	}
 	tf.content = append(tf.content, p...)
@@ -38,8 +39,21 @@ func (tf *txt2file) Write(p []byte) (n int, err error)  {
 }
 
 // 写入文件
-func (tf *txt2file) output()  {
+func (tf *txt2file) output() {
 	ioutil.WriteFile(tf.filename, tf.content, 0777)
+}
+
+// 写入文件
+var gCt int
+func git2file(c chan int)  {
+	file, er := os.OpenFile("./lissajous.gif", os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0666)
+	if er != nil {
+		log.Fatal(er.Error())
+	}
+	lissajous(file)
+	file.Close()
+	gCt += 1
+	c <- gCt
 }
 
 func main() {
@@ -48,12 +62,38 @@ func main() {
 	// Thanks to Randall McPherson for pointing out the omission.
 	rand.Seed(time.Now().UTC().UnixNano())
 
-	lissajous(os.Stdout)
+	//lissajous(os.Stdout)
 
 	// 将内容输入到文本
-	tf := &txt2file{filename:"./lissajous.gif"}
-	lissajous(tf)
-	tf.output()
+	//tf := &txt2file{filename: "./lissajous.gif"}
+	//lissajous(tf)
+	//tf.output()
+
+	// 文件单次写入
+	file, er := os.OpenFile("./lissajous.gif", os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0666)
+	if er != nil {
+		log.Fatal(er.Error())
+	}
+	lissajous(file)
+	file.Close()
+
+	// 多线程文件写入
+	// 多次写入文件
+	/*ct := 0
+	gct := 100
+	ch := make(chan int)
+	for ct < 100{
+		gci := 0
+		for gci < gct{
+			go git2file(ch)
+			gci += 1
+		}
+		ct += 1
+	}
+
+	for id := range ch {
+		fmt.Println("chan Id: ", id)
+	}*/
 }
 
 func lissajous(out io.Writer) {
