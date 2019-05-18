@@ -2,7 +2,9 @@
 *.exe
 
 # idea IDE 不加入git中
-.idea
+*.idea
+
+*.vscode
 
 # 本地测试忽律文件
 /ign-*
