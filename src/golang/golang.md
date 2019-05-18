@@ -1,5 +1,11 @@
 # **Golang** 
 
+*21世纪的C语言, Go语言已经成为云计算、云存储时代最重要的基础编程语言*
+
+*简洁编程哲学*
+
+
+
 > 特性
 
 - expressive
@@ -9,13 +15,61 @@
 - with  garbage collection (**GC**)
 -  run-time reflection
 
+
+
+*拥有自动垃圾回收、一个包系统、函数作为一等公民、词法作用域、系统调用接口、只读的UTF8字符串等*
+
+其他：
+
+- 基于CSP的并发特性支持
+- 轻量级线程 goroutine
+- Go语言的代码通过**包**（package）组织
+
+
+
+*__Go语言本身只有很少的特性__   没有隐式的数值转换，没有构造函数和析构函数，没有运算符重载，没有默认参数，也没有继承，没有泛型，没有异常，没有宏，没有函数修饰，更没有线程局部存储*
+
+
+
+
+
 > make it easy to write programs that get the most out of multicore and networked machines
+
+
+
+> *贝尔实验室的UNIX和C语言两大发明奠定了整个现代IT行业最重要的软件基础*
+
+- 1970s  *Ken Thompson* 和 *Dennis M. Ritchie* 合力开发 **Unix** 操作系统
+
+- *Dennis M. Ritchie* 为了解决UNIX系统的移植性问题而发明了C语言
+
+
+
+*Ken Thompson、Rob Pike、Robert Griesemer(设计了V8引擎和HotSpot虚拟机) 为了解决在21世纪多核和网络化环境下越来越复杂的编程问题而发明了Go语言*
+
+
+
+*Go语言由来自Google公司的Robert Griesemer，Rob Pike和Ken Thompson三位大牛于2007年9月开始设计和实现，然后于2009年的11月对外正式发布*
+
+
+
+*Go语言尤其适合编写网络服务相关基础设施，同时也适合开发一些工具软件和系统软件。 但是Go语言确实是一个通用的编程语言，它也可以用在图形图像驱动编程、移动应用程序开发 和机器学习等诸多领域。目前Go语言已经成为受欢迎的作为无类型的脚本语言的替代者： 因为Go编写的程序通常比脚本语言运行的更快也更安全，而且很少会发生意外的类型错误。*
 
 
 
 //@TODO [github 网站学习](<https://github.com/chai2010/advanced-go-programming-book>)
 
+- [第二章　程序结构](<https://docs.hacknode.org/gopl-zh/ch2/ch2.html>)
+
+
+
 ## 关于
+
+Go 语言族
+
+![](../image/golang/lang-family.png)
+
+
 
 ### 代码
 
@@ -508,3 +562,5 @@ go build -ldflags -H=windowsgui <filename>
 ## 参考资料
 
 - 《Go 语言编程》(2012.8)     - 徐式伟 
+- [《go语言圣经》](<https://docs.hacknode.org/gopl-zh/>)（中文版）
+

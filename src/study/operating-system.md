@@ -284,6 +284,8 @@
 
 
 
+
+
 ## 常用命令
 
 ### ls 文件/目录列表(list)
@@ -344,11 +346,64 @@
 
 
 
+> **chmod**  改变目录读写权限 
+
+*777*   为最高权限
+
+```shell
+sudo chmod -R 777 <file/direction>
+```
+
+
+
+
+
+> **wget**    web http 下载文件 
+
+```shell
+# 下载程序包
+wget http://nginx.org/download/nginx-1.16.0.tar.gz
+
+# 安装 make 工具
+sudo apt install make
+# 安装 gcc 编译器
+sudo apt install gcc
+
+```
+
+
+
+> **whereis** 查看应用所安装的路径/信息
+
+```shell
+whereis gcc
+```
+
+
+
+> root 用户
+
+```shell
+# 设置用户账号
+sudo passwd root
+
+# 用户登录
+su root
+```
+
+
+
+
+
+
+
 ### 应用管理
 
 #### unbantu
 
 >`dpkg ` 查看安装的软件
+
+
 
 
 
