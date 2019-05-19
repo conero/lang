@@ -45,7 +45,8 @@ func (tf *txt2file) output() {
 
 // 写入文件
 var gCt int
-func git2file(c chan int)  {
+
+func git2file(c chan int) {
 	file, er := os.OpenFile("./lissajous.gif", os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0666)
 	if er != nil {
 		log.Fatal(er.Error())
