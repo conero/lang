@@ -3,6 +3,8 @@
     作者： Joshua Conero
     日期： 2017年6月20日 星期二
 
+
+
 ## 目录
 
 1. [简介](#menu_overview)
@@ -10,12 +12,20 @@
 2. [Windows 1985](#menu_windows)
 2. [Linux 1991](#menu_linux)
 
+
+
 # <span id="menu_overview">简介</span>
+
 
 
 # <span id="menu_unix">UNIX</span> 1970
 
+
+
 ## 简介
+
+
+
 > 特征
 >
 > > 多任务、多用户
@@ -290,6 +300,12 @@
 
 ### ls 文件/目录列表(list)
 
+- `ll`  命令同 `ls -l`
+
+
+
+
+
 ### clear	清除命令行/输出台
 
 ### 目录管理
@@ -453,6 +469,24 @@ h   l
 
 
 
+## issue
+
+### setgid: Operation not permitted
+
+> root 用户切换无效
+
+```shell
+su root
+```
+
+
+
+
+
+
+
+
+
 ## shell
 
 > Bourne Shell 变量，`$<NAME>`  内部命令
@@ -486,8 +520,6 @@ h   l
 - `echo`    *输出到终端*
 - `help`    *用于查看内建命令*
 - `source <filename>`    *执行指定的，shell 文件*
-
-
 
 
 
