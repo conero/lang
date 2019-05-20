@@ -63,13 +63,17 @@ func (m *Maze) dispatch(vpath string) {
 				fileCtt += 1
 			}
 		}
+		fmt.Println(dirQue)
+		//fmt.Println(mNode)
 
-		m.MnChan <- mNode
-		// 线程分发
+		//m.MnChan <- mNode
+
 		// 线程分发
 		for _, p := range dirQue {
 			go m.dispatch(p)
 		}
+
+		m.MnChan <- mNode
 	}
 }
 
@@ -78,12 +82,14 @@ func (m *Maze) dispatch(vpath string) {
 */
 func (m *Maze) Search() string {
 	var msg string
-	m.MnChan = make(chan MazeNode)
+	if m.MnChan == nil{
+		m.MnChan = make(chan MazeNode)
+	}
 	_, err := ioutil.ReadDir(m.TargetDir)
 	if err != nil {
 		msg = err.Error()
 	} else {
-		go m.dispatch(m.TargetDir)
+		m.dispatch(m.TargetDir)
 	}
 	return msg
 }
