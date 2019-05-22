@@ -413,11 +413,83 @@ su root
 
 
 
-### 应用管理
+### 应用介绍
 
-#### unbantu
+#### PuTTY
+
+*Windows 下远程连接 Linux 系统，命令行工具。*
+
+*SSH、telnet 客户端，开源项目。*
+
+
+
+*开发创始人： Simon Tatham。*
+
+
+
+> *终端快捷键*
+
+```shell
+Ctrl + l(L)   	清屏快捷键，同于 clear 命令
+reset			完全刷新终端屏幕
+
+# 粘贴/复制
+点击右键		  粘贴文本
+左键选中		  复制文本
+```
+
+
+
+
+
+
+
+## 操作系统
+
+### Ubuntu
 
 >`dpkg ` 查看安装的软件
+
+
+
+### CentOS
+
+*Community Enterprise Operating System，中文意思是社区企业操作系统*
+
+
+
+> 版本信息查看
+
+```shell
+# 查看系统信息
+$ uname -a
+
+# 查看版本信息
+$ cat /etc/redhat-release
+```
+
+
+
+
+
+> lnmp
+
+```shell
+# 安装编译环境
+$ yum -y install make zlib zlib-devel gcc-c++ libtool  openssl openssl-devel
+
+# 安装 nginx
+$ wget <loaddown.net.url>
+$ tar zxvf nginx-1.6.2.tar.gz	解压
+$ cd nginx-1.6.2				目录转移
+$ ./configure					编译安装
+$ make							安装/ make install
+
+# 启动 nginx
+$ /usr/local/nginx/sbin/nginx
+# 停止服务器
+$ /usr/local/nginx/sbin/nginx -s stop 或 /usr/local/nginx/sbin/nginx -s quick
+```
 
 
 
