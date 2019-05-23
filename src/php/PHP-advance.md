@@ -27,6 +27,137 @@
 
 
 
+### LNMP
+
+**CentOS 7.3**
+
+```shell
+# 安装编译环境
+$ yum -y install make zlib zlib-devel gcc-c++ libtool  openssl openssl-devel
+
+# ----------------------【nginx】------------------------
+# 安装 nginx
+$ wget <loaddown.net.url>
+$ tar zxvf nginx-1.6.2.tar.gz	解压
+$ cd nginx-1.6.2				目录转移
+$ ./configure					编译安装
+$ make							安装/ make install
+
+# 启动 nginx
+$ /usr/local/nginx/sbin/nginx
+# 停止服务器
+$ /usr/local/nginx/sbin/nginx -s stop 或 /usr/local/nginx/sbin/nginx -s quick
+
+# 配置文件检测
+$ /usr/local/nginx/sbin/nginx -t
+# openssl 安装
+$ yum -y install openssl*
+
+# ----------------------【php】------------------------
+# 依赖安装
+$ yum install -y libxml2*
+$ wget https://www.php.net/distributions/php-7.3.5.tar.gz
+$ tar -xzvf <tag.gz>
+# 配置文件
+$ ./buildconf --force
+$ ./configure
+# 编译
+# 有事需要清理编译环境 `make clean`
+$ make && make install
+
+
+# 安装/启动 php-fpm
+$ yum install php-fpm
+# 启动 php-fpm 服务
+$ service php-fpm start
+# php-fpm 详情
+$ systemctl status php-fpm.service
+# 杀死进程
+$ killall php-fpm
+# 检测是否已经正确启动
+$ netstat -tln | grep 9000
+# php-fpm 的进程号
+$ ps aux|grep php-fpm
+```
+
+
+
+*编译项*
+
+```shell
+./configure --with-pdo-mysql --enable-bcmath --enable-mbstring --enable-sockets --with-gd --with-gettext --with-config-file-path=/usr/local/php/etc
+```
+
+
+
+
+
+**配置文件**
+
+```shell
+php --ini
+
+ /php-7.3.5/php.ini-production
+```
+
+
+
+### Nginx
+
+```nginx
+ server {
+        listen       80;
+        server_name  localhost;
+		
+    	# 访问首页跳转其他页面
+        rewrite ^/(.*) https://aurora.conero.cn/ permanent;
+        #charset koi8-r;
+
+        #access_log  logs/host.access.log  main;
+
+        location / {
+            #proxy_pass https://aurora.conero.cn/;
+            #root   html;
+            #index  index.html index.htm;
+        }
+
+        #error_page  404              /404.html;
+
+        # redirect server error pages to the static page /50x.html
+        #
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   html;
+        }
+
+        # proxy the PHP scripts to Apache listening on 127.0.0.1:80
+        #
+        #location ~ \.php$ {
+        #    proxy_pass   http://127.0.0.1;
+        #}
+
+        # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+        #
+        #location ~ \.php$ {
+        #    root           html;
+        #    fastcgi_pass   127.0.0.1:9000;
+        #    fastcgi_index  index.php;
+        #    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;
+        #    include        fastcgi_params;
+        #}
+
+        # deny access to .htaccess files, if Apache's document root
+        # concurs with nginx's one
+        #
+        #location ~ /\.ht {
+        #    deny  all;
+        #}
+ }
+
+```
+
+
+
 
 
 ### 变量

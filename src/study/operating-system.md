@@ -344,6 +344,24 @@
 
 13. `find`                      文件或目录查找工具
 
+14. `df`                          *查看磁盘信息*
+
+15. `du`                          *查看当前目录的磁盘信息*
+
+
+
+```shell
+# 查看磁盘信息的命令
+
+df -hl 查看磁盘剩余空间
+df -h 查看每个根路径的分区大小
+du -sh [目录名] 返回该目录的大小
+du -sm [文件夹] 返回该文件夹总M数
+du -h [目录名] 查看指定文件夹下的所有文件大小（包含子文件夹）
+```
+
+
+
 
 
 ### 进程管理
@@ -353,6 +371,22 @@
 *ps [options]*
 
 - `$ ps-eo pid,comm,cmd  `  *(-e表示列出全部进程，-o pid,comm,cmd表示我们需要PID，COMMAND，CMD信息)*
+
+
+
+### 压缩建档
+
+```shell
+$ tar
+
+
+# zip 压缩
+$ zip
+# zip 解压
+$ unzip
+```
+
+
 
 
 
@@ -440,7 +474,25 @@ reset			完全刷新终端屏幕
 
 
 
+> Windows 文件传输到 Linux 系统
 
+*使用自带的命令工具： `pscp`*
+
+```shell
+# pscp 文件名称 Linux用户@IP:目标地址
+# pscp <filename> linux-user@ip:targetDir
+$ pscp php-7.3.5.tar.gz root@ip:
+```
+
+
+
+
+
+#### WinSCP
+
+_*WinSCP*是一个Windows环境下使用SSH的开源图形化SFTP客户端。同时支持SCP协议。它的主要功能就是在本地与远程计算机间安全的复制文件。_
+
+**Linux <=> Windows 之间的文件传输工具(图形化工具)**
 
 
 
@@ -458,6 +510,25 @@ reset			完全刷新终端屏幕
 
 
 
+> 软件 安装/卸载
+
+```shell
+$ yum instal <name>
+$ yum remove <name>
+```
+
+
+
+> 用户目录
+
+```shell
+$ /username/
+```
+
+
+
+
+
 > 版本信息查看
 
 ```shell
@@ -472,12 +543,13 @@ $ cat /etc/redhat-release
 
 
 
-> lnmp
+> LNMP
 
 ```shell
 # 安装编译环境
 $ yum -y install make zlib zlib-devel gcc-c++ libtool  openssl openssl-devel
 
+# ----------------------【nginx】------------------------
 # 安装 nginx
 $ wget <loaddown.net.url>
 $ tar zxvf nginx-1.6.2.tar.gz	解压
@@ -493,11 +565,58 @@ $ /usr/local/nginx/sbin/nginx -s stop 或 /usr/local/nginx/sbin/nginx -s quick
 
 
 
+> *其他软件安装*
+
+```shell
+# yum 安装/卸载 git 软件
+$ yum install git
+$ yum remove git 
+
+# 通过源码安装
+# 错误  http.h:6:23: fatal error: curl/curl.h: No such file or directory
+$ yum install -y libcurl*
+$ yum install -y expat*
+$ wget https://github.com/git/git/archive/v2.21.0.tar.gz
+$ tar -zxvf v2.21.0.tar.gz
+$ cd v2.21.0
+$ make && make install
+```
+
+
+
+> _**用户/用户组**_
+
+- *用户列表文件：/etc/passwd/*
+- *用户组列表文件：/etc/group*
+
+```shell
+# 查看可以登录系统的用户
+$ cat /etc/passwd | grep -v /sbin/nologin | cut -d : -f 1
+
+# 新增分组 ancient
+$ groupadd ancient
+
+# 添加用户
+$ useradd -g ancient chiyou 		# 将 chiyou 添加到 ancient 分组中
+$ useradd chiyou 
+
+# 查看当前用户分组
+$ group
+# 查看 kuafu 用户的所属分组
+$ groups kuafu
+# id 用户(查看用户所属组）
+$ id root
+```
+
+
+
 
 
 ## vim
 
-旧版命令 *`vi`*，*`vim`全部兼容前者。`Insert` 插入文本命令*
+旧版命令 *`vi`*，*`vim`全部兼容前者。`Insert` 插入文本命令, 推荐使用 `vim`命令。*
+
+
 
 > 常用命令
 
@@ -536,8 +655,18 @@ h   l
 - `ctrl + y`    *向上滚动一行*
 - `Ctrl + f`    上一页
 - `Ctrl + b`    下一页
-- `ctrl + u`    上半页
-- `ctrl + d`    下半页
+- `ctrl + u`    上半页 (up)
+- `ctrl + d`    下半页 (down)
+
+
+
+> *搜索与替换*
+
+*在命令模式下，输入 `/` 用于文本查找. 从一般模式进编辑模式，只需按i、I、a、A、o、O、r和R中某个键即可。命令模式：输入：或者/即可进入命令模式。*
+
+*`u`       撤销代码， `Ctrl + R`  恢复撤销*
+
+
 
 
 
