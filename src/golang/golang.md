@@ -498,6 +498,80 @@ ch2:= make(chan int, 1024)
 
 
 
+## godoc
+
+> *golang 注释文档格式*
+
+- *注释符`//`后面要加空格, 例如: `// xxx`*
+- *在`package, const, type, func`等`关键字`上面并且紧邻关键字的注释才会被展示*
+
+```go
+// Copyright 2009 The Go Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+// 注: 上面注释不会显示为文档；单独的 “//” 可用换行
+
+// Package path implements utility routines for manipulating slash-separated
+// paths.
+//
+// The path package should only be used for paths separated by forward
+// slashes, such as the paths in URLs. This package does not deal with
+// Windows paths with drive letters or backslashes; to manipulate
+// operating system paths, use the path/filepath package.
+package path
+```
+
+- *`Package`的注释如果行数过多可以考虑用 `doc.go` 文档代替*
+
+- _**如果当前包目录下包含多个Package注释的go文件(包括doc.go), 那么按照文件名的字母数序优先显示**_
+
+- _`Package`的注释会出现在godoc的[包列表](#)中, 但只能展示大约523字节的长度_
+
+- *在无效注释中以`BUG(who)`开头的注释, 将被识别为已知bug, 显示在`bugs`区域*
+
+  ```go
+  // BUG(who): 我是bug说明
+  
+  // Package banana ...
+  package banana
+  
+  ```
+
+- *如果`bug注释`和`关键字注释`中间无换行, 那么`混合的注释`将被显示在`bugs`和`godoc列表`两个区域内*
+
+  ```go
+  // BUG(who): 我是bug注释
+  // Package banana ...也是pkg注释
+  package banana
+  
+  ```
+
+  
+
+- *URL将被转化为HTML链接*
+
+
+
+> **Example**
+
+- *文件必须放在当前包下*
+- *文件名以`example`开头, `_`连接, `test`结尾, 如:`example_xxx_test.go`*
+- *包名是`当前包名` + `_test`, 如: `strings_test`*
+- *函数名称的格式`func Example[FuncName][_tag]()`*
+- *函数注释会展示在页面上*
+- *函数结尾加上`// Output:`注释, 说明函数返回的值*
+
+
+
+> 命令行
+
+```shell
+# 开启一个godoc小型server, -play可以使用playground运行Example代码
+godoc -http=:6060 -play
+```
+
+
+
 
 
 ## go-line command
