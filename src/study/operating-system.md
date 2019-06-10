@@ -728,6 +728,46 @@ su root
 
 # 附录
 
+
+
+## 键盘
+
+*keyboard*
+
+
+
+*作为计算机系统的一种 `输入` 设备.*
+
+
+
+*`QWERTY` “打字机之父”——美国人克里斯托夫·拉森·肖尔斯（Christopher Latham Sholes）发明.* 
+
+
+
+
+
+> 基准建， 指法分工实现盲打
+
+- 左手手指 ：`A` `S` `D` `F`    右手手指：  `J` `K` `L` `;`
+
+*键盘背记规则 (顺口溜):*
+
+```
+QWERTY 	    七碗鹅肉汤					YUIOP 已无一，阿婆
+ASDFG	    爱死豆腐羹    				HJKL 回家快乐
+ZXCVBNM		自行车未帮你买
+```
+
+
+
+
+
+
+
+
+
+
+
 ## 参考
 
 1. [Windows 中的键盘快捷方式](https://support.microsoft.com/zh-cn/help/12445/windows-keyboard-shortcuts)
