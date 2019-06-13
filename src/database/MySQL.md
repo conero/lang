@@ -8,6 +8,14 @@
 
 
 
+## 关于
+
+*最流行的关系型数据库之一，常用于中小型 WEB应用。*
+
+*瑞典MySQL AB 公司开发，后被 Oracle 收购。分支数据库 `MariaDB`*
+
+
+
 
 
 ## 安装
@@ -20,6 +28,9 @@
 # MySQL ，通过 SQL 修改 数据库的配置信息
 # performance_schema.global_variables 全局配置
 set global max_allowed_packet = 200*1024*1024;
+
+# 查看配置
+show variables like '%like%';
 ```
 
 
@@ -121,10 +132,20 @@ set global time_zone ='+8:00';
 # 以 utf8 的编码登录到 mysql 中
 mysql -u root -p --default-character-set=utf8 
 
+# 字符集可通过 sql 执行替换
+set names 'uft8';
+# 显示当前的状态，包括字符集
+status
+
 # 选择数据库
 use dbname;
+# 使用 source 导入数据库十分的缓慢
 # 使用 source 导入脚本
 source d:/.../name.sql
+
+
+# 数据库复制 oldDbname => <toNewDb> 数据库已经存在的的数据库
+mysqldump <oldDbname> -u root -p<password> --add-drop-table | mysql <toNewDb> -u root -p<password>
 ```
 
 
