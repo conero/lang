@@ -80,6 +80,21 @@ alter user 'root'@'localhost' identified by 'password';
 
 
 
+## SQL
+
+### 主键/常量等
+
+```mysql
+-- 删除表格的主键
+alter table TABLENAME drop primary key;
+```
+
+
+
+
+
+
+
 ## 基础
 
 ### sql_mode
