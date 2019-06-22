@@ -39,8 +39,6 @@ show variables like '%like%';
 
 
 
-
-
 ### Zip file(8.0)
 
 > Windows 版本下安装
@@ -84,6 +82,17 @@ alter user 'root'@'localhost' identified by 'password';
 
 
 
+### 附带的工具/命令集
+
+- mysql				*数据 SQL 交互对话，用于表查询等*
+- mysqldump, mysqlpump     *数据库备份工具*
+- mysqlimport     *数据导入*
+- mysqlbinlog      数据库二进制日志
+
+
+
+
+
 ## SQL
 
 ### 主键/常量等
@@ -106,6 +115,61 @@ DROP TABLE [IF EXISTS] tbl_name;		-- 删除存在数据表
 
 
 ## 基础
+
+### 连接
+
+*shell 数据库连接。*
+
+```shell
+# 数据库登录连接选项；可配置项： host/user/database
+# host 默认为 localhost
+mysql -h host -u user -p [database]
+mysql --host=localhost --user=uname --password=password [database]
+
+# 其他选项
+--port,-P  							# 端口号配置
+--default-character-set=name		# 设置默认的编码
+--xml,-X							# 输出为 XML 字符串格式
+--html,-H							# 输出为 HTML 字符串格式
+
+# 连接数据库并执行SQL
+mysql [-e sql|--execute="sql"]	
+
+
+
+# 查看 shell 的连接信息
+status
+help	# 查看mysql shell 内部的命令
+```
+
+
+
+### 属性相关的函数
+
+```mysql
+user()		-- 当前的用户信息
+version()	-- 版本信息
+```
+
+
+
+
+
+### 语句
+
+#### show
+
+可用于查询对象： *databases, tables, variables*
+
+```mysql
+show databases [like ''];		-- 显示所有的数据库，可使用 like 查询；
+```
+
+
+
+
+
+
 
 ### sql_mode
 
