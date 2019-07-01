@@ -159,13 +159,80 @@ version()	-- 版本信息
 
 #### show
 
-可用于查询对象： *databases, tables, variables*
+可用于查询对象： *databases, tables, variables, columns, server status* 等
 
 ```mysql
+-- 通用查询方法
 show databases [like ''];		-- 显示所有的数据库，可使用 like 查询；
+
+-- 查询某个数据的 DDL
+show create table <tableName>;
+
+-- 查询某个数据表的列
+-- 显示全部列
+show columns from <tableName>;
+-- 含条件查询
+show columns from <tableName> where field like 'i%';
+
+-- 二进制日志
+show {binary | master} logs;
 ```
 
 
+
+> 参考
+
+```mysql
+
+-- 所有参考
+-- 二进制日志
+SHOW {BINARY | MASTER} LOGS
+SHOW BINLOG EVENTS [IN 'log_name'] [FROM pos] [LIMIT [offset,] row_count]
+-- 字符集
+SHOW CHARACTER SET [like_or_where]
+SHOW COLLATION [like_or_where]			
+-- 查询列
+SHOW [FULL] COLUMNS FROM tbl_name [FROM db_name] [like_or_where]
+-- 查询 DDL
+SHOW CREATE DATABASE db_name
+SHOW CREATE EVENT event_name
+SHOW CREATE FUNCTION func_name
+SHOW CREATE PROCEDURE proc_name
+SHOW CREATE TABLE tbl_name
+SHOW CREATE TRIGGER trigger_name
+SHOW CREATE VIEW view_name
+SHOW DATABASES [like_or_where]
+SHOW ENGINE engine_name {STATUS | MUTEX}
+SHOW [STORAGE] ENGINES
+SHOW ERRORS [LIMIT [offset,] row_count]
+SHOW EVENTS
+SHOW FUNCTION CODE func_name
+SHOW FUNCTION STATUS [like_or_where]
+SHOW GRANTS FOR user
+SHOW INDEX FROM tbl_name [FROM db_name]
+SHOW MASTER STATUS
+SHOW OPEN TABLES [FROM db_name] [like_or_where]
+SHOW PLUGINS
+SHOW PROCEDURE CODE proc_name
+SHOW PROCEDURE STATUS [like_or_where]
+SHOW PRIVILEGES
+SHOW [FULL] PROCESSLIST
+SHOW PROFILE [types] [FOR QUERY n] [OFFSET n] [LIMIT n]
+SHOW PROFILES
+SHOW RELAYLOG EVENTS [IN 'log_name'] [FROM pos] [LIMIT [offset,] row_count]
+SHOW SLAVE HOSTS
+SHOW SLAVE STATUS [FOR CHANNEL channel]
+SHOW [GLOBAL | SESSION] STATUS [like_or_where]
+SHOW TABLE STATUS [FROM db_name] [like_or_where]
+SHOW [FULL] TABLES [FROM db_name] [like_or_where]
+SHOW TRIGGERS [FROM db_name] [like_or_where]
+SHOW [GLOBAL | SESSION] VARIABLES [like_or_where]
+SHOW WARNINGS [LIMIT [offset,] row_count]
+
+like_or_where:
+ LIKE 'pattern'
+ | WHERE expr
+```
 
 
 
