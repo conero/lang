@@ -41,6 +41,9 @@ npm init
 # https://github.com/<user>/<project>.git#<branch>
 #   [options]
 #	--save-dev     已开发的模式保存
+
+# 查看全局安装的 npm 包
+npm list -g --depth 0
 ```
 
 

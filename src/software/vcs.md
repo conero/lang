@@ -173,6 +173,13 @@ $ git config --global user.email johndoe@example.com
 
 
 
+```shell
+# 查看文件从: b7ffdd3b -> 65b2dcb1 的差别，两者为 <commit_id>...<commit_id>
+$ git diff b7ffdd3b...65b2dcb1 --stat
+```
+
+
+
 > **`$ git commit` 提交更新**
 
 提交之前可以`git status` 查看状态
@@ -216,7 +223,7 @@ $ git commit -m "<msg>"
 
 
 
-```console
+```shell
 $ git mv README.md README
 $ git status
 On branch master
@@ -228,7 +235,7 @@ Changes to be committed:
 
 运行 `git mv` 就相当于运行了下面三条命令：
 
-```console
+```shell
 $ mv README.md README
 $ git rm README.md
 $ git add README
@@ -621,7 +628,7 @@ $ git log -g
 
 
 
-```ini
+```shell
 # 在 【b2】 中而不在 【b1】
 $ git log <branch1>..<branch2>
 # 当前分支跟随最新的进度以及查看你即将合并的内容
@@ -634,6 +641,8 @@ $ git log refA refB --not refC
 # 选择出被两个引用中的一个包含但又不被两者同时包含的提交
 $ git log <branch1>...<branch2>
 
+# 单行查看git日志
+$ git log --oneline
 ```
 
 
@@ -913,6 +922,10 @@ $ git bundle list-heads <bundleNamePath>
 
 # 所以你可以使用 fetch 或者 pull 命令从包中导入提交
 $ git fetch <bundleNamePath> master:other-master
+
+# 将 <commit_id> -> <commit_id> 打包为导出
+$ git diff --name-only <commit_id1> <commit_id1> | xargs tar -zcvf <path>
+$ git diff --name-only b7ffdd3b 65b2dcb1 | xargs tar -zcvf ./t5.tar.gz
 ```
 
 
