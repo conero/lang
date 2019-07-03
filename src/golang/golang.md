@@ -65,6 +65,19 @@
 
 //@TODO PART II    <https://chai2010.cn/advanced-go-programming-book/>
 
+## cmd
+
+> 命令行
+
+```shell
+# 安装包
+$ go get <path>
+# 安装且更新为最新的包
+$ go get -u <path>
+```
+
+
+
 
 
 ## 关于
