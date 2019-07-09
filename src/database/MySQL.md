@@ -236,6 +236,14 @@ like_or_where:
 
 
 
+#### @/@@ 的区别
+
+- `@x `            *用户自定义变量（用户变量）*
+
+- `@@x`            *global/session变量（系统变量）*
+
+
+
 
 
 ### sql_mode
@@ -294,6 +302,37 @@ show engines;
 #### MEMORY
 
 *内存引擎，为查询和引用其他表数据提供快速访问。*
+
+
+
+### 模拟匿名块执行(delimiter)
+
+> 执行SQL脚本
+
+```mysql
+-- 创建临时存储过程并执行(如： _jc_tmp_untitle_sqlblock)
+-- 删除过程过程，词语句可以去除点
+drop procedure if exists _jc_tmp_untitle_sqlblock;
+
+-- 创建
+-- 修改分割符号
+delimiter //
+create procedure _jc_tmp_untitle_sqlblock()
+begin
+	select 'Example MySQL UNtitle SQL block by Joshua Conero(古丞秋).' as msg;
+end;
+//
+
+-- 恢复分割符号
+delimiter ;
+
+-- 执行匿名块
+call _jc_tmp_untitle_sqlblock();
+-- 删除匿名块
+drop procedure if exists _jc_tmp_untitle_sqlblock;
+```
+
+
 
 
 
