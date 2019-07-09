@@ -332,6 +332,89 @@ show engines;
 
 
 
+### 游标/cursor
+
+> 基本语法
+
+```mysql
+begin
+    -- cursor 定义语法
+    declare cursor_name cursor from select_statement;
+    
+    -- continue 条件标记
+    -- condition_name: mysql_error_code, SQLSTATE [VALUE] sqlstate_value;
+    declare condition_name continue for condition_value;
+	
+	-- 条件处理语句
+	-- handler_action: CONTINUE, EXIT, UNDO
+	-- conditon_value: mysql_error_code, SQLSATE [VALUE] sqlstate_value, condition_name, SQLWANRING, NOT FOUND, SQLEXCEPTION
+	declare handler_action handler for conditon_value [, conditon_value] statement;
+	
+	
+    open cursor_name;
+        -- fetch 获取游标中的参数
+        fetch cursor_name into var_name[, var_name]...;
+
+
+    -- 关闭游标
+    close cursor_name;
+end;
+```
+
+> 样例
+
+```mysql
+-- drop table if exists jc_user;
+-- 删除已经存在的过程
+drop procedure if exists base_cursor_p;
+
+-- 创建测试表
+create table if not exists jc_user(
+	id int primary key auto_increment,
+    name varchar(50),
+    cur_mark_time datetime,
+    cur_idx int
+);
+-- 插入测试数据
+insert into jc_user(name) values ('JC'), ('Emma'), ('Sr'), ('Core'), ('Ben');
+
+-- 定于过程块
+delimiter //
+create procedure base_cursor_p()
+begin
+	declare not_more_record int default false;
+	
+	declare v_id int;
+	declare v_name varchar(50);
+	declare v_idx int default -1;
+	declare cur cursor for select id, name from jc_user;
+	declare continue handler for not found set not_more_record= true;
+	
+	update jc_user set cur_mark_time=null, cur_idx=0;
+	
+	open cur;
+	-- 循环语句： loop, repeat, while
+	while not_more_record<>true do
+		fetch cur into v_id, v_name;
+        
+        -- 数据处理/业务逻辑
+        update jc_user set cur_mark_time=current_time(), cur_idx=v_idx where id=v_id;
+        set v_idx = v_idx + 1;
+	end while;
+	-- 关闭游标
+	close cur;
+end //
+
+
+-- 恢复通用的 ";" 分隔符
+delimiter ;
+-- 执行过程
+call base_cursor_p();
+drop procedure if exists base_cursor_p;
+```
+
+
+
 ### 模拟匿名块执行(delimiter)
 
 > 执行SQL脚本
@@ -457,3 +540,57 @@ flush logs;
 
 
 //@TODO *window 下如开启 binlog ，实现数据备份的解决方案。*
+
+
+
+## example
+
+### 游标
+
+*游标测试*
+
+```mysql
+-- 创建测试数据表
+drop table if exists tx;
+create table if not exists tx (
+ 	idx int,
+ 	pid int,
+ 	vtname varchar(30)
+);
+-- 删除旧的数据
+delete from tx where 1;
+-- 删除存在的测试过程
+drop procedure if exists tx_tmp1;
+
+-- 临时过程定义
+delimiter //
+create procedure tx_tmp1()
+begin
+	declare v_flag BOOLEAN DEFAULT 0;
+	declare v_idx int default 0;
+	declare v_pid int default 0;
+	declare v_cursor CURSOR FOR select id from fg_visit;
+	-- 未发现查询到数据时，修改 v_flag 的值；类似于异常处理
+	declare continue handler for not found SET v_flag=1;
+	
+	open v_cursor;
+		repeat
+			FETCH v_cursor INTO v_pid;
+		-- 业务逻辑
+		IF v_flag!=1 THEN
+			insert into tx(idx, pid, vtname) values(v_pid, v_idx, 'fg_visit');
+			set v_idx = v_idx + 1;
+		END IF;
+	UNTIL v_flag END REPEAT;
+	close v_cursor;
+end;
+//
+
+delimiter ;
+
+-- 临时过程调用
+call tx_tmp1();
+-- 临时过程删除
+drop procedure if exists tx_tmp1;
+```
+
