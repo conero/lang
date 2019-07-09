@@ -238,9 +238,36 @@ like_or_where:
 
 #### @/@@ 的区别
 
-- `@x `            *用户自定义变量（用户变量）*
+- `@x `            *用户自定义变量（用户变量）。如两者相同: `set @value = last_insert_id(); 或 @value := last_insert_id(); ` 和 `set @value = @@identity; 或 @value := @@identity  `*
 
 - `@@x`            *global/session变量（系统变量）*
+
+
+
+> 可用于 SQL 运行时自增id关联键的写入
+
+```mysql
+delete from `__menu` where `name` like 'jc_%';
+
+-- 独立句子(分句)定义 
+INSERT INTO `__menu` (`id`, `parentid`, `app`, `model`, `action`, `data`, `type`, `status`, `name`, `remark`, `listorder`) VALUES 
+	(null, 0, 'Admin', 'Menu', 'add', '', 1, 1, 'jc_A0', '', 7) ;
+set @id=last_insert_id();
+INSERT INTO `__menu` (`id`, `parentid`, `app`, `model`, `action`, `data`, `type`, `status`, `name`, `remark`, `listorder`) VALUES (null, @id, 'Visit', 'Visit', 'app_column', '', 1, 1, 'jc_B1', '', 0);
+set @id2 := @@identity;
+INSERT INTO `__menu` (`id`, `parentid`, `app`, `model`, `action`, `data`, `type`, `status`, `name`, `remark`, `listorder`) VALUES (null, @id2, 'Visit', 'Visit', 'app_column', 'type=shujufuwu', 1, 1, 'jc_CC1', '', 0);
+INSERT INTO `__menu` (`id`, `parentid`, `app`, `model`, `action`, `data`, `type`, `status`, `name`, `remark`, `listorder`) VALUES (null, @id2, 'Visit', 'Visit', 'app_column', 'type=banshizhinan', 1, 1, 'jc_CC0', '', 0);
+
+
+
+-- 非独立句子定义 
+INSERT INTO `__menu` (`id`, `parentid`, `app`, `model`, `action`, `data`, `type`, `status`, `name`, `remark`, `listorder`) VALUES (null, 0, 'Admin', 'Menu', 'add', '', 1, 1, 'jc_A0', '', 7) ;
+INSERT INTO `__menu` (`id`, `parentid`, `app`, `model`, `action`, `data`, `type`, `status`, `name`, `remark`, `listorder`) VALUES (null, @id := @@identity, 'Visit', 'Visit', 'app_column', '', 1, 1, 'jc_B1', '', 0);
+INSERT INTO `__menu` (`id`, `parentid`, `app`, `model`, `action`, `data`, `type`, `status`, `name`, `remark`, `listorder`) VALUES (null, @id2 :=@@identity, 'Visit', 'Visit', 'app_column', 'type=shujufuwu', 1, 1, 'jc_CC1', '', 0);
+INSERT INTO `__menu` (`id`, `parentid`, `app`, `model`, `action`, `data`, `type`, `status`, `name`, `remark`, `listorder`) VALUES (null, @id2, 'Visit', 'Visit', 'app_column', 'type=banshizhinan', 1, 1, 'jc_CC0', '', 0);
+```
+
+
 
 
 
