@@ -226,6 +226,21 @@ sc delete <name>
 
 
 
+> 进程管理
+
+```powershell
+# [tasklist] 进程列表
+# 进制管理
+# 查看帮助
+tasklist /?
+tasklist /fi "imagename eq nginx.exe"
+
+# [taskkill] 进制终止
+taskkill /?
+# 强制杀死进程
+taskkill /fi "imagename eq nginx.exe" /F
+```
+
 
 
 ## issue

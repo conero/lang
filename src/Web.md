@@ -254,6 +254,18 @@ IP 服务器		->  HTTP 相应
 
 ## 服务器
 
+### nginx
+
+*[engine X] 由俄罗斯人 Igor Sysoev编写的 HTTP、反向代理、邮件代理服务器。*
+
+
+
+> **Igor Sysoev** *出生于1970年，在苏联的阿拉木图（现在的哈萨克斯坦阿拉木图）长大。我于1994年毕业于莫斯科国立鲍曼技术大学(BMSTU, Bauman Moscow State Technical University)。毕业后我继续住在莫斯科，目前在[NGINX，Inc](http://nginx.com/)担任首席技术官*
+
+
+
+
+
 ### 测试服务器
 
 #### PHP
