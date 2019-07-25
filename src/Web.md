@@ -222,6 +222,23 @@ _HTTP/1 的请求和响应报文，都是由起始行、首部和实体正文（
 
 
 
+@TODO   [html5 中文文档](https://whatwg-cn.github.io/html/)
+
+#### history API
+
+*更改浏览器 URL 页面不刷新，通过内部链接的点击！*
+
+
+
+> 使用库
+
+- reactjs
+  - [react-router](https://github.com/ReactTraining/react-router)  支持 browser/hash 引擎
+- vuejs
+  - [vue-router](https://github.com/vuejs/vue-router) 支持 browser/hash 引擎
+
+
+
 
 
 ## 浏览器
