@@ -444,6 +444,16 @@ drop procedure if exists _jc_tmp_untitle_sqlblock;
 
 
 
+### 实例
+
+_**information_schema**_   提供数据库元数据，包括数据库、数据表、列、插件、函数、存储过程、触发器以及权限等；其包含一些只读数据表，`show` 的提供数据
+
+
+
+_**performance_schema**_   提供数据库服务运行时监视器，包含实时的信息。
+
+
+
 
 
 ## issue
