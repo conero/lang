@@ -283,6 +283,20 @@ IP 服务器		->  HTTP 相应
 
 
 
+#### issue
+
+##### windows nginx 启动，命令行启动错误
+
+```shell
+# 不在项目所在的根目录，指定命令时报错；由于项目项目配置以根目录为标准
+nginx: [alert] could not open error log file: CreateFile() "logs/error.log" failed (3: The system cannot find the path specified)
+2019/07/26 22:26:49 [emerg] 20168#19264: CreateFile() "D:\tmp\CroIns-Php\resource/conf/nginx.conf" failed (3: The system cannot find the path specified)
+```
+
+
+
+
+
 ### 测试服务器
 
 #### PHP
