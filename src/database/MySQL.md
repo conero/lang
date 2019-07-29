@@ -82,6 +82,15 @@ alter user 'root'@'localhost' identified by 'password';
 
 
 
+```mysql
+-- 安装项目完成是，密码为空；这是需要自行设置密码
+alter user 'root'@'localhost' identified by 'password';
+```
+
+
+
+
+
 ### 附带的工具/命令集
 
 - mysql				*数据 SQL 交互对话，用于表查询等*

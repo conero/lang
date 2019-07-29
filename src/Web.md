@@ -35,7 +35,7 @@
 ### Cgi 和 FastCgi
 
 - _**CGI** 是HTTP Server和一个独立的进程之间的协议，把HTTP Request的Header设置成进程的环境变量，HTTP Request的正文设置成进程的标准输入，而进程的标准输出就是HTTP Response包括Header和正文_
-- *__php-fpm__相当于是Apache+mod_php。无非php-fpm自带了FASTCGI Server，而Apache是HTTP Serve*
+- *__php-fpm__相当于是Apache+mod_php。无非php-fpm自带了FASTCGI Server，而Apache是HTTP Server*
 
 
 
@@ -294,6 +294,14 @@ nginx: [alert] could not open error log file: CreateFile() "logs/error.log" fail
 ```
 
 
+
+### apache
+
+*与 php等相关的服务语言，主要存在两种模式：`mod_php`  和 `CGI/FastCGI` 。mod_php 是将 PHP作为apache的一个模块实现，这个是PHP最传统的裕兴方式；而 `CGI/FastCGI` 使用 CGI 协议实现。*
+
+
+
+*两者选择的 PHP 版本不一样：FastCGI 使用的 NTS 版本（Non-Thread Safe），Mod_php 使用的是 TS(版本)。*
 
 
 
