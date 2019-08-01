@@ -23,6 +23,18 @@ console.log(t.toString(16));
 
 
 
+### async/await
+
+*ES7(ES2017) 中提出的前端异步特性。*
+
+*async顾名思义是“异步”的意思，async用于声明一个函数是异步的。而await从字面意思上是“等待”的意思，就是用于等待异步完成。并且await只能在async函数中使用。*
+
+
+
+*`await`  操作符用于等待一个 `Promise`对象。它只能在异步函数  `async function` 中使用。*
+
+
+
 ## 工具
 
 ### npm
