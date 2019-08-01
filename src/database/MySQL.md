@@ -39,6 +39,10 @@ show variables like '%like%';
 
 
 
+*通过 `set` 修改的参数只作用于当前的会话中；`set global` 再服务重启以后就会失效；`my.ini/my.conf` 的配置应该是永久的。*
+
+
+
 ### Zip file(8.0)
 
 > Windows 版本下安装
@@ -502,6 +506,10 @@ status
 use dbname;
 # 使用 source 导入数据库十分的缓慢
 # 使用 source 导入脚本
+# 导入缓慢可设置值系统不同的参数实现
+#		set global interactive_timeout = 120;
+#		set global wait_timeout = 120;
+#		set global max_allowed_packet = 32M;
 source d:/.../name.sql
 
 
