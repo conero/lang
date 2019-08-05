@@ -1319,6 +1319,12 @@ svn info --xml
 
 
 
+### ignore-no-commit
+
+*SVN 本地文件默认忽略提交列表，用于本地更改而不影响远程代码仓库。*
+
+
+
 
 
 # ISSUE
