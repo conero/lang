@@ -26,6 +26,7 @@
 | [SQLiteExpert](http://www.sqliteexpert.com/)                | 商业/免费 | sqlite 可视化管理工具   |                                                          | sqlite      |
 | [TDM-GCC](http://tdm-gcc.tdragon.net/)                      | 免费      | GCC 编译器套件          | 如windows 下为 cgo 提供gcc环境                           | gcc         |
 | [Search and Replace](http://www.funduc.com/srshareware.htm) | 免费      | 文本查询/替换工具       |                                                          |             |
+| [DBeaver](https://dbeaver.io/)                              | 商业/社区 | 通用数据库管理工具      |                                                          | Java/JVM    |
 
 
 
