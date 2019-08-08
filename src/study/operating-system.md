@@ -774,7 +774,13 @@ ZXCVBNM		自行车未帮你买
 
 
 
+## 差异性
 
+### LF/CRLF
+
+- LF:  *Line Feed (`\n`)* 换行，Unix 句末使用换行
+- CRLF:  *Carriage Return Line Feed (`\r\n`)*  回车换行，Windows 下表示句尾使用回车换行两个字符
+- CR:  *Carriage Return (`\r`)*  回车换行，Mac 下表示句尾使用回车字符
 
 
 
