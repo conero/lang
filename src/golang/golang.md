@@ -672,6 +672,10 @@ go build -ldflags -H=windowsgui <filename>
 
 
 
+### Websocket
+
+要使用 Golang 开发 WebSocket，选择基本就在 [x/net/websocket](http://godoc.org/golang.org/x/net/websocket) 和 [gorilla/websocket](http://godoc.org/github.com/gorilla/websocket) 之间。《Go Web 编程》一书中的例子使用了 `x/net/websocket` 作为开发包，而且貌似它也更加官方且正式。而实际根据我在网上查询得到的反馈看来，并非如此。`x/net/websocket` 貌似 Bug 较多，且较为不稳定，问题解决也并不及时。相比之下，`gorilla/websocket` 则更加优秀。
+
 
 
 ## 参考资料

@@ -102,6 +102,24 @@ pip install tensorflow
 > javascript 版 TensorFlow 库，可用于浏览器(Browser)或NodeJs中
 
 - 网站： [https://js.tensorflow.org/](https://js.tensorflow.org/)
+- API 文档: https://js.tensorflow.org/api/latest/
+
+
+
+*TensorFlow.js 与 Tensors (张量)、Layers (图层)、Optimizers (优化器) 和损失函数等概念兼容，TensorFlow.js 为 JavaScript 中神经网络编程提供了灵活的构建块。*
+
+
+
+**环境**
+
+当一个用TensorFlow.js开发的程序运行时，所有的配置被统称为环境。它包含一个全局的backend，以及一些可以精确控制TensorFlow.js特性的标记。
+
+```javascript
+// 打印当前所使用的环境
+console.log(tf.getBackend());
+```
+
+
 
 
 
@@ -112,6 +130,22 @@ pip install tensorflow
 2. `npm install @tensorflow/tfjs-node`  *安装原生 C++ 绑定的TensorFlow* (<font style="color:red;">NodeJs</font>)
 
 
+
+### 张量(Tensors)和操作(operations)
+
+*TebsorFlow.js是一个在JavaScript中使用张量来定义并运行计算的框架。张量是向量和矩阵向更高维度的推广。*
+
+
+
+*tf.Tensor是TensorFlow.js中的最重要的数据单元，它是一个形状为一维或多维数组组成的数值的集合。*
+
+一个 `tf.Tensor` 包含如下属性（`tf.tensor (values, shape?, dtype?)`）：
+
+- `rank`: 张量的维度
+- `shape`: 每个维度的数据大小
+- `dtype`: 张量中的数据类型
+
+`tf.Tensor` 可进行进本的数值运算，如取平方 tensor.square, 相加 tensor.add
 
 
 
