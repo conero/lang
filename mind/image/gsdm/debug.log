@@ -1,7 +1,0 @@
-[0815/135444:WARNING:dns_config_service_win.cc(674)] Failed to read DnsConfig.
-[0815/140203:INFO:exception_record.cc(518)] [QB]Process ID: 18584 Type: 2
-[0815/140212:INFO:http_cache_transaction.cc(72)] IgnoreZeroCacheError: 0
-[0815/140303:INFO:exception_record.cc(518)] [QB]Process ID: 16884 Type: 2
-[0815/140920:INFO:exception_record.cc(518)] [QB]Process ID: 17680 Type: 2
-[0815/141142:WARNING:webmediaplayer_impl.cc(341)] Using MultibufferDataSource
-[0815/153309:INFO:exception_record.cc(518)] [QB]Process ID: 19220 Type: 2
