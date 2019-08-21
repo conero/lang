@@ -201,6 +201,42 @@ restart-computer
 
 
 
+### Start-Process
+
+```powershell
+Start-Process
+     [-FilePath] <String>
+     [[-ArgumentList] <String[]>]
+     [-Credential <PSCredential>]
+     [-WorkingDirectory <String>]
+     [-LoadUserProfile]
+     [-NoNewWindow]
+     [-PassThru]
+     [-RedirectStandardError <String>]
+     [-RedirectStandardInput <String>]
+     [-RedirectStandardOutput <String>]
+     [-WindowStyle <ProcessWindowStyle>]	窗体样式设置
+     [-Wait]		直到进行完成
+     [-UseNewEnvironment]
+     [<CommonParameters>]
+```
+
+
+
+
+
+用于本地进程开启的命令
+
+```powershell
+# 启动使用默认应用打开程序
+# 开浏览器地址地址
+Start-Process -FilePath http://localhost:2079/
+```
+
+
+
+
+
 ## CMD
 
 ### where

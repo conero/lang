@@ -967,6 +967,14 @@ _初衷是提供一款免费的开源的编译器。提供包含**C**、**C++**�
 
 
 
+## 大数据
+
+### ETL
+
+*Extract-Transform-Load*   用来描述将数据从来源端经过抽取（extract）、转换（transform）、加载（load）至目的端的过程
+
+
+
 
 
 ## 接口/API
