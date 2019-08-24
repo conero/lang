@@ -114,13 +114,31 @@ echo "`$n is $n."
 
 
 
+### 常量
+
+```powershell
+# ps脚本所在的目录
+echo $PSScriptRoot
+
+#
+# 运行制定脚本内的脚本
+./path/file.ps1
+# >>>>>
+# 文件： file.ps1
+&"$PSScriptRoot/grafana-server.exe"
+```
+
+
+
+
+
 ### 输入输出
 
 > 调用 VB 做图形化输入
 
 ```powershell
 [void][System.Reflection.Assembly]::LoadWithPartialName('Microsoft.VisualBasic')
-$cn = [Microsoft.VisualBasic.interaction]::inputbox('Enter Yorr Name', 'Name', 'Jc')
+$cn = [Microsoft.VisualBasic.interaction]::inputbox('Enter Your Name', 'Name', 'Jc')
 echo ">>:  $cn"
 ```
 
@@ -231,6 +249,9 @@ Start-Process
 # 启动使用默认应用打开程序
 # 开浏览器地址地址
 Start-Process -FilePath http://localhost:2079/
+
+# 以管理员身份运行【powershell】
+Start-Process -FilePath "powershell" -Verb RunAs -ArgumentList "file.ps1","argument-2"
 ```
 
 
