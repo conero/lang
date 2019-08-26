@@ -170,6 +170,30 @@ version()	-- 版本信息
 
 ### 语句
 
+#### 类型
+
+##### 时间类型
+
+```mysql
+tear 		-- 年。       字节数为1,  取值范围: [1901-2155]
+date 		-- 日期。     字节数为4,  取值范围: [1000-01-01] ~ [9999-12-31]
+time		-- 时间。     字节数为3,  取值范围: [-838:59:59] ~ [838:59:59]
+datetime	-- 日期时间。  字节数为8,  取值范围: [1000-01-01 00:00:00] ~ [9999-12-31 23:59:59]
+timestamp	-- 时间戳。    字节数为4,  取值范围: [19700101080001 - 2038011911407]
+
+
+-- date
+-- curdate() 同义函数 current_date(), current_date
+-- now() 同义函数 current_timestamp(), current_timestamp;
+select
+	curdate() as 当前日期, current_date as `常量同义-日期`,
+	curtime() as 当前时间, current_time as `常量同义-时间`,
+	curtime() as 当前时间戳, now(), current_timestamp as `常量同义-时间戳`
+;
+```
+
+
+
 #### show
 
 可用于查询对象： *databases, tables, variables, columns, server status* 等
