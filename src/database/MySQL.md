@@ -511,6 +511,23 @@ set global time_zone ='+8:00';
 
 
 
+### #1607 时间类型错误，更新字段。
+
+> **出现版本 5.7.27**
+
+由于 5.7 中不同的修复版本(小版本)中时间类型的兼容问题，导时间类型表修改时报错。但是可以通过 `sql_mode` 来兼容该问题。
+
+```mysql
+show variables like 'sql_mode';
+# ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION
+
+# 删除 【NO_ZERO_IN_DATE】，【NO_ZERO_DATE】即可修改以上问题
+# ONLY_FULL_GROUP_BY group by 的兼容问题
+set global sql_mdoe='STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
+```
+
+
+
 
 
 ## 备份

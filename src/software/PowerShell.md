@@ -165,6 +165,17 @@ $host
 
 
 
+**单行执行多条代码**
+
+```powershell
+# 转入且初始化 npm
+cd ./jc_cj | npm init -y
+```
+
+
+
+
+
 > 关机或重启
 
 ```ini
@@ -188,6 +199,11 @@ restart-computer
 | copy  | kill    | pwd   | type  |
 | del   | lp      | r     | write |
 | diff  | ls      | ren   |       |
+
+```powershell
+# 删除多文件,忽视文件删除
+rm -r ./path
+```
 
 
 
@@ -260,6 +276,21 @@ Start-Process -FilePath "powershell" -Verb RunAs -ArgumentList "file.ps1","argum
 
 ## CMD
 
+```shell
+# 命令行帮助
+mkdir /?
+
+# cmd.exe 单行运行多条命令
+mkdir .\jc_cj
+cd .\jc_cj && npm init -y
+rmdir /s .\jc_cj
+
+# 单行处理多脚本
+mkdir .\jc_cj && cd .\jc_cj && npm init -y && rmdir /s .\jc_cj
+```
+
+
+
 ### where
 
 >  查找项目/命令所在目录
@@ -269,11 +300,17 @@ Start-Process -FilePath "powershell" -Verb RunAs -ArgumentList "file.ps1","argum
 # 查询 svn 所在目录
 where svn
 where go
+
+
+# dir 与 其他 ls 命令差不多
+dir
 ```
 
 
 
-> 删除服务器
+#### 服务/进程
+
+> 删除服务
 
 ```powershell
 # 删除 window 10 服务的口令
@@ -297,6 +334,8 @@ taskkill /?
 # 强制杀死进程
 taskkill /fi "imagename eq nginx.exe" /F
 ```
+
+
 
 
 
