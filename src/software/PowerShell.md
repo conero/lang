@@ -276,6 +276,8 @@ Start-Process -FilePath "powershell" -Verb RunAs -ArgumentList "file.ps1","argum
 
 ## CMD
 
+*cmd 大部分命令在powershell上是兼容，只是其语法规则与其有差别。*
+
 ```shell
 # 命令行帮助
 mkdir /?
@@ -308,7 +310,7 @@ dir
 
 
 
-#### 服务/进程
+### 服务/进程
 
 > 删除服务
 
@@ -334,6 +336,14 @@ taskkill /?
 # 强制杀死进程
 taskkill /fi "imagename eq nginx.exe" /F
 ```
+
+
+
+### 系统
+
+**systeminfo**
+
+*该工具显示本地或远程机器(包括服务包级别)的操作系统配置的信息。*
 
 
 
