@@ -256,7 +256,7 @@
 
 
 
-## 文件结构
+## 目录结构
 
 **/：**根目录，所有的目录、文件、设备都在/之下，/就是Linux文件系统的组织者，也是最上级的领导者。
 
@@ -304,11 +304,37 @@
 
 **/var：**这个目录的内容是经常变动的，看名字就知道，可以理解为vary的缩写，/var下有/var/log 这是用来存放系统日志的目录。/var/ www目录是定义[Apache](https://baike.baidu.com/item/Apache)服务器站点存放目录；/var/lib 用来存放一些库文件，比如MySQL的，以及[MySQL](https://baike.baidu.com/item/MySQL)数据库的的存放地。
 
+- */*    更目录
+  - *bin*    二进制命令，系统中所有命令都在此可见
+  - *boot*   系统内核以及引导系统安装程序
+  - *dev*     外设目录
+  - *etc*       系统配置文件
+  - *home*   用户主目录
+  - *lib*        程序依赖的库目录，如 so
+  - *mnt*      存放挂载储存设备的挂载目录
+  - *proc*     系统的版本信息
+  - *var*       变量信息目录
+  - *tmp*      临时目录
+  - *media*  设备挂载信息
+  - *srv*        服务相关目录，无服务器程序包等
+  - *usr*       用户部分安装的程序
+    - *local*    用户本地相关程序
+    - *share*   系统公用资源
+
 
 
 
 
 ## 常用命令
+
+```shell
+# 操作系统相关的版本信息
+cat /proc/version
+```
+
+
+
+
 
 ### ls 文件/目录列表(list)
 
@@ -383,6 +409,41 @@ du -h [目录名] 查看指定文件夹下的所有文件大小（包含子文�
 *ps [options]*
 
 - `$ ps-eo pid,comm,cmd  `  *(-e表示列出全部进程，-o pid,comm,cmd表示我们需要PID，COMMAND，CMD信息)*
+
+
+
+#### Systemd
+
+参考：[systemd](http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html)
+
+**systemctrl**
+
+*systemctl是 Systemd 的主命令，用于管理系统。*
+
+```shell
+# 重启系统
+$ sudo systemctl reboot
+
+# 关闭系统，切断电源
+$ sudo systemctl poweroff
+
+# CPU停止工作
+$ sudo systemctl halt
+
+# 暂停系统
+$ sudo systemctl suspend
+
+# 让系统进入冬眠状态
+$ sudo systemctl hibernate
+
+# 让系统进入交互式休眠状态
+$ sudo systemctl hybrid-sleep
+
+# 启动进入救援状态（单用户状态）
+$ sudo systemctl rescue
+```
+
+
 
 
 
