@@ -586,6 +586,10 @@ _*WinSCP*是一个Windows环境下使用SSH的开源图形化SFTP客户端。同
 > 软件 安装/卸载
 
 ```shell
+# 更新 yum
+$ yum update
+
+# yum 软件安装与卸载
 $ yum instal <name>
 $ yum remove <name>
 ```
