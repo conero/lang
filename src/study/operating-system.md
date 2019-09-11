@@ -330,6 +330,9 @@
 ```shell
 # 操作系统相关的版本信息
 cat /proc/version
+
+# 查看本机的ip地址
+curl ifconfig.me
 ```
 
 
@@ -378,6 +381,9 @@ cat /proc/version
     # 删除非空文件夹
     rm -rf <dir>
     rm -r <dir>
+    
+    # 强制删除文件
+    rm -f <file>
     ```
 
 13. `find`                      文件或目录查找工具
@@ -441,6 +447,16 @@ $ sudo systemctl hybrid-sleep
 
 # 启动进入救援状态（单用户状态）
 $ sudo systemctl rescue
+
+# 列出所有可用的Unit
+$ systemctl list-unit-files
+# 列出所有正在运行的Unit
+$ systemctl list-units
+# 列出所有失败单元
+$ systemctl --failed
+
+# 查看 systemd 的日志
+$ journalctl -xe
 ```
 
 
@@ -543,6 +559,9 @@ reset			完全刷新终端屏幕
 # 粘贴/复制
 点击右键		  粘贴文本
 左键选中		  复制文本
+
+# 命令模糊查看
+# 键入命令前缀，两个连续的tab键可查询相关的命令
 ```
 
 
@@ -566,6 +585,13 @@ $ pscp php-7.3.5.tar.gz root@ip:
 _*WinSCP*是一个Windows环境下使用SSH的开源图形化SFTP客户端。同时支持SCP协议。它的主要功能就是在本地与远程计算机间安全的复制文件。_
 
 **Linux <=> Windows 之间的文件传输工具(图形化工具)**
+
+
+
+软件提供 `PuTTY` 工具集成，通过`ctrl+P`快捷键快速打开；可通过软件保存密码，并且将密码传递给putty，但是软件默认是不开启的。相关配置如下(*版本 5.15.3*)：
+
+- **保存密码** *【新建会话】-> 【保存】中勾选保存密码*
+- **传递密码给putty**  *【选项】 -> 【选项】-> 【集成】-> 【应用程序】-> 【记住会话密码并传递给PuTTY(SSH)(R)】*
 
 
 
@@ -684,6 +710,30 @@ $ groups kuafu
 # id 用户(查看用户所属组）
 $ id root
 ```
+
+
+
+#### rpm
+
+*`Red-Hat Package manager`(same like `RPM Package Manager`)*   RPM软件包管理器，由于其的开放式理念已经使用于许多的Linux发行版。
+
+```shell
+# i=> install; v = verbose; h = hash
+$ rpm -ivh your-package.rpm
+
+# 查看表信息
+$ rpm -ql <package>
+# 下载软件
+# erase (uninstall) package
+$ rpm -e <package>
+# 更新软件
+# upgrade package(s)
+$ rpm -U <package>
+```
+
+
+
+*[rpm 软件下载地址](http://www.rpmfind.net/linux/RPM/)*
 
 
 
