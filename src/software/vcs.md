@@ -942,6 +942,17 @@ $ git diff --name-only b7ffdd3b 65b2dcb1 | xargs tar -zcvf ./t5.tar.gz
 
 
 
+**archive 导出压缩包**
+
+```shell
+# 将 dev 分支打包导出
+$ git archive --format=tar.gz -o jc-admin.tar.gz dev
+```
+
+
+
+
+
 
 
 ### Git 与其他系统

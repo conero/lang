@@ -333,6 +333,9 @@ cat /proc/version
 
 # 查看本机的ip地址
 curl ifconfig.me
+
+# && 用户两个命令的链接
+$ mkdir jc-hellowpy && cd jc-hellowpy
 ```
 
 
@@ -554,6 +557,13 @@ su root
 
 ```shell
 Ctrl + l(L)   	清屏快捷键，同于 clear 命令
+ctrl + w —往回删除一个单词，光标放在最末尾
+ctrl + k —往前删除到末尾，光标放在最前面（可以使用ctrl+a）
+ctrl + u 删除光标以前的字符
+ctrl + k 删除光标以后的字符
+ctrl + a 移动光标至的字符头
+ctrl + e 移动光标至的字符尾 
+
 reset			完全刷新终端屏幕
 
 # 粘贴/复制
