@@ -17,7 +17,7 @@ import subprocess
 
 # 用于测试的变量
 # 目标地址
-vdir = "C:/conero/repository/golang/iris/_examples"
+vdir = ""
 
 # 参照的文件名称
 refname = "main.go"
