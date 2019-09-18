@@ -4,9 +4,8 @@
 
 import os
 
-
 # 环境变量检查
-from trys.common.cmd import Cmds
+from trys.common.cmd import SimpleApp, Cmds, Party
 
 
 def checkEnv():
@@ -24,30 +23,19 @@ def checkEnv():
             print("!" + v)
 
 
-
 class Stool(Cmds):
-    ''''''
+    def before(self):
+        pass
 
-class OnCmd:
+class cmdEnv(Party):
     ''''''
 
 
 mycmd = Stool()
+mycmd.party(cmdEnv(), "env")
 
 # 欢迎提示语
 print(' 欢迎使用 winSysTool Made by Joshua Conero!')
-print(' --help 提示帮助, --exit 退出')
+print(' help 提示帮助, exit 退出')
 
-# 循环等待输入
-while (True):
-    ipt = input('$ ')
-    mycmd.router(ipt)
-    if ipt == '--exit':
-        break
-    
-    print('')
-    if mycmd.isQuit():
-        break
-
-# 最后的退出确认
-input(' 键入任何键退出！')
+SimpleApp(mycmd).run()
