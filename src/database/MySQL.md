@@ -547,7 +547,7 @@ status
 use dbname;
 # 使用 source 导入数据库十分的缓慢
 # 使用 source 导入脚本
-# 导入缓慢可设置值系统不同的参数实现
+# 导入缓慢可设置值系统不同的参数实现，max_allowed_packet 的值为数字
 #		set global interactive_timeout = 120;
 #		set global wait_timeout = 120;
 #		set global max_allowed_packet = 32M;
