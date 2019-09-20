@@ -469,6 +469,11 @@ git branch -m old_branch new_branch
 git push origin :old_branch 
 # 本地分支推送
 git push --set-upstream origin new_branch
+
+# 分支间的指定代码合并方法
+# 强制覆盖文件,多个文件
+git checkout <branch> <path>[ <path>]
+git checkout toBranch f1.txt t1.shel path/base
 ```
 
 
