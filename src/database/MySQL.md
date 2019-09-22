@@ -481,6 +481,22 @@ drop procedure if exists _jc_tmp_untitle_sqlblock;
 
 
 
+### 用户
+
+```mysql
+-- 创建用户[conero](password)
+--  if exists 错误
+CREATE USER 'conero'@'localhost' IDENTIFIED BY 'password';
+
+-- 授权
+grant all privileges on zhangsanDb.* to zhangsan@'%' identified by 'zhangsan';
+flush privileges;
+```
+
+
+
+
+
 ### 实例
 
 _**information_schema**_   提供数据库元数据，包括数据库、数据表、列、插件、函数、存储过程、触发器以及权限等；其包含一些只读数据表，`show` 的提供数据
