@@ -483,10 +483,16 @@ drop procedure if exists _jc_tmp_untitle_sqlblock;
 
 ### 用户
 
+*用户表对应 `mysql.user`，可对此表对用户信息进行维护。*
+
 ```mysql
 -- 创建用户[conero](password)
 --  if exists 错误
 CREATE USER 'conero'@'localhost' IDENTIFIED BY 'password';
+create user 'conero'@'%' identified by '151009_170512';
+
+-- 修改用户密码
+update mysql.user set password=password('新密码') where User='phplam' and Host='localhost';
 
 -- 授权
 grant all privileges on zhangsanDb.* to zhangsan@'%' identified by 'zhangsan';
