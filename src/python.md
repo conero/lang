@@ -134,6 +134,30 @@ py[-4:]		# =thon;
 
 
 
+#### 格式化
+
+格式化字符串字面值（常简称为 f-字符串）能让你在字符串前加上 f 和 F 并将表达式写成 {expression}
+来在字符串中包含 Python 表达式的值。
+
+也可使用 `string.format()` 方法实现字符串的格式化
+
+```python
+# 格式化字符串字面值
+name = 'Joshua Conero'
+print(f'my name is {name}')
+
+# string.format() 格式化
+print('{0} and {1}'.format('spam', 'eggs'))
+print('The story of {0}, {1}, and {other}.'.format('Bill', 'Manfred', other='Georg'))
+
+table = {'Sjoerd': 4127, 'Jack': 4098, 'Dcab': 8637678}
+print('Jack: {Jack:d}; Sjoerd: {Sjoerd:d}; Dcab: {Dcab:d}\r\n Jack: {Jack}; Sjoerd: {Sjoerd}; Dcab: {Dcab}'.format(**table))
+```
+
+
+
+
+
 ### Lists/列表
 
 ```python
@@ -975,6 +999,24 @@ else:
 # run this anyway
 finally:
     pass
+```
+
+
+
+*捕捉任何错误的方法，与像其他语言那样：*
+
+```python
+try:
+    # 运行语言
+    any_cts = ''
+    pass
+except Exception as e:
+    # 任何异常
+    print(e)
+finally:
+    # 最终执行
+    pass
+	
 ```
 
 
