@@ -22,6 +22,8 @@
 
 *Python 是一门解释型语言，不像 C/C++, Go， Rust 那样需要编译和链接。*
 
+诞生于1990年，因此其语言特性中包含一些古老的命名方式，以及与现代语言命名风格不经相同。但是其同时也吸收了部分现代语言特性，使该语言整体比较独特。
+
 
 
 ### 安装
@@ -892,6 +894,17 @@ print('12'.zfill(5)) #>>> 00012
 
 使用`json`包处理数据。
 
+```python
+import json
+
+# json 编码字符串
+json.dumps(['foo', {'bar': ('baz', None, 1.0, 2)}])
+# '["foo", {"bar": ["baz", null, 1.0, 2]}]'
+
+# json 解码
+json.loads('{"authot":"Joshua Conero", "descript": ["streaming API"]}')
+```
+
 
 
 
@@ -1354,7 +1367,7 @@ pip list
 
 
 
-### 第三方工具打包
+### 打包工具
 
 > 使用`pyinstaller`打包python源代码
 
@@ -1383,3 +1396,13 @@ pyinstaller myscript.py
 
 - 特性
   - 仅仅支持： *windows* (windows 下 exe 打包工具)
+
+
+
+### 爬虫
+
+- **beautifulsoup**    HTML、XML数据提取器，[官网](https://www.crummy.com/software/BeautifulSoup/)，[文档](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)。类似jquery DOM选择器
+- **selenium**    浏览器自动测试工具，提供Java，python，nodejs等多语言环境。https://www.seleniumhq.org/；使用案例如爬虫复杂校验难以破解时，采用基于它的数据爬虫。
+- **Requests**  HTTP 网络处理库，用于优雅地网络请求。通常在爬虫中作为页面获取
+
+ 
