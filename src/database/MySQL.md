@@ -194,6 +194,15 @@ select
 
 
 
+##### 字符串
+
+**文本**
+
+- *TinyText*           最大长度255个字节(2^8-1)
+- *Text*                  最大长度65535个字节(2^16-1)
+
+
+
 #### show
 
 可用于查询对象： *databases, tables, variables, columns, server status* 等
