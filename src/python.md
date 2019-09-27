@@ -1384,6 +1384,10 @@ pip list
 pip install pyinstaller
 # 使用包
 pyinstaller myscript.py
+
+# 该方法打包的软件可能被杀毒软件拦截，方法
+# 此时需要方法,加上图表等
+pyinstaller -i demo.ico -w -F yourprogram.py
 ```
 
 
@@ -1406,3 +1410,11 @@ pyinstaller myscript.py
 - **Requests**  HTTP 网络处理库，用于优雅地网络请求。通常在爬虫中作为页面获取
 
  
+
+
+
+## 附录
+
+### 参考
+
+-  [Pyinstaller生成exe文件免杀](https://blog.csdn.net/Clannad_niu/article/details/83819872)
