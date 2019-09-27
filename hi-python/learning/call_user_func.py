@@ -16,6 +16,10 @@ class Aa:
     def age(self, age):
         return f'{self.name} age is {age}!'
 
+    def changeVc(self, name):
+        self.vConst = name
+        return self
+
 
 # 测试
 aa = Aa()
@@ -25,5 +29,10 @@ print(Aa.vConst)
 Aa.vConst = '外部改写'
 print(Aa.vConst)
 
-# 不存在的方法检测
+# 类方法存在性检测
 print(hasattr(aa, 'hereNoneThisMethod'))
+
+# 内部变量改变
+print(f"对象实例内部变量: {aa.changeVc('ChangeName').vConst}, 对象内部变量: {Aa.vConst}")
+Aa.vConst = 'ChangeFromTheOuter'
+print(f"对象实例内部变量: {aa.changeVc('ChangeName2').vConst}, 对象内部变量: {Aa.vConst}")
