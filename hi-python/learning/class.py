@@ -6,7 +6,7 @@
 
 
 class CA:
-    name = "CA"
+    name = "CA"         # 类变量，可被所有实例共享
     counter = 0
     counterQue = []
     __number = 0
@@ -62,6 +62,13 @@ class CC(CB):
 
     def __init__(self, **cdick):
         self.inniDick = cdick
+        self.__privateCode = '私有变量'
+
+    # 静态变量
+    @staticmethod
+    def staticBase():
+        print('CC 类的静态变量')
+        pass
 
 
 
@@ -77,6 +84,10 @@ class TestConcole:
         # test 2
         aIst2 = CA()
         print(aIst2.getNumber(), aIst.counterQue)
+
+        # test 3
+        CC.staticBase()
+
         pass
 
     def __init__(self):

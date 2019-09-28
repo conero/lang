@@ -13,6 +13,9 @@ def kv(**kvs):
     for k in kvs.keys():
         print(k, kvs[k])
 
+# 多返回值
+def mutReturn():
+    return 1, 2, 3, 4, 'Joshua Conero'
 
 # ----------------------------------------------------
 # 数据测试
@@ -20,3 +23,8 @@ def kv(**kvs):
 # quque()
 
 kv(test="222", t=5)
+
+# 多行，返回 元组
+print(mutReturn())
+a,b, c, b, e = mutReturn()
+print(a)
