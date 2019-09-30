@@ -1385,9 +1385,19 @@ pip install pyinstaller
 # 使用包
 pyinstaller myscript.py
 
+# -F,--onefile 打包为单一文件
+# -w, --windowed, --noconsole 不提供标准I / O的控制台窗口
 # 该方法打包的软件可能被杀毒软件拦截，方法
 # 此时需要方法,加上图表等
 pyinstaller -i demo.ico -w -F yourprogram.py
+
+
+# 软件版本信息
+# windows 下可以 pyi-grab_version 获取软件标识如
+pyi-grab_version <path>.exe
+# 生成：file_version_info.txt 文件，根据其信息加载到编译中
+# 编译如下命令即可
+pyinstaller --version-file=file_version_info.txt ...
 ```
 
 
@@ -1410,6 +1420,18 @@ pyinstaller -i demo.ico -w -F yourprogram.py
 - **Requests**  HTTP 网络处理库，用于优雅地网络请求。通常在爬虫中作为页面获取
 
  
+
+### GUI
+
+
+
+**PySide2**     *Qt for python, qt 官方提供版本*
+
+```shell
+pip install PySide2
+```
+
+
 
 
 
