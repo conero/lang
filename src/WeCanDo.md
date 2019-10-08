@@ -45,3 +45,30 @@
 
 *[mermaid](https://github.com/knsv/mermaid)*  可以实现 markdown 中的流程图
 
+
+
+
+
+## 网站资源
+
+### google.cn 系列网站
+
+- [谷歌开发中心](![1570515135884](C:\Users\11066\AppData\Roaming\Typora\typora-user-images\1570515135884.png))
+- [golang](https://golang.google.cn/)
+- [TensorFlow](https://tensorflow.google.cn)
+
+
+
+
+
+#### 谷歌开发中心
+
+![](https://www.gstatic.cn/devrel-devsite/v45ff8f523b59dba1a68309c845322ac9e5fdaa00274f34f2986d46556e823992/developers/images/lockup.svg)
+
+https://developers.google.cn/
+
+
+
+#### golang
+
+![](https://golang.google.cn/lib/godoc/images/go-logo-blue.svg)

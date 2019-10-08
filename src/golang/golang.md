@@ -628,9 +628,15 @@ go install 在编译源代码之后还安装到指定的目录
 # 依赖下载，在mod开启的情况下，其实下载到本地项目
 go get 从指定源上面下载或者更新指定的代码和依赖，并对他们进行编译和安装
 
+#
+#
 # 项目模块
 go mod 项目模块系统
+
 go mod init 	项目初始化
+# 项目不在 【GOPATH】中时，需要指定模块名称，如
+go mod init [module] 
+
 go mod vendor 	模块自动拉取，并生产vendor目录
 ```
 
