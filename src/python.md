@@ -1361,6 +1361,10 @@ pip show requests
 
 # 显示已经安装的包列表
 pip list
+
+# 当前Python环境的包依赖清单
+# 其生产的是全局项目依赖清单，与npm package.json, php composer.json, go go.mod 等不一致
+pip freeze > requirements.txt
 ```
 
 
