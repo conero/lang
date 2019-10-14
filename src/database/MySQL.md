@@ -282,6 +282,25 @@ like_or_where:
 
 
 
+#### delete 
+
+*delete join 语句*
+
+```mysql
+-- delete 删除 join 语句
+delete dd from fg_article_data dd
+	inner join fg_article ac on dd.id=ac.id
+	where ac.catid=470
+;
+
+
+delete from fg_article where catid=470;
+```
+
+
+
+
+
 #### @/@@ 的区别
 
 - `@x `            *用户自定义变量（用户变量）。如两者相同: `set @value = last_insert_id(); 或 @value := last_insert_id(); ` 和 `set @value = @@identity; 或 @value := @@identity  `*
@@ -314,6 +333,13 @@ INSERT INTO `__menu` (`id`, `parentid`, `app`, `model`, `action`, `data`, `type`
 ```
 
 
+
+*查询数据赋值*
+
+```mysql
+select 1, 109 into @id, @id2;
+select @id, @id2;
+```
 
 
 
