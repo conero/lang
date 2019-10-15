@@ -516,6 +516,55 @@ drop procedure if exists _jc_tmp_untitle_sqlblock;
 
 
 
+### 存储过程
+
+*实例，mysql 5.7 运行正确*
+
+```mysql
+-- 二级目录移动
+delimiter //
+create procedure _jc_tmp_untitle_move_by_catid(v_catid int)
+begin
+    declare not_more_record int default false;
+    declare v_bm_catid int;
+
+    -- cursor 定义语法
+    declare bumen_cs cursor for select `catid` from fg_category where parentid=v_catid;
+	declare continue handler for not found set not_more_record= true;
+
+    open bumen_cs;
+        -- 循环语句： loop, repeat, while
+        while not_more_record<>true do
+            fetch bumen_cs into v_bm_catid;
+            call jc_tmp_untitle_move_by_catid(v_bm_catid);
+        end while;
+    -- 关闭游标
+    close bumen_cs;
+
+    -- 导文章
+    insert into cp_article_191015 select * from fg_article where catid=v_catid;
+    insert into cp_article_data_191015 select dd.* from fg_article_data dd
+        inner join fg_article fat on dd.id=fat.id and fat.catid=v_catid
+    ;
+    -- 数据参数
+    delete dd from fg_article_data dd 
+        inner join fg_article fat on dd.id=fat.id and fat.catid=v_catid
+    ;
+    delete from fg_article where catid=v_catid;
+    
+    -- 菜单导入
+    insert into cp_category_191015 select * from fg_category where parentid=v_catid;
+    delete from fg_category where parentid=v_catid;
+end;
+delimiter ;
+```
+
+
+
+
+
+
+
 ### 用户
 
 *用户表对应 `mysql.user`，可对此表对用户信息进行维护。*
