@@ -28,7 +28,9 @@
 
 ### 安装
 
-安装 python 运行包以后，可以在安装的目录下查看语言的核心库等源码
+![](./image/python/install-python-select.png)
+
+Windows下班包的区别如：*embeddable zip file*、*executeable installer*、*web-based installer* 分别对应为 zip压缩文件、exe压缩包、在线网络安装工具等，其最终安装的文件一样。安装 python 运行包以后，可以在安装的目录下查看语言的核心库等源码。
 
 
 
@@ -1340,16 +1342,20 @@ g
 # 查看详情
 pip --help
 
-
 # 安装
 pip install <package-name>
 pip install requests
 # 按照版本安装
 pip install <package-name>==<package-version>
 pip install requests==2.6.0
-# 更新安装报
-pip install --upgrade requests
 
+# 更新安装包
+pip install --upgrade requests
+# -U,--upgrade 升级包等
+# --timeout <sec> 设置 socket 超时时长，因国内网站网络的问题可以设置超时时间
+python -m pip install -U --timeout 1000 --user numpy scipy matplotlib ipython jupyter pandas sympy nose
+# 或者使用国内镜像安装，如：清华镜像
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple matplotlib
 
 # 卸载
 pip uninstall <package-name>
@@ -1365,6 +1371,9 @@ pip list
 # 当前Python环境的包依赖清单
 # 其生产的是全局项目依赖清单，与npm package.json, php composer.json, go go.mod 等不一致
 pip freeze > requirements.txt
+
+# 通过名称网络搜索网络包 
+pip search requests
 ```
 
 
@@ -1429,13 +1438,37 @@ pyinstaller --version-file=file_version_info.txt ...
 
 
 
-**PySide2**     *Qt for python, qt 官方提供版本*
+**PySide2**     *[Qt for python](https://wiki.qt.io/Qt_for_Python), qt 官方提供版本*
 
 ```shell
 pip install PySide2
 ```
 
 
+
+###  Matplotlib 
+
+*python 库替代 MATLAB 的组合:*
+
+- [NumPy](https://github.com/numpy/numpy)    		数学科学运算库( 数组计算 )
+- [SciPy](https://github.com/scipy/scipy)                科学运算包， 为数学、科学、工程领域的常用软件包 
+- [Matplotlib](https://github.com/matplotlib/matplotlib)       绘图库 
+
+
+
+```shell
+# matplotlib 安装
+python -m pip install -U matplotlib
+python -m pip install -U --timeout 1000 --user numpy scipy matplotlib ipython jupyter pandas sympy nose
+```
+
+
+
+
+
+### anaconda
+
+*R/Python 科学数据开发平台工具包，包含Python，可续依赖包等上百个工具集合*
 
 
 
