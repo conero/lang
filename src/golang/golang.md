@@ -642,6 +642,16 @@ go mod vendor 	模块自动拉取，并生产vendor目录
 
 
 
+### gopath、go module
+
+*go 1.11 新增 对 go module 的支持，提供 vendor 库支持；而 gopath 几何与 go 一起诞生，后者必须在 gopath 进行项目开发。*
+
+
+
+**实际测试 IntellJ + go plugin**  时间: 2019年10月25日 星期五， 无法友好的提示 vendor 目录下的依赖，虽然可运行带不够友好。  
+
+
+
 
 
 ## 内建函数或GO基础包
