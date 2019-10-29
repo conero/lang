@@ -73,6 +73,8 @@
 
 
 
+
+
 #### 谷歌开发中心
 
 ![](https://www.gstatic.cn/devrel-devsite/v45ff8f523b59dba1a68309c845322ac9e5fdaa00274f34f2986d46556e823992/developers/images/lockup.svg)
@@ -84,3 +86,32 @@ https://developers.google.cn/
 #### golang
 
 ![](https://golang.google.cn/lib/godoc/images/go-logo-blue.svg)
+
+
+
+### 国内镜像
+
+#### 大学
+
+- [清华](https://mirrors.tuna.tsinghua.edu.cn/)
+- [中国科技大学](http://mirrors.ustc.edu.cn/)
+- [北理工](http://mirror.bit.edu.cn/)
+
+
+
+#### 企业
+
+- [搜狐](http://mirrors.sohu.com/)
+- [163](http://mirrors.163.com/)
+- ![](https://img.alicdn.com/tfs/TB12yDStQ7mBKNjSZFyXXbydFXa-248-72.png)[阿里云](https://opsx.alibaba.com/mirror)
+- [腾讯](https://mirrors.tencent.com/)
+
+
+
+## 工具
+
+### 编程
+
+#### Jenkins 
+
+*Jenkins是开源CI&CD软件领导者， 提供超过1000个插件来支持构建、部署、自动化， 满足任何项目的需要。*

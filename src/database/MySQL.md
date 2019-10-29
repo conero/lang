@@ -49,8 +49,8 @@ show variables like '%like%';
 
 1. 目录指向`$/bin`
 2. 初始化 `$ mysqld --initialize --console` 来初始化安装。
-3. 安装 `$ mysqld install`
-4. 启动 `$ net start mysql`
+3. 安装 `$ mysqld install [<server_name>]`, *server_name 默认为 mysql*
+4. 启动 `$ net start <server_name>` 启动服务
 
 *初始化时可获得随机密码。使用 cmd 登录 mysql 需要重置密码：*
 
@@ -295,6 +295,10 @@ delete dd from fg_article_data dd
 
 
 delete from fg_article where catid=470;
+
+-- 删除数据，全部数据
+-- truncate删除后将重新水平线和索引(id从零开始) ,delete不会删除索引 
+truncate (table) tb_name;
 ```
 
 
