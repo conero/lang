@@ -719,6 +719,31 @@ go build -ldflags -H=windowsgui <filename>
 
 
 
+## 学习
+
+### 交叉编译
+
+#### Windows for Linux/max
+
+```shell
+ # 设置环境变量
+ # linux, darwin, windows, netbsd
+ $env:GOOS="linux"
+ 
+ # 系统架构
+ # amd64, 386, arm, ppc64
+ $env:GOARCH = "amd64"
+ 
+ # 运行，即使对应操作系统的脚本
+ go build
+```
+
+
+
+
+
+
+
 ## 参考资料
 
 - 《Go 语言编程》(2012.8)     - 徐式伟 
