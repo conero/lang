@@ -89,6 +89,22 @@ FK_%.U40:REFR%
 
 
 
+### DBeaver
+
+*数据库通用连接工具*
+
+
+
+#### MySQL 8.0 连接错误的解决方法
+
+**错误信息**： `Public Key Retrieval is not allowed`
+
+**解决**  将软件中的 `allowPublicKeyRetrieval` 设置为 `true` 即可。 [参考地址](https://www.jianshu.com/p/240ecb210222)
+
+
+
+
+
 ## IDEs
 
 
