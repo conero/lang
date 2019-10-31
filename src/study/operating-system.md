@@ -336,6 +336,12 @@ curl ifconfig.me
 
 # && 用户两个命令的链接
 $ mkdir jc-hellowpy && cd jc-hellowpy
+
+# 环境变量
+env
+
+# 输出 path 变量
+echo $PATH
 ```
 
 

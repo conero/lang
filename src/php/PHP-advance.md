@@ -165,6 +165,30 @@ php --ini
 
 
 
+### Apache
+
+#### Windows
+
+##### 安装
+
+```powershell
+# cd 到目标路径
+# ./httpd -k install [<server_name>]
+./httpd -k install
+
+# 启动服务
+net start <server_name>
+```
+
+
+
+##### 卸载
+
+```powershell
+# 删除服务名
+sc delete Apache2.4
+```
+
 
 
 ### 变量
