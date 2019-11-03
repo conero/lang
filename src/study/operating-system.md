@@ -335,7 +335,7 @@ cat /proc/version
 curl ifconfig.me
 
 # && 用户两个命令的链接
-$ mkdir jc-hellowpy && cd jc-hellowpy
+mkdir jc-hellowpy && cd jc-hellowpy
 
 # 环境变量
 env
@@ -401,6 +401,8 @@ echo $PATH
 
 15. `du`                          *查看当前目录的磁盘信息*
 
+16. `rename`                  *项目重命名*
+
 
 
 ```shell
@@ -411,6 +413,13 @@ df -h 查看每个根路径的分区大小
 du -sh [目录名] 返回该目录的大小
 du -sm [文件夹] 返回该文件夹总M数
 du -h [目录名] 查看指定文件夹下的所有文件大小（包含子文件夹）
+
+# 文件、目录查找
+find -name <name>
+
+# 目录重命名
+# <source_dir_name> => <target_dir_name>
+rename <source_dir_name> <target_dir_name> <source_dir_name>
 ```
 
 
@@ -541,6 +550,17 @@ su root
 
 
 
+### 硬件
+
+```bash
+# 查看当前系统的架构
+arch
+
+# 查看系统信息
+uname --all
+
+```
+
 
 
 
@@ -589,7 +609,12 @@ reset			完全刷新终端屏幕
 ```shell
 # pscp 文件名称 Linux用户@IP:目标地址
 # pscp <filename> linux-user@ip:targetDir
-$ pscp php-7.3.5.tar.gz root@ip:
+pscp php-7.3.5.tar.gz root@ip:targetDir
+
+# 认证错误时，需要执行 ppk 秘钥文件
+pscp -i <ppk_file> <filenamr> user@host:targetDir
+# 实例
+pscp -i ~\16.13-Linux.ppk ~\python3-3.6.8-10.el7.x86_64.rpm root@y.x.16.13:/usr/local/cro1911
 ```
 
 
