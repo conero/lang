@@ -436,6 +436,9 @@ find -name <name>
 # 目录重命名
 # <source_dir_name> => <target_dir_name>
 rename <source_dir_name> <target_dir_name> <source_dir_name>
+
+# 查看文件信息
+stat <file_path>
 ```
 
 
@@ -443,6 +446,15 @@ rename <source_dir_name> <target_dir_name> <source_dir_name>
 
 
 ### 进程管理
+
+```sh
+# nohup 后台执行，并挂起
+# 通过php，开启内部服务器
+# & 表示后台挂起运行
+nohup /usr/bin/php -S 0.0.0.0:9200 &
+```
+
+
 
 > `ps` (process)
 
@@ -627,10 +639,11 @@ reset			完全刷新终端屏幕
 # pscp <filename> linux-user@ip:targetDir
 pscp php-7.3.5.tar.gz root@ip:targetDir
 
+# -v 显示进展信息
 # 认证错误时，需要执行 ppk 秘钥文件
 pscp -i <ppk_file> <filenamr> user@host:targetDir
 # 实例
-pscp -i ~\16.13-Linux.ppk ~\python3-3.6.8-10.el7.x86_64.rpm root@y.x.16.13:/usr/local/cro1911
+pscp -i ~\16.13-Linux.ppk ~\python3-3.6.8-10.el7.x86_64.rpm root@y.x.16.13:/usr/local/cro1911 -v
 ```
 
 
