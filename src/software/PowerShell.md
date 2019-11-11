@@ -65,9 +65,9 @@ $jc
 # 获取环境变量
 $jc = Get-ChildItem env:
 $jc
-# 环境变量读取
+# 读取环境变量
 $env:path
-# 环境变量设置
+# 设置环境变量
 $env:path = "new value"
 
 # 查看所有变量

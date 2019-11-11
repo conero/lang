@@ -448,7 +448,7 @@ stat <file_path>
 ### 进程管理
 
 ```sh
-# nohup 后台执行，并挂起
+# nohup(no-hangup) 后台执行，并挂起
 # 通过php，开启内部服务器
 # & 表示后台挂起运行
 nohup /usr/bin/php -S 0.0.0.0:9200 &
@@ -641,7 +641,8 @@ pscp php-7.3.5.tar.gz root@ip:targetDir
 
 # -v 显示进展信息
 # 认证错误时，需要执行 ppk 秘钥文件
-pscp -i <ppk_file> <filenamr> user@host:targetDir
+# <filename> 位置在 -i 选项之后
+pscp -i <ppk_file> <filename> user@host:targetDir
 # 实例
 pscp -i ~\16.13-Linux.ppk ~\python3-3.6.8-10.el7.x86_64.rpm root@y.x.16.13:/usr/local/cro1911 -v
 ```
