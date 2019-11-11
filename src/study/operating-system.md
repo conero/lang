@@ -370,6 +370,16 @@ chmod 777 <file_path>
 
 
 
+```shell
+# 下者等效
+ll
+ls -l
+```
+
+
+
+
+
 
 
 ### clear	清除命令行/输出台
@@ -513,7 +523,18 @@ $ journalctl -xe
 
 ```shell
 $ tar
+# 主要类别
+-c Create  -r Add/Replace  -t List  -u Update  -x Extract
+# 解压
+# 创建压缩包
+tar.exe -c [options] [<file> | <dir> | @<archive> | -C <dir> ]
+# 列出详情
+tar.exe -t [options] [<patterns>]
+# 解压
+tar.exe -x [options] [<patterns>]
 
+
+tar -xvf <tar_file> -C <tgt_dir>
 
 # zip 压缩
 $ zip
