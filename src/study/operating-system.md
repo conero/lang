@@ -449,6 +449,10 @@ rename <source_dir_name> <target_dir_name> <source_dir_name>
 
 # 查看文件信息
 stat <file_path>
+
+# 文件覆盖
+cp -rf ./svn-173/* ./
+# 重新提醒，输入: y  才行
 ```
 
 
