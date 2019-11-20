@@ -1,0 +1,1 @@
+CreateObject("SAPI.SpVoice").Speak "I LOVE YOU. 中文与英文？"
