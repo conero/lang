@@ -1354,6 +1354,7 @@ pip install --upgrade requests
 # -U,--upgrade 升级包等
 # --timeout <sec> 设置 socket 超时时长，因国内网站网络的问题可以设置超时时间
 python -m pip install -U --timeout 1000 --user numpy scipy matplotlib ipython jupyter pandas sympy nose
+# https://mirrors.tuna.tsinghua.edu.cn/help/pypi/
 # 或者使用国内镜像安装，如：清华镜像
 pip install -i https://pypi.tuna.tsinghua.edu.cn/simple matplotlib
 
@@ -1374,6 +1375,45 @@ pip freeze > requirements.txt
 
 # 通过名称网络搜索网络包 
 pip search requests
+```
+
+
+
+#### python -m srcipt
+
+*`python -m srcipt` 以模块运行 “script.py” 脚本，且 `sys.path` 新增了当前的目录；`python script.py` 以脚本直接运行。如脚本：*
+
+- temp
+  - tx.py
+  - jc
+    - \__init__.py
+    - tx.py
+
+```python
+#-- python 3.7
+import sys
+
+print(__name__)
+print(sys.path)
+```
+
+**运行命令：**
+
+```shell
+cd ~/temp
+python tx.py
+# 输出 
+# __main__
+# ['~\temps', '~\\Python\\Python37\\python37.zip', '~\\Python\\Python37\\DLLs', '~\\Python\\Python37\\lib', '~\\Python\\Python37', '~\\Python\\Python37\\site-packages', '~\\Python\\Python37\\site-packages\\win32', '~\\Python\\Python37\\site-packages\\win32\\lib', '~\\Python\\Python37\\site-packages\\Pythonwin', '~\\Python\\Python37\\lib\\site-packages']
+
+python -m tx.py
+# 运行并报错
+#	__name__ = tx
+# 其他一样
+
+python -m tx
+python -m jc.tx
+#　正常运行，无报错，与第一次一样
 ```
 
 
@@ -1469,6 +1509,27 @@ python -m pip install -U --timeout 1000 --user numpy scipy matplotlib ipython ju
 ### anaconda
 
 *R/Python 科学数据开发平台工具包，包含Python，可续依赖包等上百个工具集合*
+
+
+
+### 多版本共存
+
+**Windows 环境**
+
+下载（国内可使用python的[镜像地址](https://npm.taobao.org/mirrors/python/)）的对应的`exe`安装包，安装完成后修改可执行文件的名称！如下: 
+
+- ~/python
+  - *python.exe*     更改为唯一名称，如: *python36.exe*  
+
+
+
+```shell
+# 运行 pip
+# 其他查看名称
+python36 -m pip -V
+```
+
+
 
 
 

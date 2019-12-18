@@ -139,6 +139,18 @@ https://developers.google.cn/
 
 
 
+#### 随机生成器
+
+1. **头像生成**
+
+<img src="https://thispersondoesnotexist.com/image" style="zoom:40%;" />
+
+
+
+2. **随机图像**
+
+   <img src="http://lorempixel.com/800/800/" style="zoom:50%;" />
+
 
 
 
