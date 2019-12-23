@@ -1328,6 +1328,32 @@ g
 
 - `venv`   虚拟环境
 
+*使用 `venv` 创建虚拟环境，有效的摆脱了系统全局的 `Lib/site-packages` 依赖的安装和管理。*
+
+
+
+### windows 下的使用
+
+*python 3.6 >*
+
+
+
+1. **创建虚拟环境以及基本的使用**
+
+```powershell
+# <venv-name> 环境搭建
+python -m venv <venv-name>
+
+# 启动虚拟环境
+# powershell
+<venv-name>/Scripts/Activate.ps1
+# 进入虚拟环境
+# 此时可以进行相关操作
+(<venv-name>)/~/> pip list
+```
+
+
+
 
 
 

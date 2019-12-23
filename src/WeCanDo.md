@@ -176,3 +176,27 @@ https://developers.google.cn/
 #### Jenkins 
 
 *Jenkins是开源CI&CD软件领导者， 提供超过1000个插件来支持构建、部署、自动化， 满足任何项目的需要。*
+
+
+
+
+
+### 网络
+
+#### 代理服务器
+
+*如由于网络的限制，部分计算机无法上网；此此时可以通过代理服务器进行代理上网。*
+
+
+
+##### CCProxy
+
+[网站](http://www.ccproxy.com/)
+
+
+
+**相关帮助链接**
+
+1. [启用后无法上网](http://www.ccproxy.com/support_c01.htm)
+2. 下载，[以及使用方法介绍](https://www.onlinedown.net/soft/4156.htm)
+
