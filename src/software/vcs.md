@@ -952,6 +952,24 @@ $ git diff --name-only b7ffdd3b 65b2dcb1 | xargs tar -zcvf ./t5.tar.gz
 ```shell
 # 将 dev 分支打包导出
 $ git archive --format=tar.gz -o jc-admin.tar.gz dev
+# master 打包为 zip 包
+$ git archive --format=zip --output master.zip master
+
+# 打包当前分枝当前HEAD的所有文件
+$ git archive --format=zip --output head.zip HEAD
+
+# 打包v1.2标签的所有文件
+$ git archive --format=zip --output v1.2.zip
+
+# 打包最后修改的文件
+# 先通过git diff找到最新版本修改过的文件，再压缩打包这些文件：
+$ git archive --format=zip -o update.zip HEAD $(git diff --name-only HEAD^)
+
+# 打包最后两个版本修改的文件
+$ git achive --format=zip -o update.zip HEAD $(git diff --name-only HEAD~2)
+
+# 打包两个分枝之间差别的文件
+$ git archive --formate=zip -o update.zip HEAD $(git diff --name-only master fix-error)
 ```
 
 
