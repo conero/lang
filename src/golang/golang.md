@@ -74,6 +74,10 @@
 $ go get <path>
 # 安装且更新为最新的包
 $ go get -u <path>
+
+# go fmt 
+# go 脚本格式化; 全目录，like IDE
+$ go fmt ./...
 ```
 
 
