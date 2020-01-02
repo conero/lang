@@ -258,6 +258,14 @@ echo $$a;
 
 
 
+### composer
+
+*PHP 包管理工具*
+
+*国内镜像： https://developer.aliyun.com/composer*
+
+国外官网： https://getcomposer.org/
+
 
 
 ## 资源

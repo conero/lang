@@ -423,6 +423,18 @@ $ git diff <branch1> <branch2> --stat
 
 
 
+> 拉去其他分支的指定文件
+
+```bash
+# $ git checkout <branch-name> <path>
+# 将 .gitignore 合并到当前分支内
+$ git checkout dev .gitignore
+```
+
+
+
+
+
 #### 新增分支
 
 ```ini
