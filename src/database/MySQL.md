@@ -721,6 +721,19 @@ flush logs;
 
 
 
+
+
+## 组件
+
+*mysql 基本组件描述：*
+
+- **mysql**     客服端软件，对任何mysql服务端进行访问（SQL 命令行工具）
+- **mysqld**   SQL后台程序，服务端程序。其英文名为 *mysql deamon*。(主程序)
+
+
+
+
+
 ## example
 
 ### 游标

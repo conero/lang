@@ -64,6 +64,10 @@ FK_%.U40:REFR%
 
 
 
+> 数据库模型通过SQL生成
+
+`File > Reverser Engineer >  Database`
+
 
 
 ### Oracle SQL Developer
