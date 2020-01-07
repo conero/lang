@@ -365,4 +365,7 @@ screenX, screenY	//	screen 屏幕坐标系
 ## 收藏
 
 - [*node-ffi nodejs 调用 dll库*](https://www.npmjs.com/package/ffi)
-
+- [NodeJS简介](https://www.jianshu.com/p/c8b55edd8ff0)
+- [Node也许不是构建大型服务的最佳选择——Node之父Ryan Dahl访谈录](http://www.sohu.com/a/190098548_268033)
+  - [Episode 8: Interview with Ryan Dahl, Creator of Node.js](https://mappingthejourney.com/single-post/2017/08/31/episode-8-interview-with-ryan-dahl-creator-of-nodejs/)
+- [Deno 并不是下一代 Node.js](https://juejin.im/post/5b14a390e51d4506c1300bbc)
