@@ -270,6 +270,10 @@ Start-Process
 # 开浏览器地址地址
 Start-Process -FilePath http://localhost:2079/
 
+# 使用id浏览器打开
+# starts with a specific browser
+Start-Process -FilePath iexplore -ArgumentList www.powershellmagazine.com
+
 # 以管理员身份运行【powershell】
 Start-Process -FilePath "powershell" -Verb RunAs -ArgumentList "file.ps1","argument-2"
 ```
