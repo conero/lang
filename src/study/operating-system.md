@@ -351,6 +351,9 @@ mkdir jc-hellowpy && cd jc-hellowpy
 # 环境变量
 env
 
+# 设置环境变量
+export env_key=value
+
 # 输出 path 变量
 echo $PATH
 
@@ -618,6 +621,11 @@ arch
 # 查看系统信息
 uname --all
 
+# 内存信息
+cat /proc/meminfo
+
+# 获取CPU型号信息
+cat /proc/cpuinfo | grep name | cut -f2 -d: |uniq -c
 ```
 
 
@@ -953,6 +961,28 @@ su root
 
 
 
+# 工具
+
+## 命令行工具
+
+### curl
+
+```shell
+# -v,--verbose   显示详细信息
+# curl <url>
+# 读取 GitHub 主页信息
+curl http://www.httpbin.org/
+
+# post 数据信息
+curl https://www.httpbin.org/post -X POST -d 'name=Joshua-Conero&age=21' -d 'try=so-many-times'
+# 上传数据
+curl https://www.httpbin.org/post -F 'imgs=@./qrcode.png' -F 'post_key=12' -F 'k1=s'
+
+
+```
+
+
+
 
 
 # 附录
@@ -1019,3 +1049,6 @@ ZXCVBNM		自行车未帮你买
 ## 参考
 
 1. [Windows 中的键盘快捷方式](https://support.microsoft.com/zh-cn/help/12445/windows-keyboard-shortcuts)
+
+
+
