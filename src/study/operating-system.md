@@ -934,6 +934,18 @@ su root
 
 
 
+*Linux shell 加载脚本如:*
+
+```bash
+# shell 脚本加载并执行
+source ./real/executable/sellscript.sh
+. ./real/executable/sellscript.sh
+```
+
+
+
+
+
 
 
 ### [bash](http://www.gnu.org/software/bash/manual/)

@@ -1332,7 +1332,7 @@ g
 
 
 
-### windows 下的使用
+### windows
 
 *python 3.6 >*
 
@@ -1353,6 +1353,22 @@ python -m venv <venv-name>
 ```
 
 
+
+### linux
+
+
+1. **创建虚拟环境以及基本的使用**
+
+```powershell
+# <venv-name> 环境搭建
+python -m venv <venv-name>
+
+# 启动虚拟环境
+source ./<venv-name>/Scripts/Activate.ps1
+# 进入虚拟环境
+# 此时可以进行相关操作
+(<venv-name>)/~/> python -m pip -V
+```
 
 
 
@@ -1398,6 +1414,9 @@ pip list
 # 当前Python环境的包依赖清单
 # 其生产的是全局项目依赖清单，与npm package.json, php composer.json, go go.mod 等不一致
 pip freeze > requirements.txt
+
+# 使用 requirements.txt 安装依赖
+pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 
 # 通过名称网络搜索网络包 
 pip search requests
@@ -1540,7 +1559,7 @@ python -m pip install -U --timeout 1000 --user numpy scipy matplotlib ipython ju
 
 ### 多版本共存
 
-**Windows 环境**
+#### Windows
 
 下载（国内可使用python的[镜像地址](https://npm.taobao.org/mirrors/python/)）的对应的`exe`安装包，安装完成后修改可执行文件的名称！如下: 
 
@@ -1554,6 +1573,42 @@ python -m pip install -U --timeout 1000 --user numpy scipy matplotlib ipython ju
 # 其他查看名称
 python36 -m pip -V
 ```
+
+
+
+
+
+#### Linux
+
+*Linux 通过源码安装python，需要 make 工具*
+
+
+
+*以 python3.7.6 为例：*
+
+```bash
+# make 若不存在则安装， wget 等一样
+# -y 表示默认运行下载
+sudo yum -y install make
+
+# 下载源码，用于淘宝镜像
+wget https://npm.taobao.org/mirrors/python/3.7.6/Python-3.7.6.tgz
+# 解压
+tar -zxvf Python-3.7.6.tgz
+
+# 执行并编译
+cd Python-3.7.6
+./configure --prefix=/usr/local/python37
+make && make install
+# 若错误需要安装部分依赖如: zlib
+sudo yum -y install zlib*
+
+# 建立软连接，权限被拒接时需要使用 sudo
+ln -s /usr/local/python37/bin/python3.7 /usr/bin/python37
+sudo ln -s /usr/local/python37/bin/python3.7 /usr/bin/python37
+```
+
+
 
 
 
