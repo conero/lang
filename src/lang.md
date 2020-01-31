@@ -386,7 +386,7 @@ Java平台
 
   ​     
 
-组成部分： 语法，文件格式，**JVM****虚拟机**，java API
+组成部分： 语法，文件格式，**JVM 虚拟机**，java API
 
 官网： http://java.com/ 
 
@@ -395,6 +395,23 @@ Java平台
  **JVM**是Java Virtual Machine（Java虚拟机）的缩写，JVM是一种用于计算设备的规范，它是一个虚构出来的计算机，是通过在实际的计算机上仿真模拟各种计算机功能来实现的(款平台)。
 
 Java最初由SUN公司推出，并将其定位在简单、开放、高性能的语言。Java是一个纯粹面向对象的程序设计语言
+
+
+
+*java 文件转化为机器码*
+
+```mermaid
+graph TD
+	A[file.java]-->b[class]
+	subgraph JVM
+		b[class]-->机器指令
+	end
+	机器指令-->Window
+	机器指令-->linux
+	机器指令-->mac
+```
+
+
 
 
 
@@ -411,7 +428,12 @@ Java最初由SUN公司推出，并将其定位在简单、开放、高性能的�
 - JRuby
 - Jython
 
-    
+
+
+
+
+
+
 
 > 参考
 
