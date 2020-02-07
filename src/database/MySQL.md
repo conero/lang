@@ -282,6 +282,19 @@ like_or_where:
 
 
 
+#### insert
+
+*新增语句*
+
+```mysql
+-- 可用于新增前做数据检测
+INSERT INTO tbl_temp2 (fld_id)
+ SELECT tbl_temp1.fld_order_id
+ FROM tbl_temp1 WHERE tbl_temp1.fld_order_id > 100;
+```
+
+
+
 #### delete 
 
 *delete join 语句*
