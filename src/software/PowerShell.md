@@ -280,6 +280,21 @@ Start-Process -FilePath "powershell" -Verb RunAs -ArgumentList "file.ps1","argum
 
 
 
+### 文件/目录
+
+*目录存在检测*
+
+```powershell
+$path = './runtime/bundle'
+if(-not (Test-Path -Path $path )){
+    mkdir $path
+}
+# 路径
+cd $path
+```
+
+
+
 
 
 ## CMD
