@@ -316,6 +316,32 @@ truncate (table) tb_name;
 
 
 
+#### select
+
+##### 随机字段
+
+*使用 `rand()` 随机函数查询随机行*
+
+
+
+
+
+*查询 `table` 表中的随机一行。*
+
+```mysql
+-- 效率较慢
+select * from `table` order by rand() limit 1;
+
+-- 改进
+select * from `table` where `id` >= (
+	select floor(rand() * (SELECT MAX(id) FROM ``table``))
+);
+```
+
+
+
+
+
 
 
 #### @/@@ 的区别

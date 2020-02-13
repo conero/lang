@@ -486,6 +486,10 @@ C#语言取代了Visual J++，语言本身深受 Java、C 和 C++ 的影响。
 
 
 
+*C#/.NET* 的关系与 *Java/JVM* 相似。
+
+
+
 #### Scala
 > 2001@Martin Odersky
 
