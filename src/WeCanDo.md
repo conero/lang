@@ -32,6 +32,33 @@
 
 
 
+### 软链接与Linux `ln -s` 类似
+
+*使用 windows 系统下的 `linkd` 进行设置，其形式与快捷方式一样。只是前者可实现程序正常读取，与 linux下的`ln -s` 一致。*
+
+
+
+如果命令不存在，需要下载windows 资源工具集(Resource Kit Tools)，安装即可，如目录 [Windows Server 2003 Resource Kit Tools](https://www.microsoft.com/en-us/download/details.aspx?id=17657) 。
+
+```powershell
+# 此方法编写的软链接可供程序使用
+linkd <Source> <Destination>
+
+# 手动创建的快捷文件无法被访问（程序）
+```
+
+
+
+<img src="./image/wecando/linkd-vs-lnk-icon.png" style="zoom:67%;" />
+
+<img src="./image/wecando/linkd-files.png" style="zoom: 50%;" />
+
+
+
+
+
+
+
 ## 内网穿透，外部网络访问本地网站
 
 ### natapp
