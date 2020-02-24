@@ -295,6 +295,19 @@ cd $path
 
 
 
+*目录、文件查找*
+
+```powershell
+# 查找当前目录下以.txt结尾的文件
+dir -name *.txt
+
+# 指定目录下查找文件
+# -Recurse 表示遍历子目录
+dir -path ./*php -Recurse
+```
+
+
+
 
 
 ## CMD
