@@ -444,7 +444,17 @@ du -sm [文件夹] 返回该文件夹总M数
 du -h [目录名] 查看指定文件夹下的所有文件大小（包含子文件夹）
 
 # 文件、目录查找
+# 文件名查找
+# -iname 忽略大小写
+# -regex 正则表达式
 find -name <name>
+# 查看 [/] 目录下的 py 文件
+find / -name "*.py"
+# 查找当前目录下不以 "py" 为后缀的文件
+find . ! -name "*.sh"
+# 查看包含【modules】的名称
+find / -path "*modules*"
+
 
 # 目录重命名
 # <source_dir_name> => <target_dir_name>
@@ -474,6 +484,9 @@ nohup /usr/bin/php -S 0.0.0.0:9200 &
 ps -aux|grep <name>
 # root      5445  0.0  0.5 115052  9424 ?        Sl   Nov15   0:02 ./wedding
 # 进程号如： 5445
+# 查看所有的进程
+ps -A
+
 kill -9 <进程号>
 ```
 
@@ -839,6 +852,9 @@ $ rpm -e <package>
 # 更新软件
 # upgrade package(s)
 $ rpm -U <package>
+
+# 查看应用(libxml2)是否已经安装
+$ rpm -qa | grep libxml2
 ```
 
 
@@ -863,6 +879,21 @@ $ rpm -U <package>
   - `:wq`                退出且保存
   - `ZZ`                  退出且保存
 - `:e!`                       丢弃修改并打开原文件
+
+
+
+*文本搜索*
+
+```shell
+# vi 命令
+#
+#
+# 文本查找
+:/search_string
+# n 跳的下一个搜索内容
+
+
+```
 
 
 
