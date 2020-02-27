@@ -417,11 +417,14 @@ ls -l
 
     ```shell
     # 删除非空文件夹
+    # -r 表示递归清除
     rm -rf <dir>
     rm -r <dir>
     
     # 强制删除文件
     rm -f <file>
+    
+    rm -rf *.py runtime many values
     ```
 
 13. `find`                      文件或目录查找工具
@@ -843,6 +846,8 @@ $ id root
 ```shell
 # i=> install; v = verbose; h = hash
 $ rpm -ivh your-package.rpm
+# 更新软件
+$ rpm -Uvh soft.version.rpm
 
 # 查看表信息
 $ rpm -ql <package>

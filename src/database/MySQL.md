@@ -342,6 +342,33 @@ select * from `table` where `id` >= (
 
 
 
+#### update
+
+*更新数据*
+
+
+
+**更新连表查询**
+
+```mysql
+update bigexp_guest_invite_notes gin join (
+	select * from
+	(select gi.exhibition_id, gi.guest_id,
+		(select count(1) from bigexp_guest_invite where guest_id=gi.guest_id) as counter
+		from bigexp_guest_invite gi
+		where gi.exhibition_id != 2
+	) z
+	where z.counter = 1
+) tt on gin.guest_id = tt.guest_id
+	set gin.exhibition_id=tt.exhibition_id
+	where gin.guest_id=tt.guest_id
+;
+```
+
+
+
+
+
 
 
 #### @/@@ 的区别
