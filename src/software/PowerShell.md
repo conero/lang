@@ -308,6 +308,13 @@ dir -path ./*php -Recurse
 
 
 
+*删除目录/文件*
+
+```powershell
+# 强制删除文件目录等
+rm $path -recurse -force
+```
+
 
 
 ## CMD
