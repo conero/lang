@@ -413,6 +413,22 @@ select @id, @id2;
 
 
 
+#### 函数
+
+**FROM_UNIXTIME**    *时间戳转时间格式*
+
+```mysql
+SELECT 
+	FROM_UNIXTIME(UNIX_TIMESTAMP(NOW())) as 时间戳转时间,
+	UNIX_TIMESTAMP(NOW()) as 时间转为时间戳,
+	NOW() as 当前时间
+;
+```
+
+
+
+
+
 
 
 ### sql_mode
