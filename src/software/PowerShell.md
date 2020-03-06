@@ -317,6 +317,35 @@ rm $path -recurse -force
 
 
 
+#### 文件下载
+
+*图片批量下载*
+
+```powershell
+# https://thispersondoesnotexist.com/image 下载ai生成图片
+$url = "https://thispersondoesnotexist.com/image"
+
+#invoke-webrequest https://thispersondoesnotexist.com/image -outfile fake-people.jpg
+
+# 循环生成
+function save-image($count=100, $name=''){
+    # 日期
+    $today=Get-Date
+    $today = $today.ToString('yyyyMMdd')
+
+    for($i=1;$i -le $count;$i++)
+    {
+        invoke-webrequest $url -outfile "./thispersondoesnotexist/$today-$i.jpg"
+    }
+}
+
+save-image
+```
+
+
+
+
+
 ## CMD
 
 *cmd 大部分命令在powershell上是兼容，只是其语法规则与其有差别。*
