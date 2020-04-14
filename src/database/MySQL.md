@@ -429,6 +429,40 @@ SELECT
 
 
 
+### 自定义函数(Function)
+
+*自定义函数；基本语法*
+
+```mysql
+CREATE FUNCTION metaphon
+ RETURNS STRING
+ SONAME 'udf_example.so';
+
+DROP FUNCTION metaphon;
+```
+
+
+
+*如： `dev_eid` 函数，返回整形数据*
+
+```mysql
+drop function if exists dev_eid;
+delimiter //
+ -- 数博会当前的项目id
+ create function dev_eid()
+ 	returns int
+   	begin
+	   	declare eid int;
+    	select id into eid from bigexp_exhibition e where e.is_default = 1 limit 1;
+    	return eid;
+ end
+//
+```
+
+
+
+
+
 
 
 ### sql_mode
