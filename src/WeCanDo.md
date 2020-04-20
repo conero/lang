@@ -43,6 +43,8 @@
 ```powershell
 # 此方法编写的软链接可供程序使用
 linkd <Source> <Destination>
+# 如下图示意图，再当前目录下生成“../uploads”的软链接地址
+linkd uploads-rename ../uploads
 
 # 手动创建的快捷文件无法被访问（程序）
 ```
