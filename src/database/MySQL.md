@@ -429,6 +429,18 @@ SELECT
 
 
 
+#### information_schema
+
+*MySQL 数据表相信*
+
+```mysql
+select * from information_schema.TABLES t where TABLE_SCHEMA = DATABASE();
+```
+
+
+
+
+
 ### 自定义函数(Function)
 
 *自定义函数；基本语法*
