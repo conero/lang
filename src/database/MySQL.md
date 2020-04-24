@@ -439,6 +439,55 @@ select * from information_schema.TABLES t where TABLE_SCHEMA = DATABASE();
 
 
 
+#### 其他工具
+
+##### explain
+
+*mysql 执行SQL详情，语法:*
+
+```mysql
+{EXPLAIN | DESCRIBE | DESC}
+ 	tbl_name [col_name | wild]
+ 
+ explain_type: {
+     EXTENDED
+     | PARTITIONS
+     | FORMAT = format_name
+}
+
+format_name: {
+ TRADITIONAL
+ | JSON
+}
+
+explainable_stmt: {
+ SELECT statement
+ | DELETE statement
+ | INSERT statement
+ | REPLACE statement
+ | UPDATE statement
+}
+```
+
+
+
+*示例*
+
+```mysql
+explain select * from member;
+
+describe member;
+show columns from member;
+
+explain select * from member;
+explain member;
+desc member;
+```
+
+
+
+
+
 
 
 ### 自定义函数(Function)
