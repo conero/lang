@@ -141,9 +141,24 @@ echo $PSScriptRoot
 > 调用 VB 做图形化输入
 
 ```powershell
+# pwsh7 执行错误
 [void][System.Reflection.Assembly]::LoadWithPartialName('Microsoft.VisualBasic')
 $cn = [Microsoft.VisualBasic.interaction]::inputbox('Enter Your Name', 'Name', 'Jc')
 echo ">>:  $cn"
+```
+
+
+
+> 命令输入/输出
+
+```powershell
+read-host "输入提示"
+#>> 输入提示:
+
+
+# 输出，感觉与 echo 一样. echo 应该更加强大吧
+write-host "输出内容"
+echo "输出内容"
 ```
 
 
@@ -289,6 +304,13 @@ $path = './runtime/bundle'
 if(-not (Test-Path -Path $path )){
     mkdir $path
 }
+
+# 目录存在
+Test-Path $dir -PathType Container
+# 目录检测
+Test-Path $filepath -PathType Leaf
+
+
 # 路径
 cd $path
 ```
