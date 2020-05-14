@@ -13,6 +13,8 @@
 
 *PowerShell 使用“谓词 - 名词”命名系统。 每个 cmdlet 名称都由一个标准谓词、连字符和特定名词组成。*
 
+*PowerShell 是构建于 .NET 上基于任务的命令行 shell 和脚本语言。*
+
 
 
 > 设计目标
@@ -38,6 +40,18 @@
 ```
 
 
+
+
+
+> 基本规则
+
+1. 命令等不区分大小写
+2. 面向对象（结构化信息）
+3. PowerShell 基于 .NET Framework 构建。 它与 C# 编程语言共享一些语法功能和关键字
+4. 使用 PowerShell 命令，参数名称前面始终带有“-”
+5. 星号 (*) 用于 PowerShell 命令参数中的通配符匹配。 * 表示“匹配一个或多个任意字符”。 
+6.  使用 PowerShell，可通过按 Tab 键来填充文件名和 cmdlet 名称
+7. 默认情况下，在处理文本时，PowerShell 比较运算符不区分大小写。
 
 
 
@@ -118,6 +132,46 @@ echo "`$n is $n."
 
 
 
+> Object 对象
+
+```powershell
+# 执行
+ls
+Get-ChildItem
+
+# 其接口类似与: [{Mode:x, LastWriteTime: x, Name:x}]
+<#
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d----           2020/5/14    11:10                .idea
+d----            2020/5/6    22:17                assets
+d----           2020/5/13    14:02                bin
+d----           2020/5/13    16:15                config
+d----            2020/5/6     9:58                dist
+d----           2020/5/14    10:44                doc
+d----           2020/5/12    20:25                node_modules
+d----          2019/10/27    10:26                public
+d----            2020/3/3    11:08                runtime
+-a---           2020/2/23    22:55            686 .gitignore
+-a---           2020/2/23    23:30            820 cmd_db.go
+-a---            2020/5/6    10:35           2657 distribute.ps1
+-a---           2020/4/12    21:22            360 distribute-pack.ps1
+-a---           2020/5/13     9:21           1179 go.mod
+-a---           2020/5/13     9:21          51435 go.sum
+-a---           2020/5/12    20:25           1487 package.json
+-a---           2020/2/26    16:31          28799 package-lock.json
+-a---            2019/9/3     9:51             61 README.en.md
+-a---           2020/4/12    21:22           2423 README.md
+-a---           2020/5/13    16:00           3241 yangsu.go
+-a---           2020/5/12    20:25         223707 yarn.lock
+#>
+
+```
+
+
+
+
+
 ### 常量
 
 ```powershell
@@ -133,6 +187,165 @@ echo $PSScriptRoot
 ```
 
 
+
+### 对象/结构
+
+*定义数组/结构等*
+
+```powershell
+# 数组
+$arr = @(20, 20, 5, 14)
+# 等同于: 
+20,20,5,14
+
+
+# 结构化
+# name => value
+$obj = @{
+	surname = 'conero'
+	first_name = 'Joshua'
+    gender = 'A'; random = get-random
+    age=18
+}
+
+# 输出当前所在目录
+$tmp = Get-Location; $tmp.path
+```
+
+
+
+>  *`Get-Member` 查看对象结构*
+
+```powershell
+# 若要查看进程对象的所有成员并分页显示输出，以便于你可以全部查看
+Get-Process | Get-Member | Out-Host -Paging
+# 筛选类型； -MemberType 处理可以设置未显示的至外还可有> `All` 等
+Get-Process | Get-Member -MemberType Property
+
+```
+
+
+
+> `Select-Object`  选择对象部件
+
+```powershell
+# Get-ChildItem 默认显示: Mode LastWriteTime Length Name
+
+Get-ChildItem | Select-Object -Property length,name
+#>> Length Name
+#>> ------ ----
+
+# 查看磁盘可用的大小尺寸
+Get-CimInstance -Class Win32_LogicalDisk | Select-Object -Property Name,FreeSpace
+# 改为 GB 单位
+Get-CimInstance -Class Win32_LogicalDisk |
+  Select-Object -Property Name, @{
+    label='FreeSpace'
+    expression={($_.FreeSpace/1GB).ToString('F2')}
+  }
+```
+
+
+
+> `Where-Object` 过滤
+
+```powershell
+Get-CimInstance -Class Win32_SystemDriver |
+  Where-Object {$_.State -eq "Running"} |
+    Where-Object {$_.StartMode -eq "Auto"}
+```
+
+
+
+> 其他
+
+```powershell
+# 
+# 排序
+# Sort-Object
+Get-ChildItem |
+  Sort-Object -Property LastWriteTime, Name |
+  Format-Table -Property LastWriteTime, Name
+  
+# 逆向排序   -Descending
+Get-ChildItem | Sort-Object -Property Name -Descending
+
+
+# 
+# 遍历: ForEach-Object
+@(1,3,5,6,7,9,100) | ForEach-Object -Process {$_*10}
+
+#
+# New-Object 创建 .Net Framework 对象/ COM 
+
+# 使用静态方法
+# 引用静态的 System.Environment 类
+[System.Environment]
+# 查看静态类名称
+[System.Environment] | Get-Member -Static
+[System.Math] | Get-Member -Static -MemberType Methods
+```
+
+
+
+> **WMI**
+
+*Windows Management Instrumentation (WMI) 是 Windows 系统管理的核心技术，因为它以统一的方式公开大量信息。*
+
+
+
+```powershell
+# 查看 WMI 类列表
+Get-CimClass -Namespace root/CIMV2 |
+  Where-Object CimClassName -like Win32* |
+    Select-Object CimClassName
+# 查询 WMI 类，并保存到 list.json 文件中
+Get-CimClass -Namespace root/CIMV2 |
+	Where-Object CimClassName -like Win32* |
+	Select-Object CimClassName | ConvertTo-Json > list.json
+
+
+# 显示 WMI 类详细信息
+Get-CimInstance -Class Win32_OperatingSystem
+```
+
+
+
+
+
+### 运算符
+
+*脚本块使用特殊变量 `$_` 来指代管道中的当前对象。*
+
+| 比较运算符   | 含义                       | 示例（返回 True）            |
+| :----------- | :------------------------- | :--------------------------- |
+| -eq          | 等于                       | 1 -eq 1                      |
+| -ne          | 不等于                     | 1 -ne 2                      |
+| -lt          | 小于                       | 1 -lt 2                      |
+| -le          | 小于或等于                 | 1 -le 2                      |
+| -gt          | 大于                       | 2 -gt 1                      |
+| -ge          | 大于或等于                 | 2 -ge 1                      |
+| -like        | 相似（文本的通配符比较）   | "file.doc" -like "f*.do?"    |
+| -notlike     | 不相似（文本的通配符比较） | "file.doc" -notlike "p*.doc" |
+| -contains    | 包含                       | 1,2,3 -contains 1            |
+| -notcontains | 不包含                     | 1,2,3 -notcontains 4         |
+
+
+
+```powershell
+1,2,3,4 | Where-Object {$_ -lt 3}
+```
+
+
+
+> 逻辑运算符
+
+| 逻辑运算符 | 含义                                        | 示例（返回 True）        |
+| :--------- | :------------------------------------------ | :----------------------- |
+| -and       | Logical and；如果两侧都为 True，则返回 True | (1 -eq 1) -and (2 -eq 2) |
+| -or        | Logical or；如果某一侧为 True，则返回 True  | (1 -eq 1) -or (1 -eq 2)  |
+| -not       | Logical not；反转 True 和 False             | -not (1 -eq 2)           |
+| !          | Logical not；反转 True 和 False             | !(1 -eq 2)               |
 
 
 
@@ -163,24 +376,88 @@ echo "输出内容"
 
 
 
+> 输入格式处理
+
+1. *Out-Host*   直接将数据发送到控制台
+2. *Out-Null*   空输出
+3. *Out-File*    文件保存
+4. ConvertTo-Json     输出文本内容未 json 格式
+5. ConvertTo-Csv      输出文本内容未 csv 格式
+
+```powershell
+# 列表输出
+Get-Process | Out-Host -Paging | Format-List
+
+# Out-Null 空输出
+Get-Command | Out-Null
+
+# 输出到文件
+Get-Process | Out-File -FilePath ./processlist.txt
+Get-Process > ./processlist2.txt
+
+# 查看输出格式
+# Verb 谓词
+Get-Command -Verb Format -Module Microsoft.PowerShell.Utility
+# 输出内容指定格式
+Get-Command -Verb ConvertTo
+```
+
+
+
 
 
 
 
 ## 命令参考
 
+**cmdlet**
+
+*Windows PowerShell 引入了 cmdlet（读作“command-let”）的概念，它是内置于 Shell 的简单的单一函数命令行工具。PowerShell 中的本机命令称为 cmdlet （读作 command-let）。*
+
+
+
 ```powershell
-# 获取命令列表
+# 获取命令列表所有）
 Get-Command
+# 获取当前会话的所有命令集
+Get-Command *
+
+# get-command + tab键 可以快速查询
+# 查找“Get-”开头的命令
+get-command Get-*
 
 # 查看命令已经分配的别名
 Get-Command -CommandType Alias
+
+#
+# 查看帮助信息, [Get-Help] 与 [-?] 相同
+Get-Help Write-Host
+Write-Host -?
+# man/help 雷士
+man write-host
 
 # 常用命名
 # 打印当前 ps 的版本信息
 $psversiontable
 $host
 ```
+
+
+
+*常用参数* (`cmdlet -param`)
+
+```powershell
+# 
+#参数
+#通用参数
+# WhatIf, Confirm, Verbose, Debug, Warn, ErrorAction, ErrorVariable, OutVariable, OutBuffer
+
+# 其他重要的建议参数名称是
+# Force, Exclude, Include, PassThru, Path, CaseSensitive
+# Exclude 排除
+```
+
+
 
 
 
@@ -222,6 +499,12 @@ restart-computer
 ```powershell
 # 删除多文件,忽视文件删除
 rm -r ./path
+
+# 查看别名,详情
+Get-Alias cls
+# 全部别名
+Get-Alias 
+gal
 ```
 
 
@@ -251,6 +534,14 @@ rm -r ./path
 | `Set-Location` | sl    |
 | `Get-Command`  | gcm   |
 | `Get-Alias`    | gal   |
+
+
+
+### 管道
+
+*管道的行为就像一系列连接的管道段一样。 沿着管道移动的项会通过每个管道段。 若要在 PowerShell 中创建管道，请使用管道运算符“|”将命令连接在一起。 每个命令的输出都将被用作下一命令的输入。*
+
+
 
 
 
@@ -291,6 +582,36 @@ Start-Process -FilePath iexplore -ArgumentList www.powershellmagazine.com
 
 # 以管理员身份运行【powershell】
 Start-Process -FilePath "powershell" -Verb RunAs -ArgumentList "file.ps1","argument-2"
+```
+
+
+
+### Invoke-WebRequest
+
+*使用方法: 在谷歌浏览器中打开任意web，开启`开发者工具`中的 `Network` 标签，依次选中其下`右键`的`Copy`，`Copy as PowerShell`等（`chrome/F12-开发者工具/Network/右键/Copy/Copy as PowerShell`），如下:*
+
+```powershell
+Invoke-WebRequest -Uri "http://127.0.0.1:9105/guest/member/index" `
+-Method "POST" `
+-Headers @{
+"Accept"="application/json, text/javascript, */*; q=0.01"
+  "X-Requested-With"="XMLHttpRequest"
+  "User-Agent"="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36"
+  "Origin"="http://127.0.0.1:9105"
+  "Sec-Fetch-Site"="same-origin"
+  "Sec-Fetch-Mode"="cors"
+  "Sec-Fetch-Dest"="empty"
+  "Referer"="http://127.0.0.1:9105/guest/member/index"
+  "Accept-Encoding"="gzip, deflate, br"
+  "Accept-Language"="zh-CN,zh;q=0.9"
+  "Cookie"="deviceid=1565750664628; xinhu_ca_adminuser=admin; xinhu_ca_rempass=0; xinhu_mo_adminid=rjr0rjq0ds0rjd0aa0dl0dd0rlj0rjr0dl0hn0nh09; lang_current=zh-hans; yangsu=e8ec7af7-f523-4fb5-9c73-e6dca6794a4d; lang=zh-CN; Hm_lvt_f1161c9c97f4c7b7231878dd77fe8b5a=1567136830,1567389984; mysession_cookie_name=9ca002ff-3c2f-4201-aeea-4245ab35564d; jenkins-timestamper-offset=-28800000; UM_distinctid=1702cb7aaad1d2-053921863d8eb8-b383f66-144000-1702cb7aaae26c; mycookiesessionnameid=e14d25d5-b9d7-4fdf-b11b-d90f0ba9ddb2; think_lang=zh-cn; from=none; PHPSESSID=ee7111ac5b206cb19e9a3ac7ccfe81dd; CNZZDATA1275935409=470955613-1564412279-%7C1589330253; sid=v7uzVpef8IIS8WkAdX6RCQ%3D%3D; ck=1019a40bd8e2731d34d692805b0cd735"
+} `
+-ContentType "application/x-www-form-urlencoded; charset=UTF-8" `
+-Body "pageStart=1&pageSize=10"
+-OutFile './test.data.json'
+
+# 说明
+# -OutFile 将请求的内容保存到文件中
 ```
 
 
@@ -363,6 +684,109 @@ function save-image($count=100, $name=''){
 
 save-image
 ```
+
+
+
+### 计算机管理
+
+> **WMI**
+
+*Windows Management Instrumentation (WMI) 是 Windows 系统管理的核心技术，因为它以统一的方式公开大量信息。*
+
+
+
+```powershell
+# 查看 WMI 类列表
+Get-CimClass -Namespace root/CIMV2 |
+  Where-Object CimClassName -like Win32* |
+    Select-Object CimClassName
+# 查询 WMI 类，并保存到 list.json 文件中
+Get-CimClass -Namespace root/CIMV2 |
+	Where-Object CimClassName -like Win32* |
+	Select-Object CimClassName | ConvertTo-Json > list.json
+
+
+# 显示 WMI 类详细信息
+Get-CimInstance -Class Win32_OperatingSystem
+```
+
+
+
+
+
+```powershell
+# 本地计算机上系统 BIOS 的高度压缩的完整信息
+Get-CimInstance -ClassName Win32_BIOS
+```
+
+
+
+#### 进程/服务
+
+- 进程    *Get-Process*
+- 服务    *Get-Service*
+
+
+
+```powershell
+#
+# 进程
+# 列出所有进程，与 ps 相同
+Get-Process
+
+# 进程搜索，如下
+ps -Name wech*
+
+# 关闭进程
+Stop-Process -Name $name
+# 关闭 firefox
+Stop-Process -name firefox
+
+
+#
+# 服务
+# 查看，mysql 服务
+Get-Service -name mysql*
+# 获取从属服务
+Get-Service -Name LanmanWorkstation -RequiredServices
+# 获取依赖服务
+Get-Service -Name LanmanWorkstation -DependentServices
+
+# 启动/停止服务
+# 通过`-name` 查询
+Stop-Service 
+start-service
+# 重启
+restart-service
+```
+
+
+
+#### 驱动器
+
+*Windows PowerShell 驱动器 是一个数据存储位置，你可以像访问 Windows PowerShell 中的文件系统驱动器那样访问它。 Windows PowerShell 提供程序将为你创建一些驱动器，例如文件系统驱动器（包括 C: 和 D:）、注册表驱动器（HKCU: 和 HKLM:）和证书驱动器 (Cert:)，你也可以创建自己的 Windows PowerShell 驱动器。 这些驱动器非常有用，但它们仅在 Windows PowerShell 内可用。 你无法通过使用其他 Windows 工具（如文件资源管理器或 Cmd.exe）访问它们。*
+
+
+
+```powershell
+# 查看驱动器
+Get-PSDrive
+# 文件驱动器
+Get-PSDrive -PSProvider FileSystem
+# 删除驱动器
+Remove-PSDrive
+```
+
+
+
+> *设备查看*
+
+```powershell
+# 打印机
+Get-CimInstance -Class Win32_Printer
+```
+
+
 
 
 
@@ -455,7 +879,7 @@ taskkill /fi "imagename eq nginx.exe" /F
 
 
 
-对应 C #*
+*对应 C #*
 
 ```c#
 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
