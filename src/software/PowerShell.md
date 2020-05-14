@@ -406,6 +406,30 @@ Get-Command -Verb ConvertTo
 
 
 
+### 脚本语法
+
+#### 算数运算
+
+*以下为特殊的符号，其他:*
+
+```powershell
+# `+` 加
+
+# 数字算术运算
+2000+20
+ 
+# 字符串/array/object 合并
+'Joshua'+",Conero"
+@(1, 3) + @('a', 'c')
+@{'name'='Joshua'} + @{'age'= 28; 'last'='Coenro'}
+
+
+```
+
+
+
+
+
 
 
 ## 命令参考
@@ -784,6 +808,15 @@ Remove-PSDrive
 ```powershell
 # 打印机
 Get-CimInstance -Class Win32_Printer
+```
+
+
+
+### 其他
+
+```powershell
+# 获取 ip 地址
+Get-NetIPAddress | Where-Object {$_.AddressFamily -eq 'IPv4'} | ForEach-Object IPAddress | ConvertTo-Json
 ```
 
 
