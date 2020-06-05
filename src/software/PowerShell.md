@@ -821,6 +821,19 @@ Get-NetIPAddress | Where-Object {$_.AddressFamily -eq 'IPv4'} | ForEach-Object I
 
 
 
+*程序运行计时*
+
+```powershell
+$elapsed = [System.Diagnostics.Stopwatch]::StartNew() 
+write-host "Started at $(get-date)" 
+for ($t=1; $t -le 20; $t++) { 
+    Write-Host "Elapsed Time: $($elapsed.Elapsed.ToString())" 
+    sleep 1 
+    } 
+write-host "Ended at $(get-date)" 
+write-host "Total Elapsed Time: $($elapsed.Elapsed.ToString())" 
+```
+
 
 
 
