@@ -212,6 +212,22 @@ select
 
 
 
+##### 数字
+
+**int**
+
+| 类型        | 有符号范围     | 无符号范围 | 存储字节(1Byte=8 bit) |
+| ----------- | -------------- | ---------- | --------------------- |
+| bigint      | -2^63 ~ 2^63-1 | 0 ~ 2^64-1 | 8                     |
+| int/integer | -2^31 ~ 2^31-1 | 0 ~ 2^32-1 | 4                     |
+| mediumint   | -2^23 ~ 2^23-1 | 0 ~ 2^24-1 | 3                     |
+| smallint    | -2^15 ~ 2^15-1 | 0 ~ 2^16-1 | 2                     |
+| tinyint     | -2^7 ~ 2^7-1   | 0 ~ 2^8-1  | 1                     |
+
+
+
+
+
 #### show
 
 可用于查询对象： *databases, tables, variables, columns, server status* 等
@@ -432,6 +448,10 @@ SELECT
 	UNIX_TIMESTAMP(NOW()) as 时间转为时间戳,
 	NOW() as 当前时间
 ;
+
+
+-- 当前数据库版本
+select VERSION();
 ```
 
 
