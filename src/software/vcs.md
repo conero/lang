@@ -12,7 +12,7 @@
 
 > 时间： *2005*
 
-*windows 通过命令更新git*
+*windows 通过命令更新git；使用国内镜像地址下载更快 https://npm.taobao.org/mirrors/git-for-windows/。*
 
 ```bash
 git update-git-for-windows
