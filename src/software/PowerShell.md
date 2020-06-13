@@ -838,6 +838,20 @@ write-host "Total Elapsed Time: $($elapsed.Elapsed.ToString())"
 
 
 
+#### 日期/时间
+
+```powershell
+# 获取时间对应的格式数据
+Get-Date -Format "dddd MM/dd/yyyy HH:mm K"
+Get-Date -Format 'yyMMddHHmmss'
+```
+
+
+
+
+
+
+
 ## CMD
 
 *cmd 大部分命令在powershell上是兼容，只是其语法规则与其有差别。*
