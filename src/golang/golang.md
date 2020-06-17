@@ -729,6 +729,8 @@ go build -ldflags -H=windowsgui <filename>
 
 #### Windows for Linux/max
 
+*386 编译的程序为： 32位。*
+
 ```shell
  # 设置环境变量
  # linux, darwin, windows, netbsd

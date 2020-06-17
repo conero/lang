@@ -311,8 +311,6 @@ Get-CimInstance -Class Win32_OperatingSystem
 
 
 
-
-
 ### 运算符
 
 *脚本块使用特殊变量 `$_` 来指代管道中的当前对象。*
@@ -400,6 +398,19 @@ Get-Process > ./processlist2.txt
 Get-Command -Verb Format -Module Microsoft.PowerShell.Utility
 # 输出内容指定格式
 Get-Command -Verb ConvertTo
+```
+
+
+
+### 类型
+
+#### 字符串
+
+> 字符串分割
+
+```powershell
+# 环境变量分割
+$env:Path -split ";"
 ```
 
 
