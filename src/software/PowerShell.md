@@ -722,6 +722,23 @@ save-image
 
 
 
+*批量文件下载*
+
+```powershell
+$vlist = @("https://v-cdn.zjol.com.cn/280443.mp4", "https://v-cdn.zjol.com.cn/276982.mp4", "https://v-cdn.zjol.com.cn/276984.mp4", "https://v-cdn.zjol.com.cn/276985.mp4", "https://v-cdn.zjol.com.cn/276986.mp4", "https://v-cdn.zjol.com.cn/276987.mp4", "https://v-cdn.zjol.com.cn/276988.mp4", "https://v-cdn.zjol.com.cn/276989.mp4", "https://v-cdn.zjol.com.cn/276990.mp4", "https://v-cdn.zjol.com.cn/276991.mp4", "https://v-cdn.zjol.com.cn/276992.mp4", "https://v-cdn.zjol.com.cn/276993.mp4", "https://v-cdn.zjol.com.cn/276994.mp4", "https://v-cdn.zjol.com.cn/276996.mp4", "https://v-cdn.zjol.com.cn/276998.mp4", "https://v-cdn.zjol.com.cn/277000.mp4", "https://v-cdn.zjol.com.cn/277001.mp4", "https://v-cdn.zjol.com.cn/277002.mp4", "https://v-cdn.zjol.com.cn/277003.mp4", "https://v-cdn.zjol.com.cn/277004.mp4")
+
+
+$vlist | ForEach-Object -Process {
+    $queue = $_ -split "/"
+    $filename = $queue[$queue.Length-1]
+    Invoke-WebRequest -Uri $_ -OutFile "./$filename"
+}
+```
+
+
+
+
+
 ### 计算机管理
 
 > **WMI**
