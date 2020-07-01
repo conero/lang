@@ -909,6 +909,8 @@ mkdir .\jc_cj && cd .\jc_cj && npm init -y && rmdir /s .\jc_cj
 where svn
 where go
 
+# powershell 中使用 where 命令
+where.exe svn
 
 # dir 与 其他 ls 命令差不多
 dir
