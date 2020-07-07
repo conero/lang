@@ -791,6 +791,14 @@ update mysql.user set password=password('新密码') where User='phplam' and Hos
 -- 授权
 grant all privileges on zhangsanDb.* to zhangsan@'%' identified by 'zhangsan';
 flush privileges;
+
+-- 查看用户权限
+SELECT DISTINCT CONCAT('User: ''',user,'''@''',host,''';') AS query FROM mysql.user;
+-- 查看指定用户
+show grants for 'usermy'@'%'; 
+
+-- 删除权限
+delete from mysql.user where user="usermy" and host="%";
 ```
 
 
