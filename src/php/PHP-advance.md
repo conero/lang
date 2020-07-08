@@ -46,6 +46,7 @@ $ yum -y install make zlib zlib-devel gcc-c++ libtool  openssl openssl-devel
 # 安装 nginx
 $ wget <loaddown.net.url>
 $ tar zxvf nginx-1.6.2.tar.gz	解压
+# 解压 tag 文件夹 `tar xvf file.tar`
 $ cd nginx-1.6.2				目录转移
 $ ./configure					编译安装
 $ make							安装/ make install
