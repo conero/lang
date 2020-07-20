@@ -482,6 +482,8 @@ git push origin :old_branch
 # 本地分支推送
 git push --set-upstream origin new_branch
 
+#
+# 分支部分合并
 # 分支间的指定代码合并方法
 # 强制覆盖文件,多个文件
 git checkout <branch> <path>[ <path>]
