@@ -799,6 +799,9 @@ show grants for 'usermy'@'%';
 
 -- 删除权限
 delete from mysql.user where user="usermy" and host="%";
+
+-- 查看用户密码
+select user,host from mysql.user;
 ```
 
 
