@@ -411,6 +411,27 @@ Get-Command -Verb ConvertTo
 ```powershell
 # 环境变量分割
 $env:Path -split ";"
+
+# 字符串包含
+"123".contains("12")
+
+#字符串数字连接
+"Joshua","Jhan","Conero" -join "."
+
+# 子字符串
+"Joshua Conero".Substring(3,3)
+
+# 字符串格式化
+"{0} {2} {1}" -f "you","die","are"
+
+# 字符串替换
+"Joshua Lv U".Replace("Lv", "heart")
+
+# 长度: >> 6	
+"Joshua".Length
+
+# 字符串分割
+"Joshua".Split("s")
 ```
 
 
