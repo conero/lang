@@ -316,6 +316,20 @@ like_or_where:
 INSERT INTO tbl_temp2 (fld_id)
  SELECT tbl_temp1.fld_order_id
  FROM tbl_temp1 WHERE tbl_temp1.fld_order_id > 100;
+ 
+ 
+
+-- select insert
+insert into __admin_rule (name, parentid, title, icon, listor, `type`, is_show, status) 
+	select
+		od.name, 
+		ifnull((select id from __admin_rule where name = (
+		select od.name from __admin_rule_online_dev where id = od.parentid and od.parentid > 0 ) and is_del = 0), 0) as parentid,
+		od.title, od.icon, od.listor, od.`type`, od.is_show, od.status 
+	from __admin_rule_online_dev od
+	left join __admin_rule ar on od.name = ar.name 
+	where ar.id is null 
+	;
 ```
 
 
@@ -376,11 +390,11 @@ select * from `table` where `id` >= (
 **更新连表查询**
 
 ```mysql
-update bigexp_guest_invite_notes gin join (
+update __guest_invite_notes gin join (
 	select * from
 	(select gi.exhibition_id, gi.guest_id,
-		(select count(1) from bigexp_guest_invite where guest_id=gi.guest_id) as counter
-		from bigexp_guest_invite gi
+		(select count(1) from __guest_invite where guest_id=gi.guest_id) as counter
+		from __guest_invite gi
 		where gi.exhibition_id != 2
 	) z
 	where z.counter = 1
@@ -543,7 +557,7 @@ delimiter //
  	returns int
    	begin
 	   	declare eid int;
-    	select id into eid from bigexp_exhibition e where e.is_default = 1 limit 1;
+    	select id into eid from __exhibition e where e.is_default = 1 limit 1;
     	return eid;
  end
 //
@@ -577,9 +591,16 @@ set global `sql_mode`='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FO
 
 *数据库存储引擎是数据库底层软件组织，数据库管理系统（DBMS）使用数据引擎进行创建、查询、更新和删除数据。不同的存储引擎提供不同的存储机制、索引技巧、锁定水平等功能，使用不同的存储引擎，还可以 获得特定的功能。*
 
+
+
+*存储引擎就相当于是数据存储的发动机，来驱动数据在磁盘层面进行存储。*
+
 ```mysql
 -- 查看MySQL数据库引擎
 show engines;
+
+# 修改表的引擎
+alter table v_table_name engine = myisam;
 ```
 
 
@@ -600,6 +621,18 @@ show engines;
 
 
 
+自从 MySQL 5.1 之后，默认的存储引擎变成了 InnoDB 存储引擎，相对于 MyISAM，InnoDB 存储引擎有了较大的改变，它的主要特点是
+
+- 支持事务操作，具有事务 ACID 隔离特性，默认的隔离级别是`可重复读(repetable-read)`、通过`MVCC（并发版本控制）`来实现的。能够解决`脏读`和`不可重复读`的问题。
+- InnoDB 支持外键操作。
+- InnoDB 默认的锁粒度`行级锁`，并发性能比较好，会发生死锁的情况。
+- 和 MyISAM 一样的是，InnoDB 存储引擎也有 `.frm文件存储表结构` 定义，但是不同的是，InnoDB 的表数据与索引数据是存储在一起的，都位于 B+ 数的叶子节点上，而 MyISAM 的表数据和索引数据是分开的。
+- InnoDB 有安全的日志文件，这个日志文件用于恢复因数据库崩溃或其他情况导致的数据丢失问题，保证数据的一致性。
+- InnoDB 和 MyISAM 支持的索引类型相同，但具体实现因为文件结构的不同有很大差异。
+- 增删改查性能方面，果执行大量的增删改操作，推荐使用 InnoDB 存储引擎，它在删除操作时是对行删除，不会重建表。
+
+
+
 
 
 #### MyISAM
@@ -608,9 +641,106 @@ show engines;
 
 
 
+在 5.1 版本之前，MyISAM 是 MySQL 的默认存储引擎，MyISAM 并发性比较差，使用的场景比较少，主要特点是
+
+- 不支持`事务`操作，ACID 的特性也就不存在了，这一设计是为了性能和效率考虑的。
+
+- 不支持`外键`操作，如果强行增加外键，MySQL 不会报错，只不过外键不起作用。
+
+- MyISAM 默认的锁粒度是`表级锁`，所以并发性能比较差，加锁比较快，锁冲突比较少，不太容易发生死锁的情况。
+
+- MyISAM 会在磁盘上存储三个文件，文件名和表名相同，扩展名分别是 `.frm(存储表定义)`、`.MYD(MYData,存储数据)`、`MYI(MyIndex,存储索引)`。这里需要特别注意的是 MyISAM 只缓存`索引文件`，并不缓存数据文件。
+
+- MyISAM 支持的索引类型有 `全局索引(Full-Text)`、`B-Tree 索引`、`R-Tree 索引`
+
+  Full-Text 索引：它的出现是为了解决针对文本的模糊查询效率较低的问题。
+
+  B-Tree 索引：所有的索引节点都按照平衡树的数据结构来存储，所有的索引数据节点都在叶节点
+
+  R-Tree索引：它的存储方式和 B-Tree 索引有一些区别，主要设计用于存储空间和多维数据的字段做索引,目前的 MySQL 版本仅支持 geometry 类型的字段作索引，相对于 BTREE，RTREE 的优势在于范围查找。
+
+- 数据库所在主机如果宕机，MyISAM 的数据文件容易损坏，而且难以恢复。
+
+- 增删改查性能方面：SELECT 性能较高，适用于查询较多的情况
+
+
+
 #### MEMORY
 
 *内存引擎，为查询和引用其他表数据提供快速访问。*
+
+MEMORY 存储引擎使用存在内存中的内容来创建表。每个 MEMORY 表实际只对应一个磁盘文件，格式是 `.frm`。MEMORY 类型的表访问速度很快，因为其数据是存放在内存中。默认使用 `HASH 索引`。
+
+
+
+#### merge
+
+MERGE 存储引擎是一组 MyISAM 表的组合，MERGE 表本身没有数据，对 MERGE 类型的表进行查询、更新、删除的操作，实际上是对内部的 MyISAM 表进行的。MERGE 表在磁盘上保留两个文件，一个是 `.frm` 文件存储表定义、一个是 `.MRG` 文件存储 MERGE 表的组成等。
+
+
+
+
+
+#### 选择合适的存储引擎
+
+在实际开发过程中，我们往往会根据应用特点选择合适的存储引擎。
+
+- MyISAM：如果应用程序通常以检索为主，只有少量的插入、更新和删除操作，并且对事物的完整性、并发程度不是很高的话，通常建议选择 MyISAM 存储引擎。
+- InnoDB：如果使用到外键、需要并发程度较高，数据一致性要求较高，那么通常选择 InnoDB 引擎，一般互联网大厂对并发和数据完整性要求较高，所以一般都使用 InnoDB 存储引擎。
+- MEMORY：MEMORY 存储引擎将所有数据保存在内存中，在需要快速定位下能够提供及其迅速的访问。MEMORY 通常用于更新不太频繁的小表，用于快速访问取得结果。
+- MERGE：MERGE 的内部是使用 MyISAM 表，MERGE 表的优点在于可以突破对单个 MyISAM 表大小的限制，并且通过将不同的表分布在多个磁盘上， 可以有效地改善 MERGE 表的访问效率。
+
+
+
+### 索引
+
+所有的 MySQL 类型都可以进行索引，对相关列使用索引是提高 `SELECT` 查询性能的最佳途径。MyISAM 和 InnoDB 都是使用 `BTREE` 作为索引，MySQL 5 不支持`函数索引`，但是支持 `前缀索引`。
+
+前缀索引顾名思义就是对列字段的前缀做索引，前缀索引的长度和存储引擎有关系。MyISAM 前缀索引的长度支持到 1000 字节，InnoDB 前缀索引的长度支持到 767 字节，索引值重复性越低，查询效率也就越高。
+
+
+
+在 MySQL 中，主要有下面这几种索引
+
+- `全局索引(FULLTEXT)`：全局索引，目前只有 MyISAM 引擎支持全局索引，它的出现是为了解决针对文本的模糊查询效率较低的问题，并且只限于 CHAR、VARCHAR 和 TEXT 列。
+- `哈希索引(HASH)`：哈希索引是 MySQL 中用到的唯一 key-value 键值对的数据结构，很适合作为索引。HASH 索引具有一次定位的好处，不需要像树那样逐个节点查找，但是这种查找适合应用于查找单个键的情况，对于范围查找，HASH 索引的性能就会很低。默认情况下，MEMORY 存储引擎使用 HASH 索引，但也支持 BTREE 索引。
+- `B-Tree 索引`：B 就是 Balance 的意思，BTree 是一种平衡树，它有很多变种，最常见的就是 B+ Tree，它被 MySQL 广泛使用。
+- `R-Tree 索引`：R-Tree 在 MySQL 很少使用，仅支持 geometry 数据类型，支持该类型的存储引擎只有MyISAM、BDb、InnoDb、NDb、Archive几种，相对于 B-Tree 来说，R-Tree 的优势在于范围查找。
+
+
+
+我们使用 `explain` 进行sql查询分析，检测数据库表的索引使用情况。
+
+
+
+#### 索引设计原则
+
+创建索引的时候，要尽量考虑以下原则，便于提升索引的使用效率。
+
+- 选择`索引位置`，选择索引最合适的位置是出现在 `where` 语句中的列，而不是 `select` 关键字后的选择列表中的列。
+- 选择使用`唯一索引`，顾名思义，唯一索引的值是唯一的，可以更快速的确定某条记录，例如学生的学号就适合使用唯一性索引，而学生的性别则不适合使用，因为不管搜索哪个值，都差不多有一半的行。
+- 为经常使用的字段建立索引，如果某个字段经常用作查询条件，那么这个字段的查询速度在极大程度上影响整个表的查询速度，因此为这样的字段建立索引，可以提高整个表的查询速度。
+- 不要过度索引，限制索引数目，索引的数目不是越多越好，每个索引都会占据磁盘空间，索引越多，需要的磁盘空间就越大。
+- 尽量使用`前缀索引`，如果索引的值很长，那么查询速度会受到影响，这个时候应该使用前缀索引，对列的某几个字符进行索引，可以提高检索效率。
+- 利用最左前缀，在创建一个 n 列的索引时，实际上是创建了 MySQL 可利用的 n 个索引。多列索引可以起到几个索引的作用，利用索引最左边的列来匹配行，这样的列称为最左前缀。
+- 对于使用 InnoDB 存储引擎的表来说，记录会按照一定的顺序保存。如果有明确的主键定义，那么会按照主键的顺序进行保存；如果没有主键，但是有唯一索引，那么就按照唯一索引的顺序进行保存。如果既没有主键又没有唯一索引，那么表中会自动生成一个内部列，按照这个列的顺序进行保存。一般来说，使用主键的顺序是最快的
+- 删除不再使用或者很少使用的索引
+
+
+
+
+
+### 视图
+
+视图的英文名称是 `view`，它是一种虚拟存在的表。视图对于用户来说是透明的，它并不在数据库中实际存在，视图是使用数据库行和列动态组成的表。
+
+
+
+视图相对于普通的表来说，优势包含下面这几项
+
+- 使用视图可以简化操作：使用视图我们不用关注表结构的定义，我们可以把经常使用的数据集合定义成视图，这样能够简化操作。
+- 安全性：用户对视图不可以随意的更改和删除，可以保证数据的安全性。
+- 数据独立性：一旦视图的结构 确定了， 可以屏蔽表结构变化对用户的影响， 数据库表增加列对视图没有影响；具有一定的独立性
 
 
 
@@ -728,6 +858,64 @@ drop procedure if exists _jc_tmp_untitle_sqlblock;
 
 ### 存储过程
 
+**「存储过程是在数据库系统中完成一组特定功能的 SQL 语句集」**，它存储在数据库系统中，一次编译后永久有效。
+
+> 优点
+
+- 使用存储过程具有可封装性，能够隐藏复杂的 SQL 逻辑。
+- 存储过程可以接收参数，并返回结果
+- 存储过程性能非常高，一般用于批量执行语句
+
+> 缺点
+
+- 存储过程编写复杂
+- 存储过程对数据库的依赖性比较强，可移植性比较差
+
+
+
+#### 变量
+
+在 MySQL 中，变量可分为两大类，即`系统变量`和`用户变量`，这是一种粗略的分法。但是根据实际应用又被细化为四种类型，即局部变量、用户变量、会话变量和全局变量。
+
+
+
+MySQL 中的局部变量与 Java 很类似 ，Java 中的局部变量是 Java 所在的方法或者代码块，而 MySQL 中的局部变量作用域是所在的存储过程。MySQL 局部变量使用 `declare` 来声明。
+
+
+
+当服务启动时，它将所有全局变量初始化为默认值。其作用域为 server 的整个生命周期。
+
+```mysql
+show global variables;
+
+-- 修改全局变量
+set global sql_warnings=ON;  
+
+-- 查看
+select @@global.version;
+show global variables like '%version%';
+```
+
+
+
+
+
+##### 会话变量
+
+用户变量是基于`会话变量`实现的，可以暂存，用户变量与连接有关，也就是说一个客户端定义的变量不能被其他客户端使用看到。当客户端退出时，链接会自动释放。我们可以使用 `set` 语句设置一个变量
+
+```mysql
+set @name = "Joshua Conero";
+select @name, VERSION();
+
+-- 查看当前的会话变量
+show session variables;
+```
+
+
+
+
+
 *实例，mysql 5.7 运行正确*
 
 ```mysql
@@ -768,10 +956,6 @@ begin
 end;
 delimiter ;
 ```
-
-
-
-
 
 
 
@@ -1002,3 +1186,12 @@ call tx_tmp1();
 drop procedure if exists tx_tmp1;
 ```
 
+
+
+
+
+## 附录
+
+### 参考
+
+- [47 张图带你 MySQL 进阶](https://mp.weixin.qq.com/s/mJ_rCfIxsltZYKDtXZx82g)
