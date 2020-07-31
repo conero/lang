@@ -397,19 +397,18 @@ class GanZhi{
      */
     getGZList(){
         if(this.#_gzList.length == 0){
-            let que = [];
+            let que = [], max = 60;
+            let order = 0;
             //单配单，双配双
-            GanOrder.forEach((gan, gIdx) => {
-                ZhiOrder.forEach((zhi, zIdx) => {
-                    gIdx += 1;
-                    zIdx += 1;
+            while(order < max){
+                let gIdx = order%10,
+                    zIdx = order%12
+                ;
 
-                    if(gIdx%2 === zIdx%2){
-                        que.push(`${gan}${zhi}`);
-                    }
-                });
-            });
-
+                let gz = GanOrder[gIdx] + ZhiOrder[zIdx];
+                que.push(gz);
+                order = que.length;
+            }
             this.#_gzList = que;
         }
         return this.#_gzList;
