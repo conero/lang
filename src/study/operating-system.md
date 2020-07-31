@@ -986,6 +986,10 @@ source ./real/executable/sellscript.sh
 
 ### [bash](http://www.gnu.org/software/bash/manual/)
 
+是 GUN 操作系统的shell 外壳程序，命令行语言解析器。是 *`Bourne-Again SHell`* 的简称，`Bourne shell` 是传统的GUN shell，由 *Stephen Bourne* 编写，前者完全兼容后者。
+
+
+
 > 内部变量
 
 - `BASH`    *当前正在执行的 bash 实例*
@@ -1006,6 +1010,98 @@ source ./real/executable/sellscript.sh
 - `echo`    *输出到终端*
 - `help`    *用于查看内建命令*
 - `source <filename>`    *执行指定的，shell 文件*
+
+
+
+#### 语法
+
+- `#`  为注释符号
+- `\`  换行符号
+- `''`   单引号，字符串不会执行字符串模板替换，为原始字符串
+- `&&` , `||`  与或运算符号
+- `name=[value]` 变量定义，使用`$name` 读取
+
+
+
+```bash
+# `#` 为注释符号
+year=2020
+
+echo '$year is raw string.'
+# $year is raw string.
+echo "$year is raw string."
+# 2020 is raw string.
+```
+
+
+
+
+
+##### 管道 pipelines
+
+主要使用符号如 `|` 或 `|&`
+
+
+
+##### 语句
+
+> 循环
+
+```bash
+#
+# 循环
+until test-commands;  do consequent-commands; done
+
+while test-commands; do consequent-commands; done
+
+for name [ [in [words ...] ] ; ] do commands; done
+
+for (( expr1 ; expr2 ; expr3 )) ; do commands ; done
+# 如
+for((i=0;i<100;i++)); do echo $i; done
+
+# break, continue 可提前退出循环
+```
+
+
+
+> 条件
+
+```bash
+#
+# if
+if test-commands; then
+	consequent-commands;
+[elif more-test-commands; then
+	more-consequents;]
+[else alternate-consequents;]
+fi
+
+
+#
+# case
+case word in
+	[ [(] pattern [| pattern]...) command-list ;;]...
+esac
+
+#
+# 示例；命令直接运行错误，使用脚本则正常
+echo -n "Enter the name of an animal: "
+# `read` 键盘读取
+read ANIMAL
+echo -n "The $ANIMAL has "
+case $ANIMAL in
+    horse | dog | cat) echo -n "four";;
+    man | kangaroo ) echo -n "two";;
+    *) echo -n "an unknown number of";;
+esac
+echo " legs."
+
+# select
+select name [in words ...]; do commands; done
+```
+
+
 
 
 
