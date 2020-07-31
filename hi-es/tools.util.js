@@ -336,3 +336,116 @@ function getDateByTextX(text){
 
     return '';
 }
+
+
+// --------------------------------------------------------------------------(GZ/begin)------------------------------------------------------
+// 干支运算
+const GanOrder = ['甲', '乙', '丙', '丁', '戊', '己', '庚', '辛', '壬', '癸'];
+const ZhiOrder = ['子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', '亥'];
+class GanZhi{
+    #_gzList = [];  //干支缓存
+    #_gOrder = [];
+    #_zOrder = [];
+    #_zodiac = [];
+    #_ganZodiacMap = {};        //干支生肖字典
+    constructor(){
+        // 实际的GZ顺序
+        this.#_gOrder = ['庚', '辛', '壬', '癸', '甲', '乙', '丙', '丁', '戊', '己'];
+        this.#_zOrder = ['申', '酉', '戌', '亥', '子', '丑', '寅', '卯', '辰', '巳', '午', '未'];
+        // 子-鼠，丑-牛，寅-虎，卯-兔，辰-龙，巳-蛇， 午-马，未-羊，申-猴，酉-鸡，戌-狗，亥-猪。
+        this.#_zodiac = ['鼠', '牛', '虎', '兔', '龙', '蛇', '马', '羊', '猴', '鸡', '狗', '猪'];
+
+        // 字典生成
+        ZhiOrder.forEach((v, idx) => {
+            this.#_ganZodiacMap[v] = this.#_zodiac[idx];
+        });
+    }
+    /**
+     * 干支列表
+     * @returns {array}
+     */
+    get gzList(){
+        return this.getGZList();
+    }
+
+    /**
+     * 干列表
+     * @returns {array}
+     */
+    get gOrder(){
+        return this.#_gOrder;
+    }
+
+    /**
+     * 支列表
+     * @returns {array}
+     */
+    get zOrder(){
+        return this.#_zOrder;
+    }
+
+    /**
+     * 生肖列表
+     * @returns {array}
+     */
+    get zodiacOrder(){
+        return this.#_zodiac;
+    }
+    /**
+     * 获取干支表
+     * @return {array}
+     */
+    getGZList(){
+        if(this.#_gzList.length == 0){
+            let que = [];
+            //单配单，双配双
+            GanOrder.forEach((gan, gIdx) => {
+                ZhiOrder.forEach((zhi, zIdx) => {
+                    gIdx += 1;
+                    zIdx += 1;
+
+                    if(gIdx%2 === zIdx%2){
+                        que.push(`${gan}${zhi}`);
+                    }
+                });
+            });
+
+            this.#_gzList = que;
+        }
+        return this.#_gzList;
+    }
+
+    /**
+     * 获取年的干支信息
+     * @param {int} year 
+     */
+    getYearGz(year){
+        if (!year){
+            year = (new Date()).getFullYear();
+        }
+        let gWord, zWord;
+        gWord = year%10;
+        zWord = year%12;
+
+        return `${this.#_gOrder[gWord]}${this.#_zOrder[zWord]}`;
+    }
+
+    /**
+     * 获取年的干支信息
+     * @param {int} year 
+     */
+    zodiac(year){
+        if (!year){
+            year = (new Date()).getFullYear();
+        }
+        let zWord;
+        zWord = year%12;
+        let zhi = this.#_zOrder[zWord];
+
+        return this.#_ganZodiacMap[zhi];
+    }
+}
+
+// --------------------------------------------------------------------------(GZ/end)------------------------------------------------------
+
+
