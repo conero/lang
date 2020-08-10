@@ -171,6 +171,7 @@ function getDateByText(text){
  */
 function turnNumByText(text){
     const clearData = [
+        ['二十', ['廿']],
         ['cS', ['十']],
         ['cB', ['百']],
         ['cQ', ['千']],
@@ -187,7 +188,6 @@ function turnNumByText(text){
     ];
 
     text = cleanString(text, clearData);
-    console.log(text);
 
     // 中文转数字
     let matchQue = text.match(/[0-9]*c[SBQW][0-9]*/g);
@@ -197,7 +197,6 @@ function turnNumByText(text){
             if(ms.indexOf(keyword) > -1){
                 tArr = ms.replace(keyword, sep).split(sep);
                 tArrLen = tArr.length;
-                console.log(tArr);
                 tArr.forEach((s, idx) => {
                     if(s.trim() === ''){
                         tArr[idx] = idx === 0? '1': '0';
@@ -544,7 +543,6 @@ class GanZhi{
         let stdIdx = this.__zodiac.indexOf(this.zodiac(benchmarkYear));
         // 如果基准与需要的干支年一样，则其作为基准年
         let stdYear = 0;    //离基准最近的年份
-        console.log(idx, stdIdx, this.__zodiac[idx],this.__zodiac[stdIdx]);
         if(idx <= stdIdx){
             stdYear = benchmarkYear - (stdIdx - idx);
         }else{
