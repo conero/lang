@@ -658,6 +658,39 @@ go mod vendor 	模块自动拉取，并生产vendor目录
 
 
 
+### 条件编译
+
+编译常量，也称编译标签。其在文件的首行:
+
+```go
+// +build
+
+// 示例
+// +build linux darwin
+// +build amd64
+// +build linux,386 darwin,!cgo
+// +build linux,cgo darwin,cgo
+// +build !linux,!darwin !cgo
+
+// 操心系统来源常量: runtime.GOOS
+// 操心系统架构来源常量: runtime.GOARCH
+```
+
+
+
+条件编译也可在文件命名是指定，指定规则：
+
+```shell
+*_GOOS
+*_GOARCH
+*_GOOS_GOARCH
+
+# 如: 
+#  source_windows_amd64.go
+```
+
+
+
 ## 内建函数或GO基础包
 
 	go/src/builtin/builtin.go   内建函数文档包，可直接使用而不用引入包
