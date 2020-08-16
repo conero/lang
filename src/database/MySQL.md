@@ -1081,6 +1081,9 @@ mysqldump <oldDbname> -u root -p<password> --add-drop-table | mysql <toNewDb> -u
 # mysqldump -uroot -p --default-character-set=utf8 dbname > d:/.../file.sql
 mysqldump -uroot -p --default-character-set=utf8 dataset > d:/tmp/dataset.sql
 
+# 导出的字符格式，utf8. ">" 与系统的语言编码一致 
+mysqldump -uroot -p --default-character-set=utf8 dataset --result-file=dump.sql
+
 # 经测试只导出一行
 # needtoKnowMore
 mysqldump -uroot -p --default-character-set=utf8 dataset tablename > d:/tmp/tablename.sql
