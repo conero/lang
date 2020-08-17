@@ -1128,6 +1128,11 @@ Windows product activation			Windows相关
 
 (Dynamic Link Library)文件为动态链接库文件，又称“应用程序拓展”，是软件文件类型。在Windows中，许多应用程序并不是一个完整的可执行文件，它们被分割成一些相对独立的动态链接库，即DLL文件，放置于系统中。当我们执行某一个程序时，相应的DLL文件就会被调用。一个应用程序可使用多个DLL文件，一个DLL文件也可能被不同的应用程序使用，这样的DLL文件被称为共享DLL文件。
 ​		
+
+对应的其他系统： 在 Windows 下是 `dll` ，在 Mac OS 下是 `dylib` ，Linux 则是 `so`。
+
+
+
 #### EXE
 
 可执行程序（executable program，EXE File）是指一种可在操作系统存储空间中浮动定位的可执行程序。在MS-DOS和MS-WINDOWS下，此类文件扩展名为•exe。
