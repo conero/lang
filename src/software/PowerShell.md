@@ -86,6 +86,11 @@ $env:path = "new value"
 
 # 查看所有变量
 Get-Variable
+
+# 空判断，`$null` 默认的系统值，可用于判断控制。任务未定义的值都等于`$null`
+if($null -eq $value){}
+# 判断是否为有效值
+if(($null -eq $value) -or ($value.Length -eq 0)){}
 ```
 
 
@@ -185,6 +190,27 @@ echo $PSScriptRoot
 # 文件： file.ps1
 &"$PSScriptRoot/grafana-server.exe"
 ```
+
+
+
+#### 命令行参数 `$args`
+
+```powershell
+# 判断
+if ($args` -contains "-d"){
+	echo "获取的参数: -d"
+}
+
+# 数组包含运算
+# -contains    	数组中包含元素
+# -ccontains   	数组中包含元素(大小写敏感)
+# -notcontains 	数组中不包含元素
+# -cnotcontains	数组中不包含元素(大小写敏感)
+```
+
+
+
+
 
 
 
@@ -454,11 +480,15 @@ $env:Path -split ";"
 'Joshua'+",Conero"
 @(1, 3) + @('a', 'c')
 @{'name'='Joshua'} + @{'age'= 28; 'last'='Coenro'}
-
-
 ```
 
 
+
+#### 异常
+
+> ErrorAction
+
+`-ErrorAction`  可以在单条语句中简单的控制异常信息。别名`ea`，可设置的值 `Suspend, Ignore, Inquire, Continue, Stop, SilentlyContinue` 。参考[通用选项](https://docs.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about_commonparameters)
 
 
 
@@ -703,6 +733,8 @@ dir -name *.txt
 # 指定目录下查找文件
 # -Recurse 表示遍历子目录
 dir -path ./*php -Recurse
+
+# 别名:`dir -> Get-ChildItem`
 ```
 
 
@@ -797,7 +829,13 @@ Get-CimInstance -ClassName Win32_BIOS
 #### 进程/服务
 
 - 进程    *Get-Process*
-- 服务    *Get-Service*
+- 服务 
+  - *Get-Service*             查询服务
+  - *New-Service*            创建服务
+  - *Remove-Service*       移除服务
+  - Restart-Service
+  - Start-Service
+  - Stop-Service
 
 
 
@@ -831,7 +869,24 @@ Stop-Service
 start-service
 # 重启
 restart-service
+
+# 服务
+Start-Service Apache2.4
+
+#
+# 查询服务: `Apache2.4`
+Get-CimInstance -ClassName Win32_Service -Filter "Name='Apache2.4'"
+# 查询2
+Get-Service Apache2.4
 ```
+
+
+
+> `New-Service` 创建服务
+
+
+
+
 
 
 
