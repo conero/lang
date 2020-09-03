@@ -475,7 +475,9 @@ cp -rf ./svn-173/* ./
 
 
 
-### 进程管理
+### 服务(进程)管理
+
+linux  服务管理一般由 **service** 和 **systemd** 两个命令管理，后者出现晚于前置，因此其基本上后向兼容与它。
 
 ```sh
 # nohup(no-hangup) 后台执行，并挂起
@@ -491,7 +493,32 @@ ps -aux|grep <name>
 ps -A
 
 kill -9 <进程号>
+
+#查询进程炳杀掉它，如进程: yangsu
+ps -ef|grep yangsu | grep -v grep | awk '{print $2}' | xargs kill -9
 ```
+
+
+
+**service**
+
+```shell
+#系统所在目录
+#/etc/init.d/
+
+# 常见的对应服务名称: `service 服务名 [start | stop | restart | reload | status]`
+# service命令启动redis脚本
+service redis start
+# 直接启动redis脚本
+/etc/init.d/redis start
+
+# 开机自启动
+update-rc.d redis defaults
+```
+
+
+
+
 
 
 
@@ -641,7 +668,11 @@ uname --all
 cat /proc/meminfo
 
 # 获取CPU型号信息
+cat /proc/cpuinfo
 cat /proc/cpuinfo | grep name | cut -f2 -d: |uniq -c
+
+#linux 版本
+cat /proc/version
 ```
 
 

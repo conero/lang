@@ -748,6 +748,28 @@ rm $path -recurse -force
 
 
 
+**查找文件资源并删除它**
+
+```powershell
+# 相对目录需要修正路径
+Get-ChildItem -Recurse -Name *ts | Remove-Item -Force
+
+# 相对目录需要修正路径
+Get-ChildItem .\uploads\videos\ -Recurse -Name *ts | ForEach-Object -Process {".\uploads\videos\$_"} | Remove-Item -Force
+```
+
+
+
+**查找按大小排序限定数文件**
+
+```powershell
+Get-ChildItem d:\ -Recurse | Sort-Object -Descending length | Select-Object -First 10
+```
+
+
+
+
+
 #### 文件下载
 
 *图片批量下载*
@@ -823,6 +845,16 @@ Get-CimInstance -Class Win32_OperatingSystem
 # 本地计算机上系统 BIOS 的高度压缩的完整信息
 Get-CimInstance -ClassName Win32_BIOS
 ```
+
+
+
+**导出计算机中应用安装列表**
+
+```powershell
+Get-CimInstance -ClassName win32_product | ConvertTo-Json > win32_product.json
+```
+
+
 
 
 
