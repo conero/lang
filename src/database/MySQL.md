@@ -1088,6 +1088,10 @@ mysqldump -uroot -p --default-character-set=utf8 dataset --result-file=dump.sql
 # needtoKnowMore
 mysqldump -uroot -p --default-character-set=utf8 dataset tablename > d:/tmp/tablename.sql
 mysqldump -uroot -p --default-character-set=utf8 dataset tablename --result-file=d:/tmp/tablename.sql
+
+# 远程测试，可能导致其他链接缓慢。
+# 导出测试的服务器所在数据库 "207.12.24.56"
+mysqldump -h "207.12.24.56" -uroot -p --default-character-set=utf8 dataset tablename --result-file=d:/tmp/tablename.sql
 ```
 
 
