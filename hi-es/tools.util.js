@@ -248,7 +248,7 @@ function getDateByTextX(text){
     //中文替换英文
     text = text.replace(/\s/g, '');
     text = cleanString(text, [
-        [0, ['零', '〇']], 
+        [0, ['零', '〇', 'O', '0', 'O']], 
         ['01', ['初一']],
         ['02', ['初二']],
         ['03', ['初三']],
