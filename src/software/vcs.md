@@ -787,6 +787,12 @@ $ git log -Sgit --oneline
 
 # 正则查询
 $ git log -G<pregexp>
+
+#
+# 使用grep搜索注释内容
+$ git log --grep=<pattern>
+# 如: 搜索以含“dev:”的提交信息
+git log --grep=dev:
 ```
 
 
