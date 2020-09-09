@@ -267,6 +267,15 @@ $ git show <commit_id>
 
 
 
+输出日志的美化格式。
+
+```shell
+# 输出，csv 格式
+git log --date=format:'%Y-%m-%d %H:%M:%S' --pretty=format:'"%h","%an","%ad","%s"'
+```
+
+
+
 
 
 #### 撤消操作
