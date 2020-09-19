@@ -787,7 +787,7 @@ function parseDateTxtGz(txt, once) {
                         if (year && year.length > 0) {
                             txt = txt.replace(gzTxt, year[0]);
                             if (year.length > 1) {
-                                warn.error(`${gzTxt} 获取到的年份不止一个: ${year.join(', ')}`);
+                                console.warn(`${gzTxt} 获取到的年份不止一个: ${year.join(', ')}`);
                             }
                         }
                         if (once) {
