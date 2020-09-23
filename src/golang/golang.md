@@ -602,6 +602,14 @@ godoc -http=:6060 -play
 
 
 
+### 标签
+
+```go
+// Deprecated: 遗弃代码，IDE 高亮显示
+```
+
+
+
 
 
 ## go-line command
