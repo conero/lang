@@ -998,7 +998,10 @@ $ git archive --format=zip -o update.zip HEAD $(git diff --name-only HEAD^)
 $ git achive --format=zip -o update.zip HEAD $(git diff --name-only HEAD~2)
 
 # 打包两个分枝之间差别的文件
-$ git archive --formate=zip -o update.zip HEAD $(git diff --name-only master fix-error)
+$ git archive --format=zip -o update.zip HEAD $(git diff --name-only master fix-error)
+
+# 导出当前更改的文件（未提交时）
+$ git archive --format=zip -o ../diff.zip HEAD $(git diff --name-only)
 ```
 
 
