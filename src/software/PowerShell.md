@@ -972,6 +972,15 @@ write-host "Total Elapsed Time: $($elapsed.Elapsed.ToString())"
 
 
 
+*环境变量*
+
+```powershell
+# 读取环境变量
+ls env:
+```
+
+
+
 
 
 #### 日期/时间
@@ -1027,6 +1036,12 @@ dir
 
 
 ### 服务/进程
+
+- **service**                          服务
+
+- **process**						 进程
+
+
 
 > 删除服务
 
