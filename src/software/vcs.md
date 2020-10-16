@@ -1393,13 +1393,27 @@ svn info --xml
 
 
 
-# ISSUE
+# 附录
+
+## ISSUE
 
 
 
-## git 用户认证
+### git 用户认证
 
 > 出现错误 git -- Authentication failed for
 
 *windows 系统中借助 【控制面板/用户账号/凭据管理器/管理window凭据】可更改密码。*
+
+
+
+### git 正文乱码
+
+```bash
+# git status 乱码
+git config --global core.quotepath false
+
+# git commit 乱码
+git config --global i18n.commitencoding utf-8
+```
 
