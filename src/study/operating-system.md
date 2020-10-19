@@ -600,6 +600,39 @@ $ unzip
 
 
 
+### 内存以及存储管理
+
+#### 内存
+
+```shell
+# 系统的可用内存情况
+# 以 “MB” 为单位查询内存使用情况
+free -m
+
+# 进程使用内存情况
+top
+```
+
+
+
+#### 存储
+
+```shell
+# 查看当前目录中文件存储占用情况
+# [disk usage] 文件或目录
+du --block-size=K
+# 查看制定文件大小
+du --block-size=K beffq Release.md
+# 当前
+du -sh *
+
+# 磁盘使用情况
+# 以“MB”单位查看磁盘占用情况
+df --block-size=M
+# 前者更简单的方式
+df -h
+```
+
 
 
 ### sudo
@@ -1152,7 +1185,16 @@ select name [in words ...]; do commands; done
 
 
 
+### linux 系统python 版本切换
 
+```shell
+# 使用linux系统中版本共享工具（分别定义不同的版本）
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python2 100
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 150
+
+# 进行版本切换
+sudo update-alternatives --config python
+```
 
 
 
