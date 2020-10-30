@@ -969,11 +969,13 @@ delimiter ;
 CREATE USER 'conero'@'localhost' IDENTIFIED BY 'password';
 create user 'conero'@'%' identified by '151009_170512';
 
--- 修改用户密码
+-- 修改用户密码（8.0 可能报错）
 update mysql.user set password=password('新密码') where User='phplam' and Host='localhost';
 
 -- 授权
 grant all privileges on zhangsanDb.* to zhangsan@'%' identified by 'zhangsan';
+-- 授权给数据库无须更变密码
+grant all privileges on zhangsanDb.* to zhangsan@'%';
 flush privileges;
 
 -- 查看用户权限
@@ -1022,7 +1024,7 @@ set global time_zone ='+8:00';
 
 
 
-### #1607 时间类型错误，更新字段。
+### 1607 时间类型错误，更新字段。
 
 > **出现版本 5.7.27**
 
@@ -1035,6 +1037,37 @@ show variables like 'sql_mode';
 # 删除 【NO_ZERO_IN_DATE】，【NO_ZERO_DATE】即可修改以上问题
 # ONLY_FULL_GROUP_BY group by 的兼容问题
 set global sql_mdoe='STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
+```
+
+
+
+### 201030 mysql root密码重置
+
+*方式是：在 `my.conf` 等之类的加入 `skip-grant-tables`，使之跳过密码已修改root密码。最后再去除：skip-grant-tables配置。*
+
+
+
+但是mysql 中，单纯加入以上配置依然报错。
+
+```ini
+[mysqld]
+skip-grant-tables
+
+# mysql8中依然报错，此时需要在加上配置项
+ shared-memory
+```
+
+
+
+修改root密码：
+
+```mysql
+-- 用过免密登录后修改密码：
+select host, user, authentication_string, plugin from user;
+update user set authentication_string='' where user='root';
+
+-- 再修改
+ALTER user 'root'@'localhost' IDENTIFIED BY 'pswd-any';
 ```
 
 

@@ -260,6 +260,8 @@ $ git add README
 ```shell
 # 文件追踪
 $ git log --oneline -- <file>
+# 文件追踪更改记录
+$ git log -p <file>
 
 # 查看历史代码提交信息
 $ git show <commit_id>
