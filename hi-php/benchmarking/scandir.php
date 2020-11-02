@@ -84,9 +84,10 @@ class Console{
 
     function input($tip){
         echo "$tip :";
-        $input = fread(STDIN, 1024);
-        echo "\n";
-        return trim($input);
+        return trim(fgets(STDIN));
+        // $input = fread(STDIN, 1024);
+        // echo "\n";
+        // return trim($input);
     }
 
     // 扫描输入的目录
@@ -108,7 +109,7 @@ class Console{
             echo "结果如下：\n". 
                 '目录总数：'.$result['dir']."\n".
                 '文件总数：'.$result['file']."\n".
-                '总数大小：'.$result['size']."\n"
+                '总数大小(MB)：'.($result['size']/(1024*2014))."\n"
                 ;
         }
     }
