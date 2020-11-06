@@ -735,6 +735,10 @@ dir -name *.txt
 dir -path ./*php -Recurse
 
 # 别名:`dir -> Get-ChildItem`
+
+
+# 查找文件并删除文件
+Get-ChildItem -Recurse $path/config/*TAGprivate* | Remove-Item
 ```
 
 
