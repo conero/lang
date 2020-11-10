@@ -110,6 +110,20 @@ $ git config --global user.email johndoe@example.com
 
 ### Git 基础
 
+**git 示例**
+
+```bash
+#
+# git 更新来自远程仓库的单文件
+git fetch
+# 合并（单文件）
+git checkout origin/master doc/file-name-expamle.any
+
+
+```
+
+
+
 #### 获取git仓库
 
 - `git init`			初始化git仓库
