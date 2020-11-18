@@ -951,7 +951,7 @@ $ rpm -qa | grep libxml2
 
 
 
-*文本搜索*
+*常用命令*
 
 ```shell
 # vi 命令
@@ -961,7 +961,11 @@ $ rpm -qa | grep libxml2
 :/search_string
 # n 跳的下一个搜索内容
 
+# windows 与 linux 换行符号不一致的处理方法
+:set ff=unix
 
+:显示行号
+:set number 
 ```
 
 
