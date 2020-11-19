@@ -970,6 +970,17 @@ $ rpm -qa | grep libxml2
 
 
 
+永久显示行数的方法，打开 `vim ~/.vimrc` 输入 `set nu` 保存即可：
+
+```shell
+# 打开配置文件
+vim ~/.vimrc
+# 添加如下内容
+set nu
+```
+
+
+
 
 
 > 方位移动
