@@ -1496,10 +1496,11 @@ ZQ —— 如果不想保存文件，也可以这个命令退出；
 
 **常用加密** 解释性名词
 
-- **DES**  *Data Encryption Standard，即数据加密标准*
+- **DES**  *Data Encryption Standard，即数据加密标准，速度较快，适用于加密大量数据的场合*
+- **3DES/TDEA**  *是基于DES，对一块数据用三个不同的密钥进行三次加密，强度更高*
 - **AES**   _**Advanced Encryption Standard**(高级加密标准)，在密码学中又称Rijndael加密法。2006年，高级加密标准已然成为对称密钥加密中最流行的算法之一_
   - 1998	
-- **DSA** *Digital Signature Algorithm (DSA)是Schnorr和ElGamal签名算法的变种，被美国NIST作为DSS(DigitalSignature Standard)。基于整数有限域离散对数难题的*
+- **DSA** *Digital Signature Algorithm (DSA)是Schnorr和ElGamal签名算法的变种，被美国NIST作为DSS(DigitalSignature Standard)。基于整数有限域离散对数难题的。（非对称加密）*
 - **ECDSA** *椭圆曲线数字签名算法(Elliptic Curve Digital Signature Algorithm)*
 - **HMAC**  *哈希消息认证码 (Hash-based Message Authentication Code)*
 - **MD5**  *MD5消息摘要算法（英语：MD5 Message-Digest Algorithm），一种被广泛使用的密码散列函数，可以产生出一个128位（16字节）的散列值（hash value），用于确保信息传输完整一致*
