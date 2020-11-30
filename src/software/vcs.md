@@ -329,6 +329,15 @@ $ git push -f origin <branch>
 
 
 
+> 其他
+
+```shell
+# 撤销 commit， 并保留代码（安全）
+git reset --soft HEAD^
+```
+
+
+
 #### 远程仓库
 
 > **`$ git remote -v` *查看远程仓库*** 
