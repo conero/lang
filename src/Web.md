@@ -371,6 +371,32 @@ http-server [path] [options]
 
 
 
+### 站点性能指标
+
+- 并发数
+- 响应时间(RT)
+- 吞吐量(Throughput)
+  - QPS            每秒查询数
+  - TPS             每秒事务数
+  - HPS            每秒HTTP请求数
+- 页面浏览量(PV *Page View*)
+- 网站独立访客(UV  Unique Visitor) 
+- 峰值QPS
+
+
+
+**吞吐量** 是指单位时间内系统能处理的请求数量，体现系统处理请求的能力，这是目前最常用的性能测试指标。
+
+`QPS（TPS）= 并发数 / 平均响应时间`
+
+
+
+
+
+
+
+
+
 
 ## 附录
 
