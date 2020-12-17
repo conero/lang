@@ -376,8 +376,8 @@ http-server [path] [options]
 - 并发数
 - 响应时间(RT)
 - 吞吐量(Throughput)
-  - QPS            每秒查询数
-  - TPS             每秒事务数
+  - QPS            每秒查询数，每秒能够响应的查询次数
+  - TPS             每秒事务数，一个事务是指一个客户机向服务器发送请求然后服务器做出反应的过程。
   - HPS            每秒HTTP请求数
 - 页面浏览量(PV *Page View*)
 - 网站独立访客(UV  Unique Visitor) 

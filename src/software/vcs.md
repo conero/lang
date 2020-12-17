@@ -982,7 +982,7 @@ $ git config -f .gitmodules submodule.<submoduleName>.branch <branchName>
 # 该文件包含了所有重建该仓库 master 分支所需的数据
 # $ git bundle create <name>.bundle [提交区间]
 $ git bundle create <name>.bundle HEAD master
-# 回复打包文件
+# 恢复打包文件
 $ git clone <name>.bundle [<dirName>]
 
 # 验证 bundleNamePath 是否合法
