@@ -952,14 +952,16 @@ _初衷是提供一款免费的开源的编译器。提供包含**C**、**C++**�
 
 ### LLVM
 
-- 官网 https://llvm.org/；github https://github.com/llvm-mirror/llvm
+- 官网 https://llvm.org/；github https://github.com/llvm-mirror/llvm（旧的，已遗弃）； github: https://github.com/llvm/llvm-project
 - 主要开发者: *[Chris Lattner](https://github.com/lattner)*、
 - 主要优势： 多功能性，灵活性和可重用性
 - 开始日期：  2001
 
 
 
-*构架编译器(compiler)的框架系统，以C++编写而成，用于优化以任意程序语言编写的程序的编译时间(compile-time)、链接时间(link-time)、运行时间(run-time)以及空闲时间(idle-time)，对开发者保持开放，并兼容已有脚本*
+*LLVM项目是模块化、可重用的编译器以及工具链技术的集合。最初设计目标类似于 JVM*
+
+*构架编译器(compiler)的框架系统，以C++编写而成，用于优化以任意程序语言编写的程序的编译时间(compile-time)、链接时间(link-time)、运行时间(run-time)以及空闲时间(idle-time)，对开发者保持开放，并兼容已有脚本。*
 
 
 
@@ -990,6 +992,42 @@ _初衷是提供一款免费的开源的编译器。提供包含**C**、**C++**�
 `SAFECode` *C / C ++程序的存储器编译器的安全性*
 
 `LLD`  *新的链接器，用于替代旧的链接器。*
+
+
+
+**传统编译架构**
+
+```mermaid
+graph LR
+	src[Source Code]-->Frontend
+	subgraph 编译器
+		Frontend[前端]-->Optimizer[优化器]-->Backend[后端]
+	end
+	Backend[后端]-->mc[机器代码]
+	
+	src2[Source Code]-->Frontend2
+	subgraph Compilter
+		Frontend2[Frontend]-->Optimizer2[Optimizer]-->Backend2[Backend]
+	end
+	Backend2[Backend]-->mc2[Machine Code]
+```
+
+
+
+**LLVM 架构**
+
+```mermaid
+graph LR
+	c[C]-->ftc[Clang C/C++/ObjC Frontend]-->ir[LLVM Optimitzer]
+	fortran[Fortran]-->ftf[llvm-gcc Frontend]-->ir
+	haskell[Haskell]-->ghc[GHC Frontend]-->ir
+	
+	ir-->x86[LLVM X86 Backend]-->mc86[X86]
+	ir-->ppc[LLVM PowerPC Backend]-->mcppc[PowerPC]
+	ir-->arm[LLVM ARM Backend]-->mcarm[ARM]
+```
+
+
 
 
 

@@ -848,6 +848,9 @@ Get-CimInstance -Class Win32_OperatingSystem
 ```powershell
 # 本地计算机上系统 BIOS 的高度压缩的完整信息
 Get-CimInstance -ClassName Win32_BIOS
+
+# 获取本地完整的记录软件
+Get-CimInstance -ClassName Win32_Product
 ```
 
 
