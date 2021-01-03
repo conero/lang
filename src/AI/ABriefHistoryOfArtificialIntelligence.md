@@ -42,6 +42,28 @@ DFS 适合于：树很深，分支因子不大，在树中解出现的位置相�
 
 
 
+### GPU
+
+#### CUDA
+
+*Compute Unified Device Architecture（统一计算设备架构）.显卡厂商**NVIDIA**推出的运算平台。*
+
+- 提出者:   NVIDIA
+- 架构:  并行计算架构
+- 目的:  使GPU能够解决复杂的计算问题
+
+
+
+多个机器学习框架使用 CUDA，如：TensorFlow、Pytorch。
+
+**显卡**：（GPU）主流是NVIDIA的GPU，深度学习本身需要大量计算。GPU的并行计算能力，在过去几年里恰当地满足了深度学习的需求。
+
+**CUDA**：是NVIDIA推出的只能用于自家GPU的并行计算框架。只有安装这个框架才能够进行复杂的并行计算。主流的深度学习框架也都是基于CUDA进行GPU并行加速的，几乎无一例外。还有一个叫做cudnn，是针对深度卷积神经网络的加速库。
+
+
+
+
+
 ## A Brief History Of Artifical Intelligence
 
 > 是研究、开发用于模拟、延伸和扩展人的智能的理论、方法、技术及应用系统的一门新的技术科学 
@@ -66,6 +88,9 @@ DFS 适合于：树很深，分支因子不大，在树中解出现的位置相�
 
 
 
-## 参考
+## 附录
+
+### 参考
 
 1. 《人工智能》(2th)   *Stephen Lucci, Danny Kopec*
+2. [CUDA——"从入门到放弃"](https://www.jianshu.com/p/34a504af8d51)
