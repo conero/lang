@@ -331,6 +331,9 @@ raw_string_lit         = "`" { unicode_char | newline } "`"
 interpreted_string_lit = `"` { unicode_value | byte_value } `"`
 
 n := len(raw_string_lit)	// 0 ... len(s) -1
+
+转义字符
+\x0c   清屏并输出
 ```
 
 
