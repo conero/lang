@@ -8,6 +8,7 @@
     <div>
         <h2>文件分片上传</h2>
         <input type="file" id="file_upload">
+        <button type="button" id="file_upload_btn">上传</button>
     </div>
     <script>
         let bytesPerPiece = 1024 * 1024;
@@ -18,10 +19,9 @@
             // 监听文件上传
             listenUpload() {
                 let fu = document.querySelector('#file_upload');
-                let self = this;
-                fu.addEventListener('change', function () {
-                    console.log('选中文件时');
-                    let blob = this.files;
+
+                //blob: file
+                let toUploadFile = (blob) => {
                     //存在文件
                     if (blob.length > 0) {
                         blob = blob[0];
@@ -43,10 +43,12 @@
                             var chunk = blob.slice(start, end);//切割文件    
                             var sliceIndex = blob.name + index;
                             var formData = new FormData();
-                            formData.append("file", chunk, filename);
+                            // formData.append("file", chunk, filename);
+                            formData.append("file", chunk);
                             formData.append("index", index);    //上传数据索引
-                            console.log(chunk);
-                            self.post('handle.php?s=upload', formData)
+                            formData.append("filename", filename);
+                            //console.log(chunk);
+                            this.post('handle.php?s=upload', formData)
                                 .then((res) => {
                                     console.log(res);
                                 }).catch((error) => console.log(error))
@@ -57,6 +59,19 @@
                     } else {
                         console.log('未选中文件！！');
                     }
+                };
+
+                //上传文件后自动上传
+                fu.addEventListener('change', function () {
+                    console.log('选中文件时');
+                    let blob = this.files;
+                    toUploadFile(blob);
+                });
+
+                //用于测试的文件上传
+                document.querySelector('#file_upload_btn').addEventListener('click', function () {
+                    let ipt = document.querySelector('#file_upload');
+                    toUploadFile(ipt.files);
                 });
             }
 
@@ -79,10 +94,10 @@
                         };
                     }
 
-                    xhr.open(method, url);
+                    xhr.open(method, url, true);
                     let content = null;
                     //数据
-                    if(data instanceof FormData){ // 支持文件上传（）
+                    if (data instanceof FormData) { // 支持文件上传（）
                         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                         content = data;
                     } else if ('object' === typeof data) {
