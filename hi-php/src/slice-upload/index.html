@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<head>
+    <title>文件分片上传</title>
+</head>
+
+<body>
+    <div>
+        <h2>文件分片上传</h2>
+        <input type="file" id="file_upload">
+    </div>
+    <script>
+        let bytesPerPiece = 1024 * 1024;
+        class App {
+            constructor() {
+                this.listenUpload();
+            }
+            // 监听文件上传
+            listenUpload() {
+                let fu = document.querySelector('#file_upload');
+                let self = this;
+                fu.addEventListener('change', function () {
+                    console.log('选中文件时');
+                    let blob = this.files;
+                    //存在文件
+                    if (blob.length > 0) {
+                        blob = blob[0];
+
+                        let filesize = blob.size;
+                        let filename = blob.name;
+                        //计算文件切片总数
+                        let totalPieces = Math.ceil(filesize / bytesPerPiece);
+                        // 测试
+                        console.log({ totalPieces, filesize, bytesPerPiece });
+
+                        let start = 0, index = 0, end;
+                        while (start < filesize) {
+                            end = start + bytesPerPiece;
+                            if (end > filesize) {
+                                end = filesize;
+                            }
+
+                            var chunk = blob.slice(start, end);//切割文件    
+                            var sliceIndex = blob.name + index;
+                            var formData = new FormData();
+                            formData.append("file", chunk, filename);
+                            formData.append("index", index);    //上传数据索引
+                            console.log(chunk);
+                            self.post('handle.php?s=upload', formData)
+                                .then((res) => {
+                                    console.log(res);
+                                }).catch((error) => console.log(error))
+                                ;
+                            start = end;
+                            index++;
+                        }
+                    } else {
+                        console.log('未选中文件！！');
+                    }
+                });
+            }
+
+            // 请求
+            ajax(method, url, data) {
+                return new Promise((resolve, reject) => {
+                    let xhr = new XMLHttpRequest();
+
+                    xhr.onreadystatechange = () => {
+                        if (xhr.readyState === XMLHttpRequest.DONE) {
+                            if (xhr.status === 200) {
+                                let successData = {
+                                    data: xhr.responseText,
+                                    resp: xhr,
+                                };
+                                resolve(successData);
+                            } else {
+                                reject('网络请求错误');
+                            }
+                        };
+                    }
+
+                    xhr.open(method, url);
+                    let content = null;
+                    //数据
+                    if(data instanceof FormData){ // 支持文件上传（）
+                        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                        content = data;
+                    } else if ('object' === typeof data) {
+                        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                        content = [];
+                        for (const key in data) {
+                            if (Object.hasOwnProperty.call(data, key)) {
+                                const element = data[key];
+                                content.push(`${key}=` + encodeURIComponent(element))
+                            }
+                        }
+                        content = content.join('&');
+                    }
+                    xhr.send(content);
+                });
+            }
+
+            //post 请求
+            post(url, data) {
+                return this.ajax('POST', url, data);
+            }
+        }
+
+        var $app = new App();
+    </script>
+</body>
+
+</html>
