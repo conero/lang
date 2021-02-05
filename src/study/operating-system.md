@@ -215,6 +215,37 @@ shift+右键
 
 
 
+**基本语法：**
+
+*使用 powershell 的语法来介绍 `cmd.exe`*
+
+```powershell
+help 显示当前系统的帮助信息
+command /?   查看帮助信息
+
+# 注释行
+::这是一个注释。
+@echo off的意思是此命令后的命令在执行的时候，不显示命令本身。
+
+
+#变量
+set var=32
+# 输出变量
+echo %var%
+echo 贵   阳
+
+
+#路劲
+# %~dp0 d 表 driver 的缩写，几位驱动、磁盘的缩写。p 为path缩写表路径、目录
+cd %~dp0   # 进入批处理所在目录
+cd %~dp0runtime\  # 进入所在目录的下的 runtime 目录
+
+
+Pause  # 暂停执行
+```
+
+
+
 ## 系统
 
 
