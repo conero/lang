@@ -1193,6 +1193,17 @@ g
 
 ## 标准库
 
+本地 python doc 文档打开。
+
+```shell
+# 以 web 形式的文件打开 pydoc 文件
+python -m pydoc -p 7777
+```
+
+
+
+
+
 > 主要标准库介绍
 
 - `os`  操作系统接口

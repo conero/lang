@@ -668,6 +668,13 @@ Start-Process -FilePath iexplore -ArgumentList www.powershellmagazine.com
 
 # 以管理员身份运行【powershell】
 Start-Process -FilePath "powershell" -Verb RunAs -ArgumentList "file.ps1","argument-2"
+
+# 本地打开应用
+## -- powershell.exe
+Start-Process powershell.exe -ArgumentList "-noexit"  
+Start-Process powershell -ArgumentList "-noexit", "-noprofile", "-command &{Get-Location}"
+## -- pwsh.exe
+Start-Process pwsh.exe -ArgumentList "-noexit", "-noprofile", "-command &{Get-Location}"
 ```
 
 
