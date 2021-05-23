@@ -996,6 +996,9 @@ $ git bundle list-heads <bundleNamePath>
 # 所以你可以使用 fetch 或者 pull 命令从包中导入提交
 $ git fetch <bundleNamePath> master:other-master
 
+# 拉取，外部 git 更改打包文件同步
+$ git fetch ../bigexpwxapp2021-210519/c210519 master
+
 # 将 <commit_id> -> <commit_id> 打包为导出
 $ git diff --name-only <commit_id1> <commit_id1> | xargs tar -zcvf <path>
 $ git diff --name-only b7ffdd3b 65b2dcb1 | xargs tar -zcvf ./t5.tar.gz

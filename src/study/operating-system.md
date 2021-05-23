@@ -666,6 +666,33 @@ df -h
 
 
 
+### 网络
+
+#### iptables
+
+ip 访问策略
+
+```shell
+# 显示当前配置
+iptables -L -n
+```
+
+
+
+> 常用策略配置示例
+
+```shell
+# 关闭端口[9960]的出入站
+iptables -I OUTPUT -ptcp --dport 9960 -j DROP
+iptables -I INPUT -ptcp --dport 9960 -j DROP
+
+# 运行本地访问
+iptables -I INPUT -s 127.0.0.1 -ptcp --dport 9960 -j ACCEPT
+iptables -I OUTPUT -s 127.0.0.1 -ptcp --dport 9960 -j ACCEPT
+```
+
+
+
 ### sudo
 
 > `sudo apt-get install`

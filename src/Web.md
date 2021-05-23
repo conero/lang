@@ -293,6 +293,42 @@ IP 服务器		->  HTTP 相应
 
 
 
+#### Linux 安装环境
+
+**通过源码编译 Nginx**
+
+```shell
+# 准备
+# 常用依赖更新/安装
+# nginx 编译时依赖 gcc 环境 
+sudo yum -y install gcc gcc-c++ 
+# 让 nginx 支持重写功能
+sudo yum -y install pcre pcre-devel 
+# zlib 库提供了很多压缩和解压缩的方式，nginx 使用 zlib 对 http 包内容进行 gzip 压缩
+sudo yum -y install zlib zlib-devel
+# 安全套接字层密码库，用于通信加密
+sudo yum -y install openssl openssl-devel
+
+# 1、下载源码
+wget -c http://nginx.org/download/nginx-1.20.0.tar.gz
+
+# 2、解压源码
+tar -zxvf nginx-1.20.0.tar.gz
+cd nginx-1.20.0
+
+# 3、 配置文件,编译
+# 默认编辑
+./configure	
+# 支持 ssl 
+./configure --prefix=/usr/local/nginx --with-http_stub_status_module --with-http_ssl_module
+
+# 4、 编译
+make && make install
+
+# 5、创建环境变量（软件连接）
+ln -s /usr/local/nginx/sbin/nginx /usr/local/bin/
+```
+
 
 
 #### issue
