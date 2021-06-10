@@ -455,6 +455,9 @@ $ git pull -p
 $ git diff <branch1> <branch2>
 # 仅仅查看文件概略
 $ git diff <branch1> <branch2> --stat
+
+# 远程分支对比
+$ git diff --stat master origin/master
 ```
 
 
@@ -466,8 +469,6 @@ $ git diff <branch1> <branch2> --stat
 # 将 .gitignore 合并到当前分支内
 $ git checkout dev .gitignore
 ```
-
-
 
 
 
@@ -683,6 +684,9 @@ $ git reflog
 $ git show HEAD@{n}
 # 查看类似于 git log 输出格式的引用日志信息
 $ git log -g
+
+# 远程分支日志查看
+$ git log origin/master
 ```
 
 

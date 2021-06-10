@@ -256,6 +256,15 @@ Pause  # 暂停执行
 
 
 
+### 主要配置
+
+#### ipconfig
+
+```powershell
+# 清除 DNS 解析程序缓存。
+ipconfig /flushdns
+```
+
 
 
 
