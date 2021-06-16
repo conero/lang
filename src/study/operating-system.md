@@ -629,8 +629,14 @@ tar.exe -t [options] [<patterns>]
 # 解压
 tar.exe -x [options] [<patterns>]
 
-
 tar -xvf <tar_file> -C <tgt_dir>
+
+#
+# 创建 tar.gz 压缩文件
+# ./dist 为顶级目录
+tar -czvf path-dist.tar.gz ./dist
+# ./dist 不做顶级，加上参数`-C` 和 `.`
+tar -czvf path-dist.tar.gz -C ./dist .
 
 # zip 压缩
 $ zip
@@ -684,6 +690,11 @@ ip 访问策略
 ```shell
 # 显示当前配置
 iptables -L -n
+
+# 显示行号
+iptables -nL --line-number
+# 删除第二行
+iptables -D INPUT 2
 ```
 
 
