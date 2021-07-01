@@ -934,6 +934,30 @@ Get-Service Apache2.4
 
 
 
+**进程** **x-job**
+
+```powershell
+# 查询正在运行的进程
+get-job -State Running
+# 查询运行的进程并关闭
+get-job -State Running|stop-job
+
+# 关闭任务
+stop-job -Id 1
+
+# 启动任务
+start-job -ScriptBlock {
+	sleep 5; Write-Host "Hello world.";
+}
+
+# 使用 ps1 脚本作为任务
+start-job -name gzh-runing -FilePath ./script_mg.ps1
+```
+
+
+
+
+
 
 
 #### 驱动器
@@ -1042,6 +1066,9 @@ where go
 
 # powershell 中使用 where 命令
 where.exe svn
+
+# 查看以“net”开头的文件
+where.exe net*
 
 # dir 与 其他 ls 命令差不多
 dir

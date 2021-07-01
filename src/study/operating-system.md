@@ -256,7 +256,7 @@ Pause  # 暂停执行
 
 
 
-### 主要配置
+### 主要配置/命令
 
 #### ipconfig
 
@@ -264,6 +264,29 @@ Pause  # 暂停执行
 # 清除 DNS 解析程序缓存。
 ipconfig /flushdns
 ```
+
+
+
+#### netstat
+
+网络状态查看
+
+```powershell
+# 查看本机所有端口号使用情况
+netstat -ano
+
+# 查看指定的端口号
+netstat -ano|findstr 9108
+
+# 通过 tasklist 查看，pid 对应的进行
+tasklist|findstr "2016"
+```
+
+
+
+
+
+
 
 
 
