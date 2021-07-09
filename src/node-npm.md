@@ -37,3 +37,13 @@
 }
 ```
 
+
+
+
+
+### node
+
+由于node使用多存在多版本非兼容问题，可使用版本管理工具
+
+- **nvm**    相关连接， [nvm](https://github.com/nvm-sh/nvm)、[nvm-windows](https://github.com/coreybutler/nvm-windows)
+

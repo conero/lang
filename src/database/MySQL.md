@@ -992,6 +992,19 @@ select user,host from mysql.user;
 
 
 
+### 数据库锁
+
+InnoDB支持表、行(默认)级锁，而MyISAM支持表级锁
+
+```mysql
+-- 查看数据库锁
+show OPEN TABLES where In_use > 0;
+```
+
+
+
+
+
 
 
 ### 实例
