@@ -275,7 +275,7 @@ ipconfig /flushdns
 # 查看本机所有端口号使用情况
 netstat -ano
 
-# 查看指定的端口号
+# 查看指定的端口号，9108 为端口号
 netstat -ano|findstr 9108
 
 # 通过 tasklist 查看，pid 对应的进行
@@ -440,6 +440,9 @@ chmod 777 <file_path>
 # 下者等效
 ll
 ls -l
+
+# 显示所有文件列表
+ls -a
 ```
 
 
@@ -531,6 +534,7 @@ stat <file_path>
 
 # 文件覆盖
 cp -rf ./svn-173/* ./
+cp -r ./dir-all/. ./new-dirall
 # 重新提醒，输入: y  才行
 ```
 
@@ -556,9 +560,33 @@ ps -aux|grep <name>
 ps -A
 
 kill -9 <进程号>
+# 关闭所有的 php-fpm 进程
+killall php-fpm
 
 #查询进程炳杀掉它，如进程: yangsu
 ps -ef|grep yangsu | grep -v grep | awk '{print $2}' | xargs kill -9
+```
+
+
+
+Linux 服务端端口号占用情况查询：
+
+```shell
+# 1) 查询进程，并获取 pid
+# xxx 为二进制名称
+ps -ef|grep xxx
+# 2) 使用pid查询的程序
+netstat -anp|grep <pid>
+
+
+# 方法二
+# 1) 查看端口号的占用 pid，第二部同上所示
+lsof -i:<port>
+
+# 其他
+netstat -lnt|grep 9000
+
+netstat -tunpl | grep 9000
 ```
 
 
@@ -590,6 +618,14 @@ update-rc.d redis defaults
 *ps [options]*
 
 - `$ ps-eo pid,comm,cmd  `  *(-e表示列出全部进程，-o pid,comm,cmd表示我们需要PID，COMMAND，CMD信息)*
+
+
+
+#### top
+
+top 命令是Linux下常用的性能分析工具，能够实时显示系统中各个进程的资源占用状况，类似于Windows的任务管理器。
+
+
 
 
 
@@ -955,6 +991,9 @@ $ make							安装/ make install
 $ /usr/local/nginx/sbin/nginx
 # 停止服务器
 $ /usr/local/nginx/sbin/nginx -s stop 或 /usr/local/nginx/sbin/nginx -s quick
+
+# 启动 php-fpm
+/mnt/tool/php/php/sbin/php-fpm
 ```
 
 

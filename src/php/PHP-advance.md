@@ -104,8 +104,10 @@ $ ps aux|grep php-fpm
 
 ```shell
 php --ini
+/php-7.3.5/php.ini-production
 
- /php-7.3.5/php.ini-production
+# 检测PHP语法是否正确
+php -d display_startup_errors=1 -d error_reporting=-1 -d display_errors -c "/etc/php.ini" -m
 ```
 
 
@@ -223,6 +225,17 @@ echo $$a;
 
 
 
+```shell
+# 查看当前的配置模块
+php -i
+# 查看服务的模块
+php -m
+```
+
+
+
+
+
 
 
 ## 工具
@@ -329,3 +342,5 @@ echo $$a;
 ### 相关阅读资源
 
 - [php 语言扩展阅读](http://www.nowamagic.net/librarys/veda/cate/PHP)
+- [编译安装 PHP 7.0.3 亲测全攻略 & 以及如何单独的安装某个模块](https://blog.51cto.com/frankch/1746232)
+

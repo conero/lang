@@ -236,6 +236,9 @@ select
 -- 通用查询方法
 show databases [like ''];		-- 显示所有的数据库，可使用 like 查询；
 
+-- 数据表查看
+show tables;
+
 -- 查询某个数据的 DDL
 show create table <tableName>;
 

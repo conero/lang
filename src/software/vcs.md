@@ -362,6 +362,21 @@ git commit --amend
 
 
 
+> git-remote 示例
+
+```shell
+ # 添加远程 github 仓库
+ git remote add github https://github.com/conero/uymas.git
+ # 分支推送
+ git push github develop
+```
+
+
+
+
+
+
+
 #### 打标签
 
 > `$ git tag `
