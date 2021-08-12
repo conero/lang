@@ -87,6 +87,10 @@ alter user 'root'@'localhost' identified by 'password';
 
 
 ```mysql
+# 环境初始化
+mysqld --initialize --console
+
+
 -- 安装项目完成是，密码为空；这是需要自行设置密码
 alter user 'root'@'localhost' identified by 'password';
 ```
@@ -199,6 +203,9 @@ select
 	curtime() as 当前时间, current_time as `常量同义-时间`,
 	curtime() as 当前时间戳, now(), current_timestamp as `常量同义-时间戳`
 ;
+
+-- 计算时间查：datetime 类型
+select r.lock_tm, current_timestamp() `now`, TIMESTAMPDIFF(second, r.lock_tm, current_timestamp()) diff_sec from r_beffq_video_attach_queue r;
 ```
 
 

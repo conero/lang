@@ -162,9 +162,9 @@ golang的cgo是调用gcc编译c代码的，gcc工具链在linux上很方便，�
 
 *window 需要环境  64位 `gcc`编译器，如:  [mingw-64 网站](http://mingw-w64.org) /  [下载地址](<https://sourceforge.net/projects/mingw-w64/>)；32 位下 __cgo__ 不可用。*
 
+文件下载历史：https://sourceforge.net/projects/mingw-w64/files/mingw-w64/
 
 
-<!--[@todo https://blog.csdn.net/RA681t58CJxsgCkJ31/article/details/80504482]-->
 
 <!--[@todo https://blog.csdn.net/RA681t58CJxsgCkJ31/article/details/80504482]-->
 

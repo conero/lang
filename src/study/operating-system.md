@@ -213,9 +213,13 @@ shift+右键
 
 *Windows 命令工具有 `cmd.exe`、`powershell(ps)` 等，其可通过外壳程序调用系统内核相关的程序。*
 
+也即是bat 脚本，批处理（batch）。
+
 
 
 **基本语法：**
+
+大小写不敏感，扩展名为“.bat”或“.cmd”
 
 *使用 powershell 的语法来介绍 `cmd.exe`*
 
@@ -233,7 +237,11 @@ set var=32
 # 输出变量
 echo %var%
 echo 贵   阳
-
+# 输出环境变量/系统参数
+echo %Path%
+echo %AppData%
+#设置当前的环境变量（附加），当前环境下
+set PATH=%PATH%;d:\xxx
 
 #路劲
 # %~dp0 d 表 driver 的缩写，几位驱动、磁盘的缩写。p 为path缩写表路径、目录
@@ -243,6 +251,66 @@ cd %~dp0runtime\  # 进入所在目录的下的 runtime 目录
 
 Pause  # 暂停执行
 ```
+
+常见命令：
+
+- `echo [mesage]`           输出数据内容
+- `@[command]`                 不显示命令（command）
+- `goto [label]`              跳转到（标签处）
+- pause                              按任意键结束
+- call                                  批处理调用batch脚本
+- start                                启动一个单独的窗口以运行指定的程序或命令
+- if/for                                条件或循环
+
+
+
+```shell
+# 使用，shell 高亮演示 bat 语法。
+goto start
+
+# start 标签
+:start
+
+# 在 cmd 下输出，寻求帮助
+help
+# [cmd] /? 查看命令的帮助信息
+find /?
+```
+
+
+
+常见的系统参数：环境变量、系统常量等，如下变量在cmd环境可通过`echo %$%` 访问。
+
+- SystemRoot                    系统root目录,跟目录
+- ProgramFiles                  应用所在目录
+- UserProfile                     当前用户的系统目录（用户目录）
+- AppData                         当前应用数据目录
+- Temp或Tmp                  系统临时文件
+- Path                                环境变量
+- PathExt                          环境变量可执行文件（“默认后缀”）
+- AllUsersProfile              所有用户的配置信息
+- ComputerName           系统名称
+- Date                               当前的时间
+- number_of_processors     处理器数量
+- processor_architecture     处理架构
+- processor_identifier          处理器说明信息
+- processor_revision            处理器型号
+- random                               获取随机数[1-32767]
+- UserDomain                       用户域名称
+- UserName                          用户名称
+
+
+
+如通过bat脚本设置composer全局安装
+
+```shell
+# 即输入，composer即可运行到此脚本
+@php "/path/composer.phar" %*
+
+# "%*"   表示所有参数（%1..%9）
+```
+
+
 
 
 
