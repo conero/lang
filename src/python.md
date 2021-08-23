@@ -1410,6 +1410,7 @@ python -m pip install -U --timeout 1000 --user numpy scipy matplotlib ipython ju
 # https://mirrors.tuna.tsinghua.edu.cn/help/pypi/
 # 或者使用国内镜像安装，如：清华镜像
 pip install -i https://pypi.tuna.tsinghua.edu.cn/simple matplotlib
+# 阿里镜像 https://mirrors.aliyun.com/pypi/simple/
 
 # 卸载
 pip uninstall <package-name>

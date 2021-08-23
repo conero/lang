@@ -416,6 +416,15 @@ update __guest_invite_notes gin join (
 
 
 
+#### alter
+
+数据表更改
+
+```mysql
+-- 修改 tp_auth_rule 当前自动增加主键的值
+alter table tp_auth_rule auto_increment=330;
+```
+
 
 
 
