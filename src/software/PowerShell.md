@@ -675,6 +675,10 @@ Start-Process powershell.exe -ArgumentList "-noexit"
 Start-Process powershell -ArgumentList "-noexit", "-noprofile", "-command &{Get-Location}"
 ## -- pwsh.exe
 Start-Process pwsh.exe -ArgumentList "-noexit", "-noprofile", "-command &{Get-Location}"
+
+# 启动 cmd，打开新窗口
+Start-Process cmd.exe -ArgumentList "/C .\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties"
+Start-Process cmd -ArgumentList "/C .\bin\windows\kafka-server-start.bat .\config\server.properties"
 ```
 
 

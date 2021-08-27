@@ -592,6 +592,8 @@ find . ! -name "*.sh"
 # 查看包含【modules】的名称
 find / -path "*modules*"
 
+# 查找目录下的“m3u8”文件并删除目录
+find D:/conero/phpapps/website/iCloud/uc/uploads/ -name "*.m3u8" | xargs rm -fr
 
 # 目录重命名
 # <source_dir_name> => <target_dir_name>
@@ -931,7 +933,7 @@ cat /proc/version
 
 
 
-> *终端快捷键*
+> *终端快捷键（shell/bash等）*
 
 ```shell
 Ctrl + l(L)   	清屏快捷键，同于 clear 命令
@@ -939,8 +941,10 @@ ctrl + w —往回删除一个单词，光标放在最末尾
 ctrl + k —往前删除到末尾，光标放在最前面（可以使用ctrl+a）
 ctrl + u 删除光标以前的字符
 ctrl + k 删除光标以后的字符
-ctrl + a 移动光标至的字符头
-ctrl + e 移动光标至的字符尾 
+ctrl + a 移动光标至的字符头（移动行首）
+ctrl + e 移动光标至的字符尾（移动行尾）
+ctrl + y 粘贴至光标处
+ctrl + r 逆向搜索命令历史（ctrl + g    退出搜索命令）
 
 reset			完全刷新终端屏幕
 
