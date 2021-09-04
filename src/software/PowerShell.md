@@ -1016,14 +1016,35 @@ write-host "Total Elapsed Time: $($elapsed.Elapsed.ToString())"
 
 *环境变量*
 
+> powershell 语言环境变量操作
+
 ```powershell
 # 读取环境变量
 ls env:
+# ls 别名 get-childitem 
+get-childitem env:
+# 读取环境变量
+echo $env:java_home
 ```
 
 
 
+> cmd.exe 环境变量操作
 
+```shell
+# 输出环境变量
+echo %JAVA_HOME%
+# 设置环境变量
+set Java_home= 'D:\Program Files\java\xxxxxxx'
+
+# windows 下可使用 setx 命令
+setx JC_HOME C:/test
+# 注册表写入（管理模式下）
+setx /M BAT_HOME_JC C:\bat
+```
+
+[comment]: <> "<!-- @todo 删除环境变量的方法 -->"
+[//]: # "<!-- @todo 删除环境变量的方法 -->"
 
 #### 日期/时间
 
