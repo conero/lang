@@ -168,6 +168,36 @@ php -d display_startup_errors=1 -d error_reporting=-1 -d display_errors -c "/etc
 
 
 
+#### 访问密码设置
+
+使用 **htpasswd** 创建密码
+
+```shell
+# 安装 http 相关工具
+yum  -y install httpd-tools
+
+# 创建用户名和密码（conero）
+htpasswd -c /usr/local/src/nginx/conero-passwd conero
+```
+
+
+
+配置文件更新
+
+```nginx
+server {
+	# 登录密码认证要求
+    auth_basic "It is Lab Private Net will need command for verify. ---Joshua Conero"; #这里是验证时的提示信息 
+    auth_basic_user_file /usr/local/src/nginx/conero-passwd; 
+}
+```
+
+
+
+重启系统即可。
+
+
+
 ### Apache
 
 #### Windows

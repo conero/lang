@@ -197,7 +197,7 @@ echo $PSScriptRoot
 
 ```powershell
 # 判断
-if ($args` -contains "-d"){
+if ($args -contains "-d"){
 	echo "获取的参数: -d"
 }
 
@@ -1007,7 +1007,7 @@ write-host "Started at $(get-date)"
 for ($t=1; $t -le 20; $t++) { 
     Write-Host "Elapsed Time: $($elapsed.Elapsed.ToString())" 
     sleep 1 
-    } 
+} 
 write-host "Ended at $(get-date)" 
 write-host "Total Elapsed Time: $($elapsed.Elapsed.ToString())" 
 ```
