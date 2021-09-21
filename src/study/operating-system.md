@@ -166,6 +166,7 @@
 | win+X             |                           | 打开“快速链接”菜单           |
 | win+,(逗号)       |                           | 临时速览桌面                 |
 | win+Tab           |                           | 打开任务视图                 |
+| Fn+ESC            | function esc              | fn 功能键切换                |
 
 
 
