@@ -73,6 +73,13 @@ $ ./configure
 # 有事需要清理编译环境 `make clean`
 $ make && make install
 
+# [TIP] 此方法安装的 php-fpm 版本可能存在于当前PHP版本不对应（不推荐此方法）
+# 可使用编译选项（如）
+./configure \
+--with-openssl \
+--enable-mbstring \
+--with-pdo-mysql \
+--enable-fpm
 
 # 安装/启动 php-fpm
 $ yum install php-fpm
@@ -85,7 +92,7 @@ $ killall php-fpm
 # 检测是否已经正确启动
 $ netstat -tln | grep 9000
 # php-fpm 的进程号
-$ ps aux|grep php-fpm
+$ ps -aux|grep php-fpm
 ```
 
 

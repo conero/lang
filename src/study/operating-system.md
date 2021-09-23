@@ -1018,6 +1018,9 @@ $ yum update
 # yum 软件安装与卸载
 $ yum instal <name>
 $ yum remove <name>
+
+# 查看 yum 相关的信息
+$ yum info <name>
 ```
 
 
