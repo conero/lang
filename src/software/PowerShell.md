@@ -949,7 +949,7 @@ get-job -State Running|stop-job
 # 关闭任务
 stop-job -Id 1
 
-# 启动任务
+# 启动任务（可实现并发的延迟执行）
 start-job -ScriptBlock {
 	sleep 5; Write-Host "Hello world.";
 }

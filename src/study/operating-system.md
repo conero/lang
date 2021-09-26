@@ -474,6 +474,9 @@ tasklist|findstr "2016"
 # 操作系统相关的版本信息
 cat /proc/version
 
+# 操作系统相关信息
+uname -a
+
 # 查看本机的ip地址
 curl ifconfig.me
 
@@ -599,6 +602,8 @@ find D:/conero/phpapps/website/iCloud/uc/uploads/ -name "*.m3u8" | xargs rm -fr
 # 目录重命名
 # <source_dir_name> => <target_dir_name>
 rename <source_dir_name> <target_dir_name> <source_dir_name>
+# 使用 mv 亦可来重命名
+mv <old-name> <new-name>
 
 # 查看文件信息
 stat <file_path>
@@ -1170,7 +1175,7 @@ $ rpm -qa | grep libxml2
 *常用命令*
 
 ```shell
-# vi 命令
+# vi/vim 命令
 #
 #
 # 文本查找
@@ -1182,6 +1187,18 @@ $ rpm -qa | grep libxml2
 
 :显示行号
 :set number 
+
+#
+# 跳转至行号
+:n
+# vi/vim      使用 vi/vim 打开到指定的页面
+vi +n filename
+
+#
+# 撤回操作
+:u
+# 恢复撤销
+ctrl+r
 ```
 
 

@@ -38,6 +38,8 @@
 
 **CentOS 7.3**
 
+Linux 编译时或者部署过程中注意系统用户权限的问题，如Nginx应用可能无法访问 root 用户下的文件/目录等。
+
 ```shell
 # 安装编译环境
 $ yum -y install make zlib zlib-devel gcc-c++ libtool  openssl openssl-devel
@@ -81,12 +83,6 @@ $ make && make install
 --with-pdo-mysql \
 --enable-fpm
 
-# 安装/启动 php-fpm
-$ yum install php-fpm
-# 启动 php-fpm 服务
-$ service php-fpm start
-# php-fpm 详情
-$ systemctl status php-fpm.service
 # 杀死进程
 $ killall php-fpm
 # 检测是否已经正确启动
@@ -102,8 +98,6 @@ $ ps -aux|grep php-fpm
 ```shell
 ./configure --with-pdo-mysql --enable-bcmath --enable-mbstring --enable-sockets --with-gd --with-gettext --with-config-file-path=/usr/local/php/etc
 ```
-
-
 
 
 
