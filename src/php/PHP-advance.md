@@ -40,6 +40,8 @@
 
 Linux 编译时或者部署过程中注意系统用户权限的问题，如Nginx应用可能无法访问 root 用户下的文件/目录等。
 
+liunx php 编译时，使用 `--with-<extension>` 为内置的编译法，即PHP内部自动包含对应扩展，也无需在 `php.ini` 内添加相应的扩展。
+
 ```shell
 # 安装编译环境
 $ yum -y install make zlib zlib-devel gcc-c++ libtool  openssl openssl-devel
@@ -81,7 +83,26 @@ $ make && make install
 --with-openssl \
 --enable-mbstring \
 --with-pdo-mysql \
---enable-fpm
+--enable-fpm \
+--with-gd
+
+# 示例2
+./configure \
+--enable-fpm \
+--with-openssl \
+--enable-mbstring \
+--with-pdo-mysql \
+--with-bz2 \
+--with-curl \
+--enable-exif \
+--enable-mbstring \
+--enable-sockets \
+--enable-mysqlnd \
+--with-gd
+# ./configure --with-freetype-dir=/usr/include/freetype2 --with-jpeg-dir=/usr/include --with-png-dir=/usr/include
+
+# 启动 php-fpm
+/usr/local/sbin/php-fpm
 
 # 杀死进程
 $ killall php-fpm
@@ -109,6 +130,24 @@ php --ini
 
 # 检测PHP语法是否正确
 php -d display_startup_errors=1 -d error_reporting=-1 -d display_errors -c "/etc/php.ini" -m
+```
+
+
+
+**扩展编译**
+
+```shell
+# 转入扩展页面
+cd ext-src
+
+# 查看扩展信息，不存在需要安装（/usr/local/php/bin/phpize）
+phpize
+
+# 调用配置命令，注意错误信息（可以由此知道扩展所需的依赖）
+./configure
+
+# 编译并安装
+make && make install
 ```
 
 
