@@ -405,6 +405,16 @@ git commit --amend
 
 `$ git push origin --tags`  *一次性推送很多标签*
 
+```shell
+# 一次性推送所有分支
+git push origin --all
+
+# 推送本地所有tag
+git push origin --tags
+```
+
+
+
 
 
 > 删除标签
@@ -1264,8 +1274,8 @@ git checkout *.php
 
   ```shell
   # 设置多个
-  $ git remote set-url add all u.1
-  $ git remote set-url add all u.2
+  $ git remote set-url --add <name> <url>
+  $ git remote set-url --add origin <url>
   
   # 查看
   $ git remote -v
