@@ -609,6 +609,20 @@ set global `sql_mode`='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FO
 
 
 
+### 约束
+
+#### 外键
+
+外键重建
+
+```mysql
+alter table _video drop foreign key FK_video__category_id;
+alter table _video add constraint FK_video__category_id foreign key (category_id)
+      references _video_category (id) on delete restrict on update restrict;
+```
+
+
+
 ### 数据库引擎
 
 *数据库存储引擎是数据库底层软件组织，数据库管理系统（DBMS）使用数据引擎进行创建、查询、更新和删除数据。不同的存储引擎提供不同的存储机制、索引技巧、锁定水平等功能，使用不同的存储引擎，还可以 获得特定的功能。*

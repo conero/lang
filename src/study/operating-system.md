@@ -1006,6 +1006,14 @@ _*WinSCP*是一个Windows环境下使用SSH的开源图形化SFTP客户端。同
 
 >`dpkg ` 查看安装的软件
 
+```shell
+# Ubuntu 分发系统
+# 更新系统依赖
+sudo apt-get update
+```
+
+
+
 
 
 ### CentOS

@@ -365,8 +365,11 @@ git commit --amend
 > git-remote 示例
 
 ```shell
+ # 新增多个相同的仓库时（如 origin），第一个为主场仓库（pull 有效）
  # 添加远程 github 仓库
  git remote add github https://github.com/conero/uymas.git
+ # 删除远程分支
+ git remote remove origin
  # 分支推送
  git push github develop
 ```
@@ -379,7 +382,13 @@ git commit --amend
 
 #### 打标签
 
-> `$ git tag `
+```shell
+# 查看本机标签
+git tag
+
+# 查看服务器对应的标签列表（列出远程存储库上的标记）
+git ls-remote --tags origin
+```
 
 
 
