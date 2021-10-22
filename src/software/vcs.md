@@ -131,6 +131,19 @@ git checkout origin/master doc/file-name-expamle.any
 
 
 
+```shell
+# 如复制 deno 仓库
+git clone https://github.com/denoland/deno.git
+
+# 复制 pangu 仓库
+# [--depth] 表示复制仓库的深度，即最近 commit 的次数
+git clone https://gitee.com/conero/pangu.git --depth=1
+```
+
+
+
+
+
 #### 记录每次更新到仓库
 
 > **已跟踪或未跟踪**
@@ -1070,11 +1083,10 @@ $ git archive --format=zip -o update.zip HEAD $(git diff --name-only master fix-
 
 # 导出当前更改的文件（未提交时）
 $ git archive --format=zip -o ../diff.zip HEAD $(git diff --name-only)
+
+# 仅打包非删除的文件列表
+git archive --format=zip -o zzt-211020-02.zip HEAD $(git diff v0.0.1 --name-only --diff-filter=ACMR)
 ```
-
-
-
-
 
 
 

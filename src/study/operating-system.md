@@ -496,6 +496,10 @@ echo $PATH
 # 权限设置
 # 可用于如，屏幕提示数据显示不足够的时的操作
 chmod 777 <file_path>
+
+# 内容/文本查找
+# 查看当前目录下所有 html 内容<h3>标签
+grep "<h3>Joshua Conero<h3/>" *.html
 ```
 
 
@@ -777,6 +781,14 @@ tar -czvf path-dist.tar.gz -C ./dist .
 $ zip
 # zip 解压
 $ unzip
+# 如，解压 zip 包到当前目录
+unzip -v ./upgrade-list/blockd_ow-zzt-211020-02-failure.zip
+# 其他选项：
+# 	-d <dir> 压缩到指定的目录
+# 	-l 查看压缩的文件
+# 	-t 检查文件
+#	-o 默认覆盖所有文件（保存安全前提下请备份文件）
+# 帮助文: info unzip 
 ```
 
 
@@ -812,6 +824,8 @@ du -sh *
 df --block-size=M
 # 前者更简单的方式
 df -h
+# 查看磁盘剩余空间
+df -hl 
 ```
 
 
@@ -1224,6 +1238,11 @@ ctrl+r
 # 其他操作
 :e			内容重载
 :e!			抛弃当前的内容重载
+
+# 文件保存
+:w				不退出保存文件。（写入文件）
+:w filename 	另保存为其他文件
+:w! filename	保存文件并覆盖其他文件
 ```
 
 
