@@ -392,10 +392,12 @@ echo ">>:  $cn"
 read-host "输入提示"
 #>> 输入提示:
 
-
 # 输出，感觉与 echo 一样. echo 应该更加强大吧
 write-host "输出内容"
 echo "输出内容"
+
+# 指定颜色 (-ForegroundColor)
+Write-Host "2021/10/27" -ForegroundColor Blue
 ```
 
 

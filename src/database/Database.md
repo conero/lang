@@ -51,3 +51,20 @@ sqlite> .help
 | BLOB    *no datatype specified*                              | BLOB               | 3                               |
 | REAL    DOUBLE    DOUBLE PRECISION    FLOAT                  | REAL               | 4                               |
 | NUMERIC    DECIMAL(10,5)    BOOLEAN    DATE    DATETIME      | NUMERIC            | 5                               |
+
+
+
+### 脚本示例
+
+#### DDL
+
+```sqlite
+-- AtGroup  创建表自增
+CREATE TABLE AtGroup(
+    Gid            integer PRIMARY KEY autoincrement,
+    GroupName       varchar(32) not null
+);
+```
+
+
+

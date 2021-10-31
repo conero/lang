@@ -453,8 +453,10 @@ $ git push origin :<tagName>
 $ git fetch --prune
 $ git fetch -p
 
-# 
+# pull
 $ git pull -p
+# 使用 `git rebase` 代替 `merge` 的 pull
+git pull --rebase
 ```
 
 
@@ -832,6 +834,8 @@ $ git clean
 
 # 移除工作目录中所有未追踪的文件以及空的子目录; -f 意味着 强制 或 “确定移除”
 $ git clean -f -d
+# 或
+git clean -fd
 
 # 做一次演习然后告诉你 将要 移除什么
 $ git clean -d -n
