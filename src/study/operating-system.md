@@ -496,6 +496,9 @@ echo $PATH
 # 权限设置
 # 可用于如，屏幕提示数据显示不足够的时的操作
 chmod 777 <file_path>
+# 权限授权给指定的用户
+# 将当前目录所有文件与子目录拥有者设置给nginx、群体使用者设置给 nginxgroup
+chown -R nginx:nginxgroup *
 
 # 内容/文本查找
 # 查看当前目录下所有 html 内容<h3>标签
@@ -514,6 +517,7 @@ grep "<h3>Joshua Conero<h3/>" *.html
 
 ```shell
 # 下者等效
+# 查看文件的读写能力
 ll
 ls -l
 
@@ -788,7 +792,10 @@ unzip -v ./upgrade-list/blockd_ow-zzt-211020-02-failure.zip
 # 	-l 查看压缩的文件
 # 	-t 检查文件
 #	-o 默认覆盖所有文件（保存安全前提下请备份文件）
-# 帮助文: info unzip 
+# 帮助文: info unzip
+
+# 解压并默认覆盖已经存在的文件
+unzip -o file_name.zip
 ```
 
 
@@ -912,6 +919,25 @@ sudo passwd root
 # 用户登录
 su root
 ```
+
+
+
+### 用户与权限
+
+> 用户相关配置
+
+```shell
+# 查看系统当前的用户
+cat /etc/passwd
+
+# 查看用户的加密形式展示
+cat /etc/whadow
+
+# 查看用户分组信息
+cat /etc/group
+```
+
+
 
 
 

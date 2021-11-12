@@ -138,6 +138,9 @@ git clone https://github.com/denoland/deno.git
 # 复制 pangu 仓库
 # [--depth] 表示复制仓库的深度，即最近 commit 的次数
 git clone https://gitee.com/conero/pangu.git --depth=1
+
+# 复制仓库，且指定tag/branch，以及深度为1到新目录「jeecg-boot-v30」
+git clone --branch v3.0 --depth=1 https://gitee.com/jeecg/jeecg-boot.git jeecg-boot-v30
 ```
 
 
