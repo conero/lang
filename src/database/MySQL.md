@@ -178,7 +178,7 @@ version()	-- 版本信息
 -- 创建数据库
 create database conero DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 
--- 删除
+-- 数据库删除
 drop database conero;
 ```
 

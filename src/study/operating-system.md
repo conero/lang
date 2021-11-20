@@ -680,6 +680,7 @@ netstat -tunpl | grep 9000
 ```shell
 #系统所在目录
 #/etc/init.d/
+# 可直接编写服务脚本。
 
 # 常见的对应服务名称: `service 服务名 [start | stop | restart | reload | status]`
 # service命令启动redis脚本
@@ -866,6 +867,32 @@ iptables -I INPUT -ptcp --dport 9960 -j DROP
 iptables -I INPUT -s 127.0.0.1 -ptcp --dport 9960 -j ACCEPT
 iptables -I OUTPUT -s 127.0.0.1 -ptcp --dport 9960 -j ACCEPT
 ```
+
+
+
+#### ip
+
+> 类似于Windows 的 `ipconfig 命令`
+
+```shell
+# 查看当前的网络设备
+
+# 等同于 ipcofnig
+ip link
+
+# 等同于 ipconfig
+ip addr show
+
+# 显示核心路由表
+ip route list
+ip route show
+
+# 显示邻居路由表
+ip neigh list
+ip neigh show
+```
+
+
 
 
 
@@ -1603,6 +1630,7 @@ ZXCVBNM		自行车未帮你买
 ## 参考
 
 1. [Windows 中的键盘快捷方式](https://support.microsoft.com/zh-cn/help/12445/windows-keyboard-shortcuts)
+1. [试试Linux下的ip命令，ifconfig已经过时了 ](https://linux.cn/article-3144-1.html)
 
 
 
