@@ -349,6 +349,9 @@ netstat -ano|findstr 9108
 
 # 通过 tasklist 查看，pid 对应的进行
 tasklist|findstr "2016"
+
+#杀死进程
+taskkill /T /F /PID 9088 
 ```
 
 
