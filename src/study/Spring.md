@@ -78,6 +78,13 @@ graph TD
 
 
 
+#### 映射层
+
+常见的映射层有
+
+- JPA                         Spring-data-jpa
+- mybatis
+
 
 
 

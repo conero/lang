@@ -59,10 +59,19 @@ sqlite> .help
 #### DDL
 
 ```sqlite
+-- drop table AtGroup;
 -- AtGroup  创建表自增
 CREATE TABLE AtGroup(
     Gid            integer PRIMARY KEY autoincrement,
     GroupName       varchar(32) not null
+);
+
+-- 默认当前系统时间
+CREATE TABLE client(
+    id               integer PRIMARY KEY autoincrement,
+    account          varchar(50) not null, 						-- comment '账号'
+    password         varchar(50) not null, 						-- comment '密码'
+    create_at        datetime not null default (datetime('now', 'localtime'))
 );
 ```
 

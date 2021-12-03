@@ -426,6 +426,9 @@ update __guest_invite_notes gin join (
 ```mysql
 -- 修改 tp_auth_rule 当前自动增加主键的值
 alter table tp_auth_rule auto_increment=330;
+
+-- 新增唯一键索引
+alter table v_module add unique key AK_module_unique (module);
 ```
 
 

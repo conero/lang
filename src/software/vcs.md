@@ -273,6 +273,72 @@ $ git add README
 
 
 
+##### git commit message 规范
+
+git commit 指定message规范有利于自动化工具，如自动生成更新日志等。如 [conventionalcommits](https://www.conventionalcommits.org/zh-hans/v1.0.0/) 规范 ，[规范简介](https://www.cnblogs.com/jinzhenzong/p/13274323.html)。
+
+约定式提交规范是一种基于提交信息的轻量级约定。 它提供了一组简单规则来创建清晰的提交历史； 这更有利于编写自动化工具。 通过在提交信息中描述功能、修复和破坏性变更， 使这种惯例与 [SemVer](http://semver.org) 相互对应。
+
+
+
+> 格式
+
+```shell
+# 格式
+<type>[optional scope]: <description>
+
+[optional body]
+
+[optional footer(s)]
+
+# 翻译
+<类型>[可选 范围]: <描述>
+
+[可选 正文]
+
+[可选 脚注]
+```
+
+**类型**
+
+- `fix:` 表示修复系统中的一个bug，与语义化版本的 patch 相对应
+- `feat:` 表示代码中新增了一个功能，与语义化版本的 minor 相对应
+- `BREAKING CHANGE:` 或 <类型>(范围) 后面有一个 `!` 的提交表代码中引入了破坏性API更变，与语义化版本的 major 相对应。简化为 `breaking`
+- `doc:` 表示文档更新
+- `test:` 表示系统增加相关的测试脚本等
+- `style:` 代码风格
+- `revert:` 撤销
+- `chore:` 改变构建流程、或者增加依赖库、工具等
+- `init：`新建库
+- `build: `改变了build工具 如 grunt换成了 npm
+
+
+
+**示例**
+
+```shell
+# 包含了描述并且脚注中有破坏性变更的提交说明
+feat: allow provided config object to extend other configs
+BREAKING CHANGE: `extends` key in config file is now used for extending other config files
+
+# 包含了 ! 字符以提醒注意破坏性变更的提交说明
+feat!: send an email to the customer when a product is shipped
+# 包含了 ! 字符以提醒注意破坏性变更的提交说明
+feat(api)!: send an email to the customer when a product is shipped
+
+# 包含了 ! 和 BREAKING CHANGE 脚注的提交说明
+chore!: drop support for Node 6
+
+# 不包含正文的提交说明
+docs: correct spelling of CHANGELOG
+```
+
+
+
+
+
+
+
 #### 日志(log)
 
 > `$ git log`
