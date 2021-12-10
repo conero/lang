@@ -36,11 +36,13 @@
 
 ### LNMP
 
-**CentOS 7.3**
+#### CentOS 7.3
 
 Linux 编译时或者部署过程中注意系统用户权限的问题，如Nginx应用可能无法访问 root 用户下的文件/目录等。
 
 liunx php 编译时，使用 `--with-<extension>` 为内置的编译法，即PHP内部自动包含对应扩展，也无需在 `php.ini` 内添加相应的扩展。
+
+启动系统对应应用安装命令：`sudo apt install`
 
 ```shell
 # 安装编译环境
@@ -111,6 +113,28 @@ $ netstat -tln | grep 9000
 # php-fpm 的进程号
 $ ps -aux|grep php-fpm
 ```
+
+
+
+#### Ubuntu
+
+Ubuntu 安装与 CentOs 类似，常见的错误修复如下：
+
+```shell
+# bzip2 libbz2-dev
+sudo apt-get install bzip2 libbz2-dev
+
+# curl-devel
+apt-get install libcurl4-openssl-dev -y
+
+# libpng-dev
+sudo apt-get install libpng-dev
+
+# 其他依赖
+# libxml2-dev libjpeg-dev 
+```
+
+
 
 
 
