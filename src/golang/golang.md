@@ -137,6 +137,30 @@ func TestName (t *testing.T)
 
 
 
+**Benchmark**  golang 自带的基准测试：
+
+```go
+func BenchmarkStructToMapLStyle(b *testing.B) {
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		StructToMapLStyle(tom)
+	}
+}
+
+
+// goos: windows
+// goarch: amd64
+// pkg: gitee.com/conero/uymas/util
+// cpu: xxx(R) Core(TM) i5-10200H CPU @ 2.40GHz
+// BenchmarkStructToMapLStyle
+// BenchmarkStructToMapLStyle-8   	   90331	     12899 ns/op
+// 标识循环：90331 次, 每次循环花费的时间: 12899 ns.
+```
+
+
+
+
+
 ### fetch
 
 > $> go fetch {url}   获取并安装远程包
