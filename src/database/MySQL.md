@@ -73,6 +73,47 @@ alter user 'root'@'localhost' identified by 'password';
 
 
 
+### mysql8.0 rpm 版本安装
+
+操作系统环境：`centOS8 x86_64` MySQL8.0.27
+
+
+
+**依赖关系**
+
+- mysql-community-server-8.0.27-1.el8.x86_64.rpm
+    - mysql-community-8.0.27-1.el8.src.rpm
+    - mysql-community-client-8.0.27-1.el8.x86_64.rpm
+        - mysql-community-client-plugins
+        - mysql-community-libs
+
+```shell
+# 依赖安装示例
+wget https://repo.mysql.com/yum/mysql-8.0-community/el/8/x86_64/mysql-community-client-8.0.27-1.el8.x86_64.rpm
+wget https://repo.mysql.com/yum/mysql-8.0-community/el/8/x86_64/mysql-community-common-8.0.27-1.el8.x86_64.rpm
+
+# rpm 安装
+rpm -ivh ./mysql-community-server-8.0.27-1.el8.x86_64.rpm
+
+# mysqld 初始化
+mysqld --initialize --console
+
+# 启动服务
+service mysqld start
+# 服务状态查询
+service mysqld status
+
+# 查看 mysql 安装情况
+rpm -qa |grep mysql
+
+# mysql 无权限的问题。对资源文件进行授权
+chown mysql.mysql -R /var/lib/mysql
+# 查看原始密码
+ cat /var/log/mysqld.log
+```
+
+
+
 
 ### 5.7 
 
@@ -1015,6 +1056,8 @@ update mysql.user set password=password('新密码') where User='phplam' and Hos
 grant all privileges on zhangsanDb.* to zhangsan@'%' identified by 'zhangsan';
 -- 授权给数据库无须更变密码
 grant all privileges on zhangsanDb.* to zhangsan@'%';
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'192.168.199.99';
+
 flush privileges;
 
 -- 查看用户权限

@@ -705,6 +705,12 @@ lsof -i:<port>
 netstat -lnt|grep 9000
 
 netstat -tunpl | grep 9000
+
+# 当前的端口开发情况
+# udp 协议
+netstat -nupl
+# tcp 协议
+netstat -ntpl
 ```
 
 
@@ -1020,6 +1026,9 @@ cat /proc/cpuinfo | grep name | cut -f2 -d: |uniq -c
 
 #linux 版本
 cat /proc/version
+
+# 查看liunx发新版的信息
+cat /etc/*-release
 ```
 
 
@@ -1261,7 +1270,8 @@ $ rpm -qa | grep libxml2
 
 
 
-*[rpm 软件下载地址](http://www.rpmfind.net/linux/RPM/)*
+- *[rpm 软件下载地址](http://www.rpmfind.net/linux/RPM/)*
+- 地址2 https://pkgs.org/
 
 
 
