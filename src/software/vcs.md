@@ -187,6 +187,19 @@ git clone --branch v3.0 --depth=1 https://gitee.com/jeecg/jeecg-boot.git jeecg-b
 
 
 
+```shell
+# 暂时忽略文件的的方法（类似本地文件锁定模式）
+# 如忽略文件：cmd/exporter/main.go (已提交到git中，暂时忽略)
+git update-index --assume-unchanged cmd/exporter/main.go
+
+# 取消忽略文件
+git update-index --no-assume-unchanged cmd/exporter/main.go
+```
+
+
+
+
+
 > **`$ git diff`   此命令比较的是工作目录中当前文件和暂存区域快照之间的差异， 也就是修改之后还没有暂存起来的变化内容。**
 
 

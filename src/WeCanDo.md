@@ -61,6 +61,18 @@ linkd uploads-rename ../uploads
 
 
 
+### 微信、火狐浏览器、系统搜索十分缓慢的解决方案
+
+因系统使用专门的清理工具对系统文件清理，操作部分软件网络连接十分缓慢；此外 chm 页面打开也存在很大的问题。
+
+解决方案是：
+
+- 删除或重命名文件夹 `C:\Users\用户\AppData\Local\Microsoft\Windows\WebCache`。 WebCache清除后恢复正常。
+
+
+
+
+
 ## 内网穿透，外部网络访问本地网站
 
 ### natapp
