@@ -47,6 +47,21 @@
 
 
 
+## 启动过程
+
+相关操作文献：**计算机原理**。
+
+
+
+启动过程：`Hardware --> BIOS --> BootLoader --> Kernel`。
+
+- （BIOS自检、系统引导）BIOS 检测硬件以及初始化中间表并将BootLoader加载到内存，且控制权移交到BootLoader。
+- （启动内核、初始化系统）BootLoader把Kernel写入内存，并执行kernel的 entry point（入口点/初始化程序） 和设置 virtual memory的映射关系。
+
+ 
+
+
+
 
 
 # <span id="menu_unix">UNIX</span> 1970
@@ -389,7 +404,31 @@ taskkill /T /F /PID 9088
 
 
 
+# wmic
 
+WMI   为 *Windows Management Instrumentation (WMI)* 的缩写。Windows管理规范 (WMI) 使用通用信息模型 (CIM) 来表示新式企业的系统、应用程序、网络、设备和其他可管理组件。
+
+WMI command-line (WMIC)，即 WMI 命令行工具。其在 Win10/21H1已遗弃，可使用 powershell 替代。 
+
+```shell
+# 获取 bios 的 SN 码（序列号）
+wmic bios get serialnumber
+
+# powershell 版本（查询SQL）
+Get-CimInstance -Query 'Select * from Win32_BIOS'
+
+# 获取硬盘序列号
+wmic diskdrive get serialnumber
+wmic path win32_physicalmedia get SerialNumber
+wmic path Win32_DiskDrive get SerialNumber
+
+# 获取硬盘其他信息
+wmic diskdrive get Name, Manufacturer, Model, InterfaceType, MediaType, SerialNumber
+```
+
+注：
+
+- BIOS             *Basic Input Output System*,基本输入输出系统。
 
 
 

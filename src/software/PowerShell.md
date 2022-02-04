@@ -992,6 +992,28 @@ Get-CimInstance -Class Win32_Printer
 
 
 
+#### WMI/CIM
+
+```shell
+# 通过SQL查询 Win32_BIOS 的信息。
+Get-CimInstance -Query 'Select * from Win32_BIOS'
+
+# 通过类名调用
+Get-CimInstance -ClassName Win32_BIOS
+
+#直接获取序列号
+(Get-CimInstance -ClassName Win32_BIOS -Property SerialNumber).SerialNumber
+
+# 搜索或查看类名
+Get-WmiObject -List *
+Get-WmiObject -List Win32_*
+Get-WmiObject -List Win32_*|Select-Object name
+```
+
+
+
+
+
 ### 其他
 
 ```powershell

@@ -474,6 +474,23 @@ alter table v_module add unique key AK_module_unique (module);
 
 
 
+#### 条件/where
+
+##### like
+
+like 查询默认不区分大小
+
+```mysql
+-- 查询拼音不区分大小写
+select * from member where pinyin like 'z%';
+
+-- 在 like 后加入 <binary> 则区分大小写
+select * from member where pinyin like binary 'z%';
+
+-- 亦可建表是指定字段区分大小写
+create table member(pinyin varchar(20) binary);
+```
+
 
 
 #### @/@@ 的区别
