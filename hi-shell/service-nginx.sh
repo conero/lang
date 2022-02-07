@@ -1,6 +1,6 @@
 #!/bin/sh
+# --> 文件命名: /etc/init.d/nginx
 # linux nginx 服务脚本: 2021年11月18日 星期四
-#  /etc/init.d/
 # 语法: service [serviceName] [signal]
 # service nginx start
 
