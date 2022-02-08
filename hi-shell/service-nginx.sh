@@ -21,6 +21,7 @@ start()
 {
     echo "服务启动中……"
     /usr/local/nginx/sbin/nginx
+    echo "[SUCCESS] 服务已启动！"
     exit 0;
 }
 
@@ -29,6 +30,7 @@ stop()
 {
     echo "服务停止中……"
     /usr/local/nginx/sbin/nginx -s stop
+    echo "[SUCCESS] 服务已停止！"
     exit 0;
 }
 
@@ -36,6 +38,7 @@ reload()
 {
     echo "服务重载中……"
     /usr/local/nginx/sbin/nginx -s reload
+    echo "[SUCCESS] 服务已重载配置文件！"
     exit 0;
 }
 
