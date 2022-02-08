@@ -27,14 +27,14 @@ start()
 # 服务停止
 stop()
 {
-    echo "\033[35m服务停止中…… \033[0m"
+    echo -e "\033[35m服务停止中…… \033[0m"
     /usr/local/nginx/sbin/nginx -s stop
     echo -e "\033[32m [SUCCESS] \033[0m 服务已停止！"
 }
 
 reload()
 {
-    echo "\033[35m服务重载中…… \033[0m"
+    echo -e "\033[35m服务重载中…… \033[0m"
     /usr/local/nginx/sbin/nginx -s reload
     echo -e "\033[32m [SUCCESS] \033[0m 服务已重载配置文件！"
 }
