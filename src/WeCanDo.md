@@ -251,3 +251,12 @@ https://developers.google.cn/
 1. [启用后无法上网](http://www.ccproxy.com/support_c01.htm)
 2. 下载，[以及使用方法介绍](https://www.onlinedown.net/soft/4156.htm)
 
+
+
+
+
+### 代码
+
+- 代码统计工具
+  - https://github.com/XAMPPRocky/tokei                         rust 编写，计算快。
+  - https://github.com/AlDanial/cloc                                    perl编写

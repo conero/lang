@@ -75,15 +75,17 @@ $ yum -y install openssl*
 # 依赖安装
 $ yum install -y libxml2*
 $ wget https://www.php.net/distributions/php-7.3.5.tar.gz
+#使用：--no-check-certificate 取消证书检测
+#$ wget --no-check-certificate https://www.php.net/distributions/php-7.2.34.tar.gz
 $ tar -xzvf <tag.gz>
 # 配置文件
 $ ./buildconf --force
 $ ./configure
 # 编译
-# 有事需要清理编译环境 `make clean`
+# 重复时需要清理编译环境 `make clean`
 $ make && make install
 
-# [TIP] 此方法安装的 php-fpm 版本可能存在于当前PHP版本不对应（不推荐此方法）
+# [TIP] 此方法安装的 php-fpm 版本可能存在与当前PHP版本不对应（不推荐此方法）
 # 可使用编译选项（如）
 ./configure \
 --with-openssl \
@@ -105,10 +107,17 @@ $ make && make install
 --enable-sockets \
 --enable-mysqlnd \
 --with-gd
-# ./configure --with-freetype-dir=/usr/include/freetype2 --with-jpeg-dir=/usr/include --with-png-dir=/usr/include
+# ./configure --with-freetype-dir --with-jpeg-dir --with-png-dir
 
 # 启动 php-fpm
 /usr/local/sbin/php-fpm
+#
+# 将 php-fpm 作为系统服务。 
+# 创建服务脚本
+# cp ~/sapi/fpm/init.d.php-fpm /etc/init.d/php-fpm
+# 创建系统默认配置
+# cp ~/sapi/fpm/php-fpm.conf.in /usr/local/etc/php-fpm.conf
+# cp /usr/local/etc/php-fpm.d/www.conf.default /usr/local/etc/php-fpm.d/www.conf
 
 # 杀死进程
 $ killall php-fpm
@@ -125,17 +134,31 @@ $ ps -aux|grep php-fpm
 Ubuntu 安装与 CentOs 类似，常见的错误修复如下：
 
 ```shell
+# CentOS 使用 [yum install] 进行安装
 # bzip2 libbz2-dev
 sudo apt-get install bzip2 libbz2-dev
 
 # curl-devel
 apt-get install libcurl4-openssl-dev -y
 
+# curl 升级
+# centOS
+# yum update curl -y
+# yum install curl-devel -y
+
 # libpng-dev
 sudo apt-get install libpng-dev
 
 # 其他依赖
-# libxml2-dev libjpeg-dev 
+# jpeglib.h not found
+# Ubuntu: 
+sudo apt-get install libxml2-dev libjpeg-dev 
+# centos: 
+# libjpeg-devel freetype-devel
+yum install libjpeg libpng freetype libjpeg-devel libpng-devel freetype-devel -y
+
+# error: png.h not found
+yum install libpng libpng-devel -y
 ```
 
 
@@ -316,6 +339,14 @@ echo $$a;
 *对于`单入口文件`+`地址重写` 等模式，可以仅仅在入口文件进行 `session_start()`操作即可。而多文件访问项目中，在涉及session相关的页面需要单独申明。*
 
  
+
+### fpm
+
+fpm  为 *FastCGI Process Manager* 的简称，即FastCGI 进程管理器。cgi   为 *Common Gateway Interface*，即通用网关接口，作为 Web 服务器调用外部程序时所使用的一种服务端应用的规范。cgi 可实现静态资源的web页面的动态请求，fpm是 php 版本的 FastCGI 协议实现。
+
+
+
+
 
 ### 配置(php.ini)
 
