@@ -54,6 +54,17 @@ sqlite> .help
 
 
 
+#### 字符串函数
+
+```sqlite
+-- replace 替换字符串
+update website_resources set "path" = replace("path", 'https://swt.gz.gov.uk', '') where is_foreign = 0 and "path" like 'http%';
+```
+
+
+
+
+
 ### 脚本示例
 
 #### DDL
