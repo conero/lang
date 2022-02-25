@@ -223,7 +223,10 @@ if ($args -contains "-d"){
 $arr = @(20, 20, 5, 14)
 # 等同于: 
 20,20,5,14
-
+# 空数组
+$arr = @()
+# append 元素 <10>
+$arr += 10
 
 # 结构化
 # name => value
@@ -955,6 +958,34 @@ stop-job -Id 1
 start-job -ScriptBlock {
 	sleep 5; Write-Host "Hello world.";
 }
+
+# 多进程并发, Wait-Job 进程需完成
+for($i=0; $i -lt 5; $i++){ `
+	# 启动任务（可实现并发的延迟执行）
+    start-job -ScriptBlock { `
+    	Write-Host -ForegroundColor Gray "($i)Hello world."; `
+        Start-Sleep 3; `
+    } | Wait-Job `
+}
+
+# 
+# 多进程并发, Wait-Job 进程需完成
+for($i=0; $i -lt 5; $i++){ 
+	# 启动任务（可实现并发的延迟执行）
+    start-job -name "jc$i" -ScriptBlock { 
+    	Write-Host -ForegroundColor Gray "($i)Hello world."; 
+        Start-Sleep 3; 
+    } 
+} 
+foreach($job in Get-Job){ 
+    $state = [string]$job.State 
+    if($state -eq "Completed"){   
+        Write-Host($job.Name + " 已经完成，结果如下：") 
+        Receive-Job $job 
+    } 
+    Start-Sleep 1 
+}
+
 
 # 使用 ps1 脚本作为任务
 start-job -name gzh-runing -FilePath ./script_mg.ps1

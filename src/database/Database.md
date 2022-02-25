@@ -88,3 +88,17 @@ CREATE TABLE client(
 
 
 
+##### update
+
+数据更新
+
+```sqlite
+-- 使用 replace into 实现 update join. replace into 必须列出全部的列
+-- insert or replace into  可是先新增或合并数据，根据表的约束条件
+replace into website_elements("id", "path")
+	select we.id, SUBSTRING(we."path", LENGTH(w.url)+1) from website_elements we
+		join websites w on we.site_id = w.id
+		where instr(we."path", w.url) > 0
+; 
+```
+
