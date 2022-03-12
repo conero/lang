@@ -97,7 +97,29 @@ java -cp SimpleTest.jar SimpleTest
   - 数值(数据容量：`[0, (2^bit)-1]`, 有符号: `[-2^(bit-1), 2^(bit-1)-1]` )
     - 整数(位)：byte(8), short(16), int(32), long(64),
     - 浮点数：float(32), double(64)
-- 符合类型：list, map
+- 引用类型：String, list, map
+  - 容器（集合）：list,queue,set,map
+
+
+
+
+```mermaid
+graph TD
+	collect-->list-->ArrayList
+	collect-->queue-->LinkedList
+	list-->LinkedList
+	collect-->set-->HashSet
+	
+	map-->HashMap
+```
+
+
+
+
+
+基本类型基于**值**，对象类型基于**引用**；基本类型的取值范围是固定，不会根据计算机的环境而变化。引用类型分为：强引用、软引用、弱引用、虚引用。
+
+
 
 
 
@@ -137,11 +159,26 @@ class VariableConst{
 
 
 
+##### 类型转换
+
+- 自动类型转换：小字节(存储)自动转化为大字节（反之存在值截断，精度丢失）。`byte -> char(short) -> int > long -> float -> double`
+- 强制类型转化：大字节强制转化为小字节，存在精度丢失的现象。
+
 
 
 
 
 #### 语句
+
+主要流程控制，if/switch/while/do-while/for 等，其语法与 js 等对应的语法一致。
+
+
+
+
+
+#### 对象
+
+java 顶级对象为 `java.lang.Object`.
 
 
 
@@ -180,3 +217,5 @@ class VariableConst{
 ### 参考
 
 - [java 基本类型](https://www.cnblogs.com/doit8791/archive/2012/05/25/2517448.html)
+- [廖雪峰java教程](https://www.liaoxuefeng.com/wiki/1252599548343744)
+- [java四种引用类型](https://www.cnblogs.com/liyutian/p/9690974.html)
