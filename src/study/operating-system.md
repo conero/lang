@@ -404,6 +404,28 @@ taskkill /T /F /PID 9088
 
 
 
+## wsl
+
+> Windows Subsystem for Linux(wsl)，windows liunx子系统。
+
+```shell
+# 查查看系统 wsl子系统列表
+wsl --list --verbose
+# 简写
+wsl -l -v
+
+# 升级 wsl1 --> wsl2, 其中 Ubuntu-20.04为实例名称
+wsl --set-version Ubuntu-20.04 2
+# 设置 wsl默认为2版本
+wsl --set-default-version 2
+```
+
+
+
+
+
+
+
 # wmic
 
 WMI   为 *Windows Management Instrumentation (WMI)* 的缩写。Windows管理规范 (WMI) 使用通用信息模型 (CIM) 来表示新式企业的系统、应用程序、网络、设备和其他可管理组件。
@@ -1162,6 +1184,9 @@ sudo apt-get update
 
 # 包搜索
 sudo apt search <name>
+
+# 查看系统所有服务列表
+service --status-all
 ```
 
 

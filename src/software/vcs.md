@@ -483,6 +483,9 @@ git tag
 
 # 查看服务器对应的标签列表（列出远程存储库上的标记）
 git ls-remote --tags origin
+
+# 拉取远程tag（本地不存在）
+git fetch origin v2.1.3
 ```
 
 

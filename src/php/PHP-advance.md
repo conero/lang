@@ -59,7 +59,7 @@ $ ./configure					编译安装
 # error: the HTTP rewrite module requires the PCRE library.(pcre-devel)
 yum -y install pcre-devel
 
-$ make							安装/ make install
+$ make && make install							
 
 # 启动 nginx
 $ /usr/local/nginx/sbin/nginx
@@ -170,6 +170,17 @@ yum install libpng libpng-devel -y
 ```shell
 ./configure --with-pdo-mysql --enable-bcmath --enable-mbstring --enable-sockets --with-gd --with-gettext --with-config-file-path=/usr/local/php/etc
 ```
+
+
+
+也可直接去Ubuntu官网拉取对应的应用：
+
+```shell
+# 安装默认的 nginx 版本
+apt install nginx
+```
+
+
 
 
 
