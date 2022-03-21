@@ -138,8 +138,15 @@ Ubuntu 安装与 CentOs 类似，常见的错误修复如下：
 # bzip2 libbz2-dev
 sudo apt-get install bzip2 libbz2-dev
 
+# 安装 - libssl-dev
+sudo apt-get install libssl-dev
+
 # curl-devel
-apt-get install libcurl4-openssl-dev -y
+apt-get install libcurl4-openssl-dev curl-devel -y
+
+# php 7.3 easy.h should be in <curl-dir>/include/curl/
+cd /usr/local/include sudo ; ln -s /usr/include/x86_64-linux-gnu/curl curl
+sudo apt-get install libcurl4-gnutls-dev
 
 # curl 升级
 # centOS

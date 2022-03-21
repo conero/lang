@@ -415,12 +415,17 @@ wsl --list --verbose
 wsl -l -v
 
 # 升级 wsl1 --> wsl2, 其中 Ubuntu-20.04为实例名称
+# wsl --set-version <distro name> 2
 wsl --set-version Ubuntu-20.04 2
+# 可能需呀执行ps -> 
+#         dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
 # 设置 wsl默认为2版本
 wsl --set-default-version 2
 ```
 
 
+
+wsl2 访问其文件系统：`\\wsl$`。wsl2 内部映射ip地址执行 `grep -m 1 nameserver /etc/resolv.conf | awk '{print $2}'`.
 
 
 
@@ -715,6 +720,9 @@ stat <file_path>
 cp -rf ./svn-173/* ./
 cp -r ./dir-all/. ./new-dirall
 # 重新提醒，输入: y  才行
+
+# 相对地址转绝对地址
+readlink -f ./
 ```
 
 
@@ -1187,6 +1195,11 @@ sudo apt search <name>
 
 # 查看系统所有服务列表
 service --status-all
+
+# 显示已安装软件列表
+dpkg -l
+# 添加搜索值
+dpkg -l | grep openssl
 ```
 
 
@@ -1392,6 +1405,10 @@ v 			 进入可视化模式
 #选中文本后的执行命令
 d			 删除内容
 y			 复制到内容到0寄存器
+yy		     复制光标所在的那一行
+nyy			 复制光标所在的向下n行
+p			 粘贴内容
+dd			 删除所在行
 
 #
 # 撤回操作
