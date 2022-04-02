@@ -463,6 +463,9 @@ $env:Path -split ";"
 
 # 字符串分割
 "Joshua".Split("s")
+
+# 将字符串作为命令执行
+Invoke-Expression "$cmd $cmd_args" 
 ```
 
 

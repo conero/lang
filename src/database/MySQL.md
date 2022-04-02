@@ -245,8 +245,12 @@ timestamp	-- 时间戳。    字节数为4,  取值范围: [19700101080001 - 203
 select
 	curdate() as 当前日期, current_date as `常量同义-日期`,
 	curtime() as 当前时间, current_time as `常量同义-时间`,
-	curtime() as 当前时间戳, now(), current_timestamp as `常量同义-时间戳`
+	curtime() as 当前时间戳, now(), current_timestamp as `常量同义-时间戳`,
+	UNIX_TIMESTAMP(now()) as `时间转时间戳`,
+	UNIX_TIMESTAMP('2006-01-02 15:04:05') as `时间转时间戳2`,
+	FROM_UNIXTIME(UNIX_TIMESTAMP(NOW())) as `时间戳转时间`
 ;
+
 
 -- 计算时间查：datetime 类型
 select r.lock_tm, current_timestamp() `now`, TIMESTAMPDIFF(second, r.lock_tm, current_timestamp()) diff_sec from r_beffq_video_attach_queue r;
@@ -456,6 +460,20 @@ update __guest_invite_notes gin join (
 	set gin.exhibition_id=tt.exhibition_id
 	where gin.guest_id=tt.guest_id
 ;
+```
+
+
+
+#### create
+
+快速建表
+
+```mysql
+-- 创建 test_tb 的附表，并将数据转入表 copy_test_tb
+create table copy_test_tb as select * from test_tb;
+
+-- 创建 test_tb 结构相等的附表
+create table copy_test_tb_struct like test_tb;
 ```
 
 
@@ -1245,6 +1263,9 @@ mysqldump -uroot -p --default-character-set=utf8 dataset --result-file=dump.sql
 # needtoKnowMore
 mysqldump -uroot -p --default-character-set=utf8 dataset tablename > d:/tmp/tablename.sql
 mysqldump -uroot -p --default-character-set=utf8 dataset tablename --result-file=d:/tmp/tablename.sql
+
+# 选项
+# --no-data 无数据
 
 # 远程测试，可能导致其他链接缓慢。
 # 导出测试的服务器所在数据库 "207.12.24.56"
