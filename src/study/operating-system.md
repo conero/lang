@@ -1386,6 +1386,14 @@ $ rpm -qa | grep libxml2
 
 :显示行号
 :set number 
+:set nu
+
+# tab 移动
+:m,n>  # m到n行右移一个tab
+:m,n<  # m到n行左移一个tab
+# 多行的话类似，如右移2个tab
+:m,n>> 
+
 
 #
 # 跳转至行号

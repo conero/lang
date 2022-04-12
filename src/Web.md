@@ -85,6 +85,32 @@ _FastCGI像是一个常驻(long-live)型的CGI，它可以一直执行着，只�
 
 > *__Web 3.0__ 区块链技术和加密货币等的技术总称*
 
+世界正在慢慢向 Web 3.0 迈进。未来 Web 将由云解决方案和机器学习主导。
+
+
+
+
+
+### 基础知识
+
+#### 屏幕宽度
+
+可使用浏览器的屏幕模拟工具调整
+
+| PC   | 尺寸        | 备注 |
+| ---- | ----------- | ---- |
+|      | 1920 × 1080 |      |
+|      | 1440 × 900  |      |
+|      | 1366 × 768  |      |
+|      | 1280 × 800  |      |
+|      | 1280 × 720  |      |
+|      | 1366 × 768  |      |
+|      | 1024 × 768  |      |
+
+
+
+
+
 
 
 ## HTTP
@@ -339,7 +365,31 @@ ln -s /usr/local/nginx/sbin/nginx /usr/local/bin/
 # 不在项目所在的根目录，指定命令时报错；由于项目项目配置以根目录为标准
 nginx: [alert] could not open error log file: CreateFile() "logs/error.log" failed (3: The system cannot find the path specified)
 2019/07/26 22:26:49 [emerg] 20168#19264: CreateFile() "D:\tmp\CroIns-Php\resource/conf/nginx.conf" failed (3: The system cannot find the path specified)
+
+# 需要跳转至 nginx 所在目录，可使用 nssm 来安装一个信息服务。
 ```
+
+参考 nssm 服务  http://www.nssm.cc/download，安装服务如下：
+
+```yaml
+# nginx
+- Application Path: D:\conero\~\nginx-1.20.2\nginx.exe
+- Startup Directory: D:\conero\~\nginx-1.20.2
+
+# php-cgi
+- Application Path: D:\conero\~\php\php-cgi.exe
+- Startup Directory: D:\conero\~\php
+- Arguments: -b 127.0.0.1:9000
+
+```
+
+
+
+
+
+
+
+
 
 
 
@@ -424,6 +474,16 @@ http-server [path] [options]
 **吞吐量** 是指单位时间内系统能处理的请求数量，体现系统处理请求的能力，这是目前最常用的性能测试指标。
 
 `QPS（TPS）= 并发数 / 平均响应时间`
+
+
+
+### 技术栈
+
+- lamp                  linux+Apache+mysql+php
+- lnmp                  linux+nginx+mysql+php
+- mean                 MongoDB，Express，Angular，Node
+- mern                  MongoDB、Express、React、Node.js
+- menv                  MongoDB、Express、Node.js、vue.js
 
 
 

@@ -498,6 +498,15 @@ Invoke-Expression "$cmd $cmd_args"
 
 `-ErrorAction`  可以在单条语句中简单的控制异常信息。别名`ea`，可设置的值 `Suspend, Ignore, Inquire, Continue, Stop, SilentlyContinue` 。参考[通用选项](https://docs.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about_commonparameters)
 
+```powershell
+# 手动抛出异常
+throw "This is an error."
+```
+
+
+
+
+
 
 
 
@@ -515,6 +524,8 @@ Invoke-Expression "$cmd $cmd_args"
 Get-Command
 # 获取当前会话的所有命令集
 Get-Command *
+# 获取 “-path” 目录
+Get-Command *-path*
 
 # get-command + tab键 可以快速查询
 # 查找“Get-”开头的命令
@@ -735,6 +746,13 @@ if(-not (Test-Path -Path $path )){
 Test-Path $dir -PathType Container
 # 目录检测
 Test-Path $filepath -PathType Leaf
+
+# 获取 “../runtime”相对地址的绝对地址
+Resolve-Path ../runtime
+# Convert-Path 也可实现
+Convert-Path ../runtime
+# 获取其目录
+Split-Path D:/conero/phpapps/bin/nginx-1.20.2/nginx.exe
 
 
 # 路径
@@ -1227,6 +1245,7 @@ System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 ## 参考
 
 - <https://microsoft.com/powershell>
+- [powershell 中文文档2](https://docs.microsoft.com/zh-cn/powershell/scripting/overview?view=powershell-7.2)
 - [PowerShell 中文博客](https://www.pstips.net/)
 
 
