@@ -304,6 +304,9 @@ Get-ChildItem | Sort-Object -Property Name -Descending
 # 遍历: ForEach-Object
 @(1,3,5,6,7,9,100) | ForEach-Object -Process {$_*10}
 
+# 变量当前目录下的所有文件，并以"file $_" 按行输出
+ls -Name | ForEach-Object -Process {echo "file $_"} > merge-220416.txt
+
 #
 # New-Object 创建 .Net Framework 对象/ COM 
 
