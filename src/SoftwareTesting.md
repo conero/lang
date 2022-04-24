@@ -30,6 +30,45 @@
 
 
 
+### web 压测
+
+#### 概念
+
+压测的目的是在于找到系统的瓶颈，一定是要确定系统某个方面达到瓶颈了，压力测试才算是基本完成。最理想的系统是低延迟，高吞吐。
+
+- 测试环境（与生成环境尽可能一致）
+- 基准值
+  - 延迟(latency)
+  - 吞吐量(thoughtout)            QPS
+  - 峰值并发数                                   用户访问并发数
+  - 峰值响应时间
+
+
+
+#### 工具
+
+- go 语言版本
+  - [vegeta 压测工具](https://github.com/tsenart/vegeta)    可以固定的 QPS 来压测服务。
+  - [ddosify 压测工具](https://github.com/ddosify/ddosify)
+  - [nakabonne/ali 实时生成图标](https://github.com/nakabonne/ali)
+- java版本
+  - [jmeter](https://github.com/apache/jmeter) Apache图形化压测工具
+- ab     Apache http web自带的压测工具。ab是单线程程序，只能利用单一CPU，在给性能好的服务器端应用做压测时，往往跑ab的测试机负荷满了；而服务器应用的性能还绰绰有余。
+
+
+
+
+
+vegeta 的使用，powershell 环境错误，shell 正常。
+
+```shell
+echo "GET https://www.gy-imcloud.com" | vegeta attack -rate=10/s > results.gob
+```
+
+
+
+
+
 ### 灰度测试
 
 *灰度测试环境就是生产环境，生产数据，所影响的也是生产环境，只是范围比测试环境更广，更真实。其实就是小范围的生产环境。类似于游戏内测。*

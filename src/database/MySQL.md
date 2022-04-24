@@ -415,6 +415,15 @@ truncate (table) tb_name;
 
 #### select
 
+```mysql
+-- find_in_set
+select find_in_set(1, '2,5,1,9,2');   -- 3
+```
+
+
+
+
+
 ##### 随机字段
 
 *使用 `rand()` 随机函数查询随机行*
