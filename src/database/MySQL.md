@@ -422,6 +422,17 @@ select find_in_set(1, '2,5,1,9,2');   -- 3
 
 
 
+自定义字段信息排序
+
+```mysql
+-- 自定义字段排序信息排序
+SELECT * from member bm where id in (472, 98, 519) 
+	order by field(id, 472, 98, 519)
+;
+```
+
+
+
 
 
 ##### 随机字段
@@ -516,6 +527,12 @@ select * from member where pinyin like binary 'z%';
 
 -- 亦可建表是指定字段区分大小写
 create table member(pinyin varchar(20) binary);
+
+-- 查询等于时也无法区分大小写
+-- 不区分大小写
+select * from bigexp_config bc where `key` = 'main';
+-- 区分大小写
+select * from bigexp_config bc where binary `key` = 'main';
 ```
 
 

@@ -150,9 +150,17 @@ screenX, screenY	//	screen 屏幕坐标系
 
 ## MVVM
 
+响应是框架，双向数据绑定，是指 数据层（`Model`）、视图层（`View`）、数据视图（`ViewModel`）的响应框架。
+
+
+
 
 
 ## jQuery
+
+### issuse
+
+- `v1.12.4`  发现 `attr` 与 `data` 方法交叉设置和取值得到的数据不一致，区别在于后者是单向绑定而不更新DOM。
 
 
 

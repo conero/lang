@@ -759,6 +759,9 @@ Convert-Path ../runtime
 # 获取其目录
 Split-Path D:/conero/phpapps/bin/nginx-1.20.2/nginx.exe
 
+# 打开当前目录
+explorer.exe $(Resolve-Path ./).Path
+explorer.exe $(pwd).Path
 
 # 路径
 cd $path
@@ -781,6 +784,9 @@ dir -path ./*php -Recurse
 
 # 查找文件并删除文件
 Get-ChildItem -Recurse $path/config/*TAGprivate* | Remove-Item
+
+# 输出含自定义的文件列表
+Get-ChildItem ./ -Name "《寰宇视野》 20171231 大太平洋 第一集*" | foreach{ echo "file $_"}
 ```
 
 
@@ -1076,6 +1082,9 @@ Get-WmiObject -List Win32_*|Select-Object name
 ```powershell
 # 获取 ip 地址
 Get-NetIPAddress | Where-Object {$_.AddressFamily -eq 'IPv4'} | ForEach-Object IPAddress | ConvertTo-Json
+
+# 随机数播放
+Get-Random -Maximum 50
 ```
 
 
