@@ -140,6 +140,50 @@ alter user 'root'@'localhost' identified by 'password';
 
 
 
+#### mysql5.7 rpm Centos7
+
+CentOs7 项目安装：
+
+```shell
+#CentOS7 mysql 安装
+# 下载相关的 rpm 包文件
+wget https://repo.mysql.com/yum/mysql-5.7-community/el/7/x86_64/mysql-community-server-5.7.38-1.el7.x86_64.rpm
+wget https://repo.mysql.com/yum/mysql-5.7-community/el/7/x86_64/mysql-community-common-5.7.38-1.el7.x86_64.rpm
+wget https://repo.mysql.com/yum/mysql-5.7-community/el/7/x86_64/mysql-community-client-5.7.38-1.el7.x86_64.rpm
+wget https://repo.mysql.com/yum/mysql-5.7-community/el/7/x86_64/mysql-community-libs-5.7.38-1.el7.x86_64.rpm
+
+
+# 执行安装
+rpm -ivh mysql-community-common-5.7.38-1.el7.x86_64.rpm
+rpm -ivh mysql-community-libs-5.7.38-1.el7.x86_64.rpm
+rpm -ivh mysql-community-client-5.7.38-1.el7.x86_64.rpm
+rpm -ivh libaio-0.3.109-13.el7.x86_64.rpm
+
+# mysql 初始化
+mysqld --initialize --console
+
+# mysql 权限设置
+chmod -R 777 /var/lib/mysql
+
+# 启动服务
+service mysqld start
+```
+
+
+
+依赖关系
+
+
+- mysql-community-server
+    - mysql-community-client
+        - mysql-community-common
+    - mysql-community-libs
+    - libaio-0.3.109-13.el7.x86_64.rpm
+
+
+
+
+
 ### 附带的工具/命令集
 
 - mysql				*数据 SQL 交互对话，用于表查询等*

@@ -277,6 +277,15 @@ make && make install
 
 
 
+> nginx linux部署主要（常见）问题
+
+- nginx 服务用户权限问题，
+- nginx `open_basedir ` 配置项处理。参考：[PHP防跨站之open_basedir目录设置](https://www.cnblogs.com/crxis/p/12720257.html)
+
+
+
+
+
 #### 访问密码设置
 
 使用 **htpasswd** 创建密码

@@ -1345,6 +1345,9 @@ $ rpm -ql <package>
 # 下载软件
 # erase (uninstall) package
 $ rpm -e <package>
+# --nodeps 前置
+$ rpm -e mariadb-libs-5.5.68-1.el7.x86_64 --nodeps
+
 # 更新软件
 # upgrade package(s)
 $ rpm -U <package>
@@ -1491,6 +1494,37 @@ h   l
 *在命令模式下，输入 `/` 用于文本查找. 从一般模式进编辑模式，只需按i、I、a、A、o、O、r和R中某个键即可。命令模式：输入：或者/即可进入命令模式。*
 
 *`u`       撤销代码， `Ctrl + R`  恢复撤销*
+
+
+
+```shell
+# 内容替换
+# 进行全局替换
+:%s/#/;/g			# 将全部的 "#" 替换为 ";", g 表全部
+```
+
+
+
+
+
+
+
+### 编码
+
+```shell
+# vim 字符串乱码的问题
+
+# 查看当前编码格式
+echo $LANG
+
+#临时修改编码
+LANG="zh_CN.utf8"
+
+# 编码查看
+locale -a|grep zh
+```
+
+
 
 
 
@@ -1698,6 +1732,9 @@ sudo update-alternatives --config python
 # curl <url>
 # 读取 GitHub 主页信息
 curl http://www.httpbin.org/
+
+# 显示头部信息
+curl -I http://www.httpbin.org/
 
 # -X <request-method>
 # post 数据信息

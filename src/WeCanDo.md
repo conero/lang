@@ -232,6 +232,25 @@ https://developers.google.cn/
 
 
 
+#### IDE
+
+- vscode
+
+
+
+
+
+**vscode**
+
+多行编辑：
+
+- `Alt+光标`                       当行选择
+- `Alt+Shift+光标`          光标批量选择
+
+
+
+
+
 ### 网络
 
 #### 代理服务器
