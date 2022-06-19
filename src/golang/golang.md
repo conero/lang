@@ -670,6 +670,7 @@ go get = git clone + go install
 # 代码编译
 go build 加上可以编译的go源文件可以得到一个可执行文件。
 # 批量[cmd]下所有二级制程序编译
+# 注意：cmd 目录有效，其他目录经测试无法通过
 go build -o ./bin ./cmd/...
 
 # go 代码生成，当前下的所有代码

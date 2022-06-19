@@ -367,6 +367,26 @@ ln -s /usr/local/nginx/sbin/nginx /usr/local/bin/
 
 
 
+nginx 设置站点访问密码，主要加密工具：`htpasswd` 和 `openssl`
+
+```shell
+#安装包
+yum install -y httpd-tools
+
+# 设置密码文件
+htpasswd -c /etc/nginx/psswd/yang yang
+
+# OpenSSL 版本
+# 指定用户
+echo -n "test:" > passwd
+#设置密码密码  
+openssl passwd abc123456 >> passwd
+```
+
+
+
+
+
 #### issue
 
 ##### windows nginx 启动，命令行启动错误
@@ -395,14 +415,6 @@ nginx: [alert] could not open error log file: CreateFile() "logs/error.log" fail
 
 
 
-
-
-
-
-
-
-
-
 ### apache
 
 *与 php等相关的服务语言，主要存在两种模式：`mod_php`  和 `CGI/FastCGI` 。mod_php 是将 PHP作为apache的一个模块实现，这个是PHP最传统的裕兴方式；而 `CGI/FastCGI` 使用 CGI 协议实现。*
@@ -421,6 +433,8 @@ nginx: [alert] could not open error log file: CreateFile() "logs/error.log" fail
 
 ```powershell
 php -S 0.0.0.0:2019
+# 指定 root 目录
+php -S 0.0.0.0:2019 -t ./public
 ```
 
 

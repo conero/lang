@@ -439,6 +439,27 @@ wsl2 访问其文件系统：`\\wsl$`。wsl2 内部映射ip地址执行 `grep -m
 
 
 
+
+
+### wsl-Ubuntu
+
+> Ubuntu子系统
+
+
+
+启动 ssh 服务
+
+```shell
+# 启动服务
+sudo service ssh start
+# 提示错误信息：sshd: no hostkeys available -- exiting 时，生成对应的秘钥即可
+sudo ssh-keygen -A
+
+# 调用地址非 127.0.0.1, 可根据 ifconfig 查看项：[eth0]
+```
+
+
+
 # wmic
 
 WMI   为 *Windows Management Instrumentation (WMI)* 的缩写。Windows管理规范 (WMI) 使用通用信息模型 (CIM) 来表示新式企业的系统、应用程序、网络、设备和其他可管理组件。
@@ -631,6 +652,14 @@ ls -l
 
 # 显示所有文件列表
 ls -a
+
+# 安装时间排序
+# 时间顺序
+ll -rt
+# 时间倒序
+ll -t
+# 多路径
+ll /path1/ /path2/ ...
 ```
 
 
@@ -696,6 +725,7 @@ ls -a
 
 df -hl 查看磁盘剩余空间
 df -h 查看每个根路径的分区大小
+df -hT 显示
 du -sh [目录名] 返回该目录的大小
 du -sm [文件夹] 返回该文件夹总M数
 du -h [目录名] 查看指定文件夹下的所有文件大小（包含子文件夹）
@@ -1066,6 +1096,24 @@ su root
 
 
 
+### grep 内容搜索
+
+
+
+```shell
+# 搜索全局文件中的文本
+grep -nr "10.35.1.223" *
+
+# 顶级目录下含该文本的所有的
+grep -nr "10.35.1.223" /*
+```
+
+
+
+
+
+
+
 ### 用户与权限
 
 > 用户相关配置
@@ -1109,6 +1157,18 @@ cat /etc/*-release
 ```
 
 
+
+### 网络协议
+
+liunx系统支持的协议主要有：telnet, ssh, ftp, sftp, rdp, vnc。
+
+
+- telnet	    是TCP/IP协议族中的一员，是Internet远程登录服务的标准协议和主要方式	
+- ssh			安全外壳协议(secure shell)，最初由 Tatu Ylonen 于 1995 年开发，以取代 Telnet，这是一种允许用户连接到远程计算机的网络协议，通常用于测试连接或远程管理服务器。
+- ftp			文件传输协议(file transfer protocol)，用于Internet上的控制文件的双向传输。
+- sftp			SSH文件传输协议(SSH File Transfer Protocol/Secret File Transfer Protocol)，安全文件传送协议。
+- rdp			远程桌面协议(RDP)是一个多通道(multi-channel)的协议。
+- vnc			(Virtual Network Computing)。是基于RFB（Remote Frame Buffer）协议进行通信，是一个基于平台无关的简单显示协议的超级瘦客户系统。
 
 
 

@@ -924,6 +924,10 @@ git clean -fd
 
 # 做一次演习然后告诉你 将要 移除什么
 $ git clean -d -n
+
+# 删除目录[cmd] 下文件加载系统的文件
+git clean cmd/ -dn
+git clean cmd/ -fd
 ```
 
 
