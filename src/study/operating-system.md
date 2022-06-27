@@ -761,6 +761,9 @@ cp -r ./dir-all/. ./new-dirall
 
 # 相对地址转绝对地址
 readlink -f ./
+
+# 多个目录同时创建
+mkdir -p /opt/new/test/01
 ```
 
 

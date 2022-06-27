@@ -946,6 +946,19 @@ _初衷是提供一款免费的开源的编译器。提供包含**C**、**C++**�
 
 
 
+```shell
+# 文件代码编译
+# 编译时间：hello-world.o
+gcc -c hello-world.c
+
+# 编译二进制“hello-world”二进制
+gcc hello-world.o -o hello-world
+# c++ 编译
+g++ -o hw-cpp ./hw.o
+```
+
+
+
 <!--[@TODO TDM-GCC http://tdm-gcc.tdragon.net/]-->
 
 
@@ -1315,6 +1328,33 @@ Chocolatey - Software Management Automation
 
 
 _fork 的语义已经影响了每个创建进程状态的新 API 的设计，POSIX 规范现在列出了关于如何将父状态复制到子进度的 25 个特殊情况，包括文件锁定、定时器、异步 IO 操作与跟踪等。此外，许多系统调用标志控制 fork 关于内存映射（Linux madvise() 标记 MADV_DONTFORK/DOFORK/WIPEONFORK 等）、文件描述符（O_CLOEXEC、FD_CLOEXEC）和线程（pthread_atfork()）的行为。任何重要的操作系统工具都必须通过 fork 记录其行为，并且用户模式库必须做好准备，以便随时 fork 它们的状态。**fork 已经不再简单**。_
+
+
+
+### 端口号(port)
+
+可分为三类：固定/常用端口(`0-1023`)，用户端口(`1024-49151`)，动态端口(`49152-65535`)等。16位地址的设备，即(`(2^16)-1`)
+
+> 常用端口
+
+- 21     ftp服务
+- 22     ssh服务
+- 23     telnet
+- 25     smtp 邮件服务
+- 80     http端口
+- 102   消息传输代理，Message transfer agent(MTA)-X.400 over TCP/IP
+- 109  pop3服务，用于接收邮件服务
+- 161  SNMP，允许远程管理设备
+- 443  https 默认协议地址
+
+
+
+其他引用（软件端口）
+
+- 3306          MySQL
+- 6379          redis
+- 1521          oracle
+- 5432          postgresql
 
 
 
@@ -1768,6 +1808,19 @@ _**库**(**library**) 指的是链接到程序的组件，通过本地函数调�
 - 单语言带服务治理: dubbo, Spring Cloud 等以java为主语言，部分开始扩展支持其他语言
 - 多语言带服务治理：腾讯 tars
 - Service Mesh：SideCar 模式，仍在发展成熟期
+
+
+
+## 计算机网络
+
+PC主要使用网络：
+
+- 以太网
+- WLAN                        无线局域网适配器，
+- vEthernet(WSL)
+- 蓝牙网络连接
+
+
 
 
 

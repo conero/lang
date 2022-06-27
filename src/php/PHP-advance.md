@@ -223,6 +223,8 @@ make && make install
 
 ### Nginx
 
+nginx sever 配置
+
 ```nginx
  server {
         listen       80;
@@ -273,6 +275,17 @@ make && make install
         #}
  }
 
+```
+
+
+
+nginx http 配置，使用 **include** 命令：
+
+```nginx
+http{
+	# 引入 conf/conf.d 下所有 "*.conf" 配置文件
+    include conf.d/*.conf;
+}
 ```
 
 
@@ -426,6 +439,29 @@ php -m
 
 > 地址 https://xdebug.org/
 
+windows 包安装：
+
+- http://xdebug.org/download   下载 dll 安装即可
+- 工具：dbgpClient (Command Line Debug Client)       IDE调试工具，如变量跟踪
+
+
+
+修改配置
+
+```ini
+; 通过 zend 扩展安装
+zend_extension = xdebug
+```
+
+
+
+安装成功检查
+
+```shell
+# 输入即可看到 xdebug 的版本信息
+php -v
+```
+
 
 
 ### composer
@@ -435,6 +471,12 @@ php -m
 *国内镜像： https://developer.aliyun.com/composer*
 
 国外官网： https://getcomposer.org/
+
+
+
+### opcache
+
+- @todo
 
 
 

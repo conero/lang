@@ -765,6 +765,10 @@ explorer.exe $(pwd).Path
 
 # 路径
 cd $path
+
+# 批量修改名称
+# 替换 'Controller' => ''
+Get-ChildItem .\app\controller\ | Rename-Item -NewName {$_.Name -replace 'Controller',''}
 ```
 
 
@@ -932,6 +936,16 @@ Get-CimInstance -ClassName win32_product | ConvertTo-Json > win32_product.json
 # 列出所有进程，与 ps 相同
 Get-Process
 
+# 获取指定服务以及显示基础信息
+Get-Process svchost, explorer | Format-List *
+
+# 获取服务的版本信息
+Get-Process deno -FileVersionInfo
+# 获取进程包含用户信息
+Get-Process svchost -IncludeUserName
+# 获取含 gui 的图形化界面程序（进程）
+Get-Process | Where-Object {$_.mainWindowTitle} | Format-Table Id, Name, mainWindowtitle -AutoSize
+
 # 进程搜索，如下
 ps -Name wech*
 
@@ -945,13 +959,15 @@ Stop-Process -name firefox
 # 服务
 # 查看，mysql 服务
 Get-Service -name mysql*
+# 查询正在运行的服务
+Get-Service | Where-Object {$_.Status -eq "Running"}
 # 获取从属服务
 Get-Service -Name LanmanWorkstation -RequiredServices
 # 获取依赖服务
 Get-Service -Name LanmanWorkstation -DependentServices
 
 # 启动/停止服务
-# 通过`-name` 查询
+# 通过`-name` 查询（需要在管理员模式下运行）
 Stop-Service 
 start-service
 # 重启
@@ -1078,6 +1094,8 @@ Get-WmiObject -List Win32_*|Select-Object name
 
 
 ### 其他
+
+> `ConvertTo-Json`   将内容输出为 json
 
 ```powershell
 # 获取 ip 地址

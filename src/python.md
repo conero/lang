@@ -1529,6 +1529,7 @@ pyinstaller --version-file=file_version_info.txt ...
 
 - **beautifulsoup**    HTML、XML数据提取器，[官网](https://www.crummy.com/software/BeautifulSoup/)，[文档](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)。类似jquery DOM选择器
 - **selenium**    浏览器自动测试工具，提供Java，python，nodejs等多语言环境。https://www.seleniumhq.org/；使用案例如爬虫复杂校验难以破解时，采用基于它的数据爬虫。
+- **playwright**  微软开发网络测试工具可用于爬虫 https://github.com/microsoft/playwright。
 - **Requests**  HTTP 网络处理库，用于优雅地网络请求。通常在爬虫中作为页面获取
 
  

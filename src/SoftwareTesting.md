@@ -51,18 +51,63 @@
   - [vegeta 压测工具](https://github.com/tsenart/vegeta)    可以固定的 QPS 来压测服务。
   - [ddosify 压测工具](https://github.com/ddosify/ddosify)
   - [nakabonne/ali 实时生成图标](https://github.com/nakabonne/ali)
+  
 - java版本
   - [jmeter](https://github.com/apache/jmeter) Apache图形化压测工具
+  
 - ab     Apache http web自带的压测工具。ab是单线程程序，只能利用单一CPU，在给性能好的服务器端应用做压测时，往往跑ab的测试机负荷满了；而服务器应用的性能还绰绰有余。
 
+  
+
+##### jmeter
+
+> 线程属性
+
+- 线程数：模拟真实用户数
+- Ramp-up时间(秒): 与上一个线程的间隔时间。
+- 循环次数：每个线程重复请求次数。
 
 
 
+```shell
+# 输出 html 报告文档
+# 根据 jmx 文件生成 html 报表文件
+jmter -n -t .\聚合报告-local-9310.jmx -l result.jtl -e -o ./rpt
+```
+
+
+
+
+
+##### vegeta
 
 vegeta 的使用，powershell 环境错误，shell 正常。
 
 ```shell
 echo "GET https://www.gy-imcloud.com" | vegeta attack -rate=10/s > results.gob
+```
+
+
+
+地址: https://dev.chinadatavalley.net/video/forum/931
+
+```shell
+# ddosify 压测工具，配置密码
+ddosify -t https://dev.chinadatavalley.net/video/forum/931 -a "dev2022:Dev2022^"
+
+
+# windows/powershell
+echo "GET https://dev.chinadatavalley.net/video/forum/931" | vegeta attack -duration=5s -header="Authorization: Basic ZGVyMjikpEZXYyMDIyXgx" -output chinadatavalley-video.gob
+
+# bash shell
+echo "GET https://dev.chinadatavalley.net/video/forum/931" | vegeta attack -duration=5s -header="Authorization: Basic ZGVyMjikpEZXYyMDIyXgx" | tee chinadatavalley-video.gob | vegeta report
+
+echo "GET https://dev.chinadatavalley.net/video/forum/931" | vegeta attack -duration=1s -rate=1000 -header="Authorization: Basic ZGVyMjikpEZXYyMDIyXgx" | tee chinadatavalley-video.gob | vegeta report
+
+echo "GET https://dev.chinadatavalley.net/video/forum/931" | vegeta attack -rate=1/s -header="Authorization: Basic ZGVyMjikpEZXYyMDIyXgx" | tee chinadatavalley-video.gob | vegeta report
+
+# 绘图
+cat chinadatavalley-video.gob | vegeta plot --title "expo2022 video forum" > chinadatavalley-video.html
 ```
 
 
