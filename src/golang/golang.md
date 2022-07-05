@@ -786,7 +786,13 @@ go mod vendor 	模块自动拉取，并生产vendor目录
 
 ## 资源/库
 
-### GUI
+### 图像/GUI
+
+- [ebiten](https://github.com/hajimehoshi/ebiten)              2D 游戏引擎
+
+
+
+
 
 #### fyne
 
@@ -797,6 +803,8 @@ go mod vendor 	模块自动拉取，并生产vendor目录
 ```powershell
 go build -ldflags -H=windowsgui <filename>
 ```
+
+
 
 
 

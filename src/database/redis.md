@@ -21,5 +21,8 @@ keys "_x_62*"
 
 # 删除变量（清空所有缓存）
 flushall
+
+# 删除指定的数据
+del key_name
 ```
 

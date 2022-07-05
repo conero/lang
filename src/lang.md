@@ -246,6 +246,31 @@ _高级编程语言、编译器、操作系统和数据库，被称为**软件�
 
 
 
+#### 图像规范
+
+常见的图像规范如下：
+
+- openGL        Open Graphics Library，跨编程语言、跨平台的编程接口的规格，它用于三维图象(二维的亦可)；是行业领域中最为广泛接纳的 2D/3D 图形 API。
+- DirectX         （window 平台）微软公司创建的多媒体编程接口，是一种应用程序接口（API）。多媒体库，可处理图像、音频等。
+- Vulkan            跨平台的2D和3D绘图应用程序接口（API），下一代OpenGL(glNext)。
+- WebGL           网页图像处理库。
+
+
+
+webgl是基于opengl（opengl es）的，opengl过渡到vulkan，那么理所当然webgl也需要更新换代，webgpu就是“下一代的webgl”，webgpu是基于vulkan的，不只是3d渲染，也可以用来做科学计算，以后在web端执行的一些并行计算就可以充分利用webgpu来完成。
+
+
+
+##### openGL
+
+扩展库
+
+- [glfw](https://github.com/glfw/glfw)         OpenGL, OpenGL ES 和Vulkan 开发应用库。跨平台
+- [bgfx](https://github.com/bkaradzic/bgfx)        跨平台，图像接口库。
+- [filament](https://github.com/google/filament)  多平台的图像材质库
+
+
+
 
 
 ## 编程语言
