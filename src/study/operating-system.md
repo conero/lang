@@ -1426,9 +1426,9 @@ $ rpm -qa | grep libxml2
 
 
 
+## 工具包及套件
 
-
-## vim
+### vim
 
 旧版命令 *`vi`*，*`vim`全部兼容前者。`Insert` 插入文本命令, 推荐使用 `vim`命令。*
 
@@ -1572,7 +1572,7 @@ h   l
 
 
 
-### 编码
+#### 编码
 
 ```shell
 # vim 字符串乱码的问题
@@ -1588,6 +1588,29 @@ locale -a|grep zh
 ```
 
 
+
+### pacman
+
+可在 [msys2](https://www.msys2.org/) 内使用工具进行包安装，相关命令如下：
+
+```shell
+# 对整个系统进行更新
+pacman -Syu
+# 强制系统更新
+pacman -Syy 
+
+# $pkg 包搜索
+pacman -Ss <pkg>
+# 搜索已安装的包
+pacman -Qs <pkg>
+
+# 包安装
+pacman -S <pkg>
+```
+
+
+
+国内安装包镜像：[清华大学](https://mirror.tuna.tsinghua.edu.cn/help/msys2/)
 
 
 

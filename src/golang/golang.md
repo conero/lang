@@ -814,7 +814,33 @@ go build -ldflags -H=windowsgui <filename>
 
 
 
-## 学习
+### 规范
+
+#### 项目目录规范
+
+参考：[golang-standards/project-layout](https://github.com/golang-standards/project-layout)
+
+主要目录结构
+
+- cmd                            项目应用程序，如二进制包
+- internal                      私有包，不可为外界引用，**Go强制执行**的。
+- pkg                             外部程序可应用的库，当顶级目录有很多非go代码是可使用该目录
+- vendor                       go modules 安装库
+- api                              如Swagger相关的各种 json 文件
+- web                            静态web资源，或者服务端模板或者SPA文件
+- configs/config           配置文件模板或者默认配置
+- init                              系统初始化，进程管理等配置
+- scripts                        项目shell等相关脚本
+- test                             代码测试目录
+- docs                           项目相关文件，设计或计划文档等
+- tools                          项目支持的工具
+- examples                  应用程序或公共实例代码
+- assets                        静态资源，如图形
+- website                      网站数据
+
+
+
+
 
 ### 交叉编译
 
