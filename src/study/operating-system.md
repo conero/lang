@@ -412,6 +412,25 @@ taskkill /T /F /PID 9088
 
 
 
+#### 硬件
+
+```powershell
+# 1) 使用 getmac 命令获取地址
+# 数据本地 mac 地址
+getmac
+
+# 指定输出模式
+getmac /fo csv
+
+# 输出详细地址
+getmac -v
+
+# 2) 使用 ipconfig 查看
+ipconfig /all
+```
+
+
+
 ## wsl
 
 > Windows Subsystem for Linux(wsl)，windows liunx子系统。

@@ -6,6 +6,15 @@
 
 
 
+### 启动
+
+```shell
+# 使用 nohup 启动
+nohup redis-server &
+```
+
+
+
 
 
 

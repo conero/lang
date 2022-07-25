@@ -1490,6 +1490,38 @@ git checkout *.php
 
 > 版本大于 `v1.8.3 `
 
+SVN 常用命令如下：
+
+```shell
+# 拉取代码 svn 地址 `checkout` => 'co'
+svn checkout https://130.7.147.82/svn/Expo_Cloud/branches/xx
+
+# 代码状态查看
+svn status
+svn stat
+svn st
+
+# svn 代码更新 `update` => `up`
+svn update
+
+# svn 项目信息更新
+svn info 
+
+# 代码差异查比较
+svn diff
+svn di
+
+# 查看仓库代码库的路径地址
+svn list
+svn ls
+
+# svn 代码提交
+svn commit -m "提交备注"
+svn ci -m "代码"
+```
+
+
+
 
 
 ### `snv list(ls)`
