@@ -1160,6 +1160,11 @@ setx /M BAT_HOME_JC C:\bat
 # 获取时间对应的格式数据
 Get-Date -Format "dddd MM/dd/yyyy HH:mm K"
 Get-Date -Format 'yyMMddHHmmss'
+
+
+# 获取时间戳
+(([DateTime]::Now.ToUniversalTime().Ticks - 621355968000000000)/10000000).tostring().Substring(0,10)
+(([DateTime]::Now.ToUniversalTime().Ticks - 621355968000000000)/10000).tostring().Substring(0,13)
 ```
 
 
