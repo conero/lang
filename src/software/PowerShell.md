@@ -707,6 +707,27 @@ Start-Process cmd -ArgumentList "/C .\bin\windows\kafka-server-start.bat .\confi
 
 
 
+打开浏览器（多操作系统）
+
+```shell
+# mac 电脑(darwin)
+open https://baidu.com
+
+# windows
+start https://baidu.com
+
+# liunx
+xdg-open https://baidu.com
+```
+
+
+
+
+
+
+
+
+
 ### Invoke-WebRequest
 
 *使用方法: 在谷歌浏览器中打开任意web，开启`开发者工具`中的 `Network` 标签，依次选中其下`右键`的`Copy`，`Copy as PowerShell`等（`chrome/F12-开发者工具/Network/右键/Copy/Copy as PowerShell`），如下:*

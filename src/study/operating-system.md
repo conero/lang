@@ -118,6 +118,10 @@
 
 
 
+**UAC**  用户账号控制。
+
+
+
 ## 注册表 
 
 >  _**Registry**_
@@ -256,13 +260,39 @@ shift+右键
 
 
 
-## CMD
+## windows命令行程序
 
 *Windows 命令工具有 `cmd.exe`、`powershell(ps)` 等，其可通过外壳程序调用系统内核相关的程序。*
 
 也即是bat 脚本，批处理（batch）。
 
+- cmd
+- pwsh
 
+
+
+程序调用命令行，并执行：
+
+```shell
+# cmd 执行命令与 ($cmd)
+cmd /c $cmd
+
+
+# 启动 pwsh 并执行命令
+pwsh -c $cmd
+# 执行 ps1 脚本
+pwsh -f "$file.ps1"
+```
+
+
+
+cmd 置于目录`C:\Windows\System32`下。
+
+
+
+
+
+### CMD
 
 **基本语法：**
 
