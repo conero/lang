@@ -882,7 +882,7 @@ $ git stash
 $ git stash save
 
 # 查看储藏的列表
-$  git stash list
+git stash list
 
 # 使用当前的储藏
 $ git stash apply
@@ -915,15 +915,15 @@ $ git stash --all
 
 ```ini
 # 清理工作目录
-$ git clean
+git clean
 
 # 移除工作目录中所有未追踪的文件以及空的子目录; -f 意味着 强制 或 “确定移除”
-$ git clean -f -d
+git clean -f -d
 # 或
 git clean -fd
 
 # 做一次演习然后告诉你 将要 移除什么
-$ git clean -d -n
+git clean -d -n
 
 # 删除目录[cmd] 下文件加载系统的文件
 git clean cmd/ -dn
@@ -1503,6 +1503,8 @@ svn st
 
 # svn 代码更新 `update` => `up`
 svn update
+# 覆盖指定的文件
+svn revert config/database.v
 
 # svn 项目信息更新
 svn info 

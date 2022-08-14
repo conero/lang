@@ -418,14 +418,24 @@ ipconfig /flushdns
 
 
 
+#### 网络
+
+- netstat     网络状态查看
+
+- route      路由信息查看
+
+- ping        网络测试
 
 
-#### netstat
 
-网络状态查看
+##### netstat
+
+网络状态查看。提供TCP连接，TCP和UDP监听，进程内存管理的相关报告。netstat命令的功能是显示网络连接、路由表和网络接口信息，可以让用户得知有哪些网络连接正在运作。
+
+状态：established(tcp 三次握手完成), time_wait(等待响应时间), close_wait(等待关闭链接), fin_wait_1, fin_wait_2, syn_sent(请求链接-三次握手第一次链接请求), closed(链接关闭)，listen(作为服务器启动监听), syn-recevied (三次握手确认链接)
 
 ```powershell
-# 查看本机所有端口号使用情况
+# 查看本机所有端口号使用情况，包括 pid
 netstat -ano
 
 # 查看指定的端口号，9108 为端口号
@@ -436,6 +446,29 @@ tasklist|findstr "2016"
 
 #杀死进程
 taskkill /T /F /PID 9088 
+```
+
+
+
+
+
+参照tcp协议过程：
+
+```mermaid
+sequenceDiagram
+	autonumber
+	participant c as Client
+    participant s as Server
+		Note over c,s: closed
+		Note over s: listen
+		Note over c: syn_sent
+			c-->>s: SYN=1,seq=a
+		Note over s: syn_rcvd
+        	s-->>c: SYN=1,ACK=1,Seq=b,Ack=a+1
+        	c-->>s: ACK=1,Seq=a+1,Ack=b+1
+       	Note over c,s: established
+       		c->>s:数据传输
+       		s->>c:数据传输
 ```
 
 
@@ -813,6 +846,9 @@ readlink -f ./
 
 # 多个目录同时创建
 mkdir -p /opt/new/test/01
+
+# 用户实时加载日志尾部行（默认10行，-n 10）
+tail -f /home/logs/nginx/error.log
 ```
 
 
@@ -923,35 +959,38 @@ top 命令是Linux下常用的性能分析工具，能够实时显示系统中�
 
 ```shell
 # 重启系统
-$ sudo systemctl reboot
+sudo systemctl reboot
 
 # 关闭系统，切断电源
-$ sudo systemctl poweroff
+sudo systemctl poweroff
 
 # CPU停止工作
-$ sudo systemctl halt
+sudo systemctl halt
 
 # 暂停系统
-$ sudo systemctl suspend
+sudo systemctl suspend
 
 # 让系统进入冬眠状态
-$ sudo systemctl hibernate
+sudo systemctl hibernate
 
 # 让系统进入交互式休眠状态
-$ sudo systemctl hybrid-sleep
+sudo systemctl hybrid-sleep
 
 # 启动进入救援状态（单用户状态）
-$ sudo systemctl rescue
+sudo systemctl rescue
 
 # 列出所有可用的Unit
-$ systemctl list-unit-files
+systemctl list-unit-files
 # 列出所有正在运行的Unit
-$ systemctl list-units
+systemctl list-units
 # 列出所有失败单元
-$ systemctl --failed
+systemctl --failed
+
+# 使用 systemctl 启动服务
+systemctl restart nginx
 
 # 查看 systemd 的日志
-$ journalctl -xe
+journalctl -xe
 ```
 
 

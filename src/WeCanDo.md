@@ -59,6 +59,19 @@ linkd uploads-rename ../uploads
 
 
 
+liunx 命令行
+
+```shell
+# linux 建议使用，觉得地址 - source_file
+# 创建-软链接
+ln -s source_file softlink_file
+
+# 查看的软链接信息
+ls -l
+```
+
+
+
 
 
 ### 微信、火狐浏览器、系统搜索十分缓慢的解决方案

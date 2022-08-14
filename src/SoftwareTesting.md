@@ -51,6 +51,7 @@
   - [vegeta 压测工具](https://github.com/tsenart/vegeta)    可以固定的 QPS 来压测服务。
   - [ddosify 压测工具](https://github.com/ddosify/ddosify)
   - [nakabonne/ali 实时生成图标](https://github.com/nakabonne/ali)
+  - [hey](https://github.com/rakyll/hey)   Apache ab 测试替代工具
   
 - java版本
   - [jmeter](https://github.com/apache/jmeter) Apache图形化压测工具

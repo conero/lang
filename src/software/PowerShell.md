@@ -473,6 +473,18 @@ Invoke-Expression "$cmd $cmd_args"
 
 
 
+#### 内容搜索
+
+
+
+```powershell
+# 使用 Get-ChildItem 查询文件再搜索内容
+Get-ChildItem D:\conero\xx\prj-2020\ -Recurse | select-string "github.com/panjf2000/ants"
+
+# 指定类型
+Get-ChildItem D:\conero\xx\prj-2020\ -Recurse -Filter "*.sum" | select-string "github.com/panjf2000/ants"
+```
+
 
 
 ### 脚本语法
