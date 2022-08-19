@@ -129,6 +129,16 @@ $ ps -aux|grep php-fpm
 
 
 
+windows 启动 php-fpm。win不支持php-fpm，因为php-fpm是使用Linux的fork()来做的，所以win下面基本上还是使用php-cgi。
+
+```shell
+# cd 到php二进制所在目录
+# 常驻内存
+php-cgi -b 127.0.0.1:9000
+```
+
+
+
 #### Ubuntu
 
 Ubuntu 安装与 CentOs 类似，常见的错误修复如下：

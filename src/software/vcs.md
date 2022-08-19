@@ -546,6 +546,23 @@ git pull --rebase
 
 
 
+#### 其他
+
+##### 换行符号
+
+主要配置 **autocrlf**、**safecrlf**
+
+```shell
+# core.safecrlf
+# 拒绝提交包含混合换行符的文件
+# core.safecrlf 值: warn/警告, true/拒绝提交, false/允许提交 
+git config --global core.safecrlf false
+
+# autocrlf
+# core.autocrlf 值: input/提交时转换为LF, true/提交时转换为LF，检出时转换为CRLF, false/不处理 
+git config --global core.autocrlf input
+```
+
 
 
 ### 分支

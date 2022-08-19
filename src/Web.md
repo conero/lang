@@ -321,11 +321,82 @@ IP 服务器		->  HTTP 相应
 
 ### nginx
 
-*[engine X] 由俄罗斯人 Igor Sysoev编写的 HTTP、反向代理、邮件代理服务器。*
+*[engine X] 由俄罗斯人 Igor Sysoev编写的 HTTP、反向代理、邮件代理服务器。* https://github.com/nginx/nginx
 
 
 
 > **Igor Sysoev** *出生于1970年，在苏联的阿拉木图（现在的哈萨克斯坦阿拉木图）长大。我于1994年毕业于莫斯科国立鲍曼技术大学(BMSTU, Bauman Moscow State Technical University)。毕业后我继续住在莫斯科，目前在[NGINX，Inc](http://nginx.com/)担任首席技术官*
+
+
+
+主要模块：
+
+- core
+- event
+- http
+- mail
+- stream
+
+
+
+#### nginx conf
+
+nginx 配置文件说明，默认名：`nginx.conf`。
+
+```shell
+# 当启动 nginx 后，可使用 -s 命令进行正在运行服务进程的启动、停止等
+# nginx -s signal
+# 重载配置文件
+nginx -s reload
+# signal: stop 终端退出，quit 优雅退出，reload 配置文件重载，reopen 重新打开日志文件
+
+```
+
+
+
+nginx 由模块组成，模块由配置文件指定的指令控制。指令分为简单指令(行)和块指令(块)。
+
+```nginx
+# 配置文件注释行
+
+# 行指令（主上下文）
+worker_processes  1;
+error_log  logs/error.log;
+
+# 块指令，http
+http{
+    # 内部嵌套指令
+    server{
+        # 内部上下文
+        listen       9310;
+    	server_name  localhost;
+    }
+}
+```
+
+
+
+##### location
+
+语法: `location [= | ~ | ~* | ~~] url { ... }`
+
+- `location = pattern {}`    精准匹配（完全匹配）
+- `location pattern {}`    一般匹配
+- `location ~ pattern{}`   正则匹配
+  - `location ~* pattern{}`      不区分大小写
+
+
+
+```nginx
+http{
+    server{
+        location / {
+        }
+    }
+}
+```
+
+
 
 
 

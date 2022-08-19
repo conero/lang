@@ -292,3 +292,13 @@ https://developers.google.cn/
 - 代码统计工具
   - https://github.com/XAMPPRocky/tokei                         rust 编写，计算快。
   - https://github.com/AlDanial/cloc                                    perl编写
+
+
+
+### 实操
+
+#### 打印机身份证双面复印
+
+方法一：手动重复打印，即打印后将纸放回后再次打印。原件放置一般都是靠左上角，
+
+<img src="./image/wecando/print-id.png" style="zoom: 50%;" />
