@@ -1533,10 +1533,19 @@ svn di
 # 查看仓库代码库的路径地址
 svn list
 svn ls
+# 查仓库资源
+svn list https://120.xx.72/svn/expo
+# 等同于
+svn list ^/
+
 
 # svn 代码提交
 svn commit -m "提交备注"
 svn ci -m "代码"
+
+
+# svn 分支切换
+switch ^/branches/eco23_home
 ```
 
 
