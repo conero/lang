@@ -367,12 +367,59 @@ error_log  logs/error.log;
 http{
     # 内部嵌套指令
     server{
+        # 隐藏 nginx 版本号
+        server_tokens off;
         # 内部上下文
         listen       9310;
     	server_name  localhost;
     }
 }
 ```
+
+##### ip 白名单
+
+ip 白名单方法如下：
+
+- 使用 `$remote_addr` 进行规则匹配
+- 使用 `$http_x_forwarded_for` 进行规则匹配
+- 使用 `allow` 配合 `deny all` 指令限制
+- 系统防火墙级别处理 `iptables`
+
+
+
+```nginx
+http{
+    server{
+        # 1)
+        # 使用 $remote_addr 规则匹配
+        # 指定ip可访问
+        if ($remote_addr !~ ^(218.201.194.162|218.21.184.165|127.0.0.1)){
+            rewrite ^.*$ /admin.php last;
+        }
+
+        # 2)
+        # 使用 $http_x_forwarded_for  规则匹配
+        # 指定ip可访问
+        if ($http_x_forwarded_for  !~ ^(218.201.194.162|218.21.184.165|127.0.0.1)){
+            rewrite ^.*$ /admin.php last;
+        }
+
+
+        # 3)
+        # 使用 allow/deny 指令
+        allow 218.201.194.162;
+        allow 218.21.184.165;
+        allow 127.0.0.1;
+        # 引入允许列表
+        include /etc/nginx/conf.d/whitelist;
+        deny all;
+    }
+}
+```
+
+
+
+
 
 
 
@@ -639,6 +686,7 @@ http-server [path] [options]
     - https://www.rfc-editor.org/info/rfc-INDEX
 - [RFC-Editor](https://www.rfc-editor.org/)
 - [ISO](https://www.iso.org/home.html)  *the International Organization for Standardization*
+- [Nginx域名访问的白名单配置 - 运维总结](https://www.cnblogs.com/kevingrace/p/6086652.html)
 
 
 

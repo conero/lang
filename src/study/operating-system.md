@@ -421,10 +421,23 @@ ipconfig /flushdns
 #### 网络
 
 - netstat     网络状态查看
-
 - route      路由信息查看
-
 - ping        网络测试
+- nslookup     (name server lookup)  网络域名查询
+
+
+
+```shell
+# 查询对应域名的 dns 情况
+nslookup cn.vitejs.dev
+
+nslookup -qt=ns cn.vitejs.dev
+
+# 反向查询
+nslookup -ty=ptr 8.8.8.8
+```
+
+
 
 
 
@@ -620,7 +633,7 @@ wmic diskdrive get Name, Manufacturer, Model, InterfaceType, MediaType, SerialNu
 
 **/cdrom：**这个目录在刚刚安装系统的时候是空的。可以将光驱文件系统挂在这个目录下。例如：mount /dev/cdrom /cdrom
 
-**/dev：**dev 是设备（[device](https://baike.baidu.com/item/device))的英文缩写。这个目录对所有的用户都十分重要。因为在这个目录中包含了所有linux系统中使用的外部设备。但是这里并不是放的外部设备的驱动程序。这一点和常用的windows,dos操作系统不一样。它实际上是一个访问这些外部设备的端口。可以非常方便地去访问这些外部设备，和访问一个文件，一个目录没有任何区别。
+**/dev：**dev 是设备（[device](https://baike.baidu.com/item/device))的英文缩写。这个目录对所有的用户都十分重要。因为在这个目录中包含了所有linux系统中使用的外部设备。但是这里并不是放的外部设备的驱动程序。这一点和常用的windows,dos操作系统不一样。它实际上是一个访问这些外部设备的端口。可以非常方便地去访问这些外部设备，和访问一个文件，一个目录没有任何区别。（被内核维护的设备列表）
 
 **/etc：**etc这个目录是linux系统中最重要的目录之一。在这个目录下存放了系统管理时要用到的各种配置文件和子目录。要用到的网络配置文件，文件系统，x系统配置文件，设备配置信息，设置用户信息等都在这个目录下。
 
@@ -732,16 +745,27 @@ grep "<h3>Joshua Conero<h3/>" *.html
 ll
 ls -l
 
-# 显示所有文件列表
+# 显示所有文件列表，包括隐藏的文件
 ls -a
+
+# 用户目录
+ls ~
+
+# 根据文件夹大小排名
+ls -S
 
 # 安装时间排序
 # 时间顺序
 ll -rt
-# 时间倒序
+# 时间倒序(修改时间)
 ll -t
 # 多路径
 ll /path1/ /path2/ ...
+# 人可读格式显示，如文件大小的人性化处理
+ll -h
+# drwxr-xr-x  8 conero conero 4.0K Mar 20 19:36 .git/
+# -rw-r--r--  1 conero conero   84 Mar 19 16:55 .gitignore
+# 首字符含义: - 普通文件，d 为目录，l为链接符号（表软链接等）。
 ```
 
 
@@ -802,6 +826,32 @@ ll /path1/ /path2/ ...
 
 
 
+cd 改变当前的目录
+
+```shell
+# 跳转至用户目录
+cd 
+
+# 跳转值先前的目录中
+cd -
+```
+
+
+
+file 命令
+
+```shell
+# 显示 composer.json 的文件类型
+file composer.json
+# composer.json: JSON data
+```
+
+
+
+
+
+其他命令
+
 ```shell
 # 查看磁盘信息的命令
 
@@ -839,6 +889,10 @@ stat <file_path>
 # 文件覆盖
 cp -rf ./svn-173/* ./
 cp -r ./dir-all/. ./new-dirall
+# 复制文件 fl1 --> fl2. fl2 不存在是创建否则覆盖。
+cp fl1 fl2
+# 复制当前目录下所有的html文件
+cp -u *.html ../copt-html
 # 重新提醒，输入: y  才行
 
 # 相对地址转绝对地址
@@ -850,6 +904,24 @@ mkdir -p /opt/new/test/01
 # 用户实时加载日志尾部行（默认10行，-n 10）
 tail -f /home/logs/nginx/error.log
 ```
+
+
+
+#### 内容查看或管理
+
+```shell
+# 读取文件
+# 打开数据文件
+cat Readme.md
+
+# 只能向前翻页
+more Readme.md
+
+# less 是对早期more的改进
+less Readme.md
+```
+
+
 
 
 
@@ -1043,10 +1115,14 @@ unzip -o file_name.zip
 
 #### 内存
 
+- free               系统内存使用情况显示
+
 ```shell
 # 系统的可用内存情况
 # 以 “MB” 为单位查询内存使用情况
 free -m
+# 以人们可读的方式显示数据
+free -h
 
 # 进程使用内存情况
 top
@@ -1131,6 +1207,146 @@ ip neigh show
 ```
 
 
+
+
+
+### 其他
+
+#### 日期
+
+主要命令
+
+- date   时间显示
+- cal      日历
+
+
+
+```shell
+# 数据日期
+date
+
+# 日历显示
+cal
+```
+
+
+
+#### 命令
+
+- type       用于显示命令的类型
+- which    显示可执行命令的位置
+- whereis   与 which 类似
+- man/info  查看命令行的相关帮助信息
+
+```shell
+# 显示 cd 命令类型
+type cd
+# out> type is a shell builtin
+
+type less
+# out> less is hashed (/usr/bin/less)
+
+# witch
+witch vim
+# out> /usr/bin/vim
+
+# 查看命令帮助信息
+man vim
+vim --help
+info vim
+```
+
+项目命令的文档信息所在目录：`/usr/share/doc`
+
+
+
+创建别名(alias)命令
+
+```shell
+# 创建别名命令
+alias a1='cd ~;ll'
+
+# 显示别名命令列表
+alias
+
+# 删除命令
+unalias a1
+```
+
+
+
+#### io重定向
+
+将命令行输出到控制台的内容输入指定文件。shell 内部分别将作标准输入、输出和错误称为文件描述符 0、1 和 2。
+
+```shell
+# 将 'ls -l ~' 结果输出到文件中
+# 使用 '>' 覆盖每次输出的结果到指定的文本中
+ls -l ~ > ls-home.txt
+
+# 尾部追加文件内容到文件中
+ls -l ~ >> ls-home.txt
+
+# 将错误的结构输出到文件中
+ls -1 /dir-not-exist 2> ls-error.txt
+
+
+# 将标准输出以及错误输出等全部输出到文件中。
+# 将标准的文件输出到 ls-output.txt，错误时保持输出一致。
+ls -l /bin/usr > ls-output.txt 2>&1
+ls -l /bin/usr &> ls-output.txt
+
+
+# 将错误的输出丢弃掉，'/dev/null' 称 -> 位存储桶
+ls -l /bin/usr 2> /dev/null
+```
+
+
+
+*cat* 命令将多个文件复制到标准输出(stdout)中。
+
+```shell
+cat err-*.txt > err-merge.txt
+
+# 改用文件内容输出到控制台。默认为键盘输入
+cat < ls-output.txt
+```
+
+
+
+wc 计子器们，用于统计文件的：行数，字数和字节数。
+
+```shell
+ws ls-output.txt
+
+# 统计，bin /usr/bin 中的数量
+ls /bin /usr/bin | sort | uniq | wc -l
+
+# 输出含 zip 的列表
+ls /bin /usr/bin | sort | uniq | grep zip
+
+# tee 输出 stdin 的数据同时写入到 stdout 和 文件中。
+ls /usr/bin | tee ls.txt | grep zip
+```
+
+
+
+
+
+##### 管道线(|)
+
+格式 `commnd1 | command2`  即命令2的输入是命令1的输出。
+
+常用过滤器：sort, uniq
+
+```shell
+# 分页显示输出的内容
+ll /usr/bin/ | less
+
+# 使用过滤器来先对类别进行排序
+ls /usr/bin | sort | less
+ls /usr/bin | sort | uniq | less
+```
 
 
 
