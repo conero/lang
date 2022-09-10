@@ -905,6 +905,22 @@ $vlist | ForEach-Object -Process {
 
 ### 计算机管理
 
+清空回收箱：
+
+```powershell
+# 清空回收站
+Clear-RecycleBin
+
+# 强制执行清空
+Clear-RecycleBin -Force
+```
+
+
+
+
+
+
+
 > **WMI**
 
 *Windows Management Instrumentation (WMI) 是 Windows 系统管理的核心技术，因为它以统一的方式公开大量信息。*

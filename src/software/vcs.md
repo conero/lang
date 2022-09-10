@@ -528,20 +528,22 @@ git push origin --tags
 
 ```bash
 # 删除本地标签
-$ git tag -d <tagName>
+git tag -d <tagName>
 
 # 删除远程标签
-$ git push origin :<tagName>
+git push origin :<tagName>
 
 # 本地删除远程已经不存在的分支
 # 同时将远程，tag 同步到本地
-$ git fetch --prune
-$ git fetch -p
+git fetch --prune
+git fetch -p
 
 # pull
-$ git pull -p
+git pull -p
 # 使用 `git rebase` 代替 `merge` 的 pull
 git pull --rebase
+# 变基
+git pull origin master --rebase
 ```
 
 
