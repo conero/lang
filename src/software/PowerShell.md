@@ -302,7 +302,7 @@ Get-ChildItem | Sort-Object -Property Name -Descending
 
 # 
 # 遍历: ForEach-Object
-@(1,3,5,6,7,9,100) | ForEach-Object -Process {$_*10}
+@(1,3,5,6,7,9,100) | Each-Object -Process {$_*10}
 
 # 变量当前目录下的所有文件，并以"file $_" 按行输出
 ls -Name | ForEach-Object -Process {echo "file $_"} > merge-220416.txt
@@ -854,6 +854,17 @@ Get-ChildItem .\uploads\videos\ -Recurse -Name *ts | ForEach-Object -Process {".
 ```powershell
 Get-ChildItem d:\ -Recurse | Sort-Object -Descending length | Select-Object -First 10
 ```
+
+
+
+**批量修改文件名**
+
+```powershell
+# 将下载目录下的文件重名： clan-xxx.xlsx => x-xxx.xlsx
+Get-ChildItem C:\Users\~\Downloads -name "clan-*" | foreach{Rename-Item -Path "C:/Users/~/Downloads/$_" -NewName $_.Replace('clan-', 'c-')}
+```
+
+
 
 
 

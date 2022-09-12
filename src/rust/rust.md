@@ -3199,6 +3199,14 @@ $ cargo check
 
 
 
+### 安装
+
+rust 支持多系统：如 window，linux，mac等
+
+- windows
+  - [x86_64-pc-windows-gnu](https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-gnu/rustup-init.exe)       基于 GNU 组件编译
+  - [x86_64-pc-windows-msvc](https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/rustup-init.exe)     基于微软C编译器
+
 
 
 ## rustdoc/ 文档生成器

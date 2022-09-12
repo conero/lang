@@ -1202,6 +1202,19 @@ git archive --format=zip -o zzt-211020-02.zip HEAD $(git diff v0.0.1 --name-only
 
 
 
+#### gitk
+
+git 图形化工具用于更改基类和文件差异，提交记录等。
+
+```shell
+# 设置语言编码格式
+git config --global gui.encoding utf-8
+```
+
+
+
+
+
 ### Git 与其他系统
 
 #### Subversion
