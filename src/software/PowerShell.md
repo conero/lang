@@ -91,6 +91,9 @@ Get-Variable
 if($null -eq $value){}
 # 判断是否为有效值
 if(($null -eq $value) -or ($value.Length -eq 0)){}
+
+# 全局变量, 可实现内部函数调外部变量
+$Global:uKey
 ```
 
 
@@ -189,6 +192,9 @@ echo $PSScriptRoot
 # >>>>>
 # 文件： file.ps1
 &"$PSScriptRoot/grafana-server.exe"
+
+# 可导入脚本模块($file.ps1)
+Import-Module $file.ps1
 ```
 
 

@@ -231,6 +231,40 @@ make && make install
 
 
 
+
+
+#### 集成环境
+
+- lamp      https://www.lamp.sh/
+- lampp    由Linux+Apache+Mysql+PHP构成，常用来运行web服务器。
+- xampp   Apache + MySQL + PHP + Perl环境的一键安装程序。
+
+
+
+
+
+##### linux 安装 SQL server 驱动
+
+- 安装 SQLserver 驱动 https://github.com/microsoft/msphpsql
+- 安装 msodbcsql17  https://pkgs.org/download/msodbcsql17
+-  安装 mssql-tools-17 https://rhel.pkgs.org/7/microsoft-prod-x86_64/mssql-tools-17.10.1.1-1.x86_64.rpm.html
+
+
+
+注意：msodbcsql18 客户端可能因 SSL 版本报错，旧版建议使用17版本。
+
+参照：
+
+1. [liunx ODBC 驱动安装](https://learn.microsoft.com/en-us/sql/connect/odbc/linux-mac/installing-the-microsoft-odbc-driver-for-sql-server?view=sql-server-ver16#redhat18)
+2. [linux安装 odbc mysql_LINUX安装ODBC驱动](https://blog.csdn.net/weixin_42495556/article/details/113400413)
+3. [Linux PHP连接sqlServer](https://blog.csdn.net/y_w_x_k/article/details/118213505)
+
+
+
+
+
+
+
 ### Nginx
 
 nginx sever 配置

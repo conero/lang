@@ -1461,6 +1461,11 @@ cat /proc/version
 
 # 查看liunx发新版的信息
 cat /etc/*-release
+# 如
+cat /etc/system-release
+cat /etc/os-release
+cat /etc/redhat-release
+cat /etc/centos-release
 ```
 
 
@@ -2134,6 +2139,8 @@ curl https://www.httpbin.org/post -F 'imgs=@./qrcode.png' -F 'post_key=12' -F 'k
 ```
 
 
+
+curl 配置 `-d` 默认下会默认添加头部，以及配置请求方式为`POST`。需要json可修改头部 `-H 'Content-Type: application/json'`
 
 
 

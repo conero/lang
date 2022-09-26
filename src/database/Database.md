@@ -102,3 +102,26 @@ replace into website_elements("id", "path")
 ; 
 ```
 
+
+
+
+
+## SQLServer
+
+微软(Microsoft)推出的关系型数据库，1988年
+
+
+
+使用客户端 `sqlcmd` 进行数据库链接
+
+```shell
+# 链接本地数据库
+sqlcmd -S 127.0.0.1 -U conero
+```
+
+
+
+
+
+
+

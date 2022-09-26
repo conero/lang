@@ -18,6 +18,10 @@
 
 ## 测试类型
 
+测试分类
+
+功能测试、性能测试、负载测试、接口测试、
+
 
 
 ### 渗透测试
@@ -75,6 +79,47 @@
 # 根据 jmx 文件生成 html 报表文件
 jmter -n -t .\聚合报告-local-9310.jmx -l result.jtl -e -o ./rpt
 ```
+
+
+
+
+
+###### 使用 jmter 生成的报文分析
+
+中英文对照
+
+- Apdex(Application Performance Index)          性能指数
+  - Apdex   (0-1  越大越好/用户满意分数)，Apdex 是用户对应用性能满意度的量化值。
+- 图表
+  - Response Times Over Time          响应时间变化曲线
+  - Response Time Percentiles           响应时间分布百分比
+  - Response Time Overview              响应时间概况
+  - Response Time Distribution          响应时间分布柱状
+  - Bytes Throughput Over Time       数据吞吐量时间曲线
+  - Response Codes per Second        Http 状态码时间分布式
+  - Transactions per Second               事务吞吐量时间曲线(tps)
+    - Hits per Second                       每秒点击数曲线，测试期间每秒产生的请求服务器的数量。
+    - Codes Per Second                   单位时间返回的响应*code*（http status）的数量
+    - Transactions Per Second       每秒事务数，每秒内完成的业务数量（包括成功和失败的）
+    - Total Transactions Per Second  
+    - Response Time Vs Request    不同请求数对应的响应时间值
+    - Latency Vs Request                  不同的请求数对应的响应延时
+  - Active Threads Over Time             单位时间内容活动线程数
+  - Latencies over time                        单位时间内响应延迟
+  - Connect Time Over Time               建立连接单位时间曲线
+- 参数
+  - Response Times                             响应时间
+  - 90th pct/95th pct/99th pct           百分之90/95/99 的响应时间
+  - Throughput                                    吞吐量(tp/s)
+  - Network(KB/sec)                            网络情况
+
+
+
+apdex 参数：`1-0.94`   完美/excellent，`0.93-0.85` 良好/good，`0.84-0.70`  一般/fair, `0.69-0.50` 较差/ poor, `0.49-0.00`不可接受/unacceptable
+
+
+
+
 
 
 
