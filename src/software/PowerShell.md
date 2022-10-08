@@ -81,8 +81,12 @@ $jc = Get-ChildItem env:
 $jc
 # 读取环境变量
 $env:path
+# 查看环境变量
+($env:Path).Split(";")
+
 # 设置环境变量
 $env:path = "new value"
+
 
 # 查看所有变量
 Get-Variable

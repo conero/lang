@@ -155,6 +155,34 @@ _FastCGI像是一个常驻(long-live)型的CGI，它可以一直执行着，只�
 
 
 
+#### 请求
+
+##### post
+
+```yaml
+# post请求/常见的 form 数据提交类型
+ContentType: application/x-www-form-urlencoded; charset=UTF-8
+# Body 为，query 数据（url编码数据）
+```
+
+
+
+较快的请求库：
+
+- rapidoid              https://github.com/rapidoid/rapidoid java 库
+- tokio
+  - mio               https://github.com/tokio-rs/mio ，  rust 轻量集合 io 库
+  - tokio             https://github.com/tokio-rs/tokio ， rust http 异步事件库
+  - client
+    - reqwest       https://github.com/seanmonstar/reqwest ， rust http 客户端
+    - hyper           https://github.com/hyperium/hyper ， rust http 客户端
+    - rust-curl      https://github.com/alexcrichton/curl-rust , curl 绑定
+- fasthttp               https://github.com/valyala/fasthttp ， go 版本请求库
+
+
+
+
+
 ### HTTPS
 
 *为了解决以上问题，网景在1994年创建了HTTPS，并应用在网景导航者浏览器中。 最初，HTTPS是与[SSL](https://zh.wikipedia.org/wiki/%E5%82%B3%E8%BC%B8%E5%B1%A4%E5%AE%89%E5%85%A8%E5%8D%94%E8%AD%B0)一起使用的；在SSL逐渐演变到[TLS](https://zh.wikipedia.org/wiki/%E5%82%B3%E8%BC%B8%E5%B1%A4%E5%AE%89%E5%85%A8%E5%8D%94%E8%AD%B0#TLS_1.0)时（其实两个是一个东西，只是名字不同而已），最新的HTTPS也由在2000年五月公布的RFC 2818正式确定下来。简单来说，HTTPS就是安全版的HTTP，并且由于当今时代对安全性要求更高，chrome和firefox都大力支持网站使用HTTPS，苹果也在ios 10系统中强制app使用HTTPS来传输数据，由此可见HTTPS势在必行。*

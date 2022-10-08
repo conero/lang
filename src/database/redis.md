@@ -4,7 +4,7 @@
 >
 > Joshua Conero
 
-
+Redis 为 Remote Dictionary Service 缩写，是一个数据结构服务器。
 
 一个基于 C 语言开发的开源数据库（BSD 许可），与传统数据库不同的是 Redis 的数据是存在内存中的（内存数据库），读写速度非常快，被广泛应用于缓存方向。并且，Redis 存储的是 KV 键值对数据。
 
@@ -130,3 +130,9 @@ exits $key
 与之相同（类似）的产品
 
 - memcached
+
+
+
+#### 参考
+
+- [图解redis](https://mp.weixin.qq.com/s/fEAWotIg2LN324wDfznpDA)
