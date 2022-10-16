@@ -80,6 +80,9 @@ $ go get -u all
 # go fmt 
 # go 脚本格式化; 全目录，like IDE
 $ go fmt ./...
+
+# 列表当前项目包或模块
+go list -m -json all
 ```
 
 

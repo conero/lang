@@ -1023,9 +1023,45 @@ top 命令是Linux下常用的性能分析工具，能够实时显示系统中�
 
 #### Systemd
 
-参考：[systemd](http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html)
+system daemon，linux下一种init软件。致力于取代 `initd` 
 
-**systemctrl**
+参考：[systemd](http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html)   
+
+主要命令如：
+
+- systemctl                          systemd 主命令
+- systemd-analyze             查看启动耗时
+- hostnamectl                    查看当前主机的信息
+- localectl                            查看本地化配置信息
+- timedatectl                      查看当前时区信息
+- loginctl                             查看当前用户登录信息
+- journalctl                         日志信息查看
+
+
+
+```shell
+# 查看服务启动时间
+systemd-analyze
+
+# 查看各应用启动时间
+systemd-analyze blame
+
+# 查看当前主机信息
+hostnamectl
+
+# 查看系统当前本地化配置
+localectl
+
+# 查看系统的当前时区信息
+timedatectl
+
+# 查看当前用户登录信息
+loginctl
+```
+
+
+
+##### systemctl
 
 *systemctl是 Systemd 的主命令，用于管理系统。*
 
@@ -1061,11 +1097,15 @@ systemctl --failed
 # 使用 systemctl 启动服务
 systemctl restart nginx
 
+# 打印系统状态
+systemctl status
+
+#打印显示的全部进程
+systemctl
+
 # 查看 systemd 的日志
 journalctl -xe
 ```
-
-
 
 
 

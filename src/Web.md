@@ -390,6 +390,7 @@ nginx 由模块组成，模块由配置文件指定的指令控制。指令分�
 # 行指令（主上下文）
 worker_processes  1;
 error_log  logs/error.log;
+access_log logs/access.log;
 
 # 块指令，http
 http{
