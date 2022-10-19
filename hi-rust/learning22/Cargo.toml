@@ -1,0 +1,23 @@
+[package]
+name = "learning22"
+version = "0.1.0"
+edition = "2021"
+
+rust-version = "1.64.0"
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+
+
+[profile.release]
+# https://github.com/johnthagen/min-sized-rust 参照仓库优化打包尺寸
+strip = true  # Automatically strip symbols from the binary.
+
+# Optimize for size.
+opt-level='z'
+
+lto = true
+panic = 'abort'
+
+codegen-units = 1
+#strip = "debuginfo"
