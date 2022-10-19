@@ -14,6 +14,9 @@
 # 运行
 cargo run
 
+# 代码格式化
+
+
 # 编译发行
 cargo build --release
 ```
