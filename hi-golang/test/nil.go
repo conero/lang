@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func testNil() {
-	var t1 interface{}
+	var t1 any
 	if t1 != nil {
 		fmt.Println("t1 is not null")
 	} else {
@@ -11,7 +11,7 @@ func testNil() {
 	}
 }
 
-func param(a ...interface{}) {
+func param(a ...any) {
 	if a != nil {
 		fmt.Println("input data not null. ")
 		for i, v := range a {

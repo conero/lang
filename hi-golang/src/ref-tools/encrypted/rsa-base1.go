@@ -14,7 +14,7 @@ import (
 	"os"
 )
 
-//生成RSA私钥和公钥，保存到文件中
+// 生成RSA私钥和公钥，保存到文件中
 func GenerateRSAKey(bits int) {
 	//GenerateKey函数使用随机数据生成器random生成一对具有指定字位数的RSA密钥
 	//Reader是一个全局、共享的密码用强随机数生成器
@@ -58,7 +58,7 @@ func GenerateRSAKey(bits int) {
 	pem.Encode(publicFile, &publicBlock)
 }
 
-//读取RSA私钥
+// 读取RSA私钥
 func GetRSAPrivateKey(path string) *rsa.PrivateKey {
 	//读取文件内容
 	file, err := os.Open(path)
@@ -76,7 +76,7 @@ func GetRSAPrivateKey(path string) *rsa.PrivateKey {
 	return privateKey
 }
 
-//读取RSA公钥
+// 读取RSA公钥
 func GetRSAPublicKey(path string) *rsa.PublicKey {
 	//读取公钥内容
 	file, err := os.Open(path)
@@ -98,7 +98,7 @@ func GetRSAPublicKey(path string) *rsa.PublicKey {
 	return publicKey
 }
 
-//对消息的散列值进行数字签名
+// 对消息的散列值进行数字签名
 func GetSign(msg []byte, path string) []byte {
 	//取得私钥
 	privateKey := GetRSAPrivateKey(path)
@@ -114,7 +114,7 @@ func GetSign(msg []byte, path string) []byte {
 	return sign
 }
 
-//验证数字签名
+// 验证数字签名
 func VerifySign(msg []byte, sign []byte, path string) bool {
 	//取得公钥
 	publicKey := GetRSAPublicKey(path)
@@ -127,7 +127,7 @@ func VerifySign(msg []byte, sign []byte, path string) bool {
 	return err == nil
 }
 
-//测试RSA数字签名
+// 测试RSA数字签名
 func main() {
 	//生成密钥文件
 	GenerateRSAKey(2048)

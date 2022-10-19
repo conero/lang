@@ -35,7 +35,7 @@ import (
 示例 3：
 	输入：folder = ["/a/b/c","/a/b/d","/a/b/ca"]
 	输出：["/a/b/c","/a/b/ca","/a/b/d"]
- 
+
 提示：
 	1 <= folder.length <= 4 * 10^4
 	2 <= folder[i].length <= 100
@@ -57,17 +57,17 @@ func main() {
 	var folder, vout, want []string
 
 	// case
-	folder, want = []string{"/a","/a/b","/c/d","/c/d/e","/c/f"}, []string{"/a","/c/d","/c/f"}
+	folder, want = []string{"/a", "/a/b", "/c/d", "/c/d/e", "/c/f"}, []string{"/a", "/c/d", "/c/f"}
 	vout = removeSubfolders(folder)
 	fmt.Printf(format, fmt.Sprintf("%v", vout) == fmt.Sprintf("%v", want), folder, vout, want)
 
 	// case
-	folder, want = []string{"/a","/a/b/c","/a/b/d"}, []string{"/a"}
+	folder, want = []string{"/a", "/a/b/c", "/a/b/d"}, []string{"/a"}
 	vout = removeSubfolders(folder)
 	fmt.Printf(format, fmt.Sprintf("%v", vout) == fmt.Sprintf("%v", want), folder, vout, want)
 
 	// case
-	folder, want = []string{"/a/b/c","/a/b/d","/a/b/ca"}, []string{"/a/b/c","/a/b/ca","/a/b/d"}
+	folder, want = []string{"/a/b/c", "/a/b/d", "/a/b/ca"}, []string{"/a/b/c", "/a/b/ca", "/a/b/d"}
 	vout = removeSubfolders(folder)
 	fmt.Printf(format, fmt.Sprintf("%v", vout) == fmt.Sprintf("%v", want), folder, vout, want)
 }

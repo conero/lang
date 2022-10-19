@@ -1,4 +1,5 @@
 // errorcheck -0 -d=nil
+//go:build wasm
 // +build wasm
 
 package main

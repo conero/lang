@@ -41,7 +41,8 @@ func main() {
 	fmt.Println(i32)
 }
 
-/**
+/*
+*
 基于字符串的字符串处理
 */
 func baseStrHandle(x int) int {

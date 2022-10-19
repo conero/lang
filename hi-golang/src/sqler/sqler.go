@@ -19,9 +19,9 @@ func Table(name string) *Sql {
 		table:     da.getColName(name),
 		feildList: []string{},
 		da:        da,
-		dataMap:   make(map[string]interface{}),
+		dataMap:   make(map[string]any),
 		//whereQueue:make([]interface{}, 10),
-		whereQueue: []interface{}{},
+		whereQueue: []any{},
 	}
 }
 
@@ -33,9 +33,9 @@ func Type(vType string) *Sql {
 		table:     "",
 		feildList: []string{},
 		da:        da,
-		dataMap:   make(map[string]interface{}),
+		dataMap:   make(map[string]any),
 		//whereQueue:make([]interface{}, 10),
-		whereQueue: []interface{}{},
+		whereQueue: []any{},
 	}
 }
 
@@ -44,8 +44,8 @@ type Sql struct {
 	table      string   // 数据表名
 	alias      string   // 数据表别名
 	feildList  []string // 数据列名
-	dataMap    map[string]interface{}
-	whereQueue []interface{} // 条件队列
+	dataMap    map[string]any
+	whereQueue []any // 条件队列
 	da         *db_adapter
 }
 
@@ -70,12 +70,14 @@ func (sql *Sql) Type(vtype string) *Sql {
 	return sql
 }
 
-/**
+/*
+*
 设置查询字段
 fields			string
-				map[string]string
+
+	map[string]string
 */
-func (sql *Sql) Field(fields ...interface{}) *Sql {
+func (sql *Sql) Field(fields ...any) *Sql {
 	colStr := sql.da.getCol()
 	for _, v := range fields {
 		switch v.(type) {
@@ -95,10 +97,11 @@ func (sql *Sql) Field(fields ...interface{}) *Sql {
 	return sql
 }
 
-/**
+/*
+*
 设置数据库名称
 */
-func (sql *Sql) Data(datas ...interface{}) *Sql {
+func (sql *Sql) Data(datas ...any) *Sql {
 	for _, data := range datas {
 		switch data.(type) {
 		case map[string]string:
@@ -116,7 +119,7 @@ func (sql *Sql) Data(datas ...interface{}) *Sql {
 
 // 设置条件
 // string/map[string]string/map[string]int
-func (sql *Sql) Where(wheres ...interface{}) *Sql {
+func (sql *Sql) Where(wheres ...any) *Sql {
 	for _, v := range wheres {
 		sql.whereQueue = append(sql.whereQueue, v)
 	}
@@ -151,7 +154,7 @@ func (sql *Sql) whereParse() string {
 		whereStr = strings.Join(whereStrArr, " AND ")
 	}
 	// 获取条件以后一直清除缓存
-	sql.whereQueue = []interface{}{}
+	sql.whereQueue = []any{}
 	if "" != whereStr {
 		whereStr = " WHERE " + whereStr
 	}
@@ -190,7 +193,7 @@ func (sql *Sql) dataToTuple() ([]string, []string) {
 			valArr = append(valArr, strconv.FormatFloat(float64(v.(float32)), 'E', -1, 32))
 		}
 	}
-	sql.dataMap = map[string]interface{}{}
+	sql.dataMap = map[string]any{}
 	return colArr, valArr
 }
 
@@ -215,7 +218,7 @@ func (sql *Sql) dataToUpdStr() []string {
 			updArr = append(updArr, value)
 		}
 	}
-	sql.dataMap = map[string]interface{}{}
+	sql.dataMap = map[string]any{}
 	return updArr
 }
 

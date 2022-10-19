@@ -54,7 +54,8 @@ func (ln *ListNode) Value2() int {
 	return num
 }
 
-/**
+/*
+*
 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1]		=> ListNode
 [5,6,4]   int(465)
 */
@@ -77,9 +78,10 @@ type Case struct {
 
 // 测试1
 // 示例：
-//		输入：(2 -> 4 -> 3) + (5 -> 6 -> 4)
-//		输出：7 -> 0 -> 8
-//		原因：342 + 465 = 807
+//
+//	输入：(2 -> 4 -> 3) + (5 -> 6 -> 4)
+//	输出：7 -> 0 -> 8
+//	原因：342 + 465 = 807
 func (c Case) Test1() {
 	lnd1 := &ListNode{2, &ListNode{4, &ListNode{3, nil}}}
 	lnd2 := &ListNode{5, &ListNode{6, &ListNode{4, nil}}}

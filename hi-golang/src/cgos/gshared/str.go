@@ -9,6 +9,7 @@ package main
 import "C"
 
 // 作者名称
+//
 //export Author
 func Author() string {
 	return "Joshua Conero."

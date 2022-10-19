@@ -52,16 +52,16 @@ func jobScheduling(startTime []int, endTime []int, profit []int) int {
 	var maxProfit int
 	// 遍历时间
 	vlen := len(startTime)
-	for i := 0; i < vlen; i++{
+	for i := 0; i < vlen; i++ {
 		st, et, pt := startTime[i], endTime[i], profit[i]
-		_ = st	// 忽略数字
+		_ = st // 忽略数字
 		tmpProfit := 0
 		sEQue := [][]int{}
-		for j := i+1; j<vlen; j++{
+		for j := i + 1; j < vlen; j++ {
 			st2, et2, pt2 := startTime[j], endTime[j], profit[j]
-			if len(sEQue) == 0{
-				if st2 < et{
-					if j == vlen -1{
+			if len(sEQue) == 0 {
+				if st2 < et {
+					if j == vlen-1 {
 						sEQue = [][]int{}
 					}
 					continue
@@ -69,9 +69,9 @@ func jobScheduling(startTime []int, endTime []int, profit []int) int {
 				sEQue = append(sEQue, []int{st2, et2, pt + pt2})
 				continue
 			}
-			last := sEQue[len(sEQue) -1]
-			if st2 < last[1]{
-				if j == vlen -1{
+			last := sEQue[len(sEQue)-1]
+			if st2 < last[1] {
+				if j == vlen-1 {
 					sEQue = [][]int{}
 				}
 				continue
@@ -79,7 +79,7 @@ func jobScheduling(startTime []int, endTime []int, profit []int) int {
 			sEQue = append(sEQue, []int{st2, et2, last[2] + pt2})
 		}
 		fmt.Println(sEQue)
-		if tmpProfit > maxProfit{
+		if tmpProfit > maxProfit {
 			maxProfit = tmpProfit
 		}
 	}

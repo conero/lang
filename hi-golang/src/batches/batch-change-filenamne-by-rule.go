@@ -98,7 +98,7 @@ func main() {
 		FuncAction: func(action string, a *bin.App) bool {
 			if action == "run" {
 				//fmt.Println(a.Data)
-				var vv interface{}
+				var vv any
 				var has bool
 				var src, tgt string
 				vv, has = a.Data["src"]

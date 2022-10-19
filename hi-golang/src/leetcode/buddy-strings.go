@@ -50,7 +50,8 @@ func case1(datas ...[]string) {
 	}
 }
 
-/**
+/*
+*
 数据字符换
 */
 func randStr(length int) string {

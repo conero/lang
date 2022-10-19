@@ -3,7 +3,7 @@
 // @Name:    库入口文件
 
 // reference link
-//    + https://www.cnblogs.com/golove/p/3286303.html
+//   - https://www.cnblogs.com/golove/p/3286303.html
 package main
 
 import (

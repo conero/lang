@@ -21,7 +21,7 @@ func (btct *BaseTypeCaseTest) Console() {
 
 func (btct BaseTypeCaseTest) baseType() {
 	var str string
-	var mapType map[string]interface{}
+	var mapType map[string]any
 	// 未初始化的对象
 	fmt.Println(mapType, mapType == nil, str)
 	// 直接赋值

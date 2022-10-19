@@ -32,7 +32,7 @@ func (t TestCase) Writer() {
 	}
 
 	wt := &InsWt{}
-	data := map[interface{}]interface{}{
+	data := map[any]any{
 		"Surong": 8 * 9,
 	}
 	ins.Execute(wt, data)

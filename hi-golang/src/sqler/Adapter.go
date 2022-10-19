@@ -48,7 +48,7 @@ func (da *db_adapter) init() *db_adapter {
 	return da
 }
 
-//	后去类型标点符号
+// 后去类型标点符号
 func (da *db_adapter) getCol() string {
 	v, ok := da.dbMap["col_sign"]
 	if !ok {

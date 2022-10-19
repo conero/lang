@@ -38,9 +38,9 @@ import (
 		如果多次调用这个函数，你将如何优化你的算法？
 */
 
-//编译通过，但是感觉做法有点凑巧
-//@TODO 可以继续优化
-//解答
+// 编译通过，但是感觉做法有点凑巧
+// @TODO 可以继续优化
+// 解答
 func hammingWeight(num uint32) int {
 	bits := 0
 	s := fmt.Sprintf("%b", num)
@@ -53,7 +53,7 @@ func hammingWeight(num uint32) int {
 	return bits
 }
 
-//控制台
+// 控制台
 func main() {
 	var num uint32
 	var out, vsout int

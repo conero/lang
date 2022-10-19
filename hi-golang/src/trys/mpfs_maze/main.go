@@ -17,7 +17,7 @@ func main() {
 	//	fmt.Println(msg)
 	//}
 
-	<- nm.MnChan
+	<-nm.MnChan
 	nm.Gather()
 
 }

@@ -23,7 +23,8 @@ type MazeNode struct {
 	IsDir     bool
 }
 
-/**
+/*
+*
 任务设置
 */
 func (m *Maze) Task(todoTask func()) *Maze {
@@ -31,13 +32,15 @@ func (m *Maze) Task(todoTask func()) *Maze {
 	return m
 }
 
-/**
+/*
+*
 默认任务
 */
 func (m *Maze) defTask() {
 }
 
-/**
+/*
+*
 调度中心
 */
 func (m *Maze) dispatch(vpath string) {
@@ -77,12 +80,13 @@ func (m *Maze) dispatch(vpath string) {
 	}
 }
 
-/**
+/*
+*
 寻物，迷宫入口。并获取字符信息
 */
 func (m *Maze) Search() string {
 	var msg string
-	if m.MnChan == nil{
+	if m.MnChan == nil {
 		m.MnChan = make(chan MazeNode)
 	}
 	_, err := ioutil.ReadDir(m.TargetDir)
@@ -94,7 +98,7 @@ func (m *Maze) Search() string {
 	return msg
 }
 
-//集合
+// 集合
 func (m *Maze) Gather() {
 	// 线程保持
 	for mn := range m.MnChan {
@@ -102,14 +106,16 @@ func (m *Maze) Gather() {
 	}
 }
 
-/**
+/*
+*
 迷宫示例
 */
 func NewMaze(tgtDir string) *Maze {
 	return &Maze{TargetDir: getStdDir(tgtDir), innerTask: nil}
 }
 
-/**
+/*
+*
 标准路径字符串
 */
 func getStdDir(dirName string) string {

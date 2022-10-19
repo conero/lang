@@ -13,10 +13,10 @@ import (
 
 // 模式类型
 type Model struct {
-	Data map[interface{}]interface{}
+	Data map[any]any
 }
 
-func (m *Model) Get(key interface{}) interface{} {
+func (m *Model) Get(key any) any {
 	v, has := m.Data[key]
 	if !has {
 		v = nil
@@ -25,9 +25,9 @@ func (m *Model) Get(key interface{}) interface{} {
 }
 
 // 设置值
-func (m *Model) Set(key, value interface{}) *Model {
+func (m *Model) Set(key, value any) *Model {
 	if nil == m.Data {
-		m.Data = map[interface{}]interface{}{}
+		m.Data = map[any]any{}
 	}
 	m.Data[key] = value
 	return m
@@ -66,16 +66,16 @@ func (v *View) AddStr(str string) *View {
 }
 
 // v1 = id, v2 = Data
-func (v *View) GetVString(a ...interface{}) {
+func (v *View) GetVString(a ...any) {
 	key := v.GetVdfk()
 	if len(a) > 0 {
 		if inStr1 := a[0].(string); inStr1 != "" {
 			key = inStr1
 		}
 	}
-	data := map[interface{}]interface{}{}
+	data := map[any]any{}
 	if len(a) > 1 {
-		data = a[1].(map[interface{}]interface{})
+		data = a[1].(map[any]any)
 	}
 	if v.Vid == "" {
 		v.Vid = "tDefault"
@@ -95,7 +95,7 @@ func (v *View) GetVString(a ...interface{}) {
 
 // 控制器
 type Controller struct {
-	Events  map[string]interface{}
+	Events  map[string]any
 	InitKey string
 	EndKey  string
 }
@@ -121,9 +121,9 @@ func (c *Controller) Run(Name string) {
 	c._call(c.EndKey)
 }
 
-func (c *Controller) On(Name string, fn interface{}) *Controller {
+func (c *Controller) On(Name string, fn any) *Controller {
 	if nil == c.Events {
-		c.Events = map[string]interface{}{}
+		c.Events = map[string]any{}
 	}
 	c.Events[Name] = fn
 	return c
