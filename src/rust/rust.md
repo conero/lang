@@ -3322,6 +3322,27 @@ $ cargo check
 
 
 
+通过编译实践：v2021 hello world 代码默认大小为 **4.53MB**，编译优化后大小为 **232KB**。
+
+https://github.com/johnthagen/min-sized-rust  rust 编译尺寸大小。
+
+```toml
+[profile.release]
+# https://github.com/johnthagen/min-sized-rust 参照仓库优化打包尺寸
+strip = true  # Automatically strip symbols from the binary.
+
+# Optimize for size.
+opt-level='z'
+
+lto = true
+panic = 'abort'
+
+codegen-units = 1
+#strip = "debuginfo"
+```
+
+
+
 ### 安装
 
 rust 支持多系统：如 window，linux，mac等
@@ -3593,6 +3614,7 @@ use std::{
 
 - [Rust 程序设计语言-简体中文](https://kaisery.github.io/trpl-zh-cn/)
 - [cargo-doc](https://doc.rust-lang.org/cargo/)
+- [Rust 官方文档中文翻译 ](https://rustwiki.org/zh-CN/)   github地址 https://github.com/rust-lang-cn
 
 
 

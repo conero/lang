@@ -667,7 +667,7 @@ go help
 
 
 
-go get = git clone + go install
+~~go get = git clone + go install~~
 
 ```shell
 # 代码编译
@@ -695,6 +695,31 @@ go mod init 	项目初始化
 go mod init [module] 
 
 go mod vendor 	模块自动拉取，并生产vendor目录
+```
+
+
+
+
+
+> go 自定义*tag*编译
+
+- 编写脚本
+
+```go
+// +build embed_mode
+// 自定义编译模式
+```
+
+
+
+- 编译程序
+
+```shell
+# 使用自定义模式进行编译即可
+go build -tags embed_mode
+
+# 不使用 tags
+go build 
 ```
 
 
