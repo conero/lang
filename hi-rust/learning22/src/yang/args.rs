@@ -10,9 +10,11 @@ pub struct Args {
     pub option: Vec<String>,
     // 请求参数
     pub data: HashMap<String, Option<String>>,
+    raw: Vec<String>,
 }
 
 impl Args {
+    // 获取命令行参数
     pub fn get_data(&self, key: &str) -> Option<&String> {
         if !self.data.is_empty() {
             if self.data.contains_key(key) {
@@ -24,5 +26,16 @@ impl Args {
             }
         }
         None
+    }
+
+    // 实例化函数
+    pub fn new(args: &Vec<String>) -> Args {
+        Args {
+            command: "".to_string(),
+            sub_command: "".to_string(),
+            option: vec![],
+            data: Default::default(),
+            raw: args.to_vec(),
+        }
     }
 }
