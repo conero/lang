@@ -7,6 +7,8 @@ pub const PROJECT: &'static str = "learn";
 pub mod cmd;
 // 命令行参数
 pub mod args;
+// 方法集合
+pub mod action;
 
 // 测试用例
 #[cfg(test)]
