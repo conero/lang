@@ -16,7 +16,7 @@ where
 
 pub struct Cmd<T, A>
 where
-    T: Fn(Args),
+    T: Fn(&Args),
     A: Action,
 {
     raw_args: Vec<String>,
@@ -29,7 +29,7 @@ where
 // 为结构体添加方法
 impl<T, A> Cmd<T, A>
 where
-    T: Fn(Args),
+    T: Fn(&Args),
     A: Action,
 {
     /// 通过参数初始化命令行程序
@@ -98,7 +98,7 @@ where
         let args = Args::new(&self.raw_args);
         self.args = Some(args);
         if !self.action_default.is_none() {
-            (self.action_default.unwrap())(self.args.unwrap());
+            (self.action_default.as_ref().unwrap())(self.args.as_ref().unwrap());
         }
     }
 }
