@@ -27,3 +27,10 @@ cargo build --release
 
 
 
+
+
+
+
+### 参考
+
+- [Rust中如何优雅写callback(对比C)](https://www.modb.pro/db/229113)
