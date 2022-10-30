@@ -5,7 +5,7 @@ use yang::VERSION;
 
 // 二进制文件
 fn main() {
-    let mut cmd: Cmd<dyn Fn(&Args), dyn Action> = Cmd::from(vec![]);
+    let mut cmd: Cmd<dyn Action> = Cmd::from(vec![]);
     cmd.empty(|args: &Args| {
         println!("Rust 2022 for learning");
         println!("Rust 语言实际代码，尽可能囊括教程所有知识点");

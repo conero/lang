@@ -3,6 +3,9 @@ use crate::args::Args;
 use std::collections::HashMap;
 use std::env;
 
+// 类型别名
+type ActionCallback = fn(&Args);
+
 pub struct ActionApp<T>
 where
     T: Action,
@@ -14,23 +17,21 @@ where
 
 /// 二进制命令工具
 
-pub struct Cmd<T, A>
+pub struct Cmd<T>
 where
-    T: Fn(&Args),
-    A: Action,
+    T: Action,
 {
     raw_args: Vec<String>,
-    calls: HashMap<String, T>,  // 函数集合
-    actions: Vec<ActionApp<A>>, //方法集合
-    action_default: Option<T>,  // 默认执行方法
+    calls: HashMap<String, ActionCallback>, // 函数集合
+    actions: Vec<ActionApp<T>>,             //方法集合
+    action_default: Option<ActionCallback>, // 默认执行方法
     args: Option<Args>,
 }
 
 // 为结构体添加方法
-impl<T, A> Cmd<T, A>
+impl<T> Cmd<T>
 where
-    T: Fn(&Args),
-    A: Action,
+    T: Action,
 {
     /// 通过参数初始化命令行程序
     /// # Examples
@@ -38,7 +39,7 @@ where
     ///     use yang::cmd::Cmd;
     ///     let app = Cmd::from(vec!["log", "--stat"]);
     /// ```
-    pub fn from(param: Vec<&str>) -> Cmd<T, A> {
+    pub fn from(param: Vec<&str>) -> Cmd<T> {
         let mut args: Vec<String> = Vec::new();
         for arg in param {
             args.push(String::from(arg));
@@ -77,18 +78,18 @@ where
     }
 
     // 方法注册
-    pub fn register(&mut self, name: &str, action: T) -> &mut Cmd<T, A> {
+    pub fn register(&mut self, name: &str, action: ActionCallback) -> &mut Cmd<T> {
         self.calls.insert(String::from(name), action);
         self
     }
 
-    pub fn register_action(&mut self, app: ActionApp<A>) -> &mut Cmd<T, A> {
+    pub fn register_action(&mut self, app: ActionApp<T>) -> &mut Cmd<T> {
         self.actions.push(app);
         self
     }
 
     // 默认方法
-    pub fn empty(&mut self, action: T) -> &mut Cmd<T, A> {
+    pub fn empty(&mut self, action: ActionCallback) -> &mut Cmd<T> {
         self.action_default = Some(action);
         self
     }
