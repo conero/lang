@@ -10,7 +10,7 @@ type ActionFn = fn(&Args);
 pub struct ActionApp {
     pub command: String, // 命令
     pub alias: Vec<String>,
-    //pub action: impl Action,
+    pub action: Box<dyn Action>,
 }
 
 /// 二进制命令工具
