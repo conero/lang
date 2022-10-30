@@ -17,9 +17,10 @@ pub struct ActionApp {
 
 pub struct Cmd {
     raw_args: Vec<String>,
-    calls: HashMap<String, ActionFn>, // 函数集合
-    actions: Vec<ActionApp>,          //方法集合
-    action_default: Option<ActionFn>, // 默认执行方法
+    calls: HashMap<String, ActionFn>,    // 函数集合
+    actions: Vec<ActionApp>,             //方法集合
+    action_default: Option<ActionFn>,    // 默认执行方法
+    action_no_handler: Option<ActionFn>, // 不存在的处理方法时
     args: Option<Args>,
 }
 
@@ -40,6 +41,7 @@ impl Cmd {
             raw_args: args,
             calls: HashMap::new(),
             action_default: None,
+            action_no_handler: None,
             args: None,
             actions: Vec::new(),
         };
@@ -86,10 +88,47 @@ impl Cmd {
         self
     }
 
+    // 不存时处理
+    pub fn un_found(&mut self, action: ActionFn) -> &mut Cmd {
+        self.action_no_handler = Some(action);
+        self
+    }
+
     // 命令行执行
     pub fn run(&mut self) {
         let args = Args::new(&self.raw_args);
         self.args = Some(args);
+
+        // 函数式定义参数
+        for (v_key, v_fn) in &self.calls {
+            if self.args.as_ref().unwrap().command == String::from(v_key) {
+                v_fn(self.args.as_ref().unwrap());
+                return;
+            }
+        }
+
+        // 类名定义尝试
+        for action in &self.actions {
+            if action.command == self.args.as_ref().unwrap().command {
+                action.action.as_ref().run(self.args.as_ref().unwrap());
+                return;
+            } else {
+                for alias in &action.alias {
+                    if String::from(alias) == self.args.as_ref().unwrap().command {
+                        action.action.as_ref().run(self.args.as_ref().unwrap());
+                        return;
+                    }
+                }
+            }
+        }
+
+        // 命令不存在时
+        if !self.action_no_handler.is_none() && !self.args.as_ref().unwrap().command.is_empty() {
+            (self.action_no_handler.as_ref().unwrap())(self.args.as_ref().unwrap());
+            return;
+        }
+
+        // 默认参数
         if !self.action_default.is_none() {
             (self.action_default.as_ref().unwrap())(self.args.as_ref().unwrap());
         }

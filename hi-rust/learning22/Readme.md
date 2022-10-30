@@ -25,9 +25,12 @@ cargo build --release
 
 
 
+### Notice
 
+项目目的已达到，代码将转移至 https://github.com/conero/uymas-rs，实现 rust 版本的 uymas库。其他参考
 
-
+- https://github.com/conero/uymas           Golang
+- https://github.com/conero/uymas-rs      Rust
 
 
 
