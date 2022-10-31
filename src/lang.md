@@ -1586,6 +1586,28 @@ ZQ —— 如果不想保存文件，也可以这个命令退出；
 
 
 
+### 压缩/归档算法
+
+compaction algorithm，压缩算法。根据有无失真重构数据分为有损压缩、无损压缩分类，
+
+- tar         归档算法
+
+- zip
+
+- gzip      是对deflate进行的封装，gzip = gzip头 + deflate编码的实际内容 + gzip尾。最流行的压缩算法之一
+
+- bzip2   bzip2命令用法与gzip相似，bzip2的算法更先进、压缩比更好，gzip相对来讲速度更快
+
+- flate     DEFLATE是同时使用了LZ77算法与哈夫曼编码（Huffman Coding）的一个无损数据压缩算法
+
+- lzw 
+
+- zlib      是对deflate进行了简单的封装，zlib = zlib头 + deflate编码的实际内容 + zlib尾
+
+  
+
+
+
 ## 信息安全
 
 包含 `密码学`、`数字签名`
