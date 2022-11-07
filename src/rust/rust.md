@@ -53,6 +53,8 @@
 
 
 
+
+
 > 家谱图
 
 ![](../image/rust-familys.png)
@@ -1667,6 +1669,9 @@ $ cargo help test
 
 # 指定单个测试，通过名称。有多个函数时
 $ cargo test <testName>
+
+# 测试某个模块时
+$ cargo test --test test_ip_address
 ```
 
 
@@ -3241,6 +3246,40 @@ let sql = sql!(SELECT * FROM posts WHERE id=1);
 
 
 
+### 编译器
+
+rust编译前作为前端，再由 LLVM编译为机器码。
+
+```mermaid
+graph TD
+	
+	subgraph Rust宏解析器
+		申明宏-->marco(parser解析)
+		过程宏-->marco		
+	end
+	subgraph Rustc编译器前端
+		code[Code Text]-->tokenStream[TokenStream]	
+        tokenStream-->ast[AST]-->hir[HIR]-->mir[MIR]
+        mir-->llvmir[LLVM IR 即中间码]
+        marco-.->tokenStream
+	end
+	subgraph LLVM编译后端
+		llvmir-.->mc[machine instruction code]
+	end
+```
+
+
+
+### 其他
+
+#### prelude
+
+`std::prelude`  包表示，内嵌的包，类似于go的builtin。
+
+
+
+
+
 ## 文档/代码库学习
 
 - [语言参考文档](https://doc.rust-lang.org/reference/index.html)
@@ -3307,10 +3346,15 @@ Rust 标准库
 
 > *Rust 的构建系统和包管理器。 采用 Toml 格式的配置文件*
 
+`cargo.toml` 为cargo的**manifest**元清单。
+
 ```shell
 $ cargo --version
 # 利用 cargo 创建项目
 $ cargo new <project>
+# 创建一个（依赖）库项目，默认为(--bin) 生成二进制
+$ cargo new <project> --lib
+
 
 # 构建项目
 $ cargo build
@@ -3322,6 +3366,9 @@ $ cargo run
 
 # 快速检查代码确保其可以编译， 比 build 快
 $ cargo check
+
+# 更新 cargo lock 的版本依赖
+$ cargo update
 ```
 
 
@@ -3347,6 +3394,8 @@ codegen-units = 1
 
 
 
+
+
 ### 安装
 
 rust 支持多系统：如 window，linux，mac等
@@ -3354,6 +3403,28 @@ rust 支持多系统：如 window，linux，mac等
 - windows
   - [x86_64-pc-windows-gnu](https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-gnu/rustup-init.exe)       基于 GNU 组件编译
   - [x86_64-pc-windows-msvc](https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/rustup-init.exe)     基于微软C编译器
+
+
+
+### dependencies 依赖库
+
+```toml
+[dependencies]
+time = "0.1.12"
+
+# 安装来源git仓库的
+rand = { git = "https://github.com/rust-lang-nursery/rand.git" }
+
+# 安装来源与git的包，并指定git sha
+rand = { git = "https://github.com/rust-lang-nursery/rand.git", rev = "9f35b8e" }
+
+# 安装来源与git仓库的，且指定分支为 try和包命令。以及使用别名引入
+cli = { git = "https://github.com/conero/uymas-rs", branch = "try", package="uymas_cli" }
+# 引入路径的为依赖包
+cli = { version="2.0.0", path = "../../uymas/cli", package = "uymas_cli"}
+```
+
+
 
 
 
@@ -3619,6 +3690,7 @@ use std::{
 - [Rust 程序设计语言-简体中文](https://kaisery.github.io/trpl-zh-cn/)
 - [cargo-doc](https://doc.rust-lang.org/cargo/)
 - [Rust 官方文档中文翻译 ](https://rustwiki.org/zh-CN/)   github地址 https://github.com/rust-lang-cn
+- [图解 Rust 编译器与语言设计 | Part1：Rust 编译过程与宏展开](https://cloud.tencent.com/developer/article/1792684)
 
 
 
