@@ -938,6 +938,19 @@ Haskell 社区相当活跃，那里有很多 Haskell 的变体等着你去探究
 
 
 
+主要流程：
+
+```mermaid
+graph LR
+	code[源代码]--编译/compiler-->obj[.obj]--链接/link-->bin[字节码/可执行文件]-->exec[执行]-->ouput[输出]
+	code[源代码]--编译并链接-->bin
+	code[源代码]--脚本解析器-->exec
+```
+
+
+
+
+
 ### 编译与预编译
 
 编译语言是编译器将 *源代码* 直接编译为二进制的机器码，安装到相应的硬件设备上即可直接运行，如*C/C++*；而预编译则是由编译器将其源代码先编译为*字节码（Byte Code）*，其在设备上运行时再将字节码编译或解释为机器码，将源代码转换成字节码的过程称预编译，如*Java/C#*。
@@ -1207,12 +1220,92 @@ Storage							储存
 Users							用户
 Windows product activation			Windows相关
 
+
+
+#### PE文件
+
+包括 exe，dll，vxd，sys，vdm等后缀文件。
+
+首先一个PE（Portable Executable）文件它实际上被分为了非常多的节（sections）。
+
+- `.text`                         程序代码块
+- `.rdata`/`.rsrc`         导入资源类型
+- `.data`                        全局常量 
+- `.edata`
+- `.idata`
+- `.pdata`
+- `.rdata`
+- `.xdata`
+- `.reloc`
+- `.tls`
+
+
+
+文件格式：
+
+```shell
+DOS MZ HEADER
+PE HEAD
+Section Table
+Section 1
+Section 2
+Section 2
+...
+Section n
+```
+
+判断程序位数可是由PE头部的，PE00L/32位, PE00d/63位。
+
+
+
+EXE File英文全名executable file 。译作可运行文件，可移植可运行 (PE) 文件格式的文件，它能够载入到内存中。
+
+通常来说，最常见的几种可执行文件格式有针对微软 Windows 平台的 PE（Portable Executable）格式、针对类 Unix 平台的 ELF（Executable and Linkable Format）格式，以及针对 MacOS 和 IOS 平台的 Mach-O 格式。
+
+
+
 #### DLL
 
 (Dynamic Link Library)文件为动态链接库文件，又称“应用程序拓展”，是软件文件类型。在Windows中，许多应用程序并不是一个完整的可执行文件，它们被分割成一些相对独立的动态链接库，即DLL文件，放置于系统中。当我们执行某一个程序时，相应的DLL文件就会被调用。一个应用程序可使用多个DLL文件，一个DLL文件也可能被不同的应用程序使用，这样的DLL文件被称为共享DLL文件。
 ​		
 
 对应的其他系统： 在 Windows 下是 `dll` ，在 Mac OS 下是 `dylib` ，Linux 则是 `so`。
+
+
+
+##### windows 工具
+
+- PEview               pe 查看工具（图形化）
+- xpeviewer         pe 查看工具 (图形化)/中文
+- dumpbin           dll 等二进制查看工具
+
+
+
+###### dumpbin
+
+dll 依赖调试工具，使用其查看文件的方法。来自于visual studio(VS)，
+
+```shell
+# 查看dll导出的全部方法
+dumpbin /exports demo.dll
+
+# 查看 dll 它引入的 dll 文件方法
+dumpbin /imports demo.dll
+```
+
+
+
+- RVA          相对虚拟地址
+
+
+
+###### Dependency Walker
+
+dll 图形化依赖工具查看。
+
+dependency是 Microsoft Visual C++ 中提供的非常有用的 PE 模块依赖性分析工具。
+
+
 
 
 
@@ -1238,6 +1331,8 @@ DOS规定，有重名的exe和com，运行时优先执行com文件。如果只�
 动态链接：		
 
 C++ 调用 dll 两种方法： 静态调用，动态调用
+
+
 
 #### CGI
 

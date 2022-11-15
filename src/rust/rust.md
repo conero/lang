@@ -3278,6 +3278,24 @@ graph TD
 
 
 
+#### std 或 no_std
+
+Rust语言的语法由核心库和标准库共同提供。 其中Rust核心库是标准库的基础。核心库中定义的是Rust语言的核心，不依赖于操作系统和网络等相关的库，甚至不知道堆分配，也不提供并发和I/O可以通过在模块顶部引入`#![no_std]`来使用核心库。
+
+no_std 库编写体积小，可用于嵌入式程序编写。
+
+
+
+```rust
+#![no_std]
+extern crate alloc;
+
+
+# 使用 no_std 库
+```
+
+
+
 
 
 ## 文档/代码库学习
@@ -3691,6 +3709,7 @@ use std::{
 - [cargo-doc](https://doc.rust-lang.org/cargo/)
 - [Rust 官方文档中文翻译 ](https://rustwiki.org/zh-CN/)   github地址 https://github.com/rust-lang-cn
 - [图解 Rust 编译器与语言设计 | Part1：Rust 编译过程与宏展开](https://cloud.tencent.com/developer/article/1792684)
+- [Rust no-std 工程实践](https://zhuanlan.zhihu.com/p/395670603)
 
 
 
