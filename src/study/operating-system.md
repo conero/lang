@@ -450,6 +450,23 @@ nslookup -ty=ptr 8.8.8.8
 
 
 
+ping
+
+```shell
+# 不间断地发送数据测试包
+ping -t www.bigdata-expo.cn
+
+#ping-a 解析计算机名与 NetBios 名。就是可以通过 ping 它的 ip 地址，可以解析出主机名。
+ping -a www.bigdata-expo.cn
+
+# 指定 ping 发包次数
+ping -n 10 baidu.com
+
+# -l 配置发起 ping 的数据包大小
+# [32byt, 65500byt] => [0.03125KB, 63.964KB]
+ping -l 1024 baidu.com
+```
+
 
 
 ##### netstat
@@ -1213,6 +1230,11 @@ df -hl
 
 
 ### 网络
+
+- netstat            监控网络数据包统计数据
+- tcpdump        用于网络监控和数据获取的工具
+
+
 
 #### iptables
 

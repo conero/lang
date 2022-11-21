@@ -558,6 +558,25 @@ alter table v_module add unique key AK_module_unique (module);
 
 #### 条件/where
 
+默认情况下：`like`, `in`, `=` 都不限定大小写。
+
+utf8 编码下：
+
+- utf8_bin    将字符串中的每一个字符以十六进制方式存储数据，区分大小写。
+
+- utf8_general_ci  不区分大小写，ci为case insensitive的缩写，即大小写不敏感。
+
+
+
+可由 “binary” 通过SQL层面限制，或者改变表或字段编码。
+
+```sql
+-- binary
+select * from hx_people hp where binary contact_source_name = 'chu';
+```
+
+
+
 ##### like
 
 like 查询默认不区分大小
