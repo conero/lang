@@ -2231,6 +2231,9 @@ curl -I http://www.httpbin.org/
 curl https://www.httpbin.org/post -X POST -d 'name=Joshua-Conero&age=21' -d 'try=so-many-times'
 # 上传数据
 curl https://www.httpbin.org/post -F 'imgs=@./qrcode.png' -F 'post_key=12' -F 'k1=s'
+
+# 设置头部
+curl -X POST -d 'Username=186******20&Password=L982222' -H 'Content-Type: application/json; charset=utf-8' 'https://www.bignbiot.com/api/account/login'
 ```
 
 

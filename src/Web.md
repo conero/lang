@@ -481,6 +481,23 @@ http{
 
 
 
+##### 异常
+
+> Request Entity Too Large
+
+```shell
+http {
+    # 修改上传文件大小
+    client_max_body_size 200m;
+}
+```
+
+
+
+
+
+
+
 
 
 #### Linux 安装环境
