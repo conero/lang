@@ -298,6 +298,10 @@ select
 
 -- 计算时间查：datetime 类型
 select r.lock_tm, current_timestamp() `now`, TIMESTAMPDIFF(second, r.lock_tm, current_timestamp()) diff_sec from r_beffq_video_attach_queue r;
+
+-- 日期格式
+select date_format(now(), '%Y-%m-%d %h:%i:%s');
+select date_format(now(), '%Y/%m/%d %h:%i:%s') v_time;
 ```
 
 

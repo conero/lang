@@ -147,6 +147,21 @@ git clone --branch v3.0 --depth=1 https://gitee.com/jeecg/jeecg-boot.git jeecg-b
 
 
 
+*git clone* 在来取较大或网络慢的仓库时常常中断。中断后无法断点续传，造成需要重复拉取多次。可使用该方法来可否
+
+```shell
+# 初始化一个 git 仓库
+git init
+
+# 通过 fetch 来取仓库（断了后重复执行即可）
+git fetch GIT_URL
+
+# 将 fetch 的数据拉取
+git checkout FETCH_HEAD
+```
+
+
+
 #### 记录每次更新到仓库
 
 > **已跟踪或未跟踪**
@@ -1188,7 +1203,7 @@ $ git archive --format=zip --output v1.2.zip
 $ git archive --format=zip -o update.zip HEAD $(git diff --name-only HEAD^)
 
 # 打包最后两个版本修改的文件
-$ git achive --format=zip -o update.zip HEAD $(git diff --name-only HEAD~2)
+$ git archive --format=zip -o update.zip HEAD $(git diff --name-only HEAD~2)
 
 # 打包两个分枝之间差别的文件
 $ git archive --format=zip -o update.zip HEAD $(git diff --name-only master fix-error)

@@ -449,6 +449,35 @@ php -m
 
 
 
+#### 文件上传
+
+php 网站文件上传一般受两个因素控制：
+
+- php 配置，其设置过小时会出现报错。
+
+  ```shell
+  # php.ini
+  # 开启文件上传
+  file_uploads = On;
+  
+  # 文件上传大小
+  upload_max_filesize = 1000M;
+  
+  # 文件上传数
+  max_file_uploads = 20;
+  ```
+
+  
+
+- nginx/Apache等服务配置
+
+```shell
+#nginx
+client_max_body_size 5m;
+```
+
+
+
 
 
 ## 工具

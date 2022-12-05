@@ -1686,20 +1686,41 @@ ZQ —— 如果不想保存文件，也可以这个命令退出；
 compaction algorithm，压缩算法。根据有无失真重构数据分为有损压缩、无损压缩分类，
 
 - tar         归档算法
-
 - zip
-
 - gzip      是对deflate进行的封装，gzip = gzip头 + deflate编码的实际内容 + gzip尾。最流行的压缩算法之一
-
 - bzip2   bzip2命令用法与gzip相似，bzip2的算法更先进、压缩比更好，gzip相对来讲速度更快
-
 - flate     DEFLATE是同时使用了LZ77算法与哈夫曼编码（Huffman Coding）的一个无损数据压缩算法
-
 - lzw 
-
 - zlib      是对deflate进行了简单的封装，zlib = zlib头 + deflate编码的实际内容 + zlib尾
 
-  
+
+
+
+### 编码规则
+
+- ulid    Universally Unique Lexicographically Sortable Identifier（通用唯一词典分类标识符）
+
+- uuid   Universally Unique Identifier（通用唯一标识符）
+
+
+
+> UUID
+
+版本1：在许多环境中是不切实际的，因为它需要访问唯一的，稳定的MAC地址，容易被攻击；
+
+版本2：将版本 1 的时间戳前四位换为 POSIX 的 UID 或 GID，问题同上；
+
+版本3：基于 MD5 哈希算法生成，生成随机分布的ID需要唯一的种子，这可能导致许多数据结构碎片化；
+
+版本4：基于随机数或伪随机数生成，除了随机性外没有提供其他信息；
+
+版本5：通过 SHA-1 哈希算法生成，生成随机分布的ID需要唯一的种子，这可能导致许多数据结构碎片化；
+
+
+
+> ULID
+
+ULID 是既基于时间戳又基于随机数，时间戳精确到毫秒，毫秒内有1.21e + 24个随机数，不存在冲突的风险，而且转换成字符串比 UUID 更加友好。
 
 
 
