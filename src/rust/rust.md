@@ -2114,6 +2114,19 @@ fn main() {
 
 #### 共享状态并发
 
+智能指针：
+
+- `Mutex<T>`                      互斥器，方式线程间数据竞争（死锁）
+- `Rc<T>`                            引用计数器（reference counted）
+- `Arc<T>`                         原子引用计数（atomically reference counted）。使用 Arc<T> 包装一个 Mutex<T> 能够实现在多线程之间共享所有权
+
+线程使用 trait。**手动实现 Send 和 Sync 是不安全的**。
+
+- `Send`                          允许线程间转移所有权
+- `Sync`                          允许多线程访问
+
+
+
 > **互斥器一次只允许一个线程访问数据**
 
 _**互斥器**（*mutex*）是 “mutual exclusion” 的缩写，也就是说，任意时刻，其只允许一个线程访问某些数据。为了访问互斥器中的数据，线程首先需要通过获取互斥器的 **锁**（*lock*）来表明其希望访问数据。锁是一个作为互斥器一部分的数据结构，它记录谁有数据的排他访问权。因此，我们描述互斥器为通过锁系统 **保护**（*guarding*）其数据。_
@@ -3358,6 +3371,10 @@ Rust 标准库
 
 
 
+### 依赖库/包介绍
+
+- [tokio](https://github.com/tokio-rs/tokio)      Rust 最优秀的异步运行时框架，它提供了写异步网络服务所需的几乎所有功能，不仅仅适用于大型服务器，还适用于小型嵌入式设备。
+
 
 
 ## cargo/ 包管理器 
@@ -3387,6 +3404,12 @@ $ cargo check
 
 # 更新 cargo lock 的版本依赖
 $ cargo update
+# 更新检测并不真正执行更新
+cargo update --dry-run
+# 更新指定库
+cargo update -p tokio
+# 指定版本号
+cargo update -p tokio --precise 1.23.0
 ```
 
 

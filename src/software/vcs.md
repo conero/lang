@@ -56,11 +56,25 @@ git update-git-for-windows
 
 获取命令行帮助
 
-```console
-$ git help config
-```
 
 ### config
+
+```shell
+git help config
+
+# 查看配置类别
+git config --list
+# 查看配置全局配置列表
+git config --global --list
+
+# 删除多个设置项（合并）
+git config --global --replace-all pack.deltacachesize 128m
+
+# 使用 --unset 删除选项
+git config --global --unset http.postbuffer
+```
+
+
 
 > `git config [options]`  命令行
 
@@ -138,6 +152,11 @@ git clone https://github.com/denoland/deno.git
 # 复制 pangu 仓库
 # [--depth] 表示复制仓库的深度，即最近 commit 的次数
 git clone https://gitee.com/conero/pangu.git --depth=1
+
+# 回收空间
+git for-each-ref --format='delete %(refname)' refs/original | git update-ref --stdin
+git reflog expire --expire=now --all
+git gc --prune=now
 
 # 复制仓库，且指定tag/branch，以及深度为1到新目录「jeecg-boot-v30」
 git clone --branch v3.0 --depth=1 https://gitee.com/jeecg/jeecg-boot.git jeecg-boot-v30
@@ -1257,6 +1276,9 @@ $ git commit -am 'Adding git-svn instructions to the README'
 # 拉取新改动
 # 推送项目
 $ git svn dcommit
+
+# 拉取最新代码
+git svn rebase
 
 # 显示参照
 $ git show-ref
