@@ -285,6 +285,25 @@ _HTTP/1 的请求和响应报文，都是由起始行、首部和实体正文（
 
 
 
+其他（绝对单位）
+
+- in       英寸(inches), `1in = 2.54cm = 96px` 
+- cm     厘米(centimeters), `1cm = 10mm = 96px/2.54 = 37.8px`
+- mm   毫米(millimeters), `1mm = 0.1cm = 3.78px`
+- pt      点(points), `1pt = 1/72in = 0.0139in = 1/72*2.54cm = 1/72*96px = 1.33px`
+- pc     派卡(picas)，`1pc = 12pt = 1/6in = 1/6*96px = 16px`
+
+
+
+相对单位
+
+- em
+- rem
+- ex                所用字体中小写x的高度。ex在实际中常用于微调
+- ch                ch与ex类似，被定义为数字0的宽度。当无法确定数字0宽度时，取em值的一半作为ch值
+
+
+
 
 
 ### HTML5

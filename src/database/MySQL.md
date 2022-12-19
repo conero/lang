@@ -1393,6 +1393,12 @@ show master logs;
 show master status;
 -- 日志刷新
 flush logs;
+
+-- 重置清空日志
+reset master;
+
+# 使用 mysqlbinlog 读取日志
+mysqlbinlog binlog.000111
 ```
 
 

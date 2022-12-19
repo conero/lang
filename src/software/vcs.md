@@ -12,7 +12,7 @@
 
 > 时间： *2005*
 
-*windows 通过命令更新git；使用国内镜像地址下载更快 https://npm.taobao.org/mirrors/git-for-windows/。*
+*windows 通过命令更新git；使用国内镜像地址下载更快  [https://registry.npmmirror.com/binary.html?path=git-for-windows/](https://registry.npmmirror.com/binary.html?path=git-for-windows/) (~~https://npm.taobao.org/mirrors/git-for-windows/~~)。*
 
 ```bash
 git update-git-for-windows
@@ -176,6 +176,11 @@ git init
 git fetch GIT_URL
 
 # 将 fetch 的数据拉取
+git checkout FETCH_HEAD
+
+# 如拉取 rust 代码仓库
+git init
+git fetch https://gitee.com/mirrors/rust.git --depth=1
 git checkout FETCH_HEAD
 ```
 

@@ -3733,6 +3733,7 @@ use std::{
 - [Rust 官方文档中文翻译 ](https://rustwiki.org/zh-CN/)   github地址 https://github.com/rust-lang-cn
 - [图解 Rust 编译器与语言设计 | Part1：Rust 编译过程与宏展开](https://cloud.tencent.com/developer/article/1792684)
 - [Rust no-std 工程实践](https://zhuanlan.zhihu.com/p/395670603)
+- [rust通过代码实际学习知识以及概念](https://github.com/rust-lang/rustlings)
 
 
 
