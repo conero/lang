@@ -255,6 +255,52 @@ version()	-- 版本信息
 
 
 
+### 事务
+
+ACID 事务原子性：
+
+- atomicity       原子性
+- consistency   一致性
+- isolation        隔离性
+- duration        持久性
+
+
+
+数据库死锁可能导致非常慢的查询，即使查询变慢。
+
+
+
+> 事务
+
+MySQL 默认事务自动提交(Autocommit)
+
+```mysql
+-- 启动事务
+start transaction;
+-- 执行数据库操作
+
+-- 提交事务
+commit;
+
+-- 事务回滚
+rollback;
+```
+
+
+
+MySQL将每个数据库(也称作schema)持久化在数据目录的子目录下。
+
+- 创建表时生成一个与表名同名的“.frm”文件，其保存表定义。
+
+
+
+```mysql
+# 查看表-x_user-状态
+show table status like 'x_user';
+```
+
+
+
 
 
 ### 语句
@@ -272,6 +318,16 @@ drop database conero;
 
 
 #### 类型
+
+
+
+> 选择优化的数据类型
+
+- 更小的通常更好。比如确定数据的取值范围后选择最匹配的类型，不要选择过大于它的值。
+- 尽可能用简单类型。
+- 尽量避免NULL值。
+
+
 
 ##### 时间类型
 
@@ -317,6 +373,10 @@ select date_format(now(), '%Y/%m/%d %h:%i:%s') v_time;
 
 ##### 数字
 
+分为：整数(int) 和 实数(decimal)。
+
+
+
 **int**
 
 | 类型        | 有符号范围     | 无符号范围 | 存储字节(1Byte=8 bit) |
@@ -327,7 +387,7 @@ select date_format(now(), '%Y/%m/%d %h:%i:%s') v_time;
 | smallint    | -2^15 ~ 2^15-1 | 0 ~ 2^16-1 | 2                     |
 | tinyint     | -2^7 ~ 2^7-1   | 0 ~ 2^8-1  | 1                     |
 
-
+**unsigned**       非负属性，提交数据的保存范围。
 
 
 
@@ -473,7 +533,7 @@ select find_in_set(1, '2,5,1,9,2');   -- 3
 自定义字段信息排序
 
 ```mysql
--- 自定义字段排序信息排序
+-- 自定义字段排序信息排序(显示排序)
 SELECT * from member bm where id in (472, 98, 519) 
 	order by field(id, 472, 98, 519)
 ;
@@ -810,6 +870,9 @@ show engines;
 
 # 修改表的引擎
 alter table v_table_name engine = myisam;
+
+# 查看 innodb 引擎状态
+show engine InnoDB status;
 ```
 
 
@@ -847,6 +910,10 @@ alter table v_table_name engine = myisam;
 #### MyISAM
 
 *基于ISAM存储引擎，并对其进行扩展；它是在Web、数据仓储和其他应用环境下最常使用的存储引擎之一。MyISAM拥有较高的插入、查询速度，但不支持事物。*
+
+崩溃后无法安全恢复。
+
+其将表保存为".MYD" 数据文件 和 ".MYI" 索引文件。
 
 
 

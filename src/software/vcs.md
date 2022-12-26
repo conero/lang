@@ -1272,7 +1272,7 @@ $ git svn clone file:///tmp/test-svn -s
 
 
 # 与两者前者接口一样
-$ git svn init
+$ git init
 $ git svn fetch <URL>
 
 # 提交

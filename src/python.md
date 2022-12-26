@@ -1358,6 +1358,7 @@ python -m venv <venv-name>
 # 启动虚拟环境
 # powershell
 <venv-name>/Scripts/Activate.ps1
+
 # 进入虚拟环境
 # 此时可以进行相关操作
 (<venv-name>)/~/> pip list
