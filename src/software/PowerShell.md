@@ -1315,6 +1315,14 @@ tasklist /fi "imagename eq nginx.exe"
 taskkill /?
 # 强制杀死进程
 taskkill /fi "imagename eq nginx.exe" /F
+
+# 查看进程并获取文件详情
+# 根据名称获取进程
+Get-Process pwsh -FileVersionInfo
+# 同ID获取进程
+Get-Process -Id 7428 -FileVersionInfo
+# 关闭进程
+stop-Process -Id 7428
 ```
 
 

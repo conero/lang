@@ -218,6 +218,10 @@ DROP TABLE [IF EXISTS] tbl_name;		-- 删除存在数据表
 
 ## 基础
 
+检查慢日志记录是找出扫描行数过多查询的好方法。
+
+
+
 ### 连接
 
 *shell 数据库连接。*
@@ -973,6 +977,15 @@ MERGE 存储引擎是一组 MyISAM 表的组合，MERGE 表本身没有数据，
 所有的 MySQL 类型都可以进行索引，对相关列使用索引是提高 `SELECT` 查询性能的最佳途径。MyISAM 和 InnoDB 都是使用 `BTREE` 作为索引，MySQL 5 不支持`函数索引`，但是支持 `前缀索引`。
 
 前缀索引顾名思义就是对列字段的前缀做索引，前缀索引的长度和存储引擎有关系。MyISAM 前缀索引的长度支持到 1000 字节，InnoDB 前缀索引的长度支持到 767 字节，索引值重复性越低，查询效率也就越高。
+
+MySQL只能高效地使用索引的最左前缀列。
+
+
+
+```mysql
+-- 查询表，v_guest_invite——的索引情况
+show index from v_guest_invite;
+```
 
 
 

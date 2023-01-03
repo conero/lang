@@ -1606,6 +1606,14 @@ TortoiseSVN 客服端：
 
 
 
+### App/移动端
+
+@todo [flutter、rn、uni-app比较](https://blog.csdn.net/u013712343/article/details/123070663)
+
+
+
+
+
 ### 数据库
 
 > 关系数据库范式
@@ -1753,6 +1761,7 @@ ULID 是既基于时间戳又基于随机数，时间戳精确到毫秒，毫秒
 - **HMAC**  *哈希消息认证码 (Hash-based Message Authentication Code)*
 - **MD5**  *MD5消息摘要算法（英语：MD5 Message-Digest Algorithm），一种被广泛使用的密码散列函数，可以产生出一个128位（16字节）的散列值（hash value），用于确保信息传输完整一致*
   - 1991
+- **CRC32**  循环冗余校验，（Cyclic Redundancy Check）校验实用程序库在数据存储和数据通讯领域，为了保证数据的正确，就不得不采用检错的手段。（相比于md5，sha1等其生成的字符更短）
 - **RC4**   *(Rivest Cipher 4)，属于对称加密算法*
 - **RSA**  *RSA加密算法是一种非对称加密算法。在公开密钥加密和电子商业中RSA被广泛使用。RSA是1977年由罗纳德·李维斯特（Ron Rivest）、阿迪·萨莫尔（Adi Shamir）和伦纳德·阿德曼（Leonard Adleman）一起提出的。*
   - 1977

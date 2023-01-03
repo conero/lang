@@ -414,6 +414,17 @@ C++/WinRT 是 Windows 运行时 (WinRT) API 的完全标准新式 C++17 语言�
 
 ### 主要配置/命令
 
+用户命令查看
+
+```shell
+# 显示当前用户的信息以及安全标识符 (SID)。
+whoami /user
+```
+
+
+
+
+
 #### ipconfig
 
 ```powershell
@@ -552,6 +563,21 @@ wsl --set-version Ubuntu-20.04 2
 #         dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
 # 设置 wsl默认为2版本
 wsl --set-default-version 2
+
+# 关闭 wsl 系统
+wsl --shutdown
+
+# 导出 wsl 系统到指定目录
+wsl --export openEuler-22.03 D:/WSL/openEuler-22.03.tar
+
+# 卸载 - openEuler-22.03
+wsl --unregister openEuler-22.03
+
+# 导入已导出 wsl 包
+wsl --import openEuler-22.03 D:\WSL\openEuler-22.03 D:\WSL\openEuler-22.03.tar --version 2
+# 已安装的 wsl 路径目录。虚拟文件系统路径
+# ~/ext4.vhdx
+
 ```
 
 
