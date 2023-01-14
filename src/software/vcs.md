@@ -92,8 +92,8 @@ git config --global --unset http.postbuffer
 > 用户信息
 
 ```console
-$ git config --global user.name "John Doe"
-$ git config --global user.email johndoe@example.com
+git config --global user.name "John Doe"
+git config --global user.email johndoe@example.com
 ```
 
 
@@ -202,7 +202,7 @@ git checkout FETCH_HEAD
 
 
 
-> **`$ git status` 查看本次仓库的状态**
+> **`git status` 查看本次仓库的状态**
 
 *状态简览* `# git status -s|--short`
 
@@ -210,7 +210,7 @@ git checkout FETCH_HEAD
 
 
 
-> **`$ git add <file>` 跟踪文件，即添加文件到暂存区**
+> **`git add <file>` 跟踪文件，即添加文件到暂存区**
 
 
 
@@ -239,43 +239,43 @@ git update-index --no-assume-unchanged cmd/exporter/main.go
 
 
 
-> **`$ git diff`   此命令比较的是工作目录中当前文件和暂存区域快照之间的差异， 也就是修改之后还没有暂存起来的变化内容。**
+> **`git diff`   此命令比较的是工作目录中当前文件和暂存区域快照之间的差异， 也就是修改之后还没有暂存起来的变化内容。**
 
 
 
-*`$ git diff --check`  找到可能的空白错误并将它们为你列出来*
+*`git diff --check`  找到可能的空白错误并将它们为你列出来*
 
 
 
-`$ git diff --cached`   或 `$ git diff --staged`	*查看已暂存的将要添加到下次提交里的内容 (--staged 和 --cached 是同义词）*
+`git diff --cached`   或 `git diff --staged`	*查看已暂存的将要添加到下次提交里的内容 (--staged 和 --cached 是同义词）*
 
 
 
-`$ git diff HEAD`     *比较当前，已经执行的 `$ git add .` 之后的差别。*
+`git diff HEAD`     *比较当前，已经执行的 `git add .` 之后的差别。*
 
 
 
 ```shell
 # 查看文件从: b7ffdd3b -> 65b2dcb1 的差别，两者为 <commit_id>...<commit_id>
-$ git diff b7ffdd3b...65b2dcb1 --stat
+git diff b7ffdd3b...65b2dcb1 --stat
 ```
 
 
 
-> **`$ git commit` 提交更新**
+> **`git commit` 提交更新**
 
 提交之前可以`git status` 查看状态
 
-`$ git commit -m "massage"`   *将提交信息与命令放在同一行。 原则:  一般情况下，信息应当以少于 50 个字符（25个汉字）的单行开始且简要地描述变更，接着是一个空白行，再接着是一个更详细的解释. Git 项目要求一个更详细的解释，包括做改动的动机和它的实现与之前行为的对比 - 这是一个值得遵循的好规则。*
+`git commit -m "massage"`   *将提交信息与命令放在同一行。 原则:  一般情况下，信息应当以少于 50 个字符（25个汉字）的单行开始且简要地描述变更，接着是一个空白行，再接着是一个更详细的解释. Git 项目要求一个更详细的解释，包括做改动的动机和它的实现与之前行为的对比 - 这是一个值得遵循的好规则。*
 
 
 
 ```bash
-$ git commit -am "添加并提交内容"
+git commit -am "添加并提交内容"
 
 # 相同与同时执行了
-$ git add .
-$ git commit -m "<msg>"
+git add .
+git commit -m "<msg>"
 ```
 
 
@@ -286,11 +286,11 @@ $ git commit -m "<msg>"
 
 **跳过使用暂存区域**
 
-`$ git commit -a`   *Git 就会自动把所有已经跟踪过的文件暂存起来一并提交，从而跳过 `git add` 步骤*
+`git commit -a`   *Git 就会自动把所有已经跟踪过的文件暂存起来一并提交，从而跳过 `git add` 步骤*
 
 
 
-> **`$ git rm <file>`  移除文件, <file>  可以为`glob` 模式**
+> **`git rm <file>`  移除文件, <file>  可以为`glob` 模式**
 
 *从暂存区移除文件*
 
@@ -301,13 +301,13 @@ $ git commit -m "<msg>"
 
 
 
-> **`$ git mv <source-file> <target-file>` *移动文件***
+> **`git mv <source-file> <target-file>` *移动文件***
 
 
 
 ```shell
-$ git mv README.md README
-$ git status
+git mv README.md README
+git status
 On branch master
 Changes to be committed:
   (use "git reset HEAD <file>..." to unstage)
@@ -318,9 +318,9 @@ Changes to be committed:
 运行 `git mv` 就相当于运行了下面三条命令：
 
 ```shell
-$ mv README.md README
-$ git rm README.md
-$ git add README
+mv README.md README
+git rm README.md
+git add README
 ```
 
 
@@ -393,7 +393,7 @@ docs: correct spelling of CHANGELOG
 
 #### 日志(log)
 
-> `$ git log`
+> `git log`
 
 - `git log -p -2` *一个常用的选项是 `-p`，用来显示每次提交的内容差异。 你也可以加上 `-2` 来仅显示最近两次提交*
 
@@ -407,12 +407,12 @@ docs: correct spelling of CHANGELOG
 
 ```shell
 # 文件追踪
-$ git log --oneline -- <file>
+git log --oneline -- <file>
 # 文件追踪更改记录
-$ git log -p <file>
+git log -p <file>
 
 # 查看历史代码提交信息
-$ git show <commit_id>
+git show <commit_id>
 ```
 
 
@@ -430,17 +430,17 @@ git log --date=format:'%Y-%m-%d %H:%M:%S' --pretty=format:'"%h","%an","%ad","%s"
 
 #### 撤消操作
 
-- `$ git commit --amend`    *提交有问题是时，重新提交*
+- `git commit --amend`    *提交有问题是时，重新提交*
 
 
 
-> **`$ git reset HEAD <file>` *取消暂存的文件***
+> **`git reset HEAD <file>` *取消暂存的文件***
 
 *在调用时加上 `--hard` 选项**可以**令 `git reset` 成为一个危险的命令*
 
 
 
-> **`$ git checkout -- <file>...` *撤消对文件的修改***
+> **`git checkout -- <file>...` *撤消对文件的修改***
 
 *你需要知道 `git checkout -- [file]` 是一个危险的命令，这很重要。*
 
@@ -452,13 +452,13 @@ git log --date=format:'%Y-%m-%d %H:%M:%S' --pretty=format:'"%h","%an","%ad","%s"
 
 ```shell
 # 查看 git 仓库的 <commit_id>
-$ git log
+git log
 
 # 回滚到任意指定版本
-$ git reset --hard <commit_id>
+git reset --hard <commit_id>
 
 # 强制提交
-$ git push -f origin <branch>
+git push -f origin <branch>
 ```
 
 
@@ -476,23 +476,23 @@ git commit --amend
 
 #### 远程仓库
 
-> **`$ git remote -v` *查看远程仓库*** 
+> **`git remote -v` *查看远程仓库*** 
 
 
 
-> **`$ git remote add <shortname> <url>` *添加远程仓库*** 
+> **`git remote add <shortname> <url>` *添加远程仓库*** 
 
 
 
-> **`$ git fetch [remote-name]` *从远程仓库中抓取与拉取***
+> **`git fetch [remote-name]` *从远程仓库中抓取与拉取***
 
 
 
-> **`$ git remote show origin` *查看远程仓库***
+> **`git remote show origin` *查看远程仓库***
 
 
 
-> **`$ git remote rename <old-name> <new-name>` *远程仓库的移除与重命名***
+> **`git remote rename <old-name> <new-name>` *远程仓库的移除与重命名***
 
 
 
@@ -529,9 +529,9 @@ git fetch origin v2.1.3
 
 
 
-> **`$ git tag` *列出标签时***
+> **`git tag` *列出标签时***
 
-`$ git tag -l v1.8.5*` 使用 *glob* 模式筛选
+`git tag -l v1.8.5*` 使用 *glob* 模式筛选
 
 
 
@@ -539,17 +539,17 @@ git fetch origin v2.1.3
 
 *Git 使用两种主要类型的标签：轻量标签（lightweight）与附注标签（annotated）。*
 
-`$ git tag <tag-name> `
+`git tag <tag-name> `
 
-`$ git tag -a v1.4 -m 'my version 1.4'`   *附注标签, 创建标签时添加标签*
+`git tag -a v1.4 -m 'my version 1.4'`   *附注标签, 创建标签时添加标签*
 
 
 
 > **共享标签**
 
-`$ git push origin <tag-name>` *推送标签到远程仓库*
+`git push origin <tag-name>` *推送标签到远程仓库*
 
-`$ git push origin --tags`  *一次性推送很多标签*
+`git push origin --tags`  *一次性推送很多标签*
 
 ```shell
 # 一次性推送所有分支
@@ -644,12 +644,12 @@ git config --global core.autocrlf input
 > 分支比较
 
 ```shell
-$ git diff <branch1> <branch2>
+git diff <branch1> <branch2>
 # 仅仅查看文件概略
-$ git diff <branch1> <branch2> --stat
+git diff <branch1> <branch2> --stat
 
 # 远程分支对比
-$ git diff --stat master origin/master
+git diff --stat master origin/master
 ```
 
 
@@ -657,9 +657,9 @@ $ git diff --stat master origin/master
 > 拉去其他分支的指定文件
 
 ```bash
-# $ git checkout <branch-name> <path>
+# git checkout <branch-name> <path>
 # 将 .gitignore 合并到当前分支内
-$ git checkout dev .gitignore
+git checkout dev .gitignore
 ```
 
 
@@ -669,14 +669,14 @@ $ git checkout dev .gitignore
 ```ini
 # 拉取分支，若不存在就新建分支
 # Method 1
-$ git checkout -b <branchName>
-$ git checkout -b <branchName> remotes/origin/<branchName>
-$ git checkout -b trys-190329/krpano remotes/origin/trys-190329/krpano 
+git checkout -b <branchName>
+git checkout -b <branchName> remotes/origin/<branchName>
+git checkout -b trys-190329/krpano remotes/origin/trys-190329/krpano 
 
 # 分支简写
 # Method 2
-$ git branch <branchName>
-$ git checkout <branchName> 
+git branch <branchName>
+git checkout <branchName> 
 ```
 
 
@@ -694,13 +694,13 @@ git checkout <branchName>
 
 ```ini
 # 转到需要合并的分支(目标分支)
-$ git checkout <targetBN>
+git checkout <targetBN>
 
 # 与源分支合并
-$ git merge <srcBN>
+git merge <srcBN>
 
 # 撤销分支合并
-$ git reset --hard
+git reset --hard
 
 
 # 重命名本地/远程分支
@@ -728,10 +728,10 @@ git checkout toBranch f1.txt t1.shel path/base
 #### 删除分支
 
 ```ini
-$ git branch -d <branchName>
+git branch -d <branchName>
 
 # 删除远程标签
-$ git push origin :<tagName>
+git push origin :<tagName>
 ```
 
 
@@ -744,9 +744,9 @@ $ git push origin :<tagName>
 
 #### 推送远程
 
-`$ git push origin <remoteBranchName>`  推送到远程仓库
+`git push origin <remoteBranchName>`  推送到远程仓库
 
-`$ git push origin local:remote`	推送:   本地 -> 远程
+`git push origin local:remote`	推送:   本地 -> 远程
 
 
 
@@ -756,18 +756,18 @@ $ git push origin :<tagName>
 
 
 
-`$ git checkout -b [branch] [remotename]/[branch]`
+`git checkout -b [branch] [remotename]/[branch]`
 
-`$ git checkout --track origin/serverfix`
+`git checkout --track origin/serverfix`
 
 
 
 ```ini
 # 查看所有跟踪的远程分支
-$ git branch -vv
+git branch -vv
 
 # 查看所有分支
-$ git fetch --all; git branch -vv
+git fetch --all; git branch -vv
 ```
 
 
@@ -782,7 +782,7 @@ $ git fetch --all; git branch -vv
 
 **裸仓库**  *一个远程仓库通常只是一个裸仓库（*bare repository*）— 即一个没有当前工作目录的仓库。 因为该仓库仅仅作为合作媒介，不需要从磁碟检查快照；存放的只有 Git 的资料。 简单的说，裸仓库就是你工程目录内的 `.git` 子目录内容，不包含其他资料。*
 
-`$ git clone --bare <urlName>`     获取裸仓库(以裸仓库克隆服务器)
+`git clone --bare <urlName>`     获取裸仓库(以裸仓库克隆服务器)
 
 
 
@@ -860,25 +860,25 @@ $ git fetch --all; git branch -vv
 
 ```ini
 # 查看 sha-1 全部
-$ git log
+git log
 
 
 # Git 可以为 SHA-1 值生成出简短且唯一的缩写
-$ git log --abbrev-commit
+git log --abbrev-commit
 
 
 # 分支引用
-$ git rev-parse <branchName>
+git rev-parse <branchName>
 
 
 # 引用日志
-$ git reflog
-$ git show HEAD@{n}
+git reflog
+git show HEAD@{n}
 # 查看类似于 git log 输出格式的引用日志信息
-$ git log -g
+git log -g
 
 # 远程分支日志查看
-$ git log origin/master
+git log origin/master
 ```
 
 
@@ -893,19 +893,19 @@ $ git log origin/master
 
 ```shell
 # 在 【b2】 中而不在 【b1】
-$ git log <branch1>..<branch2>
+git log <branch1>..<branch2>
 # 当前分支跟随最新的进度以及查看你即将合并的内容
-$ git log origin/master..HEAD
+git log origin/master..HEAD
 
 # 查看所有被 refA 或 refB 包含的但是不被 refC 包含的提交
-$ git log refA refB ^refC
-$ git log refA refB --not refC
+git log refA refB ^refC
+git log refA refB --not refC
 
 # 选择出被两个引用中的一个包含但又不被两者同时包含的提交
-$ git log <branch1>...<branch2>
+git log <branch1>...<branch2>
 
 # 单行查看git日志
-$ git log --oneline
+git log --oneline
 ```
 
 
@@ -916,7 +916,7 @@ $ git log --oneline
 
 ```ini
 # Git 将会进入一个交互式终端模式(--interactive)
-$ git add -i
+git add -i
 
 ```
 
@@ -936,33 +936,33 @@ $ git add -i
 
 ```ini
 # 将当前的改动推送到【储藏栈】上
-$ git stash
-$ git stash save
+git stash
+git stash save
 
 # 查看储藏的列表
 git stash list
 
 # 使用当前的储藏
-$ git stash apply
+git stash apply
 # 指定的储藏序列
-$ git stash apply stash@{n}
+git stash apply stash@{n}
 
 
 # 删除储藏器
-$ git stash drop stash@{n}
+git stash drop stash@{n}
 
 # 它告诉 Git 不要储藏任何你通过 git add 命令已暂存的东西
-$ git stash save
+git stash save
 # Git 会储藏任何创建的未跟踪文件。
-$ git stash -u
+git stash -u
 # 不会储藏所有修改过的任何东西，但是会交互式地提示哪些改动想要储藏、哪些改动需要保存在工作目录中。
-$ git stash --patch
+git stash --patch
 
 # 创建一个新分支，检出储藏工作时所在的提交
-$ git stash branch <branchName>
+git stash branch <branchName>
 
 # 移除每一样东西并存放在栈中
-$ git stash --all
+git stash --all
 ```
 
 
@@ -1002,16 +1002,16 @@ git clean cmd/ -fd
 
 ```ini
 # 查询 含<text>的文件，当前工作目录
-$ git grep <text>
+git grep <text>
 
 # 输出 Git 所找到的匹配行行号
-$ git grep -n <text>
+git grep -n <text>
 
 # 统计文本出现的次数
-$ git grep --count <text>
+git grep --count <text>
 
 # 想看匹配的行是属于哪一个方法或者函数
-$ git grep -p <text>
+git grep -p <text>
 ```
 
 
@@ -1020,15 +1020,15 @@ $ git grep -p <text>
 
 ```ini
 # 使用 -S 选项来显示新增和删除该字符串的提交。
-$ git log -S<str> --oneline
-$ git log -Sgit --oneline
+git log -S<str> --oneline
+git log -Sgit --oneline
 
 # 正则查询
-$ git log -G<pregexp>
+git log -G<pregexp>
 
 #
 # 使用grep搜索注释内容
-$ git log --grep=<pattern>
+git log --grep=<pattern>
 # 如: 搜索以含“dev:”的提交信息
 git log --grep=dev:
 ```
@@ -1039,10 +1039,10 @@ git log --grep=dev:
 
 ```ini
 # 修改最近一次提交的提交信息
-$ git commit --amend
+git commit --amend
 
 # 从整个提交历史中移除一个叫做 passwords.txt 的文件
-$ git filter-branch --tree-filter 'rm -f passwords.txt' HEAD
+git filter-branch --tree-filter 'rm -f passwords.txt' HEAD
 ```
 
 
@@ -1065,11 +1065,11 @@ $ git filter-branch --tree-filter 'rm -f passwords.txt' HEAD
 
 ```ini
 # 查看 HEAD 快照
-$ git cat-file -p HEAD
-$ git ls-tree -r HEAD
+git cat-file -p HEAD
+git ls-tree -r HEAD
 
 # 查看暂缓区相关信息
-$ git ls-files -s
+git ls-files -s
 ```
 
 
@@ -1082,7 +1082,7 @@ $ git ls-files -s
 
 ```ini
 # master -> {commitId}  
-$ git reset {commitId}
+git reset {commitId}
 ```
 
 
@@ -1119,13 +1119,13 @@ $ git reset {commitId}
 
 ```ini
 # 简单地退出合并（尝试恢复到你运行合并前的状态）
-$ git merge --abort
+git merge --abort
 
 # 忽略空白合并；使用 -Xignore-all-space 或 -Xignore-space-change
-$ git merge -Xignore-space-change <branchName>
+git merge -Xignore-space-change <branchName>
 
 # 会重新检出文件并替换合并冲突标记
-$ git checkout --conflict
+git checkout --conflict
 ```
 
 
@@ -1134,7 +1134,7 @@ $ git checkout --conflict
 
 ```ini
 # 追踪文件
-$ git blame <filename>
+git blame <filename>
 ```
 
 
@@ -1151,26 +1151,26 @@ $ git blame <filename>
 
 ```ini
 # 当前仓库下创建一个子模块
-$ git submodule add <URL>  [<dirName>]
+git submodule add <URL>  [<dirName>]
 
 # 查看文件
-$ cat .gitmodules
+cat .gitmodules
 
 # 子模块差异
-$ git diff --cached --submodule
-$ git diff --cached <submoduleName>
+git diff --cached --submodule
+git diff --cached <submoduleName>
 
 # 初始化本地配置文件
-$ git submodule init
+git submodule init
 # 从该项目中抓取所有数据并检出父项目中列出的合适的提交
-$ git submodule update
+git submodule update
 # 自动初始化并更新仓库中的每一个子模块
-$ git clone --recursive <URL>
+git clone --recursive <URL>
 
 # Git 将会进入子模块然后抓取并更新
-$ git submodule update --remote
+git submodule update --remote
 # 指定子模块的分支
-$ git config -f .gitmodules submodule.<submoduleName>.branch <branchName>
+git config -f .gitmodules submodule.<submoduleName>.branch <branchName>
 
 
 ```
@@ -1184,26 +1184,26 @@ $ git config -f .gitmodules submodule.<submoduleName>.branch <branchName>
 ```ini
 # ~~ 打包所有整个仓库
 # 该文件包含了所有重建该仓库 master 分支所需的数据
-# $ git bundle create <name>.bundle [提交区间]
-$ git bundle create <name>.bundle HEAD master
+# git bundle create <name>.bundle [提交区间]
+git bundle create <name>.bundle HEAD master
 # 恢复打包文件
-$ git clone <name>.bundle [<dirName>]
+git clone <name>.bundle [<dirName>]
 
 # 验证 bundleNamePath 是否合法
-$ git bundle verify <bundleNamePath>
+git bundle verify <bundleNamePath>
 
 # 查看这边包里可以导入哪些分支
-$ git bundle list-heads <bundleNamePath>
+git bundle list-heads <bundleNamePath>
 
 # 所以你可以使用 fetch 或者 pull 命令从包中导入提交
-$ git fetch <bundleNamePath> master:other-master
+git fetch <bundleNamePath> master:other-master
 
 # 拉取，外部 git 更改打包文件同步
-$ git fetch ../bigexpwxapp2021-210519/c210519 master
+git fetch ../bigexpwxapp2021-210519/c210519 master
 
 # 将 <commit_id> -> <commit_id> 打包为导出
-$ git diff --name-only <commit_id1> <commit_id1> | xargs tar -zcvf <path>
-$ git diff --name-only b7ffdd3b 65b2dcb1 | xargs tar -zcvf ./t5.tar.gz
+git diff --name-only <commit_id1> <commit_id1> | xargs tar -zcvf <path>
+git diff --name-only b7ffdd3b 65b2dcb1 | xargs tar -zcvf ./t5.tar.gz
 ```
 
 
@@ -1212,28 +1212,28 @@ $ git diff --name-only b7ffdd3b 65b2dcb1 | xargs tar -zcvf ./t5.tar.gz
 
 ```shell
 # 将 dev 分支打包导出
-$ git archive --format=tar.gz -o jc-admin.tar.gz dev
+git archive --format=tar.gz -o jc-admin.tar.gz dev
 # master 打包为 zip 包
-$ git archive --format=zip --output master.zip master
+git archive --format=zip --output master.zip master
 
 # 打包当前分枝当前HEAD的所有文件
-$ git archive --format=zip --output head.zip HEAD
+git archive --format=zip --output head.zip HEAD
 
 # 打包v1.2标签的所有文件
-$ git archive --format=zip --output v1.2.zip
+git archive --format=zip --output v1.2.zip
 
 # 打包最后修改的文件
 # 先通过git diff找到最新版本修改过的文件，再压缩打包这些文件：
-$ git archive --format=zip -o update.zip HEAD $(git diff --name-only HEAD^)
+git archive --format=zip -o update.zip HEAD $(git diff --name-only HEAD^)
 
 # 打包最后两个版本修改的文件
-$ git archive --format=zip -o update.zip HEAD $(git diff --name-only HEAD~2)
+git archive --format=zip -o update.zip HEAD $(git diff --name-only HEAD~2)
 
 # 打包两个分枝之间差别的文件
-$ git archive --format=zip -o update.zip HEAD $(git diff --name-only master fix-error)
+git archive --format=zip -o update.zip HEAD $(git diff --name-only master fix-error)
 
 # 导出当前更改的文件（未提交时）
-$ git archive --format=zip -o ../diff.zip HEAD $(git diff --name-only)
+git archive --format=zip -o ../diff.zip HEAD $(git diff --name-only)
 
 # 仅打包非删除的文件列表
 git archive --format=zip -o zzt-211020-02.zip HEAD $(git diff v0.0.1 --name-only --diff-filter=ACMR)
@@ -1265,28 +1265,32 @@ git config --global gui.encoding utf-8
 ```ini
 # 它会将整个 Subversion 仓库导入到一个本地 Git 仓库
 # -T trunk -b branches -t tags 部分告诉 Git Subversion 仓库遵循基本的分支与标签惯例。
-$ git svn clone file:///tmp/test-svn -T trunk -b branches -t tags
+git svn clone file:///tmp/test-svn -T trunk -b branches -t tags
+
+# 如，遵循基础
+git svn clone https://x.y.z.t/svn/expo -T trunk -b branches -t tags
 
 # git 克隆
-$ git svn clone file:///tmp/test-svn -s
-
+git svn clone file:///tmp/test-svn -s
 
 # 与两者前者接口一样
-$ git init
-$ git svn fetch <URL>
+git init
+git svn fetch <URL>
+# 拉取当前的地址内容
+git svn fetch
 
 # 提交
-$ git commit -am 'Adding git-svn instructions to the README'
+git commit -am 'Adding git-svn instructions to the README'
 
 # 拉取新改动
 # 推送项目
-$ git svn dcommit
+git svn dcommit
 
 # 拉取最新代码
 git svn rebase
 
 # 显示参照
-$ git show-ref
+git show-ref
 ```
 
 
@@ -1305,7 +1309,7 @@ $ git show-ref
 
 
 
-`$ git init`  *初始化git版本仓库*
+`git init`  *初始化git版本仓库*
 
 ```console
 index				保存暂存区信息
@@ -1330,28 +1334,28 @@ refs/				目录存储指向数据（分支）的提交对象的指针
 ```ini
 ## ~~ 文本
 # 往 Git 数据库存入一些文本
-$ echo 'test content' | git hash-object -w --stdin
+echo 'test content' | git hash-object -w --stdin
 
 # 查看 Git 是如何存储数据的
-$ find .git/objects -type f
+find .git/objects -type f
 
 # 从 Git {.git/objects/b2/87ae1788ad5896de1f27414f38aa3c0cff155} 取回数据
-$ git cat-file -p b287ae1788ad5896de1f27414f38aa3c0cff155
+git cat-file -p b287ae1788ad5896de1f27414f38aa3c0cff155
 
 
 
 
 ## ~~ 文件
 # 创建文件以及编写内容
-$ echo 'Emma. and Beth.' > content.md
+echo 'Emma. and Beth.' > content.md
 # 获取 SHA-1 码
-$ git hash-object -w content.md
+git hash-object -w content.md
 # 再次写入内容到文件
-$ echo 'It\'s  name of Lady. yet' > content.md
+echo 'It\'s  name of Lady. yet' > content.md
 # 获取 SHA-1 码； 与前面不一样
-$ git hash-object -w content.md
+git hash-object -w content.md
 # 从数据库恢复内容到文件
-$ git cat-file -p 31e09252a668f7dbf6034af3a50fb86178d8d9 > content.md
+git cat-file -p 31e09252a668f7dbf6034af3a50fb86178d8d9 > content.md
 ```
 
 
@@ -1372,7 +1376,7 @@ $ git cat-file -p 31e09252a668f7dbf6034af3a50fb86178d8d9 > content.md
 
 ```ini
 # 查看 master 分支上最新的提交所指向的树对象
-$ git cat-file -p master^{tree}
+git cat-file -p master^{tree}
 ```
 
 
@@ -1381,10 +1385,10 @@ $ git cat-file -p master^{tree}
 
 ```ini
 # 查看 commit_id
-$ git log
+git log
 
 # 选择一个 commit_id 查看类型
-$ git cat-file -t <commit_id>
+git cat-file -t <commit_id>
 ```
 
 
@@ -1393,7 +1397,7 @@ $ git cat-file -t <commit_id>
 
 ```ini
 # 查看 refs 文件下目录
-$ find .git/refs -type f
+find .git/refs -type f
 ```
 
 
@@ -1458,17 +1462,17 @@ git checkout *.php
 	fetch = +refs/heads/*:refs/remotes/origin/*
 ```
 
-- *也可多次 `$ git remote set-url <name> <url>`*
+- *也可多次 `git remote set-url <name> <url>`*
 
   ```shell
   # 设置多个
-  $ git remote set-url --add <name> <url>
-  $ git remote set-url --add origin <url>
+  git remote set-url --add <name> <url>
+  git remote set-url --add origin <url>
   
   # 查看
-  $ git remote -v
+  git remote -v
   # 移除远程地址
-  $ git remote rm <name>
+  git remote rm <name>
   ```
 
 
@@ -1602,7 +1606,12 @@ svn ci -m "代码"
 
 
 # svn 分支切换
-switch ^/branches/eco23_home
+svn switch ^/branches/eco23_home
+# 切换仓库到新地址
+svn sw $url
+
+# 文件还原
+svn revert app/common/model/AdminModel.php
 ```
 
 

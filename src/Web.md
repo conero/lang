@@ -567,11 +567,26 @@ yum install -y httpd-tools
 htpasswd -c /etc/nginx/psswd/yang yang
 
 # OpenSSL 版本
-# 指定用户
+# 指定用户及密码 test/abc123456
 echo -n "test:" > passwd
 #设置密码密码  
 openssl passwd abc123456 >> passwd
+# 使用算法 -apr1
+openssl passwd -apr1 abc123456
 ```
+
+
+
+生成的密码文件：
+
+```shell
+# Comments
+user1:password1
+user2:password2:comment
+user3:password3
+```
+
+
 
 
 
