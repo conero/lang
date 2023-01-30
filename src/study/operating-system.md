@@ -781,6 +781,11 @@ chown -R nginx:nginxgroup *
 # 内容/文本查找
 # 查看当前目录下所有 html 内容<h3>标签
 grep "<h3>Joshua Conero<h3/>" *.html
+
+
+# 查看命令行类型，hashed/builtin/alias
+# type $command
+type python3
 ```
 
 

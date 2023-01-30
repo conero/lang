@@ -1984,6 +1984,22 @@ _**库**(**library**) 指的是链接到程序的组件，通过本地函数调�
 
 
 
+#### RPC
+
+常见框架：thrift, grpc。IDL 类型序列化 thift, Protocol Buffer(pb)
+
+thrift			（IDL）Thrift是Facebook于2007年开发的跨语言的rpc服框架，提供多语言的编译功能，并提供多种服务器工作模式；用户通过Thrift的IDL（接口定义语言）来描述接口函数及数据类型，然后通过Thrift的编译环境生成各种语言类型的接口文件，用户可以根据自己的需要采用不同的语言开发客户端代码和服务器端代码。
+
+Protocol Buffer           IDL，序列化反序列化工具。与 json, xml 类似
+
+grpc              google RPC 框架        
+
+Triple            dubbo3 http2 协议，兼容grpc.
+
+
+
+
+
 ## 计算机网络
 
 PC主要使用网络：
