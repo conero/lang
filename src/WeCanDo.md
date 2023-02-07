@@ -262,6 +262,42 @@ https://developers.google.cn/
 
 
 
+### 文档或编码
+
+#### pandoc
+
+文档转换工具，安装地址 [pandoc](https://github.com/jgm/pandoc)。生成 pdf 中文乱码的处理方式，https://zhuanlan.zhihu.com/p/477441931 。
+
+
+
+```shell
+# 将 test.docx word 文档; 并转化为 md
+pandoc test.docx --extract-media=. -o test.md
+
+# 将md文件转化为 docx word 文件
+pandoc test.md -o test.docx
+
+#
+# 安装 latex 后生成 PDF
+# 生成模板
+pandoc -D latex > template.tex
+# 使用模板生成PDF
+pandoc test.md -o test.pdf --template=template.tex --pdf-engine=xelatex
+pandoc test.md -o test.pdf --template=template.tex
+```
+
+
+
+参考 pdf 文件：[《PDF解析》](https://github.com/zxyle/PDF-Explained)，阅读链接 https://github.com/zxyle/PDF-Explained 。
+
+
+
+**Latex**
+
+latex 项目，https://www.latex-project.org/ 。是一种基于tex的编排系统，由美国计算机学家莱斯利·兰伯特（Leslie Lamport）在20世纪80年代初期开发。
+
+Markdown to PDF，主要是通过模板生成tex文件，然后渲染成pdf。因此需要安装Latex。在windows下推荐安装[miktex](http://miktex.org/)，Miktex是Latex的轻量化打包，并且提供了缺包就自动安装的功能。
+
 
 
 ### 网络

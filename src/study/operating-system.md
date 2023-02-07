@@ -457,6 +457,12 @@ nslookup -qt=ns cn.vitejs.dev
 
 # 反向查询
 nslookup -ty=ptr 8.8.8.8
+
+#通过ipconfig 查询当前计算机已缓存的DNS
+ipconfig /displaydns
+
+# powershell
+Get-DnsClientCache
 ```
 
 
@@ -966,6 +972,17 @@ tail -f /home/logs/nginx/error.log
 
 
 
+替代命令 [fd](https://github.com/sharkdp/fd) 其也可快速查找文件
+
+```shell
+# 默认显示文件列表，所有（自己）
+fd
+```
+
+
+
+
+
 #### 内容查看或管理
 
 ```shell
@@ -1337,6 +1354,8 @@ ip neigh show
 ```shell
 # 数据日期
 date
+# 获取日期并设置格式
+date +%Y%m%d-%H%M%S
 
 # 日历显示
 cal
@@ -2088,6 +2107,23 @@ source ./real/executable/sellscript.sh
 
 
 
+shell脚本开头前缀
+
+```bash
+#!/bin/bash
+...
+...
+```
+
+
+
+echo 相关语法
+
+```bash
+# 输出环境变量
+echo $PATH
+```
+
 
 
 
@@ -2121,11 +2157,29 @@ source ./real/executable/sellscript.sh
 
 
 
+> 流
+
+主要流操作，输出文件 `> file`，输入文件流 `< file`。默认的流是，键盘为输入，显示器(终端)为输出。
+
+```bash
+# 输出环境变量到 path.log 文件
+echo $PATH > path.log
+# 输出到文件，并在文件尾部追加。
+echo $PATH >> path.log
+
+# 读取文件
+cat < path.log
+```
+
+
+
+
+
 #### 语法
 
 - `#`  为注释符号
 - `\`  换行符号
-- `''`   单引号，字符串不会执行字符串模板替换，为原始字符串
+- `''`   单引号，字符串不会执行字符串模板替换，为原始字符串。`'`单引号为原义字符，`"` 转移字符。
 - `&&` , `||`  与或运算符号
 - `name=[value]` 变量定义，使用`$name` 读取
 
@@ -2139,6 +2193,9 @@ echo '$year is raw string.'
 # $year is raw string.
 echo "$year is raw string."
 # 2020 is raw string.
+
+# 命令
+echo "今年是 $(date +%Y) 年，copyright @2018~$(date +%Y)"
 ```
 
 
@@ -2149,9 +2206,18 @@ echo "$year is raw string."
 
 主要使用符号如 `|` 或 `|&`
 
+```shell
+# 显示 11 中的第一行
+ll | tail -n1
+```
+
+
+
 
 
 ##### 语句
+
+
 
 > 循环
 
@@ -2175,6 +2241,47 @@ for((i=0;i<100;i++)); do echo $i; done
 
 > 条件
 
+条件类型或等式比较，https://man7.org/linux/man-pages/man1/test.1.html 。
+
+- string 判别
+  - `-n string`          nonzore ，字符串长度非零
+  - `-z string`          zore, 字符串长度为零
+  - `str = str`          字符串相等
+  - `str != str`        字符串不等
+- integer 判别
+  - `int -eq int`         equal, 整形相等
+  - `int -gt int`         greater, 整形大于
+  - 其他（水平对比）
+    - `-ge`           greater or equal
+    - `-le`           less or equal
+    - `-lt`           litter (less)
+    - `-ne`           not equal
+- file 判别
+  - 水平对比 `file expor file`
+    - `-ef`             equal file，判断两个文件是否相同 是以i节点作为判断的
+    - `-nt`             newer than，更新时间新于
+    - `-ot`             older than, 更新时间晚于
+  - 单判别，`-d file`
+    - `-e`               exist，文件存在
+    - `-d`               directory，是目录
+
+```shell
+# 执行判别并显示结果! 0-成功;1-失败
+[ -n '' ] ; echo $?
+# 整形比较
+[ 1 -eq 1 ] ; echo $?
+
+# 文件比较
+[ test.log -ef test.html ]; echo $?
+test test.log -ef test.html; echo $?
+```
+
+
+
+
+
+条件语法以及示例如：
+
 ```bash
 #
 # if
@@ -2184,6 +2291,9 @@ if test-commands; then
 	more-consequents;]
 [else alternate-consequents;]
 fi
+
+# 单行 if-elese
+if [ 1 -eq 2 ]; then { echo 90;echo true; } else { echo false; } fi
 
 
 #
