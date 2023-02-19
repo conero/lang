@@ -673,6 +673,19 @@ http-server [path] [options]
 
 
 
+
+
+> 使用 `npx` 启动服务
+
+npx 即 npm exec，执行包命令，执行包时不存在则下载对应的包并执行它。
+
+```shell
+# 通过执行serve启动服务
+npx serve
+```
+
+
+
 ### 服务器端应用安全
 
 #### PHP

@@ -541,6 +541,9 @@ select find_in_set(1, '2,5,1,9,2');   -- 3
 SELECT * from member bm where id in (472, 98, 519) 
 	order by field(id, 472, 98, 519)
 ;
+
+# 条件排序
+select * from guest order by batch_code != 0 desc, batch_code;
 ```
 
 

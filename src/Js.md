@@ -216,8 +216,7 @@ screenX, screenY	//	screen 屏幕坐标系
 ## VueJs
 
 - 20170717
->
->   author: Evan You
+>author: Evan You
 >   the progressive javascript framework (渐进式javascript框架)
 
 ### 简介
@@ -264,6 +263,18 @@ screenX, screenY	//	screen 屏幕坐标系
     - ![vue-lifecycle](./props-events.png)
 
 
+
+### Vue3
+
+使用 typescript 编写的，提供了一套声明式的、组件化的编程模型，以实现高效地开发用户界面。声明式也体现了其的指令化，如`v-attributes `。
+
+
+
+概念：
+
+- SFC(Single-File Components)     单文件组件，也即是 `*.vue` 文件。
+
+- API 风格：选项式 API(Options API) 和 组合式API (Composition API)，选项式API与vue2及以前的版本一致，组合式常与 `<script setup>` 搭配使用更偏向于函数式编程。
 
 
 
