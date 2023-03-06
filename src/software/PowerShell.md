@@ -737,6 +737,8 @@ open https://baidu.com
 
 # windows
 start https://baidu.com
+# ps 版本
+Start-Process http://localhost:7474
 
 # liunx
 xdg-open https://baidu.com
