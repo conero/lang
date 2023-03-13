@@ -552,6 +552,19 @@ ipconfig /all
 
 
 
+##### bcdboost
+
+用于在电脑或设备上配置启动文件以运行 [Windows 操作系统](https://learn.microsoft.com/zh-cn/windows-hardware/manufacture/desktop/bcdboot-command-line-options-techref-di?view=windows-11)。[异常解决](https://blog.csdn.net/weixin_38705903/article/details/116617385)参考如下：
+
+```shell
+# windows 重启后出现“选择一个选项”修复界面
+bcdboot c:\windows /l zh-cn
+```
+
+
+
+
+
 ## wsl
 
 > Windows Subsystem for Linux(wsl)，windows liunx子系统。
@@ -2317,6 +2330,21 @@ echo " legs."
 
 # select
 select name [in words ...]; do commands; done
+```
+
+
+
+判断应用是否已安装，直接在`shell` 对话框中输出错误。
+
+```shell
+#!/bin/bash
+echo "请输入软件的名称，如npm："
+read name
+if ! type ${name} >/dev/null 2>&1;then
+        echo "${name} 未安装"
+else
+        echo "${name} 已安装"
+fi
 ```
 
 

@@ -493,6 +493,9 @@ Get-ChildItem D:\conero\xx\prj-2020\ -Recurse | select-string "github.com/panjf2
 
 # 指定类型
 Get-ChildItem D:\conero\xx\prj-2020\ -Recurse -Filter "*.sum" | select-string "github.com/panjf2000/ants"
+
+# 使用【findstr】内容搜索
+ls -Recurse | findstr ".exe"
 ```
 
 
@@ -570,6 +573,9 @@ man write-host
 # 打印当前 ps 的版本信息
 $psversiontable
 $host
+
+# 判断命令(cmdName)是否存在
+Get-Command cmdName -errorAction SilentlyContinue
 ```
 
 

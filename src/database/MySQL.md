@@ -735,10 +735,37 @@ select VERSION();
 
 #### information_schema
 
-*MySQL 数据表相信*
+主表虚拟表
+
+- schemata                    数据库列表
+- tables                           数据表
+- views                            视图
+- columns                      表字段
+- key_column_usage    字段键
+- referential_constraints  外键
+- character_sets           编码字符
+- collations                    编码字符集
+- engines                       数据存储引擎
+- events                         事件
+- triggers                       触发器
+
+
+
+*MySQL 数据表详情*
 
 ```mysql
+# 查询数据库information_schema表
+select * from information_schema.tables where TABLE_SCHEMA = 'information_schema';
+
+# 查询当前数据库的全部表
 select * from information_schema.TABLES t where TABLE_SCHEMA = DATABASE();
+# 使用 show 语句，支持like
+show tables like '$$';
+
+# 查询当前数据库的全部列
+select * from information_schema.columns where TABLE_SCHEMA = database();
+# 使用 show 语句，支持like
+SHOW FULL COLUMNS FROM `admin` like 'deptnames';
 ```
 
 
@@ -1400,6 +1427,13 @@ ALTER user 'root'@'localhost' IDENTIFIED BY 'pswd-any';
 ```powershell
 # 以 utf8 的编码登录到 mysql 中
 mysql -u root -p --default-character-set=utf8 
+
+# 指定远程地址、端口等
+mysql -P 3306 -h 121.43.233.103 -u kyh -p --default-character-set=utf8
+# 指定数据库名称
+mysql -P 3306 -h 121.43.233.103 -u kyh -p --default-character-set=utf8 --database bigexp20210225
+# 指定密码
+mysql -P 3306 -h 121.43.233.103 -u kyh -p --default-character-set=utf8 --database bigexp20210225 --password=xxxxxx
 
 # 字符集可通过 sql 执行替换
 set names 'uft8';
