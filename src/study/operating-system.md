@@ -777,6 +777,9 @@ uname -a
 # 查看本机的ip地址
 curl ifconfig.me
 
+# 查看本机账号
+ifconfig -a
+
 # && 用户两个命令的链接
 mkdir jc-hellowpy && cd jc-hellowpy
 
@@ -1350,6 +1353,21 @@ ip neigh show
 ```
 
 
+
+#### ssh
+
+ssh 客户端
+
+```shell
+# 如使用 ssh 登录 120.63.23.13 服务器
+ssh root@120.63.23.13 -p 65222
+
+# 登录成功后查看当前的ip
+ifconfig -a
+
+# 退出ssh
+exit
+```
 
 
 

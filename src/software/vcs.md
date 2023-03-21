@@ -258,6 +258,9 @@ git update-index --no-assume-unchanged cmd/exporter/main.go
 ```shell
 # 查看文件从: b7ffdd3b -> 65b2dcb1 的差别，两者为 <commit_id>...<commit_id>
 git diff b7ffdd3b...65b2dcb1 --stat
+
+# 文件筛选
+git diff b7ffdd3b...65b2dcb1 --stat "*.php"
 ```
 
 

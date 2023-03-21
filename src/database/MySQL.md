@@ -572,6 +572,15 @@ select * from `table` where `id` >= (
 
 
 
+##### 字符串函数
+
+- `int locate(substr,str)`       子字符串查询
+
+```mysql
+-- 4,1,1
+select locate('hua', 'joshua yang'), locate('j', 'joshua yang'), locate('joshua ', 'joshua yang');
+```
+
 
 
 #### update

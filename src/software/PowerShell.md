@@ -863,6 +863,11 @@ Get-ChildItem -Recurse -Name *ts | Remove-Item -Force
 
 # 相对目录需要修正路径
 Get-ChildItem .\uploads\videos\ -Recurse -Name *ts | ForEach-Object -Process {".\uploads\videos\$_"} | Remove-Item -Force
+
+# 查找文件并移动它到指定目录
+Get-ChildItem .\cmd\ -Recurse "*.exe" | foreach{  $name = "./bin/{0}" -f $_.Name; Move-Item $_.FullName $name -Force;  }
+# 查看查询文件的所有属性参数
+Get-ChildItem .\cmd\ -Recurse "*.exe" | Select-Object -Property *
 ```
 
 

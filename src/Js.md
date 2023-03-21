@@ -60,6 +60,20 @@ npm list -g --depth 0
 
 
 
+### yarn
+
+yarn 工具，npm包管理工具
+
+```shell
+# 获取当前配置的镜像源
+yarn config get registry
+
+# 获取设置阿里镜像
+yarn config set registry https://registry.npmmirror.com/
+```
+
+
+
 ### [jest](https://jestjs.io)
 
 *js 测试框架*
