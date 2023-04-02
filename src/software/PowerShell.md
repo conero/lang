@@ -868,6 +868,9 @@ Get-ChildItem .\uploads\videos\ -Recurse -Name *ts | ForEach-Object -Process {".
 Get-ChildItem .\cmd\ -Recurse "*.exe" | foreach{  $name = "./bin/{0}" -f $_.Name; Move-Item $_.FullName $name -Force;  }
 # 查看查询文件的所有属性参数
 Get-ChildItem .\cmd\ -Recurse "*.exe" | Select-Object -Property *
+
+# 查找并删除
+get-childItem -Path "rgo*.exe" -Recurse | Remove-Item
 ```
 
 

@@ -10,6 +10,10 @@ Redis 为 Remote Dictionary Service 缩写，是一个数据结构服务器。
 
 
 
+兼容 Redis 服务且更快的KV缓存数据库，[dragonfly](https://github.com/dragonflydb/dragonfly)
+
+
+
 ### 基础
 
 数据类型
@@ -56,11 +60,35 @@ nohup redis-server &
 
 
 
+**dragonfly** 启动
 
+```shell
+# 指定端口号
+./dragonfly --port 6380
+
+# 使用 nohup 保持应用
+nohup ./dragonfly --port 6380 &
+```
 
 
 
 ### 命令
+
+启动服务
+
+```shell
+# redis 链接指定 host 域名
+redis-cli -h 172.27.57.98 -p 6380
+
+# 指向端口
+redis-cli -p 6380
+```
+
+
+
+
+
+常量命令操作
 
 ```shell
 # 查看当前所有变量
@@ -109,8 +137,6 @@ decr $key
 # 查看键值是否存在
 exits $key
 ```
-
-
 
 
 

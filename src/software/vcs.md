@@ -1619,6 +1619,39 @@ svn revert app/common/model/AdminModel.php
 
 
 
+SVN 代码提交流程。windows下使用git 的 bash 提交 文件导致备注乱码
+
+```shell
+# 查看状态 status (stat, st)
+svn status
+svn st
+# 仅查看已经加入仓库的文件
+svn st -q
+
+# svn 库加入 $file 文件列表
+svn add $file
+# 撤销 add 的文件
+svn revert $file
+
+# 提交文件
+svn commit -m "msg"
+
+# 文件更新到执行版本
+# --revision 或 -r
+svn update ./composer.lock --revision 9705
+
+# svn 更新
+svn up
+
+# 查看最近3次提交
+svn log -l 3 -v
+
+# 指定版本对比
+svn diff -r9700:9692 --summarize
+```
+
+
+
 
 
 ### `snv list(ls)`
