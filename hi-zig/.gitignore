@@ -1,0 +1,6 @@
+# exe
+*.exe
+
+# 项目生成
+*zig-cache*
+*zig-out*
