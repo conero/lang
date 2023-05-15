@@ -548,6 +548,21 @@ select * from guest order by batch_code != 0 desc, batch_code;
 
 
 
+group by 分组查询，且行转列。**group_concat**
+
+```sql
+select captain_gid, count(1) vcc, group_concat(guest_id) gid_ls from bigexp_guest_invite 
+		where captain_gid > 0 and is_able = 1
+		group by captain_gid;
+
+-- 支持 [distinct] 去重
+select captain_gid, count(1) vcc, group_concat(distinct guest_id) gid_ls from bigexp_guest_invite 
+		where captain_gid > 0 and is_able = 1
+		group by captain_gid;		
+```
+
+
+
 
 
 ##### 随机字段
