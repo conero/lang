@@ -1569,6 +1569,20 @@ git checkout *.php
 
 ## 基本命令
 
+linux 安装 svn
+
+```shell
+# 查看本机是否存在svn
+rpm -qa subversion
+
+# yum 安装 svn
+yum -y install subversion
+```
+
+
+
+
+
 > 版本大于 `v1.8.3 `
 
 SVN 常用命令如下：

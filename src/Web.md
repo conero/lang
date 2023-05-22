@@ -474,6 +474,28 @@ http{
 
 
 
+##### http
+
+http 服务配置
+
+```nginx
+# 负载均衡本地测试
+# <loading_test_expo2022> upstream 名称
+upstream loading_test_expo2022{
+	server 127.0.0.1:9341 weight=3;
+	server 127.0.0.1:9342 weight=1;
+	server 127.0.0.1:9343 weight=1;
+	server 127.0.0.1:9344 weight=1;
+	server 127.0.0.1:9345 weight=1;
+	server 127.0.0.1:9346 weight=1;
+	server 127.0.0.1:9347 weight=2;
+}
+```
+
+
+
+
+
 
 
 
@@ -509,6 +531,17 @@ http {
     # 修改上传文件大小
     client_max_body_size 200m;
 }
+```
+
+
+
+##### 指令
+
+> worker_processes 
+
+```nginx
+# 指定nginx的进程分配数
+worker_processes auto;
 ```
 
 

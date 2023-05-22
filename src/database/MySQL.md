@@ -790,6 +790,9 @@ show tables like '$$';
 select * from information_schema.columns where TABLE_SCHEMA = database();
 # 使用 show 语句，支持like
 SHOW FULL COLUMNS FROM `admin` like 'deptnames';
+
+# 查看表信息长度
+select * from information_schema.columns where TABLE_SCHEMA = database() and table_name = 'x_guest' and column_name = 'post';
 ```
 
 

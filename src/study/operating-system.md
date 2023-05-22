@@ -531,6 +531,19 @@ sequenceDiagram
 
 
 
+##### 防火墙
+
+```powershell
+# 允许外部（路由器）访问本地的 7423
+New-NetFirewallRule -DisplayName "Allow Inbound TCP Port 7423" -Direction Inbound -Action Allow -Protocol TCP -LocalPort 7423
+
+
+# 根据名字删除防火墙
+Remove-NetFirewallRule -DisplayName "Allow Inbound TCP Port 7423"
+```
+
+
+
 
 
 #### 硬件
@@ -604,6 +617,38 @@ wsl --import openEuler-22.03 D:\WSL\openEuler-22.03 D:\WSL\openEuler-22.03.tar -
 wsl2 访问其文件系统：`\\wsl$`。wsl2 内部映射ip地址执行 `grep -m 1 nameserver /etc/resolv.conf | awk '{print $2}'`.
 
 
+
+
+
+服务查看WSL的内部网络地址，windows 系统使用改地址即可。如：
+
+```shell
+# 查看wsl内部的服务
+ip addr | grep eth0
+```
+
+
+
+windows 服务对应的地址。如：
+
+```powershell
+#查看，以太网适配器 vEthernet (WSL) 项地址:
+ipconfig
+```
+
+
+
+windows 局域网访问windows内部的WSL。
+
+```powershell
+# 配置局域网7423到WSL的80映射，及       ip:7423  -> 172.27.57.98:80(WSL)
+netsh interface portproxy add v4tov4 listenport=7423 connectaddress=172.27.57.98 connectport=80
+
+# 查看端口映射列表
+netsh interface portproxy show v4tov4
+# 删除映射
+netsh interface portproxy delete v4tov4 listenport=7423
+```
 
 
 
@@ -1023,6 +1068,102 @@ less Readme.md
 ### 服务(进程)管理
 
 linux  服务管理一般由 **service** 和 **systemd** 两个命令管理，后者出现晚于前置，因此其基本上后向兼容与它。
+
+
+
+服务目录
+
+- service 对应的init.d目录： `/etc/init.d/`
+
+- system 脚本目录：`/lib/systemd/system`/
+
+
+
+
+
+service，`unit.service` 语法，如配置nginx服务
+
+```toml
+[Unit]
+# 服务基本信息
+#
+
+# 服务名称
+Description=nginx
+
+#服务启动先决条件
+After=networks.target
+
+[Service]
+# 服务启动脚本
+#
+
+Type=forking
+
+# 服务启动脚本
+ExecStart=/usr/local/nginx/sbin/nginx
+
+# 服务停止
+ExecStop=/usr/local/nginx/sbin/nginx -s stop
+
+# 服务重启
+ExecReload=/usr/local/nginx/sbin/nginx -s reload
+
+ExecStartPre=/usr/local/nginx/sbin/nginx -t
+
+PrivateTmp=true
+
+[Install]
+# 服务安装信息
+#
+
+#服务启动方式
+# multi-user.target 多用户方式启动，服务自动启动服务。
+WantedBy=multi-user.target
+
+#RequiredBy=
+
+#Also=
+
+#Alias=
+```
+
+
+
+相公控制命令：
+
+```shell
+# 查看服务列表
+systemctl list-units
+
+# 已启动的服务列表
+systemctl list-units --type=service
+
+# 启动服务
+systemctl start nginx
+
+# 停止服务
+systemctl stop nginx
+
+# 服务详情
+systemctl status nginx
+
+# 服务开启重启（enable）
+# 其他 
+#    disable 服务未运行
+#    masked  服务不可运行
+#    disable 服务未运行
+#    static  只有在别的单元启动时才被使用
+systemctl enable nginx
+```
+
+
+
+
+
+
+
+**nohup** 挂起应用
 
 ```sh
 # nohup(no-hangup) 后台执行，并挂起
