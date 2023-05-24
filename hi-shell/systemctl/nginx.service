@@ -1,0 +1,25 @@
+# 2023年5月20日 星期六
+# nginx.service
+[Unit]
+Description=nginx
+After=network.target
+
+[Service]
+# 服务启动脚本
+#
+
+Type=forking
+
+# 服务启动脚本
+ExecStart=/usr/local/nginx/sbin/nginx
+
+# 服务停止
+ExecStop=/usr/local/nginx/sbin/nginx -s stop
+
+# 服务重启
+ExecReload=/usr/local/nginx/sbin/nginx -s reload
+
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
