@@ -38,11 +38,15 @@
 
 #### CentOS 7.3
 
+`configure` shell脚本文件是由 **Autoconf** 自动创建，用于编译前的系统环境检测，configure脚本最后环境成功会生成一个 Makefile 文件；可通过 `./configure --help` 查看支持的选项。
+
+**.m4** 文件（marco，对应后面的4个字母），m4是一种宏处理器，它是 POSIX 标准的一部分。
+
 Linux 编译时或者部署过程中注意系统用户权限的问题，如Nginx应用可能无法访问 root 用户下的文件/目录等。
 
 liunx php 编译时，使用 `--with-<extension>` 为内置的编译法，即PHP内部自动包含对应扩展，也无需在 `php.ini` 内添加相应的扩展。
 
-启动系统对应应用安装命令：`sudo apt install`
+启动系统对应应用安装命令：`sudo apt install`。
 
 ```shell
 # 安装编译环境
@@ -125,6 +129,15 @@ $ killall php-fpm
 $ netstat -tln | grep 9000
 # php-fpm 的进程号
 $ ps -aux|grep php-fpm
+```
+
+
+
+`--with-gd` 检测错误时：
+
+```shell
+# 安装图片库支持
+yum -y install libpng libpng-devel
 ```
 
 
@@ -424,9 +437,9 @@ echo $$a;
 
  
 
-### fpm
+### php-fpm
 
-fpm  为 *FastCGI Process Manager* 的简称，即FastCGI 进程管理器。cgi   为 *Common Gateway Interface*，即通用网关接口，作为 Web 服务器调用外部程序时所使用的一种服务端应用的规范。cgi 可实现静态资源的web页面的动态请求，fpm是 php 版本的 FastCGI 协议实现。
+php-fpm  为 *FastCGI Process Manager* 的简称，即FastCGI 进程管理器。cgi   为 *Common Gateway Interface*，即通用网关接口，作为 Web 服务器调用外部程序时所使用的一种服务端应用的规范。cgi 可实现静态资源的web页面的动态请求，fpm是 php 版本的 FastCGI 协议实现。
 
 
 

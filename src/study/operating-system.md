@@ -616,7 +616,7 @@ wsl --import openEuler-22.03 D:\WSL\openEuler-22.03 D:\WSL\openEuler-22.03.tar -
 
 wsl2 访问其文件系统：`\\wsl$`。wsl2 内部映射ip地址执行 `grep -m 1 nameserver /etc/resolv.conf | awk '{print $2}'`.
 
-
+windows 访问 WSL 的目录使用： `/mnt/` 作为前置，如请问 `D:` 盘  ，使用 `/mnt/d`。
 
 
 
@@ -1075,9 +1075,7 @@ linux  服务管理一般由 **service** 和 **systemd** 两个命令管理，�
 
 - service 对应的init.d目录： `/etc/init.d/`
 
-- system 脚本目录：`/lib/systemd/system`/
-
-
+- system 脚本目录：`/lib/systemd/system/`
 
 
 
@@ -2090,7 +2088,7 @@ $ rpm -qa | grep libxml2
 :/search_string
 # 向光标之上寻找一个字符串名称为word的字符串
 :?search_string
-# n 跳的下一个搜索内容（重复前一个搜寻的动作）
+# n 跳的下一个搜索内容（重复前一个搜寻的动作）/next
 
 # windows 与 linux 换行符号不一致的处理方法
 :set ff=unix

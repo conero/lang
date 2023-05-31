@@ -43,7 +43,7 @@
 - 测试环境（与生成环境尽可能一致）
 - 基准值
   - 延迟(latency)
-  - 吞吐量(thoughtout)            QPS
+  - 吞吐量(thoughtout)                    QPS
   - 峰值并发数                                   用户访问并发数
   - 峰值响应时间
 
@@ -60,7 +60,9 @@
 - java版本
   - [jmeter](https://github.com/apache/jmeter) Apache图形化压测工具
   
-- ab     Apache http web自带的压测工具。ab是单线程程序，只能利用单一CPU，在给性能好的服务器端应用做压测时，往往跑ab的测试机负荷满了；而服务器应用的性能还绰绰有余。
+- ab     Apache http web自带的压测工具。ab是单线程程序，只能利用单一CPU，在给性能好的服务器端应用做压测时，往往跑ab的测试机负荷满了；而服务器应用的性能还绰绰有余。（ApacheBench）
+
+- Gatling
 
   
 
