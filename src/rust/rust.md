@@ -3435,6 +3435,16 @@ codegen-units = 1
 
 
 
+**v2021 版本，panic启动trace信息显示**
+
+```powershell
+# 设置运行时显示trace
+$env:RUST_BACKTRACE=1;
+
+# 设置运行时显示完整trace
+$env:RUST_BACKTRACE=full;
+```
+
 
 
 ### 安装

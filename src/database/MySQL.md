@@ -784,6 +784,10 @@ select * from information_schema.tables where TABLE_SCHEMA = 'information_schema
 
 # 查询当前数据库的全部表
 select * from information_schema.TABLES t where TABLE_SCHEMA = DATABASE();
+
+# 查看当前连接数据库大小
+select concat(round(sum(DATA_LENGTH/1024/1024),2),'MB') as data from information_schema.TABLES where TABLE_SCHEMA = database();
+
 # 使用 show 语句，支持like
 show tables like '$$';
 
