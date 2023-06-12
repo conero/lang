@@ -853,6 +853,8 @@ grep "<h3>Joshua Conero<h3/>" *.html
 # 查看命令行类型，hashed/builtin/alias
 # type $command
 type python3
+
+locate *
 ```
 
 
@@ -895,6 +897,12 @@ ll -h
 ```
 
 
+
+通配符使用
+
+- `*`    任意匹配规则
+- `?`    自匹配一次
+- `[]`  类似规则，`[rv]` 支持含“r”或“v”的字符串，`[0-9a-z]` 范围匹配
 
 
 
