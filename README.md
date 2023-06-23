@@ -68,6 +68,15 @@
 
 
 
+### 学习资源
+
+- 物理、数学。计算机等论文资料，https://arxiv.org/   国内镜像地址 http://xxx.itp.ac.cn/  。arxiv（`ar&iv`）
+- https://modelscope.cn/home            魔塔社区，AI语言模型，阿里巴巴达摩院。
+
+
+
+
+
 ### 参考
 
 - github

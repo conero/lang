@@ -522,6 +522,23 @@ http{
 
 
 
+http location 返回字符串内容方法
+
+```nginx
+http{
+    server{        
+        set $apiWeb http://$host:$server_port/;
+        location / {
+            return 200 "返回内容：$apiWeb .";
+        }
+    }
+}
+```
+
+
+
+
+
 ##### 异常
 
 > Request Entity Too Large
