@@ -1,5 +1,7 @@
 # 2023年5月20日 星期六
-# nginx.service
+# 目录存放地址 /lib/systemd/system/nginx.service
+# 使用：systemctl start nginx   启动即可
+
 [Unit]
 Description=nginx
 After=network.target
