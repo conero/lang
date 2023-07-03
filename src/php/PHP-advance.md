@@ -62,6 +62,8 @@ $ ./configure					编译安装
 # 可能出现的依赖 
 # error: the HTTP rewrite module requires the PCRE library.(pcre-devel)
 yum -y install pcre-devel
+# error: error: the HTTP gzip module requires the zlib library.
+yum install -y zlib-devel
 
 $ make && make install							
 

@@ -1448,6 +1448,15 @@ df -hl
 
 
 
+```shell
+# 查看linux本地开放端口情况
+netstat -luntp
+```
+
+
+
+
+
 #### iptables
 
 ip 访问策略
@@ -1458,8 +1467,13 @@ iptables -L -n
 
 # 显示行号
 iptables -nL --line-number
+iptables -t nat -nL --line
+
 # 删除第二行
 iptables -D INPUT 2
+
+#规则全部清除
+iptables -F
 ```
 
 
@@ -1470,6 +1484,8 @@ iptables -D INPUT 2
 # 关闭端口[9960]的出入站
 iptables -I OUTPUT -ptcp --dport 9960 -j DROP
 iptables -I INPUT -ptcp --dport 9960 -j DROP
+# 开放80端口外部访问
+iptables -I INPUT -p tcp --dport 80 -j ACCEPT
 
 # 运行本地访问
 iptables -I INPUT -s 127.0.0.1 -ptcp --dport 9960 -j ACCEPT
@@ -1582,6 +1598,11 @@ alias
 
 # 删除命令
 unalias a1
+
+# 如创建nginx别名
+alias nginx='/usr/local/nginx/sbin/nginx'
+whereis nginx
+type nginx
 ```
 
 
@@ -2230,7 +2251,13 @@ G		#末行
 - `Ctrl + b`    下一页
 - `ctrl + u`    上半页 (up)
 - `ctrl + d`    下半页 (down)
-- `Ctrl+o`         快速回到上一次光标所在位置
+- `Ctrl + o`     快速回到上一次光标所在位置
+- `ctrl + v`     代码块（文本块）操作
+- `shift + i`   进入编辑模式
+
+
+
+代码块批操作，如下：*使用 `ctrl + v` 按上下键选择代码块，`shift + i` 进入编辑模式，删除或tab实现批量操作*。
 
 
 

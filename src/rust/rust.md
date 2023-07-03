@@ -3283,6 +3283,29 @@ graph TD
 
 
 
+编辑器，以及交叉编辑操作，支持[平台列表](https://doc.rust-lang.org/rustc/platform-support.html)。
+
+```shell
+# 查看 rust 的只支持编译端
+rustc --print target-list
+rustup target list
+# 查看已安装的端口
+rustup target list --installed
+
+# 或其是用-show命令查看详情
+rustup show
+
+# 使用 rustup 添加支持编译端
+rustup target add $target
+# 支持linux编译
+rustup target add x86_64-unknown-linux-gnu
+
+# 使用 cargo 执行程序进行交叉编译
+cargo build --target x86_64-unknown-linux-musl
+```
+
+
+
 ### 其他
 
 #### prelude

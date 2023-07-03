@@ -24,6 +24,43 @@
 
 ## 安装
 
+使用 yum 快速安装mysql，如**Huawei Cloud EulerOS release 2.0 (West Lake)**系统：
+
+```shell
+# 安装mysql 客户端
+yum install mysql
+# mysql 服务安装
+yum install mysql-server -y
+
+# mysqld 服务初始化
+mysqld --initialize --console
+# 通过mysql日志查看密码
+vi /var/log/mysql/mysqld.log
+
+# 指定用户运行
+mysqld --user=mysql --explicit_defaults_for_timestamp
+
+# 查看mysql版本
+mysql --version
+```
+
+
+
+修改密码
+
+```sql
+-- 使用MySQL登录系统然后修改面如
+-- < 5.7.6
+SET PASSWORD = PASSWORD('admin@');
+
+-- > 5.7.6 以后版本
+ALTER USER USER() IDENTIFIED BY 'admin@';
+```
+
+
+
+
+
 ### 配置
 
 数据库表：*performance_schema*
@@ -785,6 +822,10 @@ select * from information_schema.tables where TABLE_SCHEMA = 'information_schema
 # 查询当前数据库的全部表
 select * from information_schema.TABLES t where TABLE_SCHEMA = DATABASE();
 
+# 查询表名
+select TABLE_NAME, CREATE_TIME ,TABLE_COMMENT from information_schema.TABLES t where TABLE_SCHEMA = DATABASE();
+
+
 # 查看当前连接数据库大小
 select concat(round(sum(DATA_LENGTH/1024/1024),2),'MB') as data from information_schema.TABLES where TABLE_SCHEMA = database();
 
@@ -1533,13 +1574,16 @@ mysqldump -h "207.12.24.56" -uroot -p --default-character-set=utf8 dataset table
 
 ```mysql
 -- 查看binlog日志是否开启
-show variables like 'log_%'; 
+show variables like 'log_bin%'; 
 
 -- 查看所有 binlog 日志列表
 show master logs;
 
 -- 查看二进制状态
+-- mysql 主从数据查询
 show master status;
+show slave status;
+
 -- 日志刷新
 flush logs;
 
@@ -1548,6 +1592,46 @@ reset master;
 
 # 使用 mysqlbinlog 读取日志
 mysqlbinlog binlog.000111
+
+# bing 二进制事件查看
+SHOW BINLOG EVENTS;
+
+
+# 日志清理
+# 清理日志到- [binlog.00001,binlog.00015]
+PURGE MASTER LOGS TO 'binlog.000157';
+# 删除 “2022-11-11 11:11:11”之前的日志
+PURGE MASTER LOGS BEFORE '2022-11-11 11:11:11';
+# 清理 master 全部的日志
+RESET MASTER;
+
+# 查看日志配置
+show variables like 'expire_logs_days';
+set global expire_logs_days=7;
+```
+
+
+
+binlog 日志配置
+
+```ini
+[mysqld]
+# 远程数据库（主从数据库）
+server-id=5
+log-bin=binlog
+
+# 设置日志有效期是7天
+expire_logs_days=7
+```
+
+
+
+
+
+使用 *mysqlbinlog* 工具查看日志
+
+```shell
+mysqlbinlog.exe binlog.000009
 ```
 
 
