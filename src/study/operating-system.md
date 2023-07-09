@@ -1587,7 +1587,9 @@ info vim
 
 
 
-创建别名(alias)命令
+##### alias
+
+创建别名(alias)命令，在shell中运行的 alias 仅对当前的session连接有效
 
 ```shell
 # 创建别名命令
@@ -1604,6 +1606,27 @@ alias nginx='/usr/local/nginx/sbin/nginx'
 whereis nginx
 type nginx
 ```
+
+
+
+alias 永久性设置如下：
+
+- 在 `~/.bashrc` 加入 alias命令列表，~表"用户所在目录"
+- 运行 `source ~/.bashrc `即可
+
+```shell
+# 编辑脚本
+vi ~/.bashrc
+
+# 添加 alias 命令列表
+source ~/.bashrc
+```
+
+
+
+**原理**   linux每次启动新的会话，会自动执行~/.bash_profile文件，而这个文件会初始化bashrc。
+
+> source      用于从当前shell会话中的文件读取和执行命令。source命令通常用于保留、更改当前shell中的环境变量。
 
 
 
