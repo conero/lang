@@ -718,6 +718,9 @@ go mod vendor 	模块自动拉取，并生产vendor目录
 # 使用自定义模式进行编译即可
 go build -tags embed_mode
 
+# 支持多个tags 如t1/t2/t3
+go build -tags "t1 t2 t3"
+
 # 不使用 tags
 go build 
 ```

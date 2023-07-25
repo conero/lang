@@ -184,6 +184,18 @@ java 顶级对象为 `java.lang.Object`.
 
 
 
+### 框架及应用
+
+- web框架
+  - activej          https://github.com/activej/activej ，简洁快速web开发架构
+  - play              https://github.com/playframework/playframework ，java&scala web框架
+  - spring-boot https://github.com/spring-projects/spring-boot.git   spring web框
+  - solon            https://gitee.com/noear/solon ，国产web全栈框架，与spring boot相比更小
+
+
+
+
+
 ## 应用工具
 
 ### Java 构建工具

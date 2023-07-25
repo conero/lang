@@ -406,6 +406,144 @@ C++/WinRT 是 Windows 运行时 (WinRT) API 的完全标准新式 C++17 语言�
 
 
 
+### 控制面板(contrl.exe)
+
+control.exe 控制面板所在目录 `C:\Windows\System32\control.exe`
+
+控制面板启动程序有：
+
+
+
+- 使用控制面板启动应用，格式如：`control.exe /name <className>`    
+    - `microsoft.folderoptions`		            启动资源管理器的 文件夹属性 选项卡
+    - `Microsoft.AddHardware`			        控制面板\所有控制面板项\设备和打印机
+    - `Microsoft.AdministrativeTools`		    控制面板\所有控制面板项\管理工具
+    - `Microsoft.PeopleNearMe`		            网络邻居
+    - `Microsoft.AudioDevicesAndSoundThemes`	声音
+    - `Microsoft.AutoPlay`			            控制面板\所有控制面板项\自动播放
+    - `Microsoft.Personalization`		        控制面板\所有控制面板项\个性化
+    - `Microsoft.BackupAndRestoreCenter`	    控制面板\所有控制面板项\备份和还原
+    - `Microsoft.PhoneAndModemOptions`	        设置电话和调制调解器的连接向导：位置信息
+    - `Microsoft.BitLockerDriveEncryption`	    控制面板\所有控制面板项\BitLocker 驱动器加密
+    - `Microsoft.Printers`			            控制面板\所有控制面板项\设备和打印机
+    - `Microsoft.ColorManagement`		        颜色管理
+    - `Microsoft.ProgramsAndFeatures`		    控制面板\所有控制面板项\程序和功能：添加/删除程序
+    - `Microsoft.DateAndTime`			        日期和时间
+    - `Microsoft.DefaultPrograms`		        控制面板\所有控制面板项\默认程序
+    - `Microsoft.DeviceManager`		            设备管理器
+    - `Microsoft.SecurityCenter`		        安全中心：控制面板\所有控制面板项\操作中心
+    - `Microsoft.SyncCenter`			        控制面板\所有控制面板项\同步中心
+    - `Microsoft.Fonts`			                控制面板\所有控制面板项\字体
+    - `Microsoft.System`			            控制面板\所有控制面板项\系统：查看Windows版本等
+    - `Microsoft.GameControllers`		        游戏控制器
+    - `Microsoft.GetPrograms`			        控制面板\程序\获得程序
+    - `Microsoft.TaskbarAndStartMenu`		    任务栏和“开始”菜单属性
+    - `Microsoft.UserAccounts`		            控制面板\所有控制面板项\用户帐户
+    - `Microsoft.WelcomeCenter`		            控制面板\所有控制面板项\入门
+    - `Microsoft.iSCSIInitiator`		        iSCSI 发起程序 属性
+    - `Microsoft.WindowsDefender`		        启动Windows Defender
+    - `Microsoft.Keyboard`			            启动 键盘 属性 对话框
+    - `Microsoft.WindowsFirewall`		        控制面板\所有控制面板项\Windows 防火墙
+    - `Microsoft.MobilityCenter`		        Windows 移动中心
+    - `Microsoft.Mouse`			                鼠标 属性
+    - `Microsoft.NetworkAndSharingCenter`	    控制面板\所有控制面板项\网络和共享中心
+    - `Microsoft.WindowsUpdate`		            控制面板\所有控制面板项\Windows Update
+    - `Microsoft.OfflineFiles`		            脱机文件
+    - `Microsoft.ParentalControls`		        控制面板\所有控制面板项\家长控制
+- `.msc` 嵌入式管理单元文件（Microsoft Snap-In Control），微软管理控制台MMC(Microsoft Management Console)用来添加/删除的嵌入式管理单元文件，通常通过MMC来管理。
+    - compmgmt.msc	计算机管理
+    - devmgmt.msc	设备管理器
+    - diskmgmt.msc	磁盘管理实用程序(可以进行有损分区)
+    - wmimgmt.msc	打开windows管理体系结构(WMI)：Wmimgmt-[控制台根节点\WMI控件(本地)]
+    - certmgr.msc	证书管理实用程序
+    - secpol.msc	本地安全策略
+    - services.msc	本地服务设置（系统服务管理）
+    - gpedit.msc	组策略（Home Basic受限）
+    - lusrmgr.msc	本地用户和组(本地)
+    - perfmon.msc	计算机性能监测程序
+    - fsmgmt.msc	共享文件夹管理器
+    - rsop.msc	组策略结果集
+- `.cpl` CPL文件(Control Panel Item)
+    - sysdm.cpl	系统属性：类似WinXP等右击“我的电脑”后选择的“属性”
+    - telephon.cpl	设置电话和调制调解器的连接向导：位置信息
+    - wscui.cpl	安全中心：控制面板\所有控制面板项\操作中心
+    - timedate.cpl	时间/日期 属性
+    - appwiz.cpl	控制面板\所有控制面板项\程序和功能：安装、反安装程序 添加/删除程序
+    - inetcpl.cpl	Internet属性
+    - intl.cpl	区域和语言选项（输入法选项）：控制属性：常规文字种类、数字、货币、时间、日期、输入法区域设置
+    - joy.cpl		游戏选项
+    - mmsys.cpl	声音和音频设备：声音/多媒体属性
+    - ncpa.cpl	控制面板\所有控制面板项\网络连接
+    - powercfg.cpl	控制面板\所有控制面板项\电源选项
+    - desk.cpl	控制面板\所有控制面板项\显示\屏幕分辨率
+    - main.cpl	鼠标选项
+    - firewall.cpl	WINDOWS防火墙：控制面板\所有控制面板项\Windows 防火墙
+    - odbccp32.cpl	ODBC数据源管理器
+- 其他
+    - winver		检查Windows版本
+    - wiaacmgr	扫描仪和照相机向导
+    - cmd		CMD命令提示符
+    - command		CMD命令提示符
+    - nslookup	IP地址侦测器
+    - osk		打开屏幕键盘
+    - calc		启动计算器
+    - charmap		启动字符映射表
+    - cliconfg	SQLSERVER客户端网络实用程序
+    - control		打开控制面板：控制面板\所有控制面板项
+    - msconfig	系统配置实用程序
+    - mplayer2	简易widnows media player 媒体播放机
+    - mspaint		画图板
+    - shutdown	关机命令（详细请在cmd中输入shutdown/?）
+    - mobsync		控制面板\所有控制面板项\同步中心
+    - dxdiag		检查directx信息，还可以查看系统基本配置信息
+    - dcomcnfg	打开系统组件服务
+    - sysedit		系统配置编辑器
+    - sigverif	文件签名验证程序
+    - SoundRecorder	系统自带录音机
+    - SnippingTool	系统自带截图工具
+    - odbcad32	ODBC数据源管理器
+    - syskey		系统加密，一旦加密就不能解开，保护windows 7系统的双重密码
+    - sfc.exe		系统文件检查器，需要管理员权限启动cmd，并在命令行中输入命令及参数扫描所有受保护的系统文件的完整性，并用正确的 Microsoft 版本替换不正确的版本。
+    - sfc /scannow	需要管理员权限启动cmd，在DOS窗口中进行系统扫描。windows文件保护
+    - cleanmgr	垃圾整理（磁盘清理）
+    - dvdplay		DVD播放器(Windows Media Player)
+    - eventvwr	一个事情查看器
+    - eudcedit	造字程序：专用字符编辑程序
+    - explorer	打开资源管理器
+    - shrpubw		共享文件夹设置工具：创建共享文件向导
+    - mmc		打开控制台
+    - iexpress	系统自带安装程序制作工具
+    - logoff		注销命令
+    - mem.exe		显示内存使用情况(先要运行cmd，进入DOS命令窗口)
+    - migwiz		文件转移向导
+    - mstsc		远程桌面连接
+    - magnify		放大镜实用程序
+    - notepad		打开记事本
+    - wordpad		写字板
+    - write.exe		写字板
+    - wuapp		控制面板\所有控制面板项\Windows Update
+    - regedit		注册表编辑器
+    - regedt32	注册表编辑器
+    - narrator	屏幕“讲述人”
+    - regsvr32	调用、卸载DLL文件运行（详细请在cmd中输入regsvr32/?）
+    - taskmgr		任务管理器
+    - wscript 	windows脚本宿主设置
+
+
+
+```powershell
+# 查看所在路径
+where.exe control
+
+# 使用 control 启动设备管理
+control.exe /name Microsoft.DeviceManager
+
+# regsvr32 用于重新安装dll
+regsvr32 /i shell32.dll
+```
+
+
+
 ### 快速路径
 
 - 事件查看器：*用于查看系统级别的日志*
@@ -609,7 +747,15 @@ wsl --unregister openEuler-22.03
 wsl --import openEuler-22.03 D:\WSL\openEuler-22.03 D:\WSL\openEuler-22.03.tar --version 2
 # 已安装的 wsl 路径目录。虚拟文件系统路径
 # ~/ext4.vhdx
+```
 
+
+
+登录linux服务器（指定）
+
+```shell
+# 如登录 podman 指定的 linux
+wsl -d podman-machine-default
 ```
 
 
@@ -1036,6 +1182,7 @@ readlink -f ./
 mkdir -p /opt/new/test/01
 
 # 用户实时加载日志尾部行（默认10行，-n 10）
+# 可用于日志实时查看
 tail -f /home/logs/nginx/error.log
 ```
 
@@ -2745,6 +2892,7 @@ ZXCVBNM		自行车未帮你买
 
 1. [Windows 中的键盘快捷方式](https://support.microsoft.com/zh-cn/help/12445/windows-keyboard-shortcuts)
 1. [试试Linux下的ip命令，ifconfig已经过时了 ](https://linux.cn/article-3144-1.html)
+1. [Window系统命令行调用控制面板程序](https://www.cnblogs.com/micq/p/15190937.html)
 
 
 
