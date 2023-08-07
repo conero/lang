@@ -648,6 +648,17 @@ taskkill /T /F /PID 9088
 
 
 
+linux 系统上运行。当发现监听地址为“`127.0.0.1`” 时外网可能无法访问，需转换为“`0.0.0.0`”。
+
+```bash
+# 查看 8023 端口的访问情况
+netstat -tunlp | grep 8023
+```
+
+
+
+
+
 参照tcp协议过程：
 
 ```mermaid
@@ -751,7 +762,7 @@ wsl --import openEuler-22.03 D:\WSL\openEuler-22.03 D:\WSL\openEuler-22.03.tar -
 
 
 
-登录linux服务器（指定）
+登录linux服务器（指定），podman及 pod manage 缩写，
 
 ```shell
 # 如登录 podman 指定的 linux
@@ -1308,6 +1319,9 @@ systemctl status nginx
 #    disable 服务未运行
 #    static  只有在别的单元启动时才被使用
 systemctl enable nginx
+
+# 更改某些unit配置文件后，需重新加载配置文件
+systemctl daemon-reload
 ```
 
 
