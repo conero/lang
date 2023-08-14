@@ -3406,6 +3406,10 @@ Rust 标准库
 
 `cargo.toml` 为cargo的**manifest**元清单。
 
+指定更新包命令 `cargo update`，仅仅会改变 Cargo.lock 文件，如需改变 Cargo.toml 文件需安装 [cargo-edit](https://github.com/killercup/cargo-edit)
+
+
+
 ```shell
 $ cargo --version
 # 利用 cargo 创建项目
@@ -3427,6 +3431,11 @@ $ cargo check
 
 # 更新 cargo lock 的版本依赖
 $ cargo update
+
+# 安装 https://github.com/killercup/cargo-edit
+# 同步更新 Cargo.toml
+cargo upgrade
+
 # 更新检测并不真正执行更新
 cargo update --dry-run
 # 更新指定库

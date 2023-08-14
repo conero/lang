@@ -111,6 +111,25 @@ _FastCGI像是一个常驻(long-live)型的CGI，它可以一直执行着，只�
 
 
 
+### 会话及令牌
+
+
+
+#### JWT
+
+Json Web Token, 跨域身份验证解决方案。
+
+由 *JWT头*、*有效荷载*、*签名* 等组成。
+
+
+
+处理过程：
+
+- 浏览器向服务器发送用户及密码，获取 token参数
+- 请求服务器时将 token通过 `Authorization: Bearer {token}` 传递给服务进行认证即可。
+
+
+
 
 
 ## HTTP
@@ -839,6 +858,7 @@ npx serve
 - [RFC-Editor](https://www.rfc-editor.org/)
 - [ISO](https://www.iso.org/home.html)  *the International Organization for Standardization*
 - [Nginx域名访问的白名单配置 - 运维总结](https://www.cnblogs.com/kevingrace/p/6086652.html)
+- [JWT全面解读、详细使用步骤](https://www.jianshu.com/p/d1644e281250)
 
 
 
