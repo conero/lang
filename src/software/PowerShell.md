@@ -752,6 +752,29 @@ xdg-open https://baidu.com
 
 
 
+实现类似于 linux 的nohup 命令
+
+```powershell
+# 后台执行 jar web服务
+Start-Process java.exe -WindowStyle Hidden -ArgumentList "-jar ./sjw-0.0.1-solon.jar"
+
+# 查找进程
+tasklist | findstr "java.exe"
+# 或使用 get-process 命令
+Get-Process java
+
+# 通过 pid 查询服务监听端口
+netstat -ano|findstr "22564"
+
+# 或通过端口好来锁定pid并关闭它
+netstat -ano|findstr 5201
+
+# 关闭进程
+kill "22564"
+```
+
+
+
 
 
 

@@ -2013,6 +2013,18 @@ PC主要使用网络：
 
 
 
+
+
+### 网络协议
+
+#### smtp
+
+电子邮件传输协议（Simple Mail Transfer Protocol），建立在FTP协议之上。默认端口 25，最新协议标准 [RFC 5321](https://datatracker.ietf.org/doc/html/rfc5321)。
+
+其他邮箱协议服务 *POP3/IMAP/SMTP*。
+
+
+
 ## 发展技术
 
 *新兴的计算机发展技术、概念等；在特定的时期具有明显的影响力。*

@@ -30,7 +30,44 @@ LTS 版本有 8(14-22/30), 11(18-23/26), 17(21-26/29). 主要发布历史
 
 ### 基础
 
+主要特性
+
+- 面向对象
+- 与平台无关，有底层 jvm支持。java jvm 实现不同平台的支持，与php、js、python等解析器相似
+- 支持多进程
+- 静态化语言
+
+
+
 java版本以 11 版本作为标准。
+
+
+
+java 代码编译以及运行
+
+```powershell
+# 运行 java 文件
+java $file.java
+
+# 将文件编译为 .class 文件（字节码） =》 面向虚拟机
+javac $file.java
+# 指定文件编码
+javac -encoding UTF-8 $file.java
+
+# 指定类所在目录，并执行对应的类
+# 执行> ./m1/Simple.class 类
+# cp 即 classpath
+java -cp ./m1/ Simple
+```
+
+
+
+#### JDK
+
+- jdk        Java Development Kit，java 开发工具集
+- jre        Java Runtime Environment，Java 运行时环境
+
+
 
 
 
@@ -222,6 +259,60 @@ java 顶级对象为 `java.lang.Object`.
 
 
 
+#### Maven
+
+maven 仓库有：本地-local、中央-center、远程-remote，拉取包顺序LCR。
+
+一个依赖申明含 groupId 组织标识（包名），artifactId 项目名称，version 版本号。如包*v4.4.0 版本 java-jwt* 依赖：
+
+```xml
+<dependencies>
+    <dependency>
+        <groupId>com.auth0</groupId>
+        <artifactId>java-jwt</artifactId>
+        <version>4.4.0</version>
+    </dependency>
+</dependencies>
+```
+
+
+
+生命周期 lifecycle
+
+- clean             项目编译清除
+- validate        
+- compile        项目编译，将java源代码编译成class字节码文件
+- test                项目测试用例运行
+- package        项目打包，生成 jar 或 war包
+- verify             对测试结果等进行测试
+- install            （Maven特定的概念）将打包得到的文件复制到“仓库”中的指定位置
+- site
+- deploy            将动态Web工程生成的war包复制到Servlet容器下，使其可以运行
+
+
+
+
+
+maven 命令
+
+```powershell
+# 查看版本信息
+mvn -v
+
+# 查看依赖树
+mvn dependency:tree
+
+# 编译项目
+mvn compile
+
+# 项目打包
+mvn package
+```
+
+
+
+
+
 
 
 ## 附录
@@ -231,3 +322,8 @@ java 顶级对象为 `java.lang.Object`.
 - [java 基本类型](https://www.cnblogs.com/doit8791/archive/2012/05/25/2517448.html)
 - [廖雪峰java教程](https://www.liaoxuefeng.com/wiki/1252599548343744)
 - [java四种引用类型](https://www.cnblogs.com/liyutian/p/9690974.html)
+- [oracle 公布的java语言标准](https://docs.oracle.com/javase/specs/)
+- maven 项目
+  - [maven 项目官网](https://maven.apache.org)
+  - [从青铜到王者，Maven全了解](https://baijiahao.baidu.com/s?id=1700978540465382123)
+- [Java基础常见面试题总结(上)](https://javaguide.cn/java/basis/java-basic-questions-01.html)
