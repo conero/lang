@@ -416,6 +416,11 @@ git log -p <file>
 
 # 查看历史代码提交信息
 git show <commit_id>
+
+# 查看指定日期之前的提交，如“2020-11-19”
+# before 与 until 功能一致
+git log --until=2020-11-19
+git log --before=2020-11-19
 ```
 
 

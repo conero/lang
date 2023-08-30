@@ -712,6 +712,17 @@ go mod vendor 	模块自动拉取，并生产vendor目录
 
 
 
+脚本写法2
+
+```go
+//go:build embed
+// 自定义编译模式
+```
+
+
+
+
+
 - 编译程序
 
 ```shell
