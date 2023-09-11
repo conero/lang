@@ -140,6 +140,24 @@ func TestName (t *testing.T)
 
 
 
+执行测试命令
+
+```powershell
+# 指定文件夹
+go test ./str/
+
+# 指定文件
+go test -v ./str/calc_test.go ./str/calc.go
+
+
+# 指定文件函数
+go test -v ./str/ '-test.run' TestFloatSimple
+```
+
+
+
+
+
 **Benchmark**  golang 自带的基准测试：
 
 ```go
