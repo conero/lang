@@ -3306,6 +3306,16 @@ cargo build --target x86_64-unknown-linux-musl
 
 
 
+**MUSL** 是一个用于 Linux 系统上的 C standard library。和 GNU 上的 glibc 以及 Android 上的 bionic 类似，采用 MIT license. 所以对于商业应用来说，相较于 glibc 要宽松。
+
+类似的有：
+
+- musl                  linux
+- glibc                  gnu
+- bionic               android
+
+
+
 ### 其他
 
 #### prelude

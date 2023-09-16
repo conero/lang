@@ -186,6 +186,30 @@ d----            2020/3/3    11:08                runtime
 
 ### 常量
 
+pwsh 所在的环境默认常量，可通过`Get-Variable`进行查询。
+
+```powershell
+# 用户所在目录
+echo $HONE
+
+# 当前环境变量（当前用户）
+echo $PROFILE
+# 所有用户对应的环境变量
+echo $PSCommandPath
+
+# powershell 所在目录
+echo $PSHome
+```
+
+PowerShell [配置文件](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about_profiles?view=powershell-7.3)，支持路径（windows）。
+
+- `$PSHOME\Profile.ps1`   所有用户
+- `$PSHOME\Microsoft.PowerShell_profile.ps1`  所有用户
+- `$HOME\Documents\PowerShell\Profile.ps1`  当前用户
+-  `$HOME\Documents\PowerShell\Microsoft.PowerShell_profile.ps1`  当前用户
+
+
+
 ```powershell
 # ps脚本所在的目录
 echo $PSScriptRoot
@@ -516,6 +540,8 @@ ls -Recurse | findstr ".exe"
 'Joshua'+",Conero"
 @(1, 3) + @('a', 'c')
 @{'name'='Joshua'} + @{'age'= 28; 'last'='Coenro'}
+# 多参数命令执行以及结果合并
+"$((get-process -name wechat).id);$((Get-Process wechat -FileVersionInfo).FileName)"
 ```
 
 
@@ -530,10 +556,6 @@ ls -Recurse | findstr ".exe"
 # 手动抛出异常
 throw "This is an error."
 ```
-
-
-
-
 
 
 

@@ -1140,6 +1140,17 @@ _ABI（Application Binary Interface）: 应用程序二进制接口 描述了应
 
 
 
+常用的跨语言调 C 库：
+
+| 语言   | C-API库名称             |
+| ------ | ----------------------- |
+| C/C++  | Libffi、Cffi、DragonFFI |
+| java   | JNI                     |
+| python | Cffi                    |
+| lua    | luajit-ffi              |
+| go     | cgo                     |
+| rust   | libc、std::ffi          |
+
 
 
 ### RESTful
@@ -1846,12 +1857,30 @@ _挖矿是个将待确认的交易数据包含到区块链中，从而完成对�
 操作系统架构：
 
 - arm          `Acorn RISC Machine`  **AMD 产品**
-  - aarch64              64位的ARM架构。
-- x86_64     **intel 产品**
+  - aarch64              64位的ARM架构，ARMv8。
+  
+- mips         RISC处理器（Microprocessor without interlocked piped stages），无内部互锁流水级的微处理器
+
+- x86           32位系统，属于CICS(复杂指令集)
+
+- x86_64     **intel 产品**，64位向下兼容32位系统，同x64。
+
+- amd         又称amd64，兼容x86。
+
+- mips         RISC处理器（Microprocessor without interlocked piped stages），无内部互锁流水级的微处理器
+
+- ppc           RISC处理器，PowerPC
+
+- loongArch 龙架构，la32、la64
+
+  
+
+**x86=i386=IA32**
+**amd64=x86_64=x64!=IA64**
 
 
 
-
+x86，x86_64，amd基本属于同一类架构。
 
 
 
@@ -2168,3 +2197,4 @@ graph TB
 
 - [在 Windows 上可以用 Docker 吗？](http://www.docker.org.cn/docker/178.html)	
 - [Docker 百科](https://baike.baidu.com/item/Docker/13344470)
+- [【CPU】关于x86、x86_64/x64、amd64和arm64/aarch64](https://zhuanlan.zhihu.com/p/599718335)
