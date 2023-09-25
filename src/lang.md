@@ -272,6 +272,43 @@ webgl是基于opengl（opengl es）的，opengl过渡到vulkan，那么理所当
 
 
 
+### 文字编码
+
+常见的有ASCII，GBK（简体），GB18030（简体），BIG5（繁体），utf8，utf6等。
+
+
+
+#### utf8
+
+- （符合）基于Unicode编码
+- Utf8  对不同范围的字符使用不同长度的编码
+- 单字节编码可以表示英语
+
+
+
+Unicode 编码里面已经包含了GB18030里面的所有汉字（27484个字）。字典查询如 https://www.unicode.org/cgi-bin/UnihanGrid.pl?codepoint=8600
+
+- https://www.unicode.org/charts/   所有字符
+- www.unicode.org/charts/unihan.html   汉语字典
+
+```shell
+1Bytes 000000-00007F           0xxx,xxxx                    （兼容 ASCII 码）
+2Bytes 000080-0007FF           110x,xxxx 10xx,xxxx
+3Bytes 000800-00FFFF           1110,xxxx 10xx,xxxx 10xx,xxxx
+4Bytes 010000-10FFFF           1111,0xxx 10xx,xxxx 10xx,xxxx 10xx,xxxx
+```
+
+
+
+汉字范围正则表达式：
+
+- `^[\u4e00-\u9fa5]`    ，4E00-9FA5                   简体
+- `^[\u4e00-\u9fa5]`    ，4E00-9FFF                   繁体
+
+
+
+
+
 
 
 ## 编程语言

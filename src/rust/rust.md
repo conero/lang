@@ -1136,6 +1136,56 @@ for i in &y{
 
 #### 字符串
 
+常见字符串类型：
+
+```shell
+String       Utf8 编码字符串（可变）
+str          Utf8 编码字符串，字符串字面值，&str 字符串 slices
+Vec<u8>      u8 切片（）
+&[u8]        字符串bytes
+OsString
+OsStr
+```
+
+
+
+类型转换
+
+```rust
+// 测试代码
+let str = "天道酬勤,厚德载物";
+// &str -> String
+let be_string = String::from(str);
+// String -> &str
+let be_str = be_string.as_str();
+// String -> &[u8]
+let be_bytes = be_string.as_bytes();
+// &[u8] -> String
+let be_string = String::from_utf8_lossy(be_bytes).to_string();
+// &str -> Vec<u8>
+let be_vec = Vec::from(str);
+// Vec<u8> -> &[u8]
+let be_slice = be_vec.as_slice();
+// `b""` 必须为 ASCII 码
+let b_string = b"This is a good, man.";
+let raw_string = r#"美丽的天空是浩瀚的海洋！"#;
+// char -> String
+let a_char = 'A';
+let be_string = String::from(a_char);
+// &str -> Chars
+let a_chars = "Joshua".chars();
+// Chars -> &str
+let be_str = a_chars.as_str();
+// String -> Vec<u8>
+let be_vec = be_string.clone().into_bytes();
+// String -> Bytes
+let be_bytes_2 = be_string.bytes();
+// &str -> Cstring
+let a_cstring = CString::new("Joshua Conero, High!").unwrap();
+```
+
+
+
 - `str` 字符串字面值，硬编码的方式，不可变。
 
 - _`String` 类型，为了支持一个可变，可增长的文本片段，需要在堆上分配一块在编译时未知大小的内存来存放内容。_
@@ -3341,6 +3391,15 @@ extern crate alloc;
 ```
 
 
+
+#### windows
+
+- windows hook 技术（dll注入）
+  - 纯rust注入windows hook，https://github.com/AurevoirXavier/hook-in-rust。[使用Rust编写 Windows dll 并注入进第三方进程后对 Windows API MessageBoxW 进行 Hook](https://blog.csdn.net/kunyus/article/details/108884016)
+
+
+
+执行内联汇编，https://doc.rust-lang.org/stable/reference/inline-assembly.html。
 
 
 
