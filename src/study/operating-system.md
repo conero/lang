@@ -1742,6 +1742,10 @@ witch vim
 man vim
 vim --help
 info vim
+
+# 使用 file 查看文件的类型，看是否为二进制文件
+# 如类型："ELF 64-bit LSB executable"或"POSIX shell script"
+file $path
 ```
 
 项目命令的文档信息所在目录：`/usr/share/doc`
