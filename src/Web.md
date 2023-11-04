@@ -292,6 +292,14 @@ _HTTP/1 的请求和响应报文，都是由起始行、首部和实体正文（
 
 
 
+### QUIC
+
+*Quick UDP Internet Connections*。是谷歌在2013年发明的一种基于UDP的全新的低延时互联网传输协议。
+
+QUIC是基于UDP协议的，我们知道UDP是面向无连接、不可靠协议。QUIC既然作为HTTP3的底层协议，保证可靠是基础。因此QUIC实现了TCP的ACK确认、seq序号、排序、重传、差错控制、流量控制。
+
+
+
 
 
 ## HTML/CSS
