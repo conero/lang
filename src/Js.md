@@ -35,6 +35,14 @@ console.log(t.toString(16));
 
 
 
+#### storage
+
+sessionStorage 会话存储的，但直接通过浏览器新打开两个页面，相同域名下它们不共享。即，A、B页面某页面设置sessionStorage，另一个页面不可读取其值。
+
+
+
+
+
 ## 工具
 
 ### npm

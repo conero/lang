@@ -780,6 +780,13 @@ xdg-open https://baidu.com
 # 后台执行 jar web服务
 Start-Process java.exe -WindowStyle Hidden -ArgumentList "-jar ./sjw-0.0.1-solon.jar"
 
+# 如启动多个【yangsu_embed.exe】服务
+for($i=9961; $i -lt 9971; $i++){ `
+    Start-Process yangsu_embed.exe -WindowStyle Hidden -ArgumentList "-p $i"
+}
+# 查询并关闭所有命令
+get-process -name yangsu_embed | stop-process
+
 # 查找进程
 tasklist | findstr "java.exe"
 # 或使用 get-process 命令
