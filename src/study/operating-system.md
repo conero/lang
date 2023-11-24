@@ -653,6 +653,9 @@ linux 系统上运行。当发现监听地址为“`127.0.0.1`” 时外网可�
 ```bash
 # 查看 8023 端口的访问情况
 netstat -tunlp | grep 8023
+
+# 查看 9002 端口的访问情况
+netstat -anp | grep 9002
 ```
 
 
@@ -2079,6 +2082,15 @@ pscp php-7.3.5.tar.gz root@ip:targetDir
 pscp -i <ppk_file> <filename> user@host:targetDir
 # 实例
 pscp -i ~\16.13-Linux.ppk ~\python3-3.6.8-10.el7.x86_64.rpm root@y.x.16.13:/usr/local/cro1911 -v
+```
+
+
+
+**telnet** 的使用
+
+```shell
+# 如连接指定的ip及端口
+telent 10.10.16.54 31710
 ```
 
 

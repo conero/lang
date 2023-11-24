@@ -1387,8 +1387,11 @@ taskkill /fi "imagename eq nginx.exe" /F
 # 查看进程并获取文件详情
 # 根据名称获取进程
 Get-Process pwsh -FileVersionInfo
-# 同ID获取进程
+# 同ID获取进程，以及展示文件信息
 Get-Process -Id 7428 -FileVersionInfo
+# get-process 别名
+gps
+
 # 关闭进程
 stop-Process -Id 7428
 ```

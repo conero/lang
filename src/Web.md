@@ -707,6 +707,18 @@ nginx: [alert] could not open error log file: CreateFile() "logs/error.log" fail
 
 
 
+### Tomcat
+
+由 Apache 开发的一个 Servlet 容器，其实是Web服务器和Servlet容器的结合体。Servlet 是Server Applet的简称，是javaEE平台下用于java编译的服务端程序。
+
+
+
+SSM框架即 `Spring+SpringMVC+MyBatis` 组成的标准MVC框架，是较为主流的java EE企业级框架。其常由 dao(mapper)、service、controller、view 四层组成。
+
+
+
+
+
 ### 测试服务器
 
 #### PHP
