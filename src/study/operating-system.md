@@ -925,7 +925,7 @@ wmic diskdrive get Name, Manufacturer, Model, InterfaceType, MediaType, SerialNu
 
 **/media：**有些linux的发行版使用这个目录来挂载那些[usb](https://baike.baidu.com/item/usb)接口的移动硬盘（包括U盘）、CD/DVD[驱动器](https://baike.baidu.com/item/%E9%A9%B1%E5%8A%A8%E5%99%A8)等等。
 
-**/opt：**这里主要存放那些可选的程序。
+**/opt：**这里主要存放那些可选的程序。用户即程序目录，如oracle等
 
 **/proc：**可以在这个目录下获取系统信息。这些信息是在内存中，由系统自己产生的。
 
@@ -968,6 +968,8 @@ wmic diskdrive get Name, Manufacturer, Model, InterfaceType, MediaType, SerialNu
 
 
 
+**/usr/bin/**  类似系统环境变量
+
 
 
 ## 常用命令
@@ -988,7 +990,7 @@ ifconfig -a
 # && 用户两个命令的链接
 mkdir jc-hellowpy && cd jc-hellowpy
 
-# 环境变量
+# 环境变量，查看系统定义的环境变量
 env
 
 # 设置环境变量
@@ -1148,13 +1150,15 @@ file composer.json
 
 ```shell
 # 查看磁盘信息的命令
-
 df -hl 查看磁盘剩余空间
 df -h 查看每个根路径的分区大小
 df -hT 显示
 du -sh [目录名] 返回该目录的大小
 du -sm [文件夹] 返回该文件夹总M数
 du -h [目录名] 查看指定文件夹下的所有文件大小（包含子文件夹）
+
+# 列举所有系统盘设备及其分区信息
+fdisk -l
 
 # 文件、目录查找
 # 文件名查找
@@ -1210,6 +1214,17 @@ fd
 ```
 
 
+
+用户权限查看
+
+```shell
+# 查看用户 nobody 是否可访问目录
+sudo -u nobody ls -l ./path/dirname
+
+# 设置nobody，用于某一用户组
+# 如设置必须保证父级用于此权限，否则无法访问
+sudo chown -R nobody:nobody /opt/www/loan-syste
+```
 
 
 
@@ -1468,6 +1483,8 @@ loginctl
 ##### systemctl
 
 *systemctl是 Systemd 的主命令，用于管理系统。*
+
+`/lib/systemd/system/` 为 Unit 单元所在目录。
 
 ```shell
 # 重启系统

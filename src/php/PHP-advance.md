@@ -72,6 +72,9 @@ $ /usr/local/nginx/sbin/nginx
 # 停止服务器
 $ /usr/local/nginx/sbin/nginx -s stop 或 /usr/local/nginx/sbin/nginx -s quick
 
+# 创建 nginx 软链接
+ln -s /usr/local/nginx/sbin/nginx /usr/bin/nginx
+
 # 配置文件检测
 $ /usr/local/nginx/sbin/nginx -t
 # openssl 安装
@@ -115,6 +118,9 @@ $ make && make install
 --with-gd
 # ./configure --with-freetype-dir --with-jpeg-dir --with-png-dir
 
+# configure: error: Please reinstall the libcurl distribution
+yum -y install curl curl-devel
+
 # 启动 php-fpm
 /usr/local/sbin/php-fpm
 #
@@ -141,6 +147,39 @@ $ ps -aux|grep php-fpm
 # 安装图片库支持
 yum -y install libpng libpng-devel
 ```
+
+
+
+Bzip2
+
+```shell
+# configure: error: Please reinstall the BZip2 distribution
+yum -y install bzip2-devel
+```
+
+
+
+> linux php 扩展编译
+
+转到ext所在目录，并使用 phpize 初始化；执行 `configure`命令，最后进行 `make && make install` 即可。
+
+```shell
+# 如编译 mysqli
+cd ext/mysqli
+
+# 使用 phpize 初始化
+/usr/local/bin/phpize
+
+# 执行 configure
+./configure --with-php-config=/usr/local/php/bin/php-config --with-mysqli=/usr/local/mysql/bin/mysql_config
+
+# 进行 make
+make && make install
+
+# 如在[/usr/local/lib/php/extensions/no-debug-non-zts-20100525/]中生成`mysqli.so`
+```
+
+
 
 
 
