@@ -420,6 +420,10 @@ IP 服务器		->  HTTP 相应
 
 
 
+**tengine** 由淘宝开发的基于nginx子集服务器，在兼容nginx的基础上提供新功能。源码地址 https://github.com/alibaba/tengine，网站 https://tengine.taobao.org/。
+
+
+
 #### nginx conf
 
 nginx 配置文件说明，默认名：`nginx.conf`。

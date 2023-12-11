@@ -1800,8 +1800,6 @@ ULID 是既基于时间戳又基于随机数，时间戳精确到毫秒，毫秒
 
 
 
-
-
 **常用加密** 解释性名词
 
 - **DES**  *Data Encryption Standard，即数据加密标准，速度较快，适用于加密大量数据的场合*
@@ -1820,6 +1818,32 @@ ULID 是既基于时间戳又基于随机数，时间戳精确到毫秒，毫秒
 - **SHA1**   *安全哈希算法（Secure Hash Algorithm）主要适用于数字签名标准 （Digital Signature Standard DSS）里面定义的数字签名算法（Digital Signature Algorithm DSA）*
 - **SHA256**  *哈希函数，又称散列算法*
 - **SHA512**
+
+
+
+> *国密算法*
+
+- sm1                 对称加密（硬件）。分组密码算法，分组长度为128位，密钥长度都为 128 比特，算法安全保密强度及相关软硬件实现性能与 AES 相当，算法不公开，仅以IP核的形式存在于芯片中
+- sm2                 椭圆曲线公钥密码算法。非对称加密，基于ECC（椭圆曲线算法）
+- sm3                 杂凑算法，哈希算法
+- sm4                 分组算法，对称加密，可用于替代DES/AES等国际密码算法
+- sm7                 分组密码算法，适用于非接触式IC卡
+- sm9                 标识密码算法
+- ZUC祖冲之算法   中国自主研究的流密码算法,是运用于移动通信4G网络中的国际标准密码算法,该算法包括祖冲之算法(ZUC)、加密算法(128-EEA3)和完整性算法(128-EIA3)三个部分
+
+
+
+c sm加密库  
+
+\- https://github.com/guanzhi/GmSSL  支持国密SM2/SM3/SM4/SM9/SSL的密码工具箱
+
+
+
+go sm加密库
+
+\- https://github.com/Hyperledger-TWGC/ccs-gm   中国网安go语言国密库
+
+\- https://github.com/tjfoc/gmsm   GM SM2/3/4 library based on Golang (基于Go语言的国密SM2/SM3/SM4算法库)。梧桐链
 
 
 
