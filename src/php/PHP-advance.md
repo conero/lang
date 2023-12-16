@@ -225,7 +225,7 @@ sudo apt-get install libpng-dev
 # Ubuntu: 
 sudo apt-get install libxml2-dev libjpeg-dev 
 # centos: 
-# libjpeg-devel freetype-devel
+# libjpeg-devel freetype-devel libjpeg-devel
 yum install libjpeg libpng freetype libjpeg-devel libpng-devel freetype-devel -y
 
 # error: png.h not found

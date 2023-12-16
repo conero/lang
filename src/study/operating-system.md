@@ -218,6 +218,7 @@
 | win+,(逗号)       |                           | 临时速览桌面                 |
 | win+Tab           |                           | 打开任务视图                 |
 | Fn+ESC            | function esc              | fn 功能键切换                |
+| win+V             | windows clipboard record  | 剪切板记录                   |
 
 
 

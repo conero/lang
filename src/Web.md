@@ -561,6 +561,9 @@ http{
         set $apiWeb http://$host:$server_port/;
         location / {
             return 200 "返回内容：$apiWeb .";
+            
+            # 如直接返回内容
+            # return 200 $document_root$fastcgi_script_name;
         }
     }
 }
