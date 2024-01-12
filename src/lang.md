@@ -1658,9 +1658,31 @@ TortoiseSVN 客服端：
 
 
 
-### App/移动端
+### UI 库
+
+#### 跨平台
+
+跨平台App/移动端常见的有：
+
+- flutter       基于Dart语言，支持iOS、Android、Web、Windows、macOS 和Linux
+- rn              react native，使用 react+js编写原生应用，支持 iOS/Android
+- uni-app    基于前端 vuejs 写跨平台的应用
+- ionic         基于前端语言编写 Hybrid App开发设计
+- electron   基于谷歌浏览器内核，使用HTML、CSS和JavaScript编写 Mac、Windows和Linux
+- Compose Multiplatform    基于 kotlin语言，支持iOS/Android/desktop/web
+
+
 
 @todo [flutter、rn、uni-app比较](https://blog.csdn.net/u013712343/article/details/123070663)
+
+
+
+
+
+基于webview 实现的桌面开发库
+
+- wails      https://github.com/wailsapp/wails， 使用webjs编写桌面App
+- tauri      https://github.com/tauri-apps/tauri， 使用webjs编写桌面App
 
 
 

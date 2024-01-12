@@ -152,6 +152,9 @@ go test -v ./str/calc_test.go ./str/calc.go
 
 # 指定文件函数
 go test -v ./str/ '-test.run' TestFloatSimple
+
+# 指定包以及测试函数
+go test -v ./ysu/tools '-test.run' '^\QTestNewXRsa\E$'
 ```
 
 
@@ -693,6 +696,12 @@ go build 加上可以编译的go源文件可以得到一个可执行文件。
 # 批量[cmd]下所有二级制程序编译
 # 注意：cmd 目录有效，其他目录经测试无法通过
 go build -o ./bin ./cmd/...
+
+# 使用 ldflags 简化过编译文件大小
+# 优化文件大小
+# -s 忽略调试信息
+# -w 忽略DWARF表符号
+go build -o ./bin -ldflags "-s -w" ./cmd/...
 
 # go 代码生成，当前下的所有代码
 go generate ./...
