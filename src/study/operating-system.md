@@ -1176,6 +1176,18 @@ find / -path "*modules*"
 # 查找目录下的“m3u8”文件并删除目录
 find D:/conero/phpapps/website/iCloud/uc/uploads/ -name "*.m3u8" | xargs rm -fr
 
+# 查找顶级目录，且仅展示文件类型
+find /etc/nginx/conf.d/ -type f  -maxdepth 1
+# 查找文件并将其复制到指定目录，如备份
+find /etc/nginx/conf.d/ -type f  -maxdepth 1 | xargs cp -t /etc/nginx/conf.d/backup-240117
+# 查找目录下，大小为 100kB-10MB 的文件（k/KiB,M/MiB,G/MiG）
+# +表大于，-小于，无+/-表等于
+# atime   最近访问时间；ctime   最新修改inode的时间；mtime   最新文件修改时间
+# amin    类似，单位为分钟
+find ./upload/ -size '+100k' -size '-10M'
+# 查找修改为在 [1-10]分钟的文件列表
+find -mmin +1 -mmin -10
+
 # 目录重命名
 # <source_dir_name> => <target_dir_name>
 rename <source_dir_name> <target_dir_name> <source_dir_name>
@@ -1967,7 +1979,9 @@ su root
 grep -nr "10.35.1.223" *
 
 # 顶级目录下含该文本的所有的
+# -n 标识展示行号
 grep -nr "10.35.1.223" /*
+grep -r "10.35.1.223" /*
 
 # 查找字符串
 grep -e str log.txt

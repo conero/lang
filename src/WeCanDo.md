@@ -292,6 +292,17 @@ pandoc test.md -o test.pdf --template=template.tex
 
 
 
+#### pdf
+
+文档合并
+
+- merge2pdf   基于 unidoc框的 pdf 文件合并工具（带水印/需购买），  https://github.com/ajaxray/merge2pdf
+- pypdf   纯 python 库， https://github.com/py-pdf/pypdf
+
+
+
+
+
 **Latex**
 
 latex 项目，https://www.latex-project.org/ 。是一种基于tex的编排系统，由美国计算机学家莱斯利·兰伯特（Leslie Lamport）在20世纪80年代初期开发。
