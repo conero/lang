@@ -686,8 +686,6 @@ go help
 
 
 
-
-
 ~~go get = git clone + go install~~
 
 ```shell
@@ -774,6 +772,23 @@ go build
 **实际测试 IntellJ + go plugin**  时间: 2019年10月25日 星期五， 无法友好的提示 vendor 目录下的依赖，虽然可运行带不够友好。  
 
 
+
+**go module** 使用 replace 指令
+
+```go
+module conero.cn/firefly/secret
+
+go 1.21.3
+
+replace conero.cn/firefly/ffutil => ../ffutil
+
+require (
+    conero.cn/firefly/ffutil v0.0.0 // 可以是任意占位符版本号
+    gitee.com/conero/uymas v1.4.0-alpha.1.0.20240116060107-6d9af8acb109
+)
+```
+
+使用 `go mod vendor` 可更新，replace下的最新代码。
 
 
 
