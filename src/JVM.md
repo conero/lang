@@ -322,6 +322,9 @@ mvn compile
 
 # 项目打包
 mvn package
+
+# 多级项下指定编译子项目，"zhuo-upms-server",并同步编译所需依赖
+mvn clean install -pl ':zhuo-upms-server' -am '-Dmaven.test.skip=true'
 ```
 
 

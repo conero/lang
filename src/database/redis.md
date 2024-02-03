@@ -140,6 +140,40 @@ exits $key
 
 
 
+版本信息等查看
+
+```shell
+# 版本信息查看
+info
+```
+
+
+
+设置密码及登录
+
+```shell
+# 配置文件如
+#   windows - redis.windows.conf
+#   linux - redis.conf
+requirepass 123456
+
+
+# 使用 cli 的工具登录
+redis-cli -a 123456
+
+# 登录redis-cli后设置/查看密码
+# 设置密码
+config set requirepass 123456
+# 查看密码
+config get requirepass
+```
+
+
+
+
+
+
+
 事务控制
 
 - `multi`                           开始事务
