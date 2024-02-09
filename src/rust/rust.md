@@ -3435,6 +3435,12 @@ rustup doc
 
 
 
+#### 镜像
+
+- rsproxy    http://rsproxy.cn/#getStarted，字节跳动。
+
+
+
 ### github 源代码
 
 [https://github.com/rust-lang/rust](https://github.com/rust-lang/rust)
