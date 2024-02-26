@@ -264,6 +264,22 @@ https://developers.google.cn/
 
 ### 文档或编码
 
+ecma-376 即 *[Office Open XML](https://ecma-international.org/publications-and-standards/standards/ecma-376/)* 规范，规范会后的文档如：
+
+```shell
+# 最初为微软开发实现，后转为公开的 ecma-376 协议
+doc,xls,ppt
+docx,xlsx,pptx
+
+# 类似的 pdf 最初有 abode开发，后期交给 iso标准
+```
+
+类似 pdf 文档标准为 ISO 32000-1
+
+
+
+
+
 #### pandoc
 
 文档转换工具，安装地址 [pandoc](https://github.com/jgm/pandoc)。生成 pdf 中文乱码的处理方式，https://zhuanlan.zhihu.com/p/477441931 。

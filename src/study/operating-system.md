@@ -699,7 +699,7 @@ Remove-NetFirewallRule -DisplayName "Allow Inbound TCP Port 7423"
 
 
 
-#### 硬件
+### 硬件
 
 ```powershell
 # 1) 使用 getmac 命令获取地址
@@ -718,7 +718,7 @@ ipconfig /all
 
 
 
-##### bcdboost
+#### bcdboost
 
 用于在电脑或设备上配置启动文件以运行 [Windows 操作系统](https://learn.microsoft.com/zh-cn/windows-hardware/manufacture/desktop/bcdboot-command-line-options-techref-di?view=windows-11)。[异常解决](https://blog.csdn.net/weixin_38705903/article/details/116617385)参考如下：
 
@@ -728,6 +728,30 @@ bcdboot c:\windows /l zh-cn
 ```
 
 
+
+
+
+#### 存储
+
+- 移动磁盘
+- U盘
+
+
+
+文件系统
+
+- NTFS
+- FAT32
+- exFAT
+
+
+
+##### 磁盘
+
+开启方式
+
+- `win+X`，选择**磁盘管理**。即进入管理界面。
+- 在桌面选择**此电脑**，选择**管理**，再选中“**存储/磁盘管理**”。
 
 
 
