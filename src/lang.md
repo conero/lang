@@ -2195,7 +2195,7 @@ Wi-Fi 是基于 IEEE 802.11 标准创建的无线局域网协议，两者很大�
 
 
 
-## 发展技术
+## 其他技术
 
 *新兴的计算机发展技术、概念等；在特定的时期具有明显的影响力。*
 
@@ -2266,6 +2266,12 @@ graph TB
 - RocketMQ 阿里巴巴消息队列，java编写。
 
 
+
+### IPC 进程通信
+
+Interprocess communication，进程间通信。进程的用户空间是互相独立的，一般而言是不能互相访问的，唯一的例外是共享内存区。另外，系统空间是“公共场所”，各进程均可以访问，所以内核也可以提供这样的条件。此外，还有双方都可以访问的外设。
+
+通常有管道通信、消息队列、信号量、共享存储、socket、streams等。
 
 
 
@@ -2341,3 +2347,5 @@ graph TB
 - [在 Windows 上可以用 Docker 吗？](http://www.docker.org.cn/docker/178.html)	
 - [Docker 百科](https://baike.baidu.com/item/Docker/13344470)
 - [【CPU】关于x86、x86_64/x64、amd64和arm64/aarch64](https://zhuanlan.zhihu.com/p/599718335)
+- ipc
+  - [IPC进程间通信](https://blog.csdn.net/fuhanghang/article/details/104277237)
