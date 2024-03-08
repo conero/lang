@@ -57,6 +57,11 @@ Spring 项目主要子项目。
 框架中的分层概念
 
 - model(entity)            **模型** 类似命名：domain、pojo. 存放实体类与并数据库表字段保持一致，一般一张表对应一个类。提供get/set/toString方法。
+  - vo                       view object/视图层，用于展示层。它的作用是把某个指定页面（或组件）的所有数据封装起来
+  - dto                     data Transfer object/数据传输层
+  - bo                       business object/业务对象，即封装为业务对象
+  - do                       domain object/领域对象，从现实世界中抽象出来的有形或无形的业务实体
+
 - dao(mapper)             **持久层 **  dao层的作用为访问数据库，向数据库发送sql语句，完成数据的增删改查任务。 数据持久化操作就是指，把数据放到持久化的介质中，同时提供增删改查操作，比如数据通过hibernate插入到数据库中。
 - service                        **业务逻辑层**   完成功能的设计 和dao层一样都是先设计接口，再创建要实现的类，然后在配置文件中进行配置其实现的关联。接下来就可以在service层调用dao层的接口进行业务逻辑应用的处理。 service的impl是把mapper和service进行整合的文件 封装Service层的业务逻辑有利于业务逻辑的独立性和重复利用性。
 - controller                   **控制层**  业务逻辑控制层，直接与客户端请求交互。通过调用 service层实现具体的业务。

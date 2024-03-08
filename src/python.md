@@ -1482,6 +1482,14 @@ python -m jc.tx
 
 ### 打包工具
 
+常见的如
+
+- pyinstaller
+- [Nuitka ](https://github.com/Nuitka/Nuitka)          据说打包更小
+- py2exe
+
+
+
 > 使用`pyinstaller`打包python源代码
 
 - 官网： [http://www.pyinstaller.org/](http://www.pyinstaller.org/)

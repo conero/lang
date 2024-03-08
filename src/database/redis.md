@@ -145,6 +145,9 @@ exits $key
 ```shell
 # 版本信息查看
 info
+
+# 获取服务器版本号
+info server
 ```
 
 
@@ -157,9 +160,11 @@ info
 #   linux - redis.conf
 requirepass 123456
 
-
 # 使用 cli 的工具登录
 redis-cli -a 123456
+
+# 使用 redis-cli 服务的`123456`密码登录用户
+auth 1234567
 
 # 登录redis-cli后设置/查看密码
 # 设置密码
