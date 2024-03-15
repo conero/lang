@@ -1282,7 +1282,14 @@ less Readme.md
 
 
 
+#### 环境变量
 
+输出shell 中环境变量
+
+```shell
+# 输出环境变量，即linux中的应用直接读取环境变量的参数
+echo $PATH
+```
 
 
 

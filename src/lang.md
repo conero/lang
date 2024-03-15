@@ -2250,6 +2250,23 @@ graph TB
 
 
 
+常用命令
+
+```shell
+# 查看当前运行的 docker进行
+docker ps
+
+# 进行 docker 容器中
+docker exce -it ac8d80f6233ec /bin/bash
+
+# 复制文件到容器 
+docker cp /opt/app/demo ac8d80f6233ec:/home/demo
+# 从容器复制文件
+docker cp ac8d80f6233ec:/home/demo /opt/app/demo
+```
+
+
+
 ### 消息队列
 
 在高并发的应用场景中需要一个缓冲机制，而消息队列则可以很好地充当这样一个角色。消息队列通过异步处理请求来缓解系统的压力。
