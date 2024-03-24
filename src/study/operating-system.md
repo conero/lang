@@ -1217,6 +1217,8 @@ find -mmin +1 -mmin -10
 rename <source_dir_name> <target_dir_name> <source_dir_name>
 # 使用 mv 亦可来重命名
 mv <old-name> <new-name>
+# 将当前目录所有文件/目录移动到上级
+mv * ..
 
 # 查看文件信息
 stat <file_path>
@@ -1239,6 +1241,11 @@ mkdir -p /opt/new/test/01
 # 用户实时加载日志尾部行（默认10行，-n 10）
 # 可用于日志实时查看
 tail -f /home/logs/nginx/error.log
+
+# 查看文件大小
+ll /home/logs/nginx/ -h
+# 同名
+ls -l --color=auto -h
 ```
 
 
@@ -1756,6 +1763,12 @@ ifconfig -a
 
 # 退出ssh
 exit
+
+# scp 文件传输
+# 通过scp传输文件
+scp /home/sqls/test-database.sql root@10.22.10.231:~
+# 下载到本地
+scp root@10.22.10.231:~/myfile.txt /home/user/
 ```
 
 
@@ -2346,7 +2359,7 @@ $ rpm -qa | grep libxml2
 
 
 
-- *[rpm 软件下载地址](http://www.rpmfind.net/linux/RPM/)*
+- *[rpm 软件搜索及下载地址](http://www.rpmfind.net/linux/RPM/)*
 - 地址2 https://pkgs.org/
 
 

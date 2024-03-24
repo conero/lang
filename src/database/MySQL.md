@@ -350,6 +350,8 @@ show table status like 'x_user';
 -- 创建数据库
 create database conero DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 
+create database conero DEFAULT CHARACTER SET utf8mb4;
+
 -- 数据库删除
 drop database conero;
 ```

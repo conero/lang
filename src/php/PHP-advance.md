@@ -599,11 +599,27 @@ php -v
 
 国外官网： https://getcomposer.org/
 
+包搜索地址：https://packagist.org
+
+
+
+```powershell
+# 默认拉取最新
+composer require phpoffice/phpspreadsheet
+
+# 指定版本
+composer require 'phpoffice/phpspreadsheet:1.19'
+```
+
+
+
 
 
 ### opcache
 
 - @todo
+
+
 
 
 

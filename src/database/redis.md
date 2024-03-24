@@ -169,6 +169,9 @@ auth 1234567
 # 登录redis-cli后设置/查看密码
 # 设置密码
 config set requirepass 123456
+# 清空密码
+config set requirepass ""
+
 # 查看密码
 config get requirepass
 ```
