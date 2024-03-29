@@ -870,6 +870,29 @@ require (
 
 ## 资源/库
 
+### linting 工具
+
+- golint    代码质量检查工具，它提供了一套标准的代码风格和潜在问题检查。https://github.com/golang/lint （archived） 已停止开发
+- gosec   功能更加强大的静态分析工具，专注于检测Go代码中的安全漏洞
+- golangci-lint     https://github.com/golangci/golangci-lint
+- staticcheck     https://github.com/dominikh/go-tools
+
+
+
+```shell
+# golangci-lint
+golangci-lint run
+
+# 运行所有
+golangci-lint run ./...
+
+# 指定目录
+golangci-lint run dir1 dir2/...
+golangci-lint run file1.go
+```
+
+
+
 ### 图像/GUI
 
 - [ebiten](https://github.com/hajimehoshi/ebiten)              2D 游戏引擎

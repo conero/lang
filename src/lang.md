@@ -2258,7 +2258,7 @@ graph TB
 docker ps
 
 # 进行 docker 容器中
-docker exce -it ac8d80f6233ec /bin/bash
+docker exec -it ac8d80f6233ec /bin/bash
 
 # 复制文件到容器 
 docker cp /opt/app/demo ac8d80f6233ec:/home/demo

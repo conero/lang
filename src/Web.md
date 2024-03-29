@@ -532,12 +532,6 @@ upstream loading_test_expo2022{
 
 
 
-
-
-
-
-
-
 ##### location
 
 语法: `location [= | ~ | ~* | ~~] url { ... }`
@@ -552,6 +546,31 @@ upstream loading_test_expo2022{
 ```nginx
 http{
     server{
+        listen     8089;
+        
+        # 请求 /upload-x/v1/users.jpg -> http://127.0.0.1:8011/upload-x/v1/users.jpg
+        location /upload-x/ {
+            proxy_pass http://127.0.0.1:8011;
+        }
+        
+        # 请求 /upload-y/v1/users.jpg -> http://127.0.0.1:8011/v1/users.jpg
+        location /upload-y/ {
+            proxy_pass http://127.0.0.1:8011/;
+        }
+        
+        # 静态资源
+        # 请求  /static-y/base/xxxxx/1.jpg -> /home/webapp/webimage/base/xxxxx/1.jpg
+        location /static-y/ {
+            alias /home/webapp/webimage/;
+        }
+        
+        # 静态资源
+        # 请求  /static-x/base/xxxxx/1.jpg -> /home/webapp/webimage/static-x/base/xxxxx/1.jpg
+        location /static-x/ {
+            root /home/webapp/webimage/;
+        }
+        
+        # 首页
         location / {
         }
     }
