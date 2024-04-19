@@ -1774,12 +1774,14 @@ compaction algorithm，压缩算法。根据有无失真重构数据分为有损
 
 - tar         归档算法，后缀名 `.tar`
 - zip         后缀名 `.zip`
+- deflate 通用的无损数据压缩算法，由Phil Katz在1993年为PKZIP软件开发
 - gzip      是对deflate进行的封装，gzip = gzip头 + deflate编码的实际内容 + gzip尾。最流行的压缩算法之一，后缀名 `.tar.gz`
 - bzip2   bzip2命令用法与gzip相似，bzip2的算法更先进、压缩比更好，gzip相对来讲速度更快，后缀名 `.tar.bz2`
 - flate     DEFLATE是同时使用了LZ77算法与哈夫曼编码（Huffman Coding）的一个无损数据压缩算法，后缀名 `.tar`
 - lzw        后缀名 `.lzw`
 - zlib      是对deflate进行了简单的封装，zlib = zlib头 + deflate编码的实际内容 + zlib尾，后缀名（无固定后缀名）常见 `.gz`
 - 7zip     后缀名 `.7z`
+- zstd     后缀 `.zst`，2016年由Facebook提出无损压缩算法
 
 
 
