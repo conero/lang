@@ -780,6 +780,12 @@ xdg-open https://baidu.com
 # 后台执行 jar web服务
 Start-Process java.exe -WindowStyle Hidden -ArgumentList "-jar ./sjw-0.0.1-solon.jar"
 
+# 设置日志信息并挂载应用
+Start-Process -FilePath D:\conero\application\minio\minio.exe -NoNewWindow -ArgumentList "server D:\AppData\minio-server --console-address :9001" -RedirectStandardOutput "output.log" -RedirectStandardError "error.log" -PassThru -Wait
+
+# 设置日志信息并退出后依然存在
+Start-Process -FilePath D:\conero\application\minio\minio.exe  -ArgumentList "server D:\AppData\minio-server --console-address :9001" -RedirectStandardOutput "output.log" -RedirectStandardError "error.log" -PassThru -Wait -WindowStyle Hidden
+
 # 如启动多个【yangsu_embed.exe】服务
 for($i=9961; $i -lt 9971; $i++){ `
     Start-Process yangsu_embed.exe -WindowStyle Hidden -ArgumentList "-p $i"
@@ -1288,6 +1294,10 @@ setx JC_HOME C:/test
 # 注册表写入（管理模式下）
 setx /M BAT_HOME_JC C:\bat
 ```
+
+setx 命令用于直接设置环境变量并使其生效
+
+
 
 [comment]: <> "<!-- @todo 删除环境变量的方法 -->"
 [//]: # "<!-- @todo 删除环境变量的方法 -->"

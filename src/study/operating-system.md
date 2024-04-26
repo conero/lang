@@ -1015,15 +1015,21 @@ ifconfig -a
 # && 用户两个命令的链接
 mkdir jc-hellowpy && cd jc-hellowpy
 
+# 环境变量
 # 环境变量，查看系统定义的环境变量
 env
 
 # 设置环境变量
 export env_key=value
+# 如设置
+export JC_Name='s * ee , sssss。'
+#读取变量
+echo $JC_Name
+# 或使用 printenv 打印
+printenv JC_Name
 
 # 输出 path 变量
 echo $PATH
-
 
 # 权限设置
 # 可用于如，屏幕提示数据显示不足够的时的操作
@@ -1480,6 +1486,15 @@ update-rc.d redis defaults
 *ps [options]*
 
 - `$ ps-eo pid,comm,cmd  `  *(-e表示列出全部进程，-o pid,comm,cmd表示我们需要PID，COMMAND，CMD信息)*
+
+
+
+```shell
+# 指定 pid = 2356,并查看其二进制路径等
+ps -fp 2356 -l -www
+```
+
+
 
 
 
@@ -2162,7 +2177,7 @@ pscp -i ~\16.13-Linux.ppk ~\python3-3.6.8-10.el7.x86_64.rpm root@y.x.16.13:/usr/
 
 
 
-**telnet** 的使用
+**telnet** 的使用，可用于检查某台服务器的某个端口是否开放或可连通
 
 ```shell
 # 如连接指定的ip及端口

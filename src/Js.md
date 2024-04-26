@@ -401,6 +401,36 @@ screenX, screenY	//	screen 屏幕坐标系
 
 # NodeJs
 
+用于运行js的解释器
+
+
+
+### npm
+
+> 缓存处理，如删除或查看
+
+```shell
+# 获取 npm 缓存目录
+npm config get cache
+
+# 删除yarn缓存 
+npm cache clean --force
+
+```
+
+
+
+### yarn
+
+缓存处理
+
+```shell
+# 删除本地缓存
+yarn cache clean
+```
+
+
+
 
 
 ## 收藏

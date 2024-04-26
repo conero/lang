@@ -1519,20 +1519,26 @@ _fork 的语义已经影响了每个创建进程状态的新 API 的设计，POS
 - 22     ssh服务
 - 23     telnet
 - 25     smtp 邮件服务
+- 53     DNS 服务
 - 80     http端口
 - 102   消息传输代理，Message transfer agent(MTA)-X.400 over TCP/IP
 - 109  pop3服务，用于接收邮件服务
+- 110   POP3，电子邮件
+- 143    IMAP服务
 - 161  SNMP，允许远程管理设备
 - 443  https 默认协议地址
+- 465  SMTPS，SMTP 安全传输协议
+- 587  SMTP 协议
+- 993  IMAPs
+- 995  POPS
+- 数据库
+  - MySQL   3306
+  - oracle     1251
+  - MSSQL   1433， SQLServer
+  - Postgresql  5432
+  - redis            6379
+  - RDP              3389,   远程桌面协议
 
-
-
-其他引用（软件端口）
-
-- 3306          MySQL
-- 6379          redis
-- 1521          oracle
-- 5432          postgresql
 
 
 

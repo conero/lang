@@ -94,6 +94,8 @@ $ ./configure
 # 重复时需要清理编译环境 `make clean`
 $ make && make install
 
+# 具体选项，查看帮助命令
+./configure --help
 # [TIP] 此方法安装的 php-fpm 版本可能存在与当前PHP版本不对应（不推荐此方法）
 # 可使用编译选项（如）
 ./configure \
