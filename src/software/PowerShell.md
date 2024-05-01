@@ -182,6 +182,31 @@ d----            2020/3/3    11:08                runtime
 
 
 
+### 环境变量
+
+windows环境变量分
+
+- 系统环境变量
+- 用户环境变量
+- 作用域环境变量
+
+对应参数分别为：Machine, User, Process 。获取环境变量如：
+
+```powershell
+# 读取环境变量
+[Environment]::GetEnvironmentVariable('PATH', 'Process')
+[Environment]::GetEnvironmentVariable('PATH', 'User')
+[Environment]::GetEnvironmentVariable('PATH', 'Machine')
+
+
+# 设置环境变量
+[Environment]::SetEnvironmentVariable('PATH', 'd', 'User')
+
+
+# 查看 Environment 类的成员
+[Environment] | Get-Member 
+```
+
 
 
 ### 常量
@@ -807,12 +832,6 @@ netstat -ano|findstr 5201
 # 关闭进程
 kill "22564"
 ```
-
-
-
-
-
-
 
 
 

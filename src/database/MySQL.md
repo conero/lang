@@ -230,6 +230,21 @@ service mysqld start
 
 
 
+#### mysqld
+
+
+
+常用命令
+
+```shell
+# 用于非服务启动mysql服务器，可用于服务器错误时排查处理
+mysqld --console
+```
+
+
+
+
+
 
 
 ## SQL
@@ -1399,11 +1414,21 @@ InnoDB支持表、行(默认)级锁，而MyISAM支持表级锁
 ```mysql
 -- 查看数据库锁
 show OPEN TABLES where In_use > 0;
+
+# 对表加锁
+lock table xd_assets read;
+lock table xd_assets write;
+
+# 解锁
+unlock tables;
+
+# 行锁
+# 排他锁（写锁）：阻止其他事务读取或写入。
+SELECT * FROM xd_assets_rec WHERE id = 1949 FOR UPDATE;
+# 共享锁（读锁）：允许其他事务读取但阻止写入
+SELECT * FROM xd_assets_rec WHERE id = 1949 LOCK IN SHARE MODE;
+
 ```
-
-
-
-
 
 
 
@@ -1641,9 +1666,13 @@ mysqlbinlog.exe binlog.000009
 
 
 
+> 手动清空日志信息
+
+mysql 5.7 或 8.0：删除 mysql配置 binlog.index 文件即可
+
+
+
 //@TODO *window 下如开启 binlog ，实现数据备份的解决方案。*
-
-
 
 
 

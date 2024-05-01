@@ -997,6 +997,28 @@ wmic diskdrive get Name, Manufacturer, Model, InterfaceType, MediaType, SerialNu
 
 
 
+### 动态链接库
+
+> linux默认读取的动态链接库目录有
+
+- **/lib**
+- **/usr/lib**
+- **/usr/local/lib**
+
+
+
+> 环境变量 **LD_LIBRARY_PATH**
+
+```shell
+LD_LIBRARY_PATH
+```
+
+
+
+> 配置文件 **/etc/ld.so.conf** 及其包含的 **/etc/ld.so.conf.d/*.conf**
+
+
+
 ## 常用命令
 
 ```shell
@@ -1018,6 +1040,8 @@ mkdir jc-hellowpy && cd jc-hellowpy
 # 环境变量
 # 环境变量，查看系统定义的环境变量
 env
+#过滤
+env | PATH
 
 # 设置环境变量
 export env_key=value
@@ -2929,8 +2953,10 @@ sudo update-alternatives --config python
 # 读取 GitHub 主页信息
 curl http://www.httpbin.org/
 
-# 显示头部信息
+# 仅显示响应头部信息，可用于body较大时
 curl -I http://www.httpbin.org/
+# 与 -I 类似
+curl --head http://www.httpbin.org/
 
 # -X <request-method>
 # post 数据信息

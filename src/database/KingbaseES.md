@@ -5,13 +5,49 @@
 > Joshua Conero
 >
 > 2024年4月26日
+>
+> 文档基于 V8R6 等
+
+
+
+KingbaseES是人大金仓自主研发的企业级大型通用数据库管理系统，提供Oracle、MySQL和SQLServer三大兼容模式，在应用不改、性能不降、习惯不变的情况下，实现国外数据库的迁移替代。
 
 
 
 工具
 
 - ksql        命令行SQL连接工具
-- Kstudio  SQL连接客户端
+- Kstudio  SQL连接客户端（感觉基于[Dbeaver](https://github.com/dbeaver/dbeaver)开发）
+
+
+
+**个人感受**
+
+对开发者很不友好，在没有授权的情况下难以支持开发，各种功能限制。如果不是“信创”鬼才用呢，难用的很。
+
+
+
+### 安装
+
+**Windows 是服务启动错误排除**
+
+- 服务无法正常启动是错误排查
+
+```powershell
+# 使用 sys_ctrl 进行排查
+.\sys_ctl.exe -D 'D:\Program Files\Kingbase\ES\V8\data' start
+```
+
+
+
+### 概念
+
+#### Schema 模式
+
+属于一个逻辑分割，命名空间。一个数据库可以包含一个或多个命名的模式。
+
+- public                   新建用户默认继承public角色权限，在任何数据库的public 模式下有usage和create的权限（默认）。
+- 
 
 
 
@@ -45,6 +81,27 @@ GRANT ALL PRIVILEGES ON database jc_test TO jc_rdzcgl;
 -- 查看全部表信息
 SELECT table_name, table_schema FROM information_schema.tables;
 SELECT table_name, table_schema FROM information_schema.tables WHERE table_name = 'tbname';
+```
+
+
+
+数据库模式类型查询
+
+```sql
+SELECT current_setting('database_mode');
+SELECT * FROM pg_settings WHERE name LIKE 'database_mode';
+```
+
+
+
+#### license
+
+```sql
+# 查看 license 天数（有限期）
+select get_license_validdays ();
+
+# 查看 license 全部信息
+select get_license_info();
 ```
 
 
