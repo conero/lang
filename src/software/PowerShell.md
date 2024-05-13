@@ -269,6 +269,20 @@ if ($args -contains "-d"){
 
 
 
+或是使用函数 param
+
+```powershell
+# 支持命令行参数，如一下脚本是 ./test.ps1
+# 则可实现接收外部命令： ./test.ps1 -All -Name 'Jc'
+param(
+ # 是否全部编译
+ [string]$Name,
+ [switch]$All
+)
+```
+
+
+
 
 
 

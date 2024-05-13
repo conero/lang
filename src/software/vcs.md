@@ -514,6 +514,18 @@ git commit --amend
  git remote remove origin
  # 分支推送
  git push github develop
+ 
+ #
+ # 代码推送
+ # 推送全部的 tags
+ git push --tags
+ git push origin --tags
+ # 推送全部的分会
+ git push --branches
+ git push --branches
+ # 全部推送
+ git push --all
+ git push origin --tags && git push origin --all
 ```
 
 

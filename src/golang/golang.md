@@ -71,18 +71,31 @@
 
 ```shell
 # 安装包
-$ go get <path>
+go get <path>
 # 安装且更新为最新的包
-$ go get -u <path>
+go get -u <path>
 # 升级全部依赖
-$ go get -u all
+go get -u all
 
 # go fmt 
 # go 脚本格式化; 全目录，like IDE
-$ go fmt ./...
+go fmt ./...
 
 # 列表当前项目包或模块
 go list -m -json all
+```
+
+
+
+### tool
+
+**nm**  输出在给定的可执行文件、对象文件或存档中涉及的符号。
+
+```shell
+# 打印中 yangsu.exe 的符号
+#
+# 如果使用 <-ldflags "-s -w"> 清除符号后，无法获取符号
+go tool nm ./yangsu.exe
 ```
 
 
