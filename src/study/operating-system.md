@@ -2992,6 +2992,12 @@ curl -I http://www.httpbin.org/
 # 与 -I 类似
 curl --head http://www.httpbin.org/
 
+# 忽略 https 证书错误 --insecure 或 -k
+curl -I --insecure 'https://127.0.0.1:7442/'
+
+# 发起 http2，需要 libcurl 支持
+curl -I --insecure 'https://127.0.0.1:7442/' --http2
+
 # -X <request-method>
 # post 数据信息
 curl https://www.httpbin.org/post -X POST -d 'name=Joshua-Conero&age=21' -d 'try=so-many-times'

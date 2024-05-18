@@ -1407,8 +1407,12 @@ dir
 
 ```powershell
 # 删除 window 10 服务的口令
-# cmd.exe 成功， powershell 无效
+# cmd.exe 成功， powershell 无效（需要指定sc.exe）
 sc delete <name>
+
+# 创建服务
+# powershell 环境下
+sc.exe create Redis 'binpath=D:\Program Files (x86)\xxxx\Redis\RedisService.exe' 'start=' 'auto'
 ```
 
 

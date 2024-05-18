@@ -204,3 +204,4 @@ config get requirepass
 #### 参考
 
 - [图解redis](https://mp.weixin.qq.com/s/fEAWotIg2LN324wDfznpDA)
+- [redis-windows](https://github.com/redis-windows/redis-windows)  windows环境下安装包
