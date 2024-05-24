@@ -1092,6 +1092,37 @@ Get-CimInstance -ClassName win32_product | ConvertTo-Json > win32_product.json
 
 
 
+### 环境信息
+
+```powershell
+# 获取系统区域配置信息
+Get-UICulture | Format-List *
+
+# 获取系统当前语言
+(Get-UICulture).Name
+
+# 获取当前日期信息
+# >> 星期三 2024-05-22 11:10:32 +08:00
+get-date -Format 'dddd yyyy-MM-dd HH:mm:ss K'
+
+# 获取文件 hash 信息
+Get-FileHash ./mock.exe | Format-List
+
+# 获取表示当前主机程序的对象
+get-host
+
+# 获取随机数
+get-random -Minimum 100000 -Maximum 999999
+# 支持浮点数
+get-random -Minimum 0.1 -Maximum 0.9
+# 从数组中抽取
+1, 2, 3, 5, 8, 13 | Get-Random -Count 3
+```
+
+
+
+
+
 
 
 #### 进程/服务

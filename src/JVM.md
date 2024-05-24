@@ -254,8 +254,32 @@ java -Xms256m -Xmx512m
   - play              https://github.com/playframework/playframework ，java&scala web框架
   - spring-boot https://github.com/spring-projects/spring-boot.git   spring web框
   - solon            https://gitee.com/noear/solon ，国产web全栈框架，与spring boot相比更小
+- 数据库
+  - MyBatis    https://github.com/mybatis/mybatis-3，[中文文档](https://mybatis.org/mybatis-3/zh_CN/index.html)。流行、轻量级的Java持久层框架，半自动 ORM框架，与spring集成，支持手写SQL语句
+  - mybatis-plus  https://gitee.com/baomidou/mybatis-plus，Mybatis 增强工具包 - 只做增强不做改变，简化`CRUD`操作
+  - Hibernate   https://github.com/hibernate/hibernate-orm，orm 数据库
+
+- 其他
+  - Shiro   https://github.com/apache/shiro， https://shiro.apache.org/ （用户登陆），  Java 安全框架，它专注于简化身份验证、授权、加密和会话管理等安全相关的任务。
+  - Sentinel   流量控制框架选型
+  - Seata 分布式事务选型
+  - Spring Cloud    
 
 
+
+
+spring 框架应用封装
+
+- RuoYi
+  - https://gitee.com/y_project/RuoYi-Cloud  微服务式版本
+  - https://gitee.com/y_project/RuoYi    单一集中式版本
+- ruoyi-vue-pro  
+  - https://gitee.com/zhijiantianya/ruoyi-vue-pro    https://doc.iocoder.cn/ 
+- RuoYi-Cloud-Plus  https://gitee.com/dromara/RuoYi-Cloud-Plus 微服务管理系统 重写RuoYi-Cloud所有功能 整合，多租户
+- jeecg-boot   https://gitee.com/jeecg/jeecg-boot    「企业级低代码平台」前后端分离架构
+- 小诺   
+  - https://gitee.com/xiaonuobase/snowy-cloud   微服务版本
+  - https://gitee.com/xiaonuobase/snowy   单一集中版本
 
 
 
