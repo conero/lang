@@ -1428,6 +1428,20 @@ find .git/refs -type f
 
 ### 文件管理
 
+文件资源查看
+
+```shell
+# 不切换分支并查看文件资源
+git ls-tree --name-only branch-name
+
+# 如查看 master 分支下的 common 和 consumer 分支
+git ls-tree --name-only master common/ consumer/
+```
+
+
+
+
+
 #### git 删除未跟踪文件
 
 ```ini

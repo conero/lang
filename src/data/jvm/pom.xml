@@ -1,0 +1,119 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- The Basics -->
+    <groupId>项目组名</groupId>
+    <artifactId>项目名称</artifactId>
+    <version>项目当前版本号</version>
+    <packaging>项目产生的构件类型，如 jar/war/pom之类</packaging>
+    <!-- 项目依赖清单 -->
+    <dependencies>
+        <dependency>
+            <groupId>依赖项目名称</groupId>
+            <artifactId>依赖项目项目</artifactId>
+            <version>依赖项目版本号</version>
+            <type>依赖类型，默认：jar，其他支持war，ejb-client和test-jar</type>
+            <scope>
+      使用范围如：compile（默认）、provide、runtime、test、system。compile 编译时使用，provide 同于编译，但支持jdk或者容器提供，类似于classpath，runtime 运行时使用，test 测试时使用，system 需要外在提供相应的元素通过systemPath来取得。
+            </scope>
+            <!-- 可选依赖，用于阻断依赖的传递性。如果在项目B中把C依赖声明为可选，那么依赖B的项目中无法使用C依赖 -->
+            <optional>true</optional>
+            <!-- scope=system 时，指定 systemPath -->
+            <systemPath>${project.basedir}/lib/xxxxx.jar</systemPath>
+        </dependency>
+    </dependencies>
+    <!--父级项目信息-->
+    <parent>...</parent>
+    <!--项目分发信息，在执行mvn deploy后表示要发布的位置。用于把网站部署到远程服务器或者把构件部署到远程仓库 -->
+    <!-- 依赖声明 -->
+    <!-- dependencies是具体声明项目直接使用的依赖，会直接影响项目的构建和执行。 -->
+    <!-- dependencyManagement则是一个依赖版本的声明中心，提供了一种集中管理依赖版本的方式，让子项目能够继承这些版本定义，但在子项目中需要显式声明需要哪些依赖。 -->
+    <dependencyManagement>
+        <dependencies>
+            <!-- SpringCloud 微服务 -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <!-- 引用来自 properties -->
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <modules>
+        <!-- 包含的子模块 -->
+        <module>child_pkg_name</module>
+    </modules>
+
+    <!-- 项目属性信息 -->
+    <properties>
+        <!-- 用于模版变量使用，如在其他地方使用 ${X}，则其值为 x -->
+        <X>x</X>
+        <revision>2.1.2</revision>
+        <!-- java 版本信息 -->
+        <javaVersion>1.8</javaVersion>
+
+        <!-- 设置字符编码 -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <spring-cloud.version>2022.0.4</spring-cloud.version>
+    </properties>
+
+    <!-- Build Settings -->
+    <build>...</build>
+    <reporting>
+    不赞成使用. 现在Maven忽略该元素
+    </reporting>
+
+    <!-- More Project Information -->
+    <name>项目名称</name>
+    <description>项目简介</description>
+    <url>项目主目录</url>
+    <!-- 项目创建年份，4位数字。当产生版权信息时需要使用这个值 -->
+    <inceptionYear>2024</inceptionYear>
+    <licenses>...</licenses>
+    <organization>...</organization>
+    <developers>...</developers>
+    <!-- 项目贡献者 -->
+    <contributors>
+        <contributor>
+            <name>Joshua Conero</name>
+        </contributor>
+    </contributors>
+
+    <!-- Environment Settings -->
+    <issueManagement>...</issueManagement>
+    <ciManagement>...</ciManagement>
+    <mailingLists>...</mailingLists>
+    <!-- SCM(Source Control Management)标签允许你配置你的代码库，供Maven web站点和其它插件使用 -->
+    <scm>
+        <connection>scm:git:https://gitee.com/conero/lang.git</connection>
+        <developerConnection>scm:ghttps://gitee.com/conero/lang.git</developerConnection>
+        <tag>v2024</tag>
+        <url>ghttps://gitee.com/conero/tree/${project.scm.tag}</url>
+    </scm>
+    <prerequisites>...</prerequisites>
+    <repositories>...</repositories>
+    <pluginRepositories>...</pluginRepositories>
+    <distributionManagement>...</distributionManagement>
+    <!-- 环境变量/配置信息 -->
+    <profiles>
+        <profile>
+            <!-- 配置ID -->
+            <id>dev</id>
+            <activation>...</activation>
+            <build>...</build>
+            <modules>...</modules>
+            <repositories>...</repositories>
+            <pluginRepositories>...</pluginRepositories>
+            <dependencies>...</dependencies>
+            <reporting>...</reporting>
+            <dependencyManagement>...</dependencyManagement>
+            <distributionManagement>...</distributionManagement>
+        </profile>
+    </profiles>
+</project>

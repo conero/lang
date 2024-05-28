@@ -69,6 +69,17 @@ java -cp ./m1/ Simple
 
 
 
+#### 项目结构
+
+- projectTop
+  - src/main/java            java 源代码
+  - src/main/resource   资源文件
+  - /src/main/webapp/WEB-INF        web 项目资源
+  - src/test/java              测试源代码
+  - src/text/resource     测试资源文件
+  - target                        打包输出文件、
+  - target/classes          编译出的class文件
+
 
 
 #### 起步
@@ -287,7 +298,16 @@ spring 框架应用封装
 
 ### Java 构建工具
 
+- [mvnrepository 仓库搜索地址](https://mvnrepository.com/)
+- [maven 搜索网站](https://search.maven.org/) ，相同网站 https://central.sonatype.com/
+
+
+
 #### Ant, Maven, Gradle
+
+如使用 https://start.spring.io/ 生成不同构建工具的java项目；使用 https://solon.noear.org/start/ 生成 solon 框架项目脚手架。
+
+
 
 > Ant - 2000 年/ 格式-XML
 
@@ -311,7 +331,15 @@ spring 框架应用封装
 
 #### Maven
 
+github 地址： https://github.com/apache/maven
+
 maven 仓库有：本地-local、中央-center、远程-remote，拉取包顺序LCR。
+
+
+
+本地仓库默认位置：*${user.home}/.m2/repository*，也可通过 setting.xml 的 *localRepository* 进行修改。
+
+
 
 一个依赖申明含 groupId 组织标识（包名），artifactId 项目名称，version 版本号。如包*v4.4.0 版本 java-jwt* 依赖：
 
@@ -329,7 +357,7 @@ maven 仓库有：本地-local、中央-center、远程-remote，拉取包顺序
 
 生命周期 lifecycle
 
-- clean             项目编译清除
+- clean             项目编译清除，删除target目录
 - validate        
 - compile        项目编译，将java源代码编译成class字节码文件
 - test                项目测试用例运行
@@ -349,6 +377,15 @@ maven 命令
 # 查看版本信息
 mvn -v
 
+# 当前配置信息查看
+mvn 'help:effective-settings'
+
+# 生成项目骨架类似 - [npm init]
+mvn 'archetype:generate'
+
+# 执行集成测试、验证包的完整性和质量
+mvn verify
+
 # 查看依赖树
 mvn dependency:tree
 
@@ -358,11 +395,255 @@ mvn compile
 # 项目打包
 mvn package
 
+# mvn clean xxx  执行清理后再在执行 xxx
+# 表示先运行清理之后运行编译，会将代码编译到target文件夹中。
+mvn clean compile
+mvn clean test
+# 运行清理和打包
+mvn clean package
+# 运行清理和发布（发布到私服上面）
+mvn clean deploy
+# 运行清理和安装，会将打好的包安装到本地仓库中，以便其他的项目可以调用。
 # 多级项下指定编译子项目，"zhuo-upms-server",并同步编译所需依赖
 mvn clean install -pl ':zhuo-upms-server' -am '-Dmaven.test.skip=true'
 ```
 
 
+
+##### pom.xml
+
+pom （Project Object Model，项目对象模型）是 Maven 的基本组件，它是以 xml 文件的形式存放在项目的根目录下，名称为 pom.xml。
+
+
+
+基本配置信息，详细实例如 [pom.xml](./data/jvm/pom.xml)
+
+```xml
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <!-- The Basics -->
+  <groupId>项目组名</groupId>
+  <artifactId>项目名称</artifactId>
+  <version>项目当前版本号</version>
+  <packaging>项目产生的构件类型，如 jar/war/pom之类</packaging>
+  <!-- 项目依赖清单 -->
+  <dependencies>
+    <dependency>
+      <groupId>依赖项目名称</groupId>
+      <artifactId>依赖项目项目</artifactId>
+      <version>依赖项目版本号</version>
+      <type>依赖类型，默认：jar，其他支持war，ejb-client和test-jar</type>
+      <scope>
+      使用范围如：compile（默认）、provide、runtime、test、system。compile 编译时使用，provide 同于编译，但支持jdk或者容器提供，类似于classpath，runtime 运行时使用，test 测试时使用，system 需要外在提供相应的元素通过systemPath来取得。
+      </scope>
+      <!-- 可选依赖，用于阻断依赖的传递性。如果在项目B中把C依赖声明为可选，那么依赖B的项目中无法使用C依赖 -->
+      <optional>true</optional>
+      <!-- scope=system 时，指定 systemPath -->
+      <systemPath>${project.basedir}/lib/xxxxx.jar</systemPath>
+    </dependency>
+  </dependencies>
+  <!--父级项目信息-->
+  <parent>...</parent>
+  <!--项目分发信息，在执行mvn deploy后表示要发布的位置。用于把网站部署到远程服务器或者把构件部署到远程仓库 -->
+  <dependencyManagement>...</dependencyManagement>
+  <modules>
+    <!-- 包含的子模块 -->
+    <module>child_pkg_name</module>
+  </modules>
+  <properties>...</properties>
+
+  <!-- Build Settings -->
+  <build>...</build>
+  <reporting>
+    不赞成使用. 现在Maven忽略该元素
+  </reporting>
+
+  <!-- More Project Information -->
+  <name>...</name>
+  <description>...</description>
+  <url>...</url>
+  <inceptionYear>...</inceptionYear>
+  <licenses>...</licenses>
+  <organization>...</organization>
+  <developers>...</developers>
+  <contributors>...</contributors>
+
+  <!-- Environment Settings -->
+  <issueManagement>...</issueManagement>
+  <ciManagement>...</ciManagement>
+  <mailingLists>...</mailingLists>
+  <scm>...</scm>
+  <prerequisites>...</prerequisites>
+  <repositories>...</repositories>
+  <pluginRepositories>...</pluginRepositories>
+  <distributionManagement>...</distributionManagement>
+  <profiles>...</profiles>
+</project>
+```
+
+
+
+#### Gradle
+
+官网地址 https://gradle.org/ ，常用在Android app上。
+
+使用基于Groovy或Kotlin的构建脚本，这种脚本语言的特性让构建脚本更像是程序代码，提供了更高的灵活性和可编程性，但也可能对初学者来说门槛较高。
+
+基于有向无环图（DAG）的构建逻辑，允许定义任务间的依赖关系，提供更高的并行性和可优化性，通常在大型项目中性能更优，支持并行构建和缓存机制。
+
+
+
+**特性**：支持增量构建、构建缓存、gradle 守护进程。
+
+
+
+
+
+常用命令
+
+```shell
+# 版本信息查看
+gradle -v
+
+# 清空所有编译、打包生成的文件(即：清空build目录) 
+gradle clean
+
+# 构建
+gradle build
+# 跳过测试构建
+gradle build -x test
+```
+
+
+
+##### 依赖文件
+
+Maven 项目的依赖配置文件是 pom.xml，而 Gradle 项目的依赖文件是 settings.gradle 和 build.gradle。
+
+- build.gradle
+
+- settings.gradle
+
+- kotlin 版本
+
+  - build.gradle.kts
+  - settings.gradle.kts
+
+  
+
+settings.gradle 文件是 gradle 项目的总体配置文件，一般会把子项目中通用的一些配置放在这个文件中，有点类似于 maven 的 parent pom 文件；而 build.gradle 文件则是针对单个项目的具体配置，我们主要使用的是 build.gradle 文件。
+
+
+
+如[spring start](https://start.spring.io/) 生成的初始代码。
+
+
+
+使用Gradle时，无论是Groovy还是Kotlin的构建脚本，都不需要用户单独安装这些语言的环境。
+
+###### Gradle - Groovy
+
+**build.gradle**
+
+```groovy
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.3.0'
+	id 'io.spring.dependency-management' version '1.1.5'
+}
+
+// 项目组名称
+group = 'com.example'
+// 当前项目版本号
+version = '0.0.1-SNAPSHOT'
+
+// java 版本信息
+java {
+	sourceCompatibility = '17'
+}
+
+// 仓库地址
+repositories {
+	mavenCentral()
+}
+
+// 项目依赖
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+    // https://mvnrepository.com/artifact/com.alibaba.fastjson2/fastjson2
+	implementation group: 'com.alibaba.fastjson2', name: 'fastjson2', version: '2.0.50'
+    
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+```
+
+
+
+**settings.gradle**
+
+```groovy
+// 根项目目录
+rootProject.name = 'demo'
+```
+
+
+
+
+
+###### Gradle - Kotlin
+
+**build.gradle.kts**
+
+```kotlin
+// build.gradle.kts
+plugins {
+	java
+	id("org.springframework.boot") version "3.3.0"
+	id("io.spring.dependency-management") version "1.1.5"
+}
+
+// 项目分组信息
+group = "com.example"
+version = "0.0.1-SNAPSHOT"
+
+// java 版本信息
+java {
+	sourceCompatibility = JavaVersion.VERSION_17
+}
+
+// 仓库地址
+repositories {
+	mavenCentral()
+}
+
+// 项目依赖
+dependencies {
+	implementation("org.springframework.boot:spring-boot-starter")
+    // https://mvnrepository.com/artifact/com.alibaba.fastjson2/fastjson2
+	implementation("com.alibaba.fastjson2:fastjson2:2.0.50")
+	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+}
+
+tasks.withType<Test> {
+	useJUnitPlatform()
+}
+```
+
+
+
+**settings.gradle.kts**
+
+```kotlin
+rootProject.name = "demo"
+```
 
 
 
@@ -378,5 +659,7 @@ mvn clean install -pl ':zhuo-upms-server' -am '-Dmaven.test.skip=true'
 - [oracle 公布的java语言标准](https://docs.oracle.com/javase/specs/)
 - maven 项目
   - [maven 项目官网](https://maven.apache.org)
+    - [pom 文档](https://maven.apache.org/pom.html)
+    - [Maven核心配置文件（Pom.xml）详细](https://blog.csdn.net/qq_45305209/article/details/130361246)
   - [从青铜到王者，Maven全了解](https://baijiahao.baidu.com/s?id=1700978540465382123)
 - [Java基础常见面试题总结(上)](https://javaguide.cn/java/basis/java-basic-questions-01.html)
