@@ -10,7 +10,15 @@ Redis 为 Remote Dictionary Service 缩写，是一个数据结构服务器。
 
 
 
+github 地址： https://github.com/redis/redis
+
 兼容 Redis 服务且更快的KV缓存数据库，[dragonfly](https://github.com/dragonflydb/dragonfly)
+
+其他类似的KV缓存数据库
+
+- valkey         https://github.com/valkey-io/valkey , redis 分支版本
+- etcd             https://github.com/etcd-io/etcd
+- garnet         https://github.com/microsoft/garnet
 
 
 

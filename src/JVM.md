@@ -495,6 +495,14 @@ pom （Project Object Model，项目对象模型）是 Maven 的基本组件，�
 
 
 
+下载镜像：
+
+- 官网地址：https://services.gradle.org/distributions/
+- 腾讯镜像 Gradle下载地址：https://mirrors.cloud.tencent.com/gradle/
+- 阿里云镜像 Gradle下载地址：https://mirrors.aliyun.com/macports/distfiles/gradle/
+
+
+
 **特性**：支持增量构建、构建缓存、gradle 守护进程。
 
 
@@ -566,6 +574,11 @@ java {
 
 // 仓库地址
 repositories {
+    // 配置阿里进行
+    mavenLocal()
+    maven {
+        url 'https://maven.aliyun.com/repository/public'
+    }
 	mavenCentral()
 }
 
@@ -620,6 +633,11 @@ java {
 
 // 仓库地址
 repositories {
+    // 配置阿里镜像
+    maven {
+        url = uri("https://maven.aliyun.com/repository/public")
+    }
+    
 	mavenCentral()
 }
 
