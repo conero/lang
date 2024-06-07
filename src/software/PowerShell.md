@@ -269,7 +269,7 @@ if ($args -contains "-d"){
 
 
 
-或是使用函数 param
+或是使用函数 param，支持类型如 $$String$$-字符串/$$Switch$$-开关/$$int$$-整形
 
 ```powershell
 # 支持命令行参数，如一下脚本是 ./test.ps1
@@ -280,10 +280,6 @@ param(
  [switch]$All
 )
 ```
-
-
-
-
 
 
 
@@ -509,6 +505,19 @@ Get-Command -Verb ConvertTo
 
 
 
+> 从文件读取内容
+
+```powershell
+# 读取内容到 $text
+$text = Get-Content -Path .\app-key-for-public.txt -Raw
+echo $text
+
+# 读取文件的二进制内容
+$fileBytes = [System.IO.File]::ReadAllBytes("C:\path\to\your\file.bin")
+```
+
+
+
 ### 类型
 
 #### 字符串
@@ -547,8 +556,6 @@ Invoke-Expression "$cmd $cmd_args"
 
 
 #### 内容搜索
-
-
 
 ```powershell
 # 使用 Get-ChildItem 查询文件再搜索内容
@@ -1332,7 +1339,7 @@ write-host "Total Elapsed Time: $($elapsed.Elapsed.ToString())"
 
 *环境变量*
 
-> powershell 语言环境变量操作
+> powershell 语言环境变量操作，环境变量安装先后的顺序，也即是 `$env:PATH` 存在多个重复应用时优先启用第一个
 
 ```powershell
 # 读取环境变量

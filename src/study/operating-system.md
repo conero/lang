@@ -1327,6 +1327,17 @@ sudo chown -R nobody:nobody /opt/www/loan-syste
 
 
 
+路径协助
+
+```shell
+# realpath 相对路径转绝对路径
+realpath ./redis.cof
+```
+
+
+
+
+
 #### 内容查看或管理
 
 ```shell
@@ -1551,7 +1562,10 @@ ps -fp 2356 -l -www
 
 top 命令是Linux下常用的性能分析工具，能够实时显示系统中各个进程的资源占用状况，类似于Windows的任务管理器。
 
-
+```shell
+# 查看当前cpu 使用率
+top
+```
 
 
 
@@ -2165,6 +2179,20 @@ liunx系统支持的协议主要有：telnet, ssh, ftp, sftp, rdp, vnc。
 - sftp			SSH文件传输协议(SSH File Transfer Protocol/Secret File Transfer Protocol)，安全文件传送协议。
 - rdp			远程桌面协议(RDP)是一个多通道(multi-channel)的协议。
 - vnc			(Virtual Network Computing)。是基于RFB（Remote Frame Buffer）协议进行通信，是一个基于平台无关的简单显示协议的超级瘦客户系统。
+
+
+
+网络测试工具
+
+```shell
+# 使用 telnet 测试网络联通通过
+telnet 106.32.217.18 3306
+
+# nc/ncat 类似与 tellnet
+nc 106.32.217.18 3306
+```
+
+
 
 
 

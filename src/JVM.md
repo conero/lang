@@ -137,6 +137,8 @@ java -cp SimpleTest.jar SimpleTest
 
 #### 类型
 
+Object 作为所有java类的根，所有类型同样也都继承于它。
+
 类型分为：基本类型、集合（复合）类型。如下
 
 - 基本类型
@@ -482,6 +484,33 @@ pom （Project Object Model，项目对象模型）是 Maven 的基本组件，�
   <profiles>...</profiles>
 </project>
 ```
+
+
+
+**Maven 相关变量如内置变量等**
+
+```shell
+1. Maven内置常量:
+${project.basedir}: 项目的根目录。
+${project.build.directory}: 构建输出目录，通常为target。
+${project.version}: 项目的版本号。
+${project.name}: 项目的名称。
+${project.groupId}: 项目的groupId。
+${project.artifactId}: 项目的artifactId。
+${project.parent.version}: 如果项目有父项目，这是父项目的版本号。
+${basedir}: 这是${project.basedir}的同义词。
+${user.home}: 用户的主目录。
+${java.home}: Java安装目录。
+${java.class.version}: 当前JDK的class文件格式版本。
+
+2. 环境变量:
+Maven可以引用操作系统的环境变量，例如${env.PATH}或${env.HOME}。在Windows中，你也可以引用${env.USERPROFILE}。
+
+3. Java系统属性:
+Maven可以引用任何Java系统属性，例如${java.version}或${file.encoding}。这些属性可以通过-D选项在Maven命令行中设置，例如mvn clean install -Dfile.encoding=UTF-8。
+```
+
+
 
 
 
