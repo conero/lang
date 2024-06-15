@@ -6,7 +6,7 @@
 
 
 
-# Python 学习笔记
+## Python 学习笔记
 
 - 官网:  https://www.python.org/
 
@@ -14,7 +14,7 @@
 
 
 
-## 概述
+### 概述
 
 ​	日期： 2017年2月23日 星期四
 
@@ -26,7 +26,7 @@
 
 
 
-### 安装
+#### 安装
 
 ![](./image/python/install-python-select.png)
 
@@ -38,7 +38,7 @@ Windows下班包的区别如：*embeddable zip file*、*executeable installer*�
 
 
 
-## 基础
+### 基础
 
 ```python
 # -*- coding: encoding -*-
@@ -63,7 +63,7 @@ a, b = 0, 1			# 同时为两个变量赋值
 
 
 
-### numbers/数字
+#### numbers/数字
 
 > 使用 python 解析作为计算器
 
@@ -88,7 +88,7 @@ python
 
 
 
-### strings/字符串
+#### strings/字符串
 
 _单引号或双引号包裹的字符, 支持`\` 转移符；`print`函数，字符串默认解析转移字符。`+`_ 拼接字符串
 
@@ -138,7 +138,7 @@ py[-4:]		# =thon;
 
 
 
-#### 格式化
+##### 格式化
 
 格式化字符串字面值（常简称为 f-字符串）能让你在字符串前加上 f 和 F 并将表达式写成 {expression}
 来在字符串中包含 Python 表达式的值。
@@ -162,7 +162,7 @@ print('Jack: {Jack:d}; Sjoerd: {Sjoerd:d}; Dcab: {Dcab:d}\r\n Jack: {Jack}; Sjoe
 
 
 
-### Lists/列表
+#### Lists/列表
 
 ```python
 squares = [1, 4, 9, 16, 25]
@@ -181,9 +181,9 @@ letters[:] = []			# 清空列表
 
 
 
-## 流程控制
+### 流程控制
 
-### if
+#### if
 
 - `elif`     *`else if` 缩写。*
 - `if ... elif` 与 `switch case` 等效
@@ -219,7 +219,7 @@ def ask_ok(prompt, retries=4, reminder='Please try again!'):
 
 
 
-### for
+#### for
 
 ```python
 words = ['w', 'w1', 'w2', '...', 'wn']
@@ -252,7 +252,7 @@ range(n1, n2, det)	# n1, n1+det, ...
 
 
 
-### function
+#### function
 
 - *`pass` 为代码执行忽略语句，不做任何事情。*
 - _函数体的第一行语句可以是可选的字符串文本，这个字符串是函数的文档字符串，或者称为 *docstring*。_
@@ -438,7 +438,7 @@ f('spam')
 
 
 
-## 数据结构
+### 数据结构
 
 - `不可变的基本类型`(*immutable basic types*)
   - numbers
@@ -450,7 +450,7 @@ f('spam')
 
 
 
-### list/列表对象
+#### list/列表对象
 
 > `Built-In` 通过编辑器如“Ctrl + ” 追踪脚本
 
@@ -569,7 +569,7 @@ combs
 
 
 
-### `del` 语句
+#### `del` 语句
 
 *可删除 `list` 的元素，根据列表的索引。*
 
@@ -590,7 +590,7 @@ del a	# 删除整个变量
 
 
 
-### 元组 和 序列
+#### 元组和序列
 
 > _Tuples and Sequences_
 
@@ -616,7 +616,7 @@ y					# 5.4
 
 
 
-### Sets/集合
+#### Sets/集合
 
 *集合是一个无序不重复元素的集。基本功能包括关系测试和消除重复元素。集合对象还支持 union（联合），intersection（交），difference（差）和 sysmmetric difference（对称差集）等数学运算。*
 
@@ -659,7 +659,7 @@ a		# {'r', 'd'};
 
 
 
-### 字典/dick
+#### 字典/dick
 
 > `map 类型字典`(k-v 类型)
 
@@ -756,7 +756,7 @@ _比较操作按 *字典序* 进行：首先比较前两个元素，如果不同
 
 
 
-## Modules/模块
+### Modules/模块
 
 _**模块** 是包括 Python 定义和声明的文件。文件名就是模块名加上 `.py` 后缀。模块的模块名（做为一个字符串）可以由全局变量 `__name__` 得到。_
 
@@ -799,7 +799,7 @@ if __name__ == "__main__":
 
 
 
-### 标准模块
+#### 标准模块
 
 > Standard Modules
 
@@ -809,7 +809,7 @@ if __name__ == "__main__":
 
 
 
-### package/包
+#### package/包
 
 包为不同的模块，多模块集合提供“点操作规则”的命名空间。
 
@@ -851,7 +851,7 @@ from ..C import c1
 
 
 
-## io(输入输出)
+### io(输入输出)
 
 字符串格式化，可自己根据字符串拼接实现或者`str.format()`，后者同于 **formatted string literals**(格式化的字字符串模板)
 
@@ -886,7 +886,7 @@ print('12'.zfill(5)) #>>> 00012
 
 
 
-### 文件
+#### 文件
 
 *使用 `open()` 函数读取文件*
 
@@ -915,7 +915,7 @@ json.loads('{"authot":"Joshua Conero", "descript": ["streaming API"]}')
 
 
 
-## 错误/异常
+### 错误/异常
 
 Python 中（至少）有两种错误：语法错误和异常（ *syntax errors* 和 *exceptions* ）。语法错误，也被称作解析错误。
 
@@ -1050,7 +1050,7 @@ raise Exception("foo occurred").with_traceback(tracebackobj)
 
 
 
-## class
+### class
 
 > python 具有面向对象特性，混合了 C++ 和 Modula-3 的面向的机制。
 
@@ -1191,12 +1191,13 @@ g
 
 
 
-## 标准库
+### 标准库
 
-本地 python doc 文档打开。
+本地 python doc 文档（本地在线文档）打开。
 
 ```shell
 # 以 web 形式的文件打开 pydoc 文件
+# 在指定目录下存在python代码时，其也会加入文档服务器中
 python -m pydoc -p 7777
 ```
 
@@ -1278,7 +1279,7 @@ python -m pydoc -p 7777
 
 
 
-### built-in 函数
+#### built-in 函数
 
 
 |                                                              | Built-in Functions                                           |                                                              |                                                              |                                                              |
@@ -1312,7 +1313,7 @@ python -m pydoc -p 7777
 
 
 
-#### divmod
+##### divmod
 
 >  `divmod(a, b)` 求 a 和 b 的整数除法和余数。
 
@@ -1321,19 +1322,19 @@ python -m pydoc -p 7777
 
 
 
-#### eval 执行代码
+##### eval 执行代码
 
-#### id(object)  获取对象ID
+##### id(object)  获取对象ID
 
 > 相同的值，当前什么周期内一致
 
 
 
-#### `input`([*prompt*]) 从命令行中输入数据
+##### `input`([*prompt*]) 从命令行中输入数据
 
 
 
-## 虚拟环境和包
+### 虚拟环境和包
 
 > Virtual Environments and Packages
 
@@ -1343,7 +1344,7 @@ python -m pydoc -p 7777
 
 
 
-### windows
+#### windows
 
 *python 3.6 >*
 
@@ -1366,7 +1367,7 @@ python -m venv <venv-name>
 
 
 
-### linux
+#### linux
 
 
 1. **创建虚拟环境以及基本的使用**
@@ -1386,9 +1387,9 @@ source ./<venv-name>/Scripts/Activate.ps1
 
 
 
-## 扩展
+### 扩展
 
-### pip
+#### pip
 
 > python 包管理工具， 包仓库 [`pypi`](https://pypi.org/)
 
@@ -1433,13 +1434,19 @@ pip freeze > requirements.txt
 # 使用 requirements.txt 安装依赖
 pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 
+# 安装包而忽略其依赖，强制安装
+pip install --no-deps paddleocr --upgrade -i https://mirror.baidu.com/pypi/simple
+
 # 通过名称网络搜索网络包 
 pip search requests
+
+# 检查依赖
+pip check
 ```
 
 
 
-#### python -m srcipt
+##### python -m srcipt
 
 *`python -m srcipt` 以模块运行 “script.py” 脚本，且 `sys.path` 新增了当前的目录；`python script.py` 以脚本直接运行。如脚本：*
 
@@ -1480,7 +1487,7 @@ python -m jc.tx
 
 
 
-### 打包工具
+#### 打包工具
 
 常见的如
 
@@ -1534,7 +1541,7 @@ pyinstaller --version-file=file_version_info.txt ...
 
 
 
-### 爬虫
+#### 爬虫
 
 - **beautifulsoup**    HTML、XML数据提取器，[官网](https://www.crummy.com/software/BeautifulSoup/)，[文档](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)。类似jquery DOM选择器
 - **selenium**    浏览器自动测试工具，提供Java，python，nodejs等多语言环境。https://www.seleniumhq.org/；使用案例如爬虫复杂校验难以破解时，采用基于它的数据爬虫。
@@ -1543,7 +1550,7 @@ pyinstaller --version-file=file_version_info.txt ...
 
  
 
-### GUI
+#### GUI
 
 
 
@@ -1555,7 +1562,7 @@ pip install PySide2
 
 
 
-###  Matplotlib 
+####  Matplotlib 
 
 *python 库替代 MATLAB 的组合:*
 
@@ -1575,15 +1582,15 @@ python -m pip install -U --timeout 1000 --user numpy scipy matplotlib ipython ju
 
 
 
-### anaconda
+#### anaconda
 
 *R/Python 科学数据开发平台工具包，包含Python，可续依赖包等上百个工具集合*
 
 
 
-### 多版本共存
+#### 多版本共存
 
-#### Windows
+##### Windows
 
 下载（国内可使用python的[镜像地址](https://npm.taobao.org/mirrors/python/)）的对应的`exe`安装包，安装完成后修改可执行文件的名称！如下: 
 
@@ -1602,7 +1609,7 @@ python36 -m pip -V
 
 
 
-#### Linux
+##### Linux
 
 *Linux 通过源码安装python，需要 make 工具*
 
@@ -1638,8 +1645,8 @@ sudo ln -s /usr/local/python37/bin/python3.7 /usr/bin/python37
 
 
 
-## 附录
+### 附录
 
-### 参考
+#### 参考
 
 -  [Pyinstaller生成exe文件免杀](https://blog.csdn.net/Clannad_niu/article/details/83819872)

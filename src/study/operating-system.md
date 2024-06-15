@@ -1507,6 +1507,8 @@ lsof -i:<port>
 # 其他
 netstat -lnt|grep 9000
 
+# 查看当前服务器监听的tcp/upd服务
+netstat -tunlp
 netstat -tunpl | grep 9000
 
 # 当前的端口开发情况
@@ -1552,9 +1554,10 @@ update-rc.d redis defaults
 ```shell
 # 指定 pid = 2356,并查看其二进制路径等
 ps -fp 2356 -l -www
+
+# 进程内存情况使用排名
+ps aux --sort=-%mem
 ```
-
-
 
 
 
@@ -1563,7 +1566,7 @@ ps -fp 2356 -l -www
 top 命令是Linux下常用的性能分析工具，能够实时显示系统中各个进程的资源占用状况，类似于Windows的任务管理器。
 
 ```shell
-# 查看当前cpu 使用率
+# 查看当前 cpu/磁盘 使用率
 top
 ```
 
@@ -1725,7 +1728,12 @@ top
 sar 3
 # 每3秒刷新一次，并显示10条
 sar 3 10
+
+# 报告有关系统虚拟内存、进程、CPU 活动和 I/O 状态的信息
+vmstat 1 10
 ```
+
+
 
 
 
