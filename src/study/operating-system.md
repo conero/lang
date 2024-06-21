@@ -1499,7 +1499,6 @@ ps -ef|grep xxx
 # 2) 使用pid查询的程序
 netstat -anp|grep <pid>
 
-
 # 方法二
 # 1) 查看端口号的占用 pid，第二部同上所示
 lsof -i:<port>
@@ -1557,6 +1556,8 @@ ps -fp 2356 -l -www
 
 # 进程内存情况使用排名
 ps aux --sort=-%mem
+# 进行名称查询
+ps -aux |grep nginx
 ```
 
 
@@ -1642,6 +1643,8 @@ sudo systemctl rescue
 
 # 列出所有可用的Unit
 systemctl list-unit-files
+# 查看已启动的服务
+systemctl list-unit-files --state=enabled
 # 列出所有正在运行的Unit
 systemctl list-units
 # 列出所有失败单元
@@ -1657,6 +1660,7 @@ systemctl status
 systemctl
 
 # 查看 systemd 的日志
+journalctl
 journalctl -xe
 ```
 
@@ -1714,6 +1718,8 @@ unzip -o file_name.zip
 # 系统的可用内存情况
 # 以 “MB” 为单位查询内存使用情况
 free -m
+# 以 “GB” 为单位显示
+free -g
 # 以人们可读的方式显示数据
 free -h
 
@@ -1769,6 +1775,10 @@ df -hl
 ```shell
 # 查看linux本地开放端口情况
 netstat -luntp
+netstat -tulnp
+
+# 前开放的网络连接，检查是否有异常连接
+ss -tulwn
 ```
 
 
@@ -1846,6 +1856,7 @@ ssh root@120.63.23.13 -p 65222
 
 # 登录成功后查看当前的ip
 ifconfig -a
+ip addr
 
 # 退出ssh
 exit
@@ -2167,6 +2178,17 @@ cat /proc/version
 
 # 查看liunx发新版的信息
 cat /etc/*-release
+cat /etc/*release*
+
+# 通过hostnamectl查看linux系统信息
+hostnamectl
+
+# 查看系统运行时间、负载情况
+uptime
+
+# 查看系统加载的内核模块
+lsmod
+
 # 如
 cat /etc/system-release
 cat /etc/os-release
@@ -3116,6 +3138,7 @@ ZXCVBNM		自行车未帮你买
 1. [Windows 中的键盘快捷方式](https://support.microsoft.com/zh-cn/help/12445/windows-keyboard-shortcuts)
 1. [试试Linux下的ip命令，ifconfig已经过时了 ](https://linux.cn/article-3144-1.html)
 1. [Window系统命令行调用控制面板程序](https://www.cnblogs.com/micq/p/15190937.html)
+1. [Linux服务器常用巡检命令](https://mp.weixin.qq.com/s/IjHS2l9166mMTt-Vymo3Fg)
 
 
 

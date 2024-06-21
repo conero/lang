@@ -1426,6 +1426,8 @@ where.exe svn
 
 # 查看以“net”开头的文件
 where.exe net*
+# powershell 可使用 get-command代替
+get-command uymas
 
 # dir 与 其他 ls 命令差不多
 dir
