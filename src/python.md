@@ -30,11 +30,18 @@
 
 ![](./image/python/install-python-select.png)
 
-Windows下班包的区别如：*embeddable zip file*、*executeable installer*、*web-based installer* 分别对应为 zip压缩文件、exe压缩包、在线网络安装工具等，其最终安装的文件一样。安装 python 运行包以后，可以在安装的目录下查看语言的核心库等源码。
+Windows下载包的区别如：*embeddable zip file*、*executeable installer*、*web-based installer* 分别对应为 zip压缩文件、exe压缩包、在线网络安装工具等，其最终安装的文件一样。安装 python 运行包以后，可以在安装的目录下查看语言的核心库等源码。
 
 
 
 *python解析器作为 shell 指定的脚本时，会通过`sys.argv` 传递参数。*
+
+
+
+安装包国内下载镜像：
+
+- [阿里下载镜像](https://registry.npmmirror.com/binary.html?path=python/)
+- [华为下载镜像](https://mirrors.huaweicloud.com/python/)
 
 
 
@@ -1446,6 +1453,16 @@ pip check
 
 
 
+##### wheel 包
+
+本质是一个zip文件，可用干压缩软件如 7zip等进行解压。包含了Python安装的py文件和元数据。主要格式 `{dist)-{version}(-(build})-(python}-(abil-(platform).whl`。主要优点：安装包更小、免除了setup.py的执行等。
+
+如:
+
+- *`uymaspy-0.0.1-py3-none-any.whl`*
+
+
+
 ##### python -m srcipt
 
 *`python -m srcipt` 以模块运行 “script.py” 脚本，且 `sys.path` 新增了当前的目录；`python script.py` 以脚本直接运行。如脚本：*
@@ -1592,7 +1609,7 @@ python -m pip install -U --timeout 1000 --user numpy scipy matplotlib ipython ju
 
 ##### Windows
 
-下载（国内可使用python的[镜像地址](https://npm.taobao.org/mirrors/python/)）的对应的`exe`安装包，安装完成后修改可执行文件的名称！如下: 
+下载（国内可使用python的[镜像地址](https://registry.npmmirror.com/binary.html?path=python/)）的对应的`exe`安装包，安装完成后修改可执行文件的名称！如下: 
 
 - ~/python
   - *python.exe*     更改为唯一名称，如: *python36.exe*  

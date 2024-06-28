@@ -34,5 +34,10 @@ select name,setting,context from pg_settings where name like '%encoding%';
 
 # 切换数据库
 \c mydb
+
+# 查看数据库服务器版本号
+select version();
+
+show server_version;
 ```
 

@@ -536,8 +536,6 @@ Maven可以引用任何Java系统属性，例如${java.version}或${file.encodin
 
 
 
-
-
 常用命令
 
 ```shell
@@ -549,6 +547,8 @@ gradle clean
 
 # 构建
 gradle build
+
+
 # 跳过测试构建
 gradle build -x test
 ```
