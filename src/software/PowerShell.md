@@ -98,6 +98,9 @@ if(($null -eq $value) -or ($value.Length -eq 0)){}
 
 # 全局变量, 可实现内部函数调外部变量
 $Global:uKey
+
+# 提前退出脚本
+exit 1
 ```
 
 
@@ -940,6 +943,10 @@ Get-ChildItem -Recurse $path/config/*TAGprivate* | Remove-Item
 
 # 输出含自定义的文件列表
 Get-ChildItem ./ -Name "《寰宇视野》 20171231 大太平洋 第一集*" | foreach{ echo "file $_"}
+
+
+# 使用 ffmpeg 批量压缩文件
+Get-ChildItem *.jpg | foreach {ffmpeg -i $_.FullName -fs 450KB "./min-450k/$($_.Name)"  -y}
 ```
 
 

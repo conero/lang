@@ -1410,6 +1410,10 @@ pip install requests
 # 按照版本安装
 pip install <package-name>==<package-version>
 pip install requests==2.6.0
+# 指定版本号
+python -m pip install -i https://pypi.tuna.tsinghua.edu.cn/simple 'lmdb==1.4.1'
+# 不安装依赖/强制安装·
+python -m pip install --no-deps -i https://pypi.tuna.tsinghua.edu.cn/simple 'paddleocr==2.7.0.0'
 
 # 更新安装包
 pip install --upgrade requests
@@ -1460,6 +1464,15 @@ pip check
 如:
 
 - *`uymaspy-0.0.1-py3-none-any.whl`*
+
+
+
+```shell
+# 安装 wheel 包，与普
+pip install uymaspy-0.0.1-py3-none-any.whl
+```
+
+
 
 
 

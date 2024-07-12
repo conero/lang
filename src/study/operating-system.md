@@ -533,8 +533,12 @@ control.exe 控制面板所在目录 `C:\Windows\System32\control.exe`
 
 
 ```powershell
-# 查看所在路径
+# 查看所在路径/windows
 where.exe control
+# powershell 使用 get-command
+(get-command php80).Path
+# linux 使用 whereis 查看
+whereis pythons
 
 # 使用 control 启动设备管理
 control.exe /name Microsoft.DeviceManager
@@ -1236,6 +1240,12 @@ df -hT 显示
 du -sh [目录名] 返回该目录的大小
 du -sm [文件夹] 返回该文件夹总M数
 du -h [目录名] 查看指定文件夹下的所有文件大小（包含子文件夹）
+
+# 查看当前顶级目录下文件大小，并排逆序
+du -sh /* | sort -hr
+
+# 显示占用空间最大的前10个顶级目录
+du -sh /* | sort -hr | head -n 10
 
 # 列举所有系统盘设备及其分区信息
 fdisk -l
@@ -2165,6 +2175,9 @@ arch
 
 # 查看系统信息
 uname --all
+
+# 获取系统位数
+getconf LONG_BIT
 
 # 内存信息
 cat /proc/meminfo

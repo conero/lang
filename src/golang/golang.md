@@ -712,7 +712,10 @@ go build -o ./bin ./cmd/...
 # 优化文件大小
 # -s 忽略调试信息
 # -w 忽略DWARF表符号
+# -trimpath  从输出的二进制文件中移除路径信息
 go build -o ./bin -ldflags "-s -w" ./cmd/...
+# 安装程序
+go install -ldflags "-w -s" -trimpath .\cmd\umsp\
 
 # go 代码生成，当前下的所有代码
 go generate ./...
@@ -1001,9 +1004,19 @@ go build -ldflags -H=windowsgui <filename>
 
 
 
+## 附录
+
+学习资源
+
+- zh book [Go 语言原本](https://golang.design/under-the-hood/)        go语言学习资料
+- zh book [Go 程序员面试笔试宝典](https://golang.design/go-questions/)
+- 
 
 
-## 参考资料
+
+
+
+### 参考资料
 
 - 《Go 语言编程》(2012.8)     - 徐式伟 
 - [《go语言圣经》](<https://docs.hacknode.org/gopl-zh/>)（中文版）
