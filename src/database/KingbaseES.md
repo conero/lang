@@ -10,14 +10,15 @@
 
 
 
-KingbaseES是人大金仓自主研发的企业级大型通用数据库管理系统，提供Oracle、MySQL和SQLServer三大兼容模式，在应用不改、性能不降、习惯不变的情况下，实现国外数据库的迁移替代。
+KingbaseES是人大金仓自主研发的企业级大型通用数据库管理系统，提供Oracle、、pgsql、MySQL和SQLServer兼容模式，在应用不改、性能不降、习惯不变的情况下，实现国外数据库的迁移替代。
 
 
 
 工具
 
 - ksql        命令行SQL连接工具
-- Kstudio  SQL连接客户端（感觉基于[Dbeaver](https://github.com/dbeaver/dbeaver)开发）
+- Kstudio  SQL连接客户端（基于[Dbeaver](https://github.com/dbeaver/dbeaver)开发）
+- [KDts](https://help.kingbase.com.cn/v8/development/develop-transfer/kdts-plus/index.html)       oracle，pgsql，mysql等数据迁移工具 
 
 
 
@@ -36,6 +37,15 @@ KingbaseES是人大金仓自主研发的企业级大型通用数据库管理系�
 ```powershell
 # 使用 sys_ctrl 进行排查
 .\sys_ctl.exe -D 'D:\Program Files\Kingbase\ES\V8\data' start
+```
+
+
+
+数据库模式切换
+
+```shell
+# 使用 initdb 切换数据库模式，再不重装软件的情况下
+initdb -U用户 -m pg -D data目录
 ```
 
 
@@ -74,12 +84,50 @@ GRANT ALL PRIVILEGES ON database jc_test TO jc_rdzcgl;
 
 ### SQL
 
+#### 数据类型
+
+版本号 *V008R006C008B0014*
+
+- 整形
+  - smallint                 ，tinyint 不存在
+
+
+
+#### select 查询
+
+```sql
+# 分页查询，页码（偏移量）20，从10行开始 
+SELECT * FROM "ed_assets" LIMIT 20 OFFSET 10;	
+```
+
+
+
+
+
+##### like
+
+整形不支持 like 操作，需使用 cast 函数将整形转化为字符型。
+
+```sql
+SELECT * FROM "ed_assets" WHERE "code" LIKE '%6%' AND cast(id AS varchar) LIKE '%8%';	
+```
+
+
+
+
+
 #### 系统信息
 
 ```sql
 -- 查看全部表信息
 SELECT table_name, table_schema FROM information_schema.tables;
-SELECT table_name, table_schema FROM information_schema.tables WHERE table_name = 'tbname';
+-- 查看字段信息
+SELECT table_name, table_schema FROM information_schema.COLUMNS WHERE table_name = 'tbname';
+
+-- 查看指定模式下表信息
+SELECT * FROM "information_schema"."tables"
+	WHERE "table_schema" = 'public' AND "table_catalog" = 'ksj_zcglxt_24'
+;
 ```
 
 
@@ -88,7 +136,14 @@ SELECT table_name, table_schema FROM information_schema.tables WHERE table_name 
 
 ```sql
 SELECT current_setting('database_mode');
+
+-- 查询数据库的兼容模式
+SELECT current_setting('compatibility');
+
 SELECT * FROM pg_settings WHERE name LIKE 'database_mode';
+
+# 查询数据最大的连接数
+show max_connections;
 ```
 
 
@@ -168,7 +223,10 @@ Ksql 下命令话查询
 
 
 
+### 常见问题
 
+- V008R006C008B0014 tinyint 不存在；可以将其转换为 smallint
+- 类型限制：如int不能使用 like 字符字符串，（数字）字符串不能等于整形。提示：*HINT:  没有匹配指定名称和参数类型的操作符. 您也许需要增加明确的类型转换.* 。需要手动使用 **CAST(vchar as int) = 0**
 
 
 

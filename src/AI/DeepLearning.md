@@ -259,10 +259,23 @@ console.log(tf.getBackend());
 
 
 
+## LLM
+
+large language model，大语言模型。
+
+模型基于 Transformer 架构，需要非常大的 GPU 数据中心。
+
+
+
+
+
 ## 参考
 
 - [https://tensorflow.google.cn/](https://tensorflow.google.cn/)   谷歌开发者中心
 - [Tensorflow 中文网](http://www.tensorfly.cn/)
 - [深度学习框架之争：PyTorch、TensorFlow和PaddlePaddle的全面对比](https://blog.csdn.net/BetrayFree/article/details/135522180)
 - [目前学习深度学习框架哪个比较好（paddlepaddle、tensorflow、pytorch）？](https://www.zhihu.com/question/421753332/answer/3123241291)
+- llm
+  - [周末推荐一篇LLM的必读好文](https://mp.weixin.qq.com/s/plok-Bh20A8pkeOXgFX4Ig)
+
 

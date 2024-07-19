@@ -125,3 +125,61 @@ sqlcmd -S 127.0.0.1 -U conero
 
 
 
+## 达梦数据库
+
+> dmdb  https://www.dameng.com/
+
+当前版本号 V8
+
+
+
+
+
+### linux 配置
+
+安装数据库
+
+```shell
+# 下载安装包后安装程序
+./DMInstall.bin -i
+
+# 安装后需要 dminit 工具进行初始化
+dminit
+
+# 卸载代码软件
+./uninstall.sh -i
+
+# 服务状态查看
+dmserver status
+```
+
+
+
+配置环境变量
+
+```shell
+# 在<~/.bash_profile>中配置 达梦数据库
+# 使其生效
+DM_HOME=/home/dmdb/dmdbms/data
+export PATH=$PATH:$DM_HOME/bin
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$DM_HOME/bin
+```
+
+
+
+服务器达梦数据配置文件：
+
+```shell
+/etc/dm_svc.conf
+```
+
+
+
+
+
+
+
+
+
+
+

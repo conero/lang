@@ -15,8 +15,8 @@
     - Linux继承了Unix以网络为核心的设计思想，是一个性能稳定的多用户网络操作系统
     - Linux 操作系统的诞生、发展和成长过程始终依赖着五个重要支柱：
         - UNIX 操作系统、
-        - MINIX 操作系统、
-        - GNU计划、
+        - MINIX 操作系统
+        - GNU计划
         - POSIX 标准
         - Internet 网络
     - Linux的基本思想: 
@@ -424,6 +424,19 @@ tail -f /home/logs/nginx/error.log
 ll /home/logs/nginx/ -h
 # 同名
 ls -l --color=auto -h
+```
+
+
+
+磁盘挂载
+
+```shell
+# 查看磁盘分袂
+fdisk -l
+
+# 如将 /dev/sda1 挂载到 /mnt/newdisk
+mkdir /mnt/newdisk
+mount /dev/sda1 /mnt/newdisk
 ```
 
 
