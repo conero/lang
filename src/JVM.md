@@ -260,6 +260,25 @@ java -Xms256m -Xmx512m
 
 
 
+#### 命令
+
+java 常用命令
+
+```shell
+# 执行 jar 包执行 
+java -jar ./target/appdemo.jar
+
+# 执行 war 包执行 
+java -jar ./target/webdemo.war
+
+# 执行命令并通过 -D$key=$value 设置系统属性
+java '-Dserver.port=7480' -jar .\target\cas.war
+```
+
+
+
+
+
 ### 框架及应用
 
 - web框架
