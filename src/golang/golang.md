@@ -967,6 +967,13 @@ go build -ldflags -H=windowsgui <filename>
 
 ### 交叉编译
 
+go 对windows 版本支持介绍如：
+
+- 1.10   最后支持 Windows XP（2001）、Windows Vista 的系统
+- 1.20   最后支持 win7(2009)、win8(2012)的系统
+
+
+
 #### Windows for Linux/max
 
 *386 编译的程序为： 32位。*

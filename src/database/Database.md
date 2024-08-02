@@ -153,7 +153,7 @@ dminit
 dmserver status
 ```
 
-
+*
 
 配置环境变量
 
@@ -177,9 +177,15 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$DM_HOME/bin
 
 
 
+### 入门
+
+使用 **达梦数据库配置助手** 工具创建数据库，与 oracle 相似，即每个数据库需要单独配置。
+
+模式：数据库创建时其默认模式为与用于同名模式。
 
 
 
+数据库导入时需要相同的文件名。
 
 
 

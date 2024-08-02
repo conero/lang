@@ -249,6 +249,13 @@ mysqld --console
 
 ## SQL
 
+```sql
+-- 数据库表名重命名
+alter table config_info_tmp rename to config_info_sthjdb_2408;
+```
+
+
+
 ### 主键/常量等
 
 ```mysql

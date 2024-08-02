@@ -360,6 +360,17 @@ maven 仓库有：本地-local、中央-center、远程-remote，拉取包顺序
 
 本地仓库默认位置：*${user.home}/.m2/repository*，也可通过 setting.xml 的 *localRepository* 进行修改。
 
+将jar安装到本地仓库：
+
+```powershell
+mvn install:install-file `
+    -Dfile=E:/conero/x/Dm8JdbcDriver230624-dm8.jar `
+    -DgroupId=com.dm `
+    -DartifactId=Dm8JdbcDriver230624 `
+    -version=dm8 `
+    -Dpackaging=jar
+```
+
 
 
 一个依赖申明含 groupId 组织标识（包名），artifactId 项目名称，version 版本号。如包*v4.4.0 版本 java-jwt* 依赖：

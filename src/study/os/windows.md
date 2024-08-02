@@ -16,13 +16,13 @@
 
 
 
-> 个人使用过的操作系统版本
+windows 普及较广版本发布年月
 
-    Windows XP
-    Windows 7.0
-    Windows 8.0
-    Windows 10.0
-    Windows 11.0
+    2001年10月25日  Windows XP
+    2009年10月22日  Windows 7.0
+    2012年10月26日  Windows 8.0
+    2015年7月29日   Windows 10.0
+    2021年10月5日   Windows 11.0, win10后继版本
 
 
 
