@@ -96,6 +96,11 @@ go list -m -json all
 #
 # 如果使用 <-ldflags "-s -w"> 清除符号后，无法获取符号
 go tool nm ./yangsu.exe
+
+# 查看go当前支持的操作系统以及架构
+# 其中，aarch64 与 arm64 类似
+go tool dist list
+
 ```
 
 

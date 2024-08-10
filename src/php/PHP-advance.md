@@ -2,6 +2,12 @@
 
 
 
+下载镜像：
+
+- 搜狐php语言包下载镜像  http://mirrors.sohu.com/php/
+
+
+
 ## 基础
 
 > 相关特点

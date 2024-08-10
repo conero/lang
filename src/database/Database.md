@@ -133,6 +133,8 @@ sqlcmd -S 127.0.0.1 -U conero
 
 
 
+可使用软件自带的**DM数据迁移工具**，实现dm数据库与oracle、MySQL、pgsql的数据迁移；同时支持 sql、csv等文件迁移。
+
 
 
 ### linux 配置
