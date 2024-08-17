@@ -498,6 +498,16 @@ less Readme.md
 ```shell
 # 输出环境变量，即linux中的应用直接读取环境变量的参数
 echo $PATH
+
+#
+# 配置全局环境变量
+# 1.在 /etc/profile.d/ 下新一个 shell 文件
+vi /etc/profile.d/java_home.sh
+# 内部编辑
+# #!/bin/bash
+# export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64 
+# 2. 保存后，执行
+source /etc/profile
 ```
 
 
@@ -1593,6 +1603,12 @@ $ useradd chiyou
 
 # 查看用户列表
 cat /etc/passwd
+# 查看用户密码
+cat /etc/shadow
+
+# 设置目录数据用户所属
+chown -R es:es /home/es/
+
 # 删除用户
 userdel -r kingbase
 

@@ -191,3 +191,11 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$DM_HOME/bin
 
 
 
+数据库相关版本信息查询
+
+```sql
+select * FROM v$instance;
+```
+
+
+
