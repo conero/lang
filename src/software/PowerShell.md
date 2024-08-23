@@ -833,6 +833,7 @@ Start-Process java.exe -WindowStyle Hidden -ArgumentList "-jar ./sjw-0.0.1-solon
 Start-Process -FilePath D:\conero\application\minio\minio.exe -NoNewWindow -ArgumentList "server D:\AppData\minio-server --console-address :9001" -RedirectStandardOutput "output.log" -RedirectStandardError "error.log" -PassThru -Wait
 
 # 设置日志信息并退出后依然存在
+# 类似 nohup 使用 &，后台挂载
 Start-Process -FilePath D:\conero\application\minio\minio.exe  -ArgumentList "server D:\AppData\minio-server --console-address :9001" -RedirectStandardOutput "output.log" -RedirectStandardError "error.log" -PassThru -Wait -WindowStyle Hidden
 
 # 如启动多个【yangsu_embed.exe】服务
