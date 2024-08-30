@@ -437,6 +437,11 @@ fdisk -l
 # 如将 /dev/sda1 挂载到 /mnt/newdisk
 mkdir /mnt/newdisk
 mount /dev/sda1 /mnt/newdisk
+
+# 将 iso 文件挂载到指定目录
+mount -o loop KingbaseES_V008R006C008B0020_Aarch64_install.iso /opt/Kingbase/install/
+# 卸载 iso 文件
+umount /opt/Kingbase/install/
 ```
 
 
@@ -1297,6 +1302,18 @@ cat /etc/whadow
 
 # 查看用户分组信息
 cat /etc/group
+
+# 查看当前用户
+whoami
+id
+
+# 密码修改
+passwd mysql
+# 删除用户密码
+passwd -d mysql
+
+# su 切换用户后可在文件中定义环境变量等
+vi .bashrc
 ```
 
 

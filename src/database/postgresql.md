@@ -16,7 +16,68 @@
 
 
 
+### 安装
+
+#### 龙蜥 8.8 安装 pg12
+
+```shell
+dnf install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm
+
+# 关闭内置postgresql模块
+dnf -qy module disable postgresql
+
+# 安装数据库
+dnf install -y postgresql12-server
+
+# 初始化数据
+/usr/pgsql-12/bin/postgresql-12-setup initdb
+
+# 创建 postgresql-12 服务
+systemctl enable postgresql-12
+
+# 启动服务
+systemctl start postgresql-12
+
+
+# 使用 postgress 用户
+su - prostgress
+# 使用 psql 登陆服务即可
+psql
+```
+
+
+
+设置 pg12 外网可访问
+
+```shell
+# 修改配置文件 /var/lib/pgsql/12/data/postgresql.conf
+listen_addresses = '*'
+
+# 设置 pg_hba.conf，允许所有ip可访问
+host    replication     all             0.0.0.0/0               ident
+host    all             all             0.0.0.0/0               md5
+```
+
+
+
 ### SQL
+
+#### create
+
+```sql
+-- 创建数据表
+CREATE DATABASE ksj_gysjj_xyjgxt with OWNER = postgres ENCODING = 'UTF8';
+COMMENT ON DATABASE ksj_gysjj_xyjgxt IS '数据库名称';
+
+-- scheme 创建
+CREATE SCHEMA IF NOT EXISTS scjg_xyjg AUTHORIZATION postgres;
+```
+
+
+
+
+
+#### 其他
 
 数据表对象等基本查询，常用系统表 pg_database, pg_class, pg_namespace等
 
@@ -122,8 +183,14 @@ select name,setting,context from pg_settings where name like '%encoding%';
 # 导入sql
 \i D:/conero/xxx/test_data.sql
 
+# 将日志信息写入到文件中
+\o /home/scjg_xyjg-db-pg12/import.log
+
 # 切换数据库
 \c mydb
+
+# 查看用户列表
+\du
 
 # 查看数据库服务器版本号
 select version();
@@ -137,7 +204,7 @@ show server_version;
 
 ### 备份/恢复
 
-可使用 pgAdmin 工具，选择数据库使用“Restore“、”Backup”工具恢复或备份数据库。
+可使用 pgAdmin 工具，选择数据库使用“Restore“、”Backup”工具恢复或备份数据库。（实际使用图形化界面，错误信息不太好看）
 
 
 
@@ -146,5 +213,14 @@ show server_version;
 ```shell
 # 导入sql
 \i D:/conero/xxx/test_data.sql
+
+# 编码信息查看
+\encoding
+
+# 设置当前客户端编码信息
+\encoding UTF8
+
+# 显示服务器编码
+show server_encoding;
 ```
 

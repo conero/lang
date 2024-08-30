@@ -135,6 +135,9 @@ SELECT * FROM "information_schema"."tables"
 数据库模式类型查询
 
 ```sql
+-- 现实系统版本信息
+SELECT VERSION();
+
 SELECT current_setting('database_mode');
 
 -- 查询数据库的兼容模式
@@ -192,6 +195,7 @@ ksql -V
 Ksql 下SQL 相关查询
 
 ```sql
+# mysql
 # 查看当前系统用户
 select * from sys_user;
 
@@ -201,6 +205,11 @@ SELECT * FROM SYS.DBA_USERS;
 # 登录成功后
 # 查看当前用户信息
 select user;
+
+#
+# pg 模式
+# 查看系统用户
+SELECT * FROM pg_user;
 ```
 
 
@@ -217,6 +226,12 @@ Ksql 下命令话查询
 
 # 显示数据库列表
 \l
+
+# 导入数据
+\i /home/kingbase/xcgypc_ams-240828.sql
+
+# 展示数据表列表
+\dp
 ```
 
 
