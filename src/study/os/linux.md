@@ -513,6 +513,12 @@ vi /etc/profile.d/java_home.sh
 # export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64 
 # 2. 保存后，执行
 source /etc/profile
+
+# 指定用户设置特定环境变量
+vi ~/.bash_profile
+# 附加环境变量
+export PATH=/opt/gypc_ams/php-7.2.34/sapi/cli/:/opt/gypc_ams/php-7.2.34/sapi/fpm/:$PATH
+source ~/.bash_profile
 ```
 
 
@@ -1217,10 +1223,13 @@ ls /usr/bin | sort | uniq | less
 
 > **chmod**  改变目录读写权限 
 
-*777*   为最高权限
-
 ```shell
+# 777  为最高权限
 sudo chmod -R 777 <file/direction>
+
+# 755 表示所有者具有读写执行权限 (7)，组成员和其他用户具有读执行权限 (5)。
+# 775 所有者具有读写执行权限 (7)，组成员具有读写执行权限 (7)，其他用户具有读执行权限 (5
+sudo chmod -R 775 <file/direction>
 ```
 
 
@@ -1530,6 +1539,7 @@ yum deplist openldap
 
 # 查找可安装包的版本号
 yum list available openldap.*
+yum list available gcc
 ```
 
 

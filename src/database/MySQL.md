@@ -72,6 +72,11 @@ set global max_allowed_packet = 200*1024*1024;
 
 # 查看配置
 show variables like '%like%';
+
+# 处理—— Too many connections 的错误，可动态修改可连接数
+# 对应mysql配置
+# [mysqld] \n max_connections = 1000
+SET GLOBAL max_connections = 1000;
 ```
 
 
@@ -146,7 +151,7 @@ rpm -qa |grep mysql
 # mysql 无权限的问题。对资源文件进行授权
 chown mysql.mysql -R /var/lib/mysql
 # 查看原始密码
- cat /var/log/mysqld.log
+cat /var/log/mysqld.log
 ```
 
 

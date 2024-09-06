@@ -59,6 +59,26 @@ github 地址： https://github.com/redis/redis
 
 
 
+### 安装
+
+通过编译源码安装 redis
+
+```shell
+wget https://download.redis.io/redis-stable.tar.gz
+tar -zxvf redis-stable.tar.gz
+cd redis-stable
+
+# 编译以及安装
+# redis 内存分配策略
+# % make MALLOC=libc              .   
+# % make MALLOC=jemalloc          .
+make && make install
+```
+
+
+
+
+
 ### 启动
 
 ```shell
@@ -77,6 +97,19 @@ nohup redis-server &
 # 使用 nohup 保持应用
 nohup ./dragonfly --port 6380 &
 ```
+
+
+
+#### 配置
+
+如配置文件 /usr/local/etc/redis.conf ，修改配置文件
+
+```shell
+# 关闭保护模式
+protected-mode no
+```
+
+
 
 
 
