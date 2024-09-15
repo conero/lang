@@ -428,6 +428,21 @@ ls -l --color=auto -h
 
 
 
+计算目录下文件sha值
+
+```shell
+# 读取目录下文件 sha
+find ./ -type f -print0 | xargs -0 sha256sum
+
+# 读取目录下文件 md5
+find ./ -type f -print0 | xargs -0 sha256sum
+
+# 使用 [-maxdepth 1] 设置文件的文件文件几倍
+find ./ -type f -print0 -maxdepth 1  | xargs -0 sha256sum
+```
+
+
+
 磁盘挂载
 
 ```shell
@@ -437,6 +452,9 @@ fdisk -l
 # 如将 /dev/sda1 挂载到 /mnt/newdisk
 mkdir /mnt/newdisk
 mount /dev/sda1 /mnt/newdisk
+
+# 部分磁盘挂载是提示应用磁盘只读，则需先进行格式化磁盘
+mkfs.ext4 /dev/sdb
 
 # 将 iso 文件挂载到指定目录
 mount -o loop KingbaseES_V008R006C008B0020_Aarch64_install.iso /opt/Kingbase/install/

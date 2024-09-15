@@ -90,6 +90,35 @@ yarn config set registry https://registry.npmmirror.com/
 
 
 
+
+
+### 压缩
+
+js 压缩工具可使用如：
+
+- esbuild                  支持js文件压缩，https://github.com/evanw/esbuild
+- swc                        可压缩（运行命令错误），https://github.com/swc-project/swc
+- minify-html          可压缩文件，但压缩命令复杂压缩的文件可能无法运行  https://github.com/wilsonzlin/minify-html
+
+
+
+
+
+**esbuild**
+
+```shell
+#
+# esbuild
+# 安装
+go install github.com/evanw/esbuild/cmd/esbuild@latest
+# 将 Photoclip.js 文件压缩为 Photoclip.min.js
+esbuild Photoclip.js --minify --outfile=Photoclip.min.js
+```
+
+
+
+
+
 ## Browser
 
 - 创立时间   _**1990**_
