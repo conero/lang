@@ -1191,8 +1191,6 @@ git clone --recursive <URL>
 git submodule update --remote
 # 指定子模块的分支
 git config -f .gitmodules submodule.<submoduleName>.branch <branchName>
-
-
 ```
 
 
@@ -1224,6 +1222,9 @@ git fetch ../bigexpwxapp2021-210519/c210519 master
 # 将 <commit_id> -> <commit_id> 打包为导出
 git diff --name-only <commit_id1> <commit_id1> | xargs tar -zcvf <path>
 git diff --name-only b7ffdd3b 65b2dcb1 | xargs tar -zcvf ./t5.tar.gz
+
+# 获取当个 hash的更改
+git diff-tree --no-commit-id --name-only -r a57e636c65
 ```
 
 
@@ -1239,8 +1240,8 @@ git archive --format=zip --output master.zip master
 # 打包当前分枝当前HEAD的所有文件
 git archive --format=zip --output head.zip HEAD
 
-# 打包v1.2标签的所有文件
-git archive --format=zip --output v1.2.zip
+# 打包v1.2标签的所有文件（按标签）
+git archive --format=zip --output v1.2.zip v1.2.0
 
 # 打包最后修改的文件
 # 先通过git diff找到最新版本修改过的文件，再压缩打包这些文件：
