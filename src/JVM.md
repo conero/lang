@@ -562,6 +562,17 @@ Maven可以引用任何Java系统属性，例如${java.version}或${file.encodin
 
 
 
+> 使用镜像下载
+
+```shell
+#
+# 如文件 config.properties 配置文件替换下载文件镜像
+#distributionUrl=https\://services.gradle.org/distributions/gradle-8.5-bin.zip
+distributionUrl=https\://mirrors.aliyun.com/macports/distfiles/gradle/gradle-8.5-bin.zip
+```
+
+
+
 **特性**：支持增量构建、构建缓存、gradle 守护进程。
 
 

@@ -608,7 +608,7 @@ ch2:= make(chan int, 1024)
 
 ## godoc
 
-> *golang 注释文档格式*
+> *golang 注释文档格式*（**godoc 备注语法**）
 
 - *注释符`//`后面要加空格, 例如: `// xxx`*
 - *在`package, const, type, func`等`关键字`上面并且紧邻关键字的注释才会被展示*
@@ -890,6 +890,12 @@ require (
 
 
 ## 资源/库
+
+- Chrome DevTools Protocol，谷歌浏览器协议使其支持浏览器自动化以及数据爬虫，支持wpg前端项目（vue/react生产的项目）
+  - https://github.com/chromedp/chromedp
+  - https://github.com/go-rod/rod
+
+
 
 ### linting 工具
 

@@ -495,6 +495,18 @@ realpath ./redis.cof
 
 
 
+> ln **软链接**
+
+```shell
+# ln 必须使用绝对地址（经实际错误时无效）
+# -s 为实际的目标路径
+ln -s /opt/systemlist/yzm/uploads /opt/systemlist/yzm/public/uploads
+# 如果资源已存在则强制覆盖
+ln -sf /opt/systemlist/yzm/uploads /opt/systemlist/yzm/public/uploads
+# 输出详细信息
+ln -sv /opt/systemlist/yzm/uploads /opt/systemlist/yzm/public/uploads
+```
+
 
 
 #### 内容查看或管理
