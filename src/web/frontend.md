@@ -100,6 +100,8 @@
 **后端管理系统**
 
 - [vbenjs/vue-vben-admin](https://github.com/vbenjs/vue-vben-admin)        基于 Vue 3、Vite的后台管理系统
+- [PanJiaChen/vue-element-admin](https://github.com/PanJiaChen/vue-element-admin)  vue2版本 admin
+- [zxwk1998/vue-admin-better](https://github.com/zxwk1998/vue-admin-better)     基于 vue3 版本后台管理，提供商业版本
 
 
 

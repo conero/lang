@@ -764,9 +764,20 @@ git push origin :<tagName>
 
 #### 推送远程
 
-`git push origin <remoteBranchName>`  推送到远程仓库
+使用 push 推送分支
 
-`git push origin local:remote`	推送:   本地 -> 远程
+```shell
+# 推送代码到远程分支
+git push origin <remoteBranchName>
+
+# 推送:   本地 -> 远程
+git push origin local:remote
+
+# 设置默认推送分支[scanqr-uni]
+git push --set-upstream origin scanqr-uni
+```
+
+
 
 
 
