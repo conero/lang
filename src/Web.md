@@ -752,6 +752,20 @@ SSM框架即 `Spring+SpringMVC+MyBatis` 组成的标准MVC框架，是较为主�
 
 
 
+**部署项目**
+
+打包项目为 war 包，然后将其复制到 webapps目录下，再执行`bin/startup.bat` 即可。
+
+
+
+#### IntelliJ IDEA 部署
+
+部署是有exploded与非exploded模式，前者允许在运行时实时更新资源（便于调试），而是在部署时一次性部署。
+
+
+
+
+
 ### 测试服务器
 
 #### PHP

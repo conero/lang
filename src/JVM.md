@@ -363,6 +363,7 @@ maven 仓库有：本地-local、中央-center、远程-remote，拉取包顺序
 将jar安装到本地仓库：
 
 ```powershell
+# 实际测试，执行命令后jar未真正转移
 mvn install:install-file `
     -Dfile=E:/conero/x/Dm8JdbcDriver230624-dm8.jar `
     -DgroupId=com.dm `

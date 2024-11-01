@@ -673,6 +673,9 @@ killall php-fpm
 
 #查询进程炳杀掉它，如进程: yangsu
 ps -ef|grep yangsu | grep -v grep | awk '{print $2}' | xargs kill -9
+
+# 根据 pid 获取进程执行的详细情况
+ps -p 25647 -f
 ```
 
 

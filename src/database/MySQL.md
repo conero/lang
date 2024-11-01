@@ -77,6 +77,9 @@ show variables like '%like%';
 # 对应mysql配置
 # [mysqld] \n max_connections = 1000
 SET GLOBAL max_connections = 1000;
+
+# 数据表大小写是否区分，0-区分/1-不区分
+lower_case_table_names = 1
 ```
 
 
@@ -483,6 +486,10 @@ show columns from <tableName> where field like 'i%';
 
 -- 二进制日志
 show {binary | master} logs;
+
+
+# 查看数据库主配置目录
+SHOW VARIABLES LIKE 'datadir';
 ```
 
 

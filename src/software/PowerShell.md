@@ -212,6 +212,38 @@ windows环境变量分
 
 
 
+#### 字符集
+
+powershell 中查看或设置字符集
+
+```powershell
+# 输出当前powershell的输入编码
+[Console]::InputEncoding
+
+# 输出当前powershell的输出编码
+[Console]::OutputEncoding
+
+# 设置编码
+[Console]::InputEncoding = [System.Text.Encoding]::UTF8
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+```
+
+
+
+相应的 linux shell 或 bash 读取字符集的方法
+
+```shell
+# 读取字符集
+locale | grep LC_CTYPE
+
+# 设置 LC_CTYPE 为 UTF-8
+export LC_CTYPE=en_US.UTF-8
+# 设置 LC_CTYPE 为 GBK
+export LC_CTYPE=zh_CN.GBK
+```
+
+
+
 ### 常量
 
 pwsh 所在的环境默认常量，可通过`Get-Variable`进行查询。
