@@ -738,6 +738,16 @@ rootProject.name = "demo"
 
 
 
+### IntelliJ IDEA
+
+> 2024年11月5日
+
+适合idea 2023.1.1 的java项目热编译，参考：https://www.cnblogs.com/taoA/p/18223076
+
+
+
+
+
 ## 附录
 
 ### 参考
