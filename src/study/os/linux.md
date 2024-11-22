@@ -350,7 +350,8 @@ file composer.json
 df -hl 查看磁盘剩余空间
 df -h 查看每个根路径的分区大小
 df -hT 显示
-du -sh [目录名] 返回该目录的大小
+du -sh [目录名] 返回该目录的大小，以及挂载情况
+
 du -sm [文件夹] 返回该文件夹总M数
 du -h [目录名] 查看指定文件夹下的所有文件大小（包含子文件夹）
 
@@ -460,6 +461,19 @@ mkfs.ext4 /dev/sdb
 mount -o loop KingbaseES_V008R006C008B0020_Aarch64_install.iso /opt/Kingbase/install/
 # 卸载 iso 文件
 umount /opt/Kingbase/install/
+```
+
+
+
+**lsblk** 管理和查看块设备的信息
+
+```shell
+# 管理和查看块设备的信息
+# （树形）显示所有块设备的基本信息
+lsblk
+
+# 显示完整设备路径
+lsblk -p
 ```
 
 
