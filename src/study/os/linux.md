@@ -1666,14 +1666,14 @@ $ make && make install
 
 ```shell
 # 查看可以登录系统的用户
-$ cat /etc/passwd | grep -v /sbin/nologin | cut -d : -f 1
+cat /etc/passwd | grep -v /sbin/nologin | cut -d : -f 1
 
 # 新增分组 ancient
-$ groupadd ancient
+groupadd ancient
 
 # 添加用户
-$ useradd -g ancient chiyou 		# 将 chiyou 添加到 ancient 分组中
-$ useradd chiyou 
+useradd -g ancient chiyou 		# 将 chiyou 添加到 ancient 分组中
+useradd chiyou 
 
 # 查看用户列表
 cat /etc/passwd
@@ -1687,11 +1687,14 @@ chown -R es:es /home/es/
 userdel -r kingbase
 
 # 查看当前用户分组
-$ group
+group
 # 查看 kuafu 用户的所属分组
-$ groups kuafu
+groups kuafu
 # id 用户(查看用户所属组）
-$ id root
+id root
+
+# 切换 mysql 到 bash 
+sudo -u mysql bash
 ```
 
 
