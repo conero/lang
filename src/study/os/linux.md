@@ -826,6 +826,8 @@ loginctl
 ```shell
 # 重启系统
 sudo systemctl reboot
+# 执行系统重启
+reboot
 
 # 关闭系统，切断电源
 sudo systemctl poweroff
@@ -1711,10 +1713,11 @@ $ rpm -Uvh soft.version.rpm
 
 # 查看表信息
 $ rpm -ql <package>
-# 下载软件
+
+# 卸载软件
 # erase (uninstall) package
 $ rpm -e <package>
-# --nodeps 前置
+# --nodeps 前置，无需依赖
 $ rpm -e mariadb-libs-5.5.68-1.el7.x86_64 --nodeps
 
 # 更新软件

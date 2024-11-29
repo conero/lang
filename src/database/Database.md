@@ -195,7 +195,49 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$DM_HOME/bin
 
 ```sql
 select * FROM v$instance;
+
+-- 查询当前连接数据库信息
+SELECT * FROM V$DATABASE;
 ```
 
 
 
+### 部署
+
+- 测试用户（前端）：`18798011264/Conero@2024`
+
+
+
+正式站程序：
+
+- https://zscq.gyamrszsj.cn/
+
+
+
+
+
+本地部署（windows）：
+
+```powershell
+# 启动cgi服务
+.\php-cgi.exe -b 0.0.0.0:9003
+
+# 使用 wpg 启动
+wpg web -r 'E:\conero\repository\conero-blockd\gybhzx2411\guiyanggch\' -R '^(.*)$ /index.php?s=/$1' -addr 19211 -c 'tcp://127.0.0.1:9003' -C gb18030
+
+
+# admin  部署
+wpg web -r 'E:\conero\repository\conero-blockd\gybhzx2411\guiyanggch\' -R '^(.*)$ /spzgadmin.php?s=/$1' -addr 19212 -c 'tcp://127.0.0.1:9003'
+```
+
+
+
+
+
+### 异常
+
+- php 链接服务中文乱码 php74（pdo），修改`C:\windows\System32\dm_svc.conf` 加入行文件：
+
+```shell
+CHAR_CODE=(PG_UTF8)
+```

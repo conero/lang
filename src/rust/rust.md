@@ -3472,6 +3472,7 @@ Rust 标准库
 ### 依赖库/包介绍
 
 - [tokio](https://github.com/tokio-rs/tokio)      Rust 最优秀的异步运行时框架，它提供了写异步网络服务所需的几乎所有功能，不仅仅适用于大型服务器，还适用于小型嵌入式设备。
+- [smol](https://github.com/smol-rs/smol) 平滑简单的rust异步处理库
 
 
 
