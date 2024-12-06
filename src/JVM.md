@@ -69,6 +69,15 @@ java -cp ./m1/ Simple
 
 
 
+jdk 下载地址：
+
+- openjdk
+  - [adoptium.net](https://adoptium.net/zh-CN/temurin/releases/) 可下载 jre/jdk等
+
+
+
+
+
 #### 项目结构
 
 - projectTop
@@ -256,6 +265,8 @@ java 顶级对象为 `java.lang.Object`.
 ```shell
 # 如设置 vm 的内存大小
 java -Xms256m -Xmx512m
+#
+java -Xms128m -Xmx256m
 ```
 
 
