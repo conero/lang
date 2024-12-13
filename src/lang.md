@@ -1849,6 +1849,7 @@ ULID 是既基于时间戳又基于随机数，时间戳精确到毫秒，毫秒
   - 1991
 - **CRC32**  循环冗余校验，（Cyclic Redundancy Check）校验实用程序库在数据存储和数据通讯领域，为了保证数据的正确，就不得不采用检错的手段。（相比于md5，sha1等其生成的字符更短）
 - **RC4**   *(Rivest Cipher 4)，属于对称加密算法*
+- **chacha20** （ChaCha20-Poly1305）作为 RC4 加密替代对称加密
 - **RSA**  *RSA加密算法是一种非对称加密算法。在公开密钥加密和电子商业中RSA被广泛使用。RSA是1977年由罗纳德·李维斯特（Ron Rivest）、阿迪·萨莫尔（Adi Shamir）和伦纳德·阿德曼（Leonard Adleman）一起提出的。*
   - 1977
 - **SHA1**   *安全哈希算法（Secure Hash Algorithm）主要适用于数字签名标准 （Digital Signature Standard DSS）里面定义的数字签名算法（Digital Signature Algorithm DSA）*

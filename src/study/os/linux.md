@@ -989,6 +989,16 @@ ss -tulwn
 
 
 
+使用 tcpdump 查看网络请求
+
+```shell
+# 查看网卡ens3 (通过 ip addr show) 查看端口 62023 的网络情况
+tcpdump -i ens3 port 62023
+
+# 查看任意网卡的 62023 的监听端口
+tcpdump -i any port 62023
+```
+
 
 
 #### iptables
