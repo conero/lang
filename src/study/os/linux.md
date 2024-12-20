@@ -347,13 +347,14 @@ file composer.json
 
 ```shell
 # 查看磁盘信息的命令
-df -hl 查看磁盘剩余空间
-df -h 查看每个根路径的分区大小
-df -hT 显示
-du -sh [目录名] 返回该目录的大小，以及挂载情况
+df -hl          #查看磁盘剩余空间
+df -h           #查看每个根路径的分区大小
+df -h --total   #查看并统计总的文件大小
+df -hT          #显示
+du -sh [目录名]  #返回该目录的大小，以及挂载情况
 
-du -sm [文件夹] 返回该文件夹总M数
-du -h [目录名] 查看指定文件夹下的所有文件大小（包含子文件夹）
+du -sm [文件夹]  #返回该文件夹总M数
+du -h [目录名]   #查看指定文件夹下的所有文件大小（包含子文件夹）
 
 # 查看当前顶级目录下文件大小，并排逆序
 du -sh /* | sort -hr
@@ -1392,6 +1393,20 @@ vi .bashrc
 
 
 
+**ACL 权限**
+
+实现多用户对木目录/文件字段的权限管理
+
+```shell
+# 查看目录-runtime 的 ALC 权限
+getfacl /opt/gyxams/auth/runtime/
+
+# 允许用户-nobody-有读写执行的权限（读/r-read、写/w-write、执行/x-execute权限）
+setfacl -R -m u:nobody:rwx /opt/gyxams/auth/runtime/
+```
+
+
+
 
 
 ### 硬件
@@ -1547,6 +1562,33 @@ _*WinSCP*是一个Windows环境下使用SSH的开源图形化SFTP客户端。同
 
 - **保存密码** *【新建会话】-> 【保存】中勾选保存密码*
 - **传递密码给putty**  *【选项】 -> 【选项】-> 【集成】-> 【应用程序】-> 【记住会话密码并传递给PuTTY(SSH)(R)】*
+
+
+
+#### ansiable
+
+一种自动化运维工具,基于paramiko开发的,并且基于模块化工作。由python语言实现。一般用于批量执行任务
+
+```shell
+# 批量执行，查看服务器磁盘大小
+ansible all -m shell  -a 'fdisk -l| grep "/dev/sd"'
+# 查看服务器 cpu 核数
+ansible all -m shell  -a 'cat /proc/cpuinfo| grep "processor"| wc -l'
+# 查看内存大小
+ansible all -a "free -h"
+
+# 查看 host，管理服务器数
+cat hosts
+```
+
+
+
+主要以及常用的配置文件后文件资源
+
+- `/etc/ansible/ansible.cfg`   #配置文件
+- `/etc/ansible/hosts`             #主机库（host inventory
+
+
 
 
 

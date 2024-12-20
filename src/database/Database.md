@@ -241,3 +241,67 @@ wpg web -r 'E:\conero\repository\conero-blockd\gybhzx2411\guiyanggch\' -R '^(.*)
 ```shell
 CHAR_CODE=(PG_UTF8)
 ```
+
+
+
+
+
+## MongoDB
+
+使用 C++开发的文档数据库
+
+
+
+与常见关系数据库概念差异，其他的 database、index、primary key等类似
+
+| SQL术语 | MongoDB    | 说明            |
+| ------- | ---------- | --------------- |
+| table   | collection | 数据表/集合     |
+| row     | document   | 数据行/文档     |
+| column  | field      | 数据字段/数据域 |
+
+
+
+MongoDB的最小存储单位就是文档document对象。
+
+
+
+开发驱动
+
+- golang   [mongo-go-driver](https://github.com/mongodb/mongo-go-driver)
+
+
+
+
+
+### v4.2
+
+使用 mongo shell 连接或查询MongoDB
+
+> 连接数据库
+
+```shell
+# 连接数据库
+mongo
+# 指定端口号
+mongo --port 28015
+# 指定主机地址
+mongo --host mongodb0.example.com:28015
+# 使用密码连接
+mongo "mongodb://alice@mongodb0.examples.com:28015/?authSource=admin"
+```
+
+
+
+> 操作数据库
+
+```shell
+# 查看当前数据库
+db
+
+# 查看数据库方法
+db.stats()
+```
+
+
+

@@ -1266,9 +1266,12 @@ git archive --format=zip -o update.zip HEAD $(git diff --name-only master fix-er
 
 # 导出当前更改的文件（未提交时），实际存在问题。不是与目录上实际看到的文件列表
 git archive --format=zip -o ../diff.zip HEAD $(git diff --name-only)
-# 可使用 diff + tar 来打包
-ubatchgz="../ubatch/bfcommit-$(date +%s%6N).tar.gz";git diff --name-only | xargs tar -czvf ../ubatch/$ubatchgz
 
+# 可使用 diff + tar 来打包
+ubatchgz="../ubatch/bfcommit-$(date +%s%6N).tar.gz";git diff --name-only | xargs tar -czvf .$ubatchgz
+
+# 打包后解压文件
+ubatchgz="../ubatch/bfcommit-$(date +%s%6N).tar.gz";git diff HEAD^ --name-only | xargs tar -czvf $ubatchgz;tar -zxvf $ubatchgz -C ../ubatch;rm -f $ubatchgz
 
 # 仅打包非删除的文件列表
 git archive --format=zip -o zzt-211020-02.zip HEAD $(git diff v0.0.1 --name-only --diff-filter=ACMR)

@@ -98,7 +98,7 @@ go list -m -json all
 go tool nm ./yangsu.exe
 
 # 查看go当前支持的操作系统以及架构
-# 其中，aarch64 与 arm64 类似
+# 其中，aarch64 与 arm64 类似（及aarch64=arm64，go交叉编译时）
 go tool dist list
 
 ```
