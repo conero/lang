@@ -208,7 +208,7 @@ rpm -ivh libaio-0.3.109-13.el7.x86_64.rpm
 mysqld --initialize --console
 
 # mysql 权限设置
-chmod -R 777 /var/lib/mysql
+chmod -R 755 /var/lib/mysql
 
 # 启动服务
 service mysqld start
@@ -224,6 +224,26 @@ service mysqld start
         - mysql-community-common
     - mysql-community-libs
     - libaio-0.3.109-13.el7.x86_64.rpm
+
+
+
+#### mysql 5.6 openeuler 22.03
+
+数据库安装
+
+```shell
+# 下载包
+wget https://downloads.mysql.com/archives/get/p/23/file/mysql-5.7.44-1.el7.x86_64.rpm-bundle.tar
+
+rpm -ivh mysql-community-common-5.7.44-1.el7.x86_64.rpm
+rmp -ivh mysql-community-libs-5.7.44-1.el7.x86_64.rpm
+
+# 依赖 
+yum install libncurses
+rpm -ivh mysql-community-client-5.7.44-1.el7.x86_64.rpm
+```
+
+
 
 
 
@@ -876,6 +896,20 @@ SHOW FULL COLUMNS FROM `admin` like 'deptnames';
 # 查看表信息长度
 select * from information_schema.columns where TABLE_SCHEMA = database() and table_name = 'x_guest' and column_name = 'post';
 ```
+
+
+
+**统计数据库信息**
+
+```sql
+# 统计执行的数据库
+select 
+    table_schema, concat(round(sum(data_length/1024/1024),2),'MB') as data, 
+    max(UPDATE_TIME) update_time, max(CREATE_TIME) create_time 
+    from information_schema.tables where table_schema in ('snms', 'idis_shr', 'xxl_job') group by table_schema;
+```
+
+
 
 
 
@@ -1604,6 +1638,9 @@ mysqldump -uroot -p --default-character-set=utf8 dataset tablename --result-file
 # 远程测试，可能导致其他链接缓慢。
 # 导出测试的服务器所在数据库 "207.12.24.56"
 mysqldump -h "207.12.24.56" -uroot -p --default-character-set=utf8 dataset tablename --result-file=d:/tmp/tablename.sql
+
+# 所有数据库进行备份
+mysqldump  -uroot  -p --all-databases > /data/bakSql/133mysqlbak.sql
 ```
 
 

@@ -158,7 +158,7 @@ ifconfig -a
 mkdir jc-hellowpy && cd jc-hellowpy
 
 # 环境变量
-# 环境变量，查看系统定义的环境变量
+# 环境变量，cat /etc/os-release查看系统定义的环境变量
 env
 #过滤
 env | PATH
@@ -1081,8 +1081,13 @@ exit
 # scp 文件传输
 # 通过scp传输文件
 scp /home/sqls/test-database.sql root@10.22.10.231:~
+
 # 下载到本地
 scp root@10.22.10.231:~/myfile.txt /home/user/
+# 将 /data/bakSql/250108 目录下所有文件下载到当前主机
+scp -r root@10.35.2.133:/data/bakSql/250108 ./
+# 通配符号下载
+scp user@192.168.1.100:/home/user/*.txt /home/localuser/
 ```
 
 
@@ -1444,6 +1449,7 @@ uptime
 # 查看系统加载的内核模块
 lsmod
 
+# 查看操作系统版本信息
 # 如
 cat /etc/system-release
 cat /etc/os-release
@@ -1593,6 +1599,24 @@ cat hosts
 
 
 ## 操作系统
+
+常见的linux发行版操作系统
+
+- Ubuntu
+- Fedora
+- openSUSE
+- Debian
+- Red Hat Enterprise Linux (RHEL)
+- CentOS            （已停止开发）
+
+
+
+国内常见
+
+- openEuler                 兼容 RHEL 包管理
+- Anolis OS                  兼容 RHEL 包管理
+
+
 
 ### Ubuntu
 

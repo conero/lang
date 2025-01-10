@@ -289,19 +289,107 @@ mongo --port 28015
 mongo --host mongodb0.example.com:28015
 # 使用密码连接
 mongo "mongodb://alice@mongodb0.examples.com:28015/?authSource=admin"
+
+# 指定
+mongo -u root
 ```
 
 
 
 > 操作数据库
 
-```shell
-# 查看当前数据库
+mongo shell 执行
+
+```javascript
+// 查看当前数据库
 db
 
-# 查看数据库方法
+// 查看数据库方法
 db.stats()
+
+
+// 创建用户
+// 使用 admin 登陆用户：  mongo --authenticationDatabase admin
+db.createUser(
+  {
+    user: "root",
+    pwd: "$1^34xiusG3k6GG+", // 使用强密码
+    roles: [
+      { role: "userAdminAnyDatabase", db: "admin" }, // 允许管理用户和角色
+      "readWriteAnyDatabase" // 允许在所有数据库中读写
+    ]
+  }
+)
+
+// 修改用户权限
+db.grantRolesToUser(
+  "databaseManager",
+  [
+    { role: "readWrite", db: "specificDB" } // 给 specificDB 数据库授予权限
+  ]
+)
+
+// 修改用户权限
+db.grantRolesToUser(
+  "databaseManager",
+  [
+    { role: "readWrite", db: "specificDB" } // 给 specificDB 数据库授予权限
+  ]
+)
+
+// 删除用户权限
+db.revokeRolesFromUser(
+  "databaseManager",
+  [
+    { role: "readWrite", db: "specificDB" } // 移除 specificDB 数据库的权限
+  ]
+)
 ```
 
 
+
+#### openEuler 安装
+
+安装 MongoDB v4.2.25 数据库
+
+```shell
+#下载软件包
+wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel80-4.2.25.tgz
+
+# 解压
+tar -zxvf mongodb-linux-x86_64-rhel80-4.2.25.tgz
+
+# 将包移动到 mongodb 中
+mkdir ../mongodb
+mv  mongodb-linux-x86_64-rhel80-4.2.25/* ../mongodb/
+
+# 编辑 mongod 配置文件
+vi /etc/mongod.conf
+
+# 运行服务
+/home/mongodb/bin/mongod -f /etc/mongod.conf
+```
+
+
+
+
+
+#### 备份及恢复
+
+```shell
+# 一次性导出 mongo 中全部数据库
+mongodump --out /path/to/backup/folder/
+# 指定用户
+mongodump -u root --out /data/bak/250108-qy-new-openeuler
+
+# 导出数据库 handle 
+# 格式 --gzip
+mongodump -uroot -p$pswd --authenticationDatabase admin --db handle -o ./250109-handle --gzip
+
+# 恢复数据
+mongorestore --db handle /home/bak/250109-handle --gzip
+
+# 以 admin 角色登录数据库
+mongo --authenticationDatabase admin
+```
 
