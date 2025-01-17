@@ -85,17 +85,20 @@ docker compose up -d --force-recreate
 # 启动 docker 实例模拟，可用与检查环境等配置信息
 docker-compose up --dry-run
 
-
 # 停止容器
 docker compose down
+
+# 日志输出跟随（类似 tail -f）
+docker composer logs -f
 ```
 
 
 
-> docker compose 配置文件
+> docker compose 配置文件（docker-compose.yml）
 
 ```yaml
 services:
+  # 列表名称
   web:
     #定义主机名
     container_name: nginx
@@ -107,6 +110,46 @@ services:
     #docker 重启后，容器自启动
     restart: always
 ```
+
+
+
+示例如
+
+```yaml
+version: "3.8"
+services:
+  # 系统后端
+  imcloud_gms_admin:
+    container_name: imcloud_gms_admin
+    restart: "always"
+    image: openjdk:8-jdk
+    hostname: docker_gateway
+    network_mode: host
+    volumes:
+      - ./gms-admin/ruoyi-admin.jar:/root/bin/app.jar
+    environment:
+      - TZ=Asia/Shanghai
+    entrypoint: java -Xms1024m -Xmx1024m  -XX:-UseGCOverheadLimit -Dcsp.sentinel.app.type=1 -jar -Dfile.encoding=utf-8   /root/bin/app.jar #reactor.netty.worker.count=6
+
+  # 系统前端
+  imcloud_gms_ui:
+    container_name: imcloud_gms_ui
+    restart: "always"
+    image: nginx
+    hostname: docker_gateway
+    network_mode: host
+    volumes:
+      - ./gms-ui/html:/html
+      - ./gms-ui/conf/nginx.conf:/etc/nginx/nginx.conf
+      - ./gms-ui/logs:/var/log/nginx
+      - ./gms-ui/conf.d:/etc/nginx/conf.d
+      - ./gms-ui/sslfiles:/var/nginx/sslfiles
+    environment:
+      - TZ=Asia/Shanghai
+
+```
+
+
 
 
 
@@ -126,6 +169,9 @@ docker exec -it my_container /bin/sh
 docker cp /opt/app/demo ac8d80f6233ec:/home/demo
 # 从容器复制文件
 docker cp ac8d80f6233ec:/home/demo /opt/app/demo
+
+# 查看日志 log <container_id&name>
+docker logs imcloud_gms_admin
 ```
 
 

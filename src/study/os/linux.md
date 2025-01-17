@@ -451,9 +451,22 @@ find ./ -type f -print0 -maxdepth 1  | xargs -0 sha256sum
 # 查看磁盘分袂
 fdisk -l
 
+# 查看磁盘被表信息
+lsblk -l
+# 通过看，文件系统类型是否正常显示，若未显示需进行格式化
+lsblk -f
+
 # 如将 /dev/sda1 挂载到 /mnt/newdisk
 mkdir /mnt/newdisk
 mount /dev/sda1 /mnt/newdisk
+
+# mount 手动挂载，在服务器重启后会回丢失
+# 因此需要，通过修改 /etc/fstab 实现重启后自动挂载
+# 查看得 uuid 即可,或有 lsblk -f 查看
+blkid /dev/sdb
+# 修改配置文件，修改配置文件后执行 `mount -a` 即可根据配置挂载或重启后
+vi /etc/fstab
+#UUID=f53746a1-3b7f-449b-a670-c16b733c75fb /opt/systemlist      ext4    defaults        0 0
 
 # 部分磁盘挂载是提示应用磁盘只读，则需先进行格式化磁盘
 mkfs.ext4 /dev/sdb
@@ -646,19 +659,19 @@ systemctl start nginx
 # 停止服务
 systemctl stop nginx
 
-# 服务详情
+# 服务详情，可查看服务器是否运行自动启动
 systemctl status nginx
 
+# 更改某些unit配置文件后，需重新加载配置文件
+systemctl daemon-reload
+
 # 服务开启重启（enable）
-# 其他 
+# 其他，修改前执行  deamon-reload
 #    disable 服务未运行
 #    masked  服务不可运行
 #    disable 服务未运行
 #    static  只有在别的单元启动时才被使用
 systemctl enable nginx
-
-# 更改某些unit配置文件后，需重新加载配置文件
-systemctl daemon-reload
 ```
 
 
