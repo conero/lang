@@ -987,12 +987,17 @@ df -hl
 
 ### 网络
 
+yum 管理包下 netstat 安装的实际包为：`net-tools`
+
 - netstat            监控网络数据包统计数据
 - tcpdump        用于网络监控和数据获取的工具
 
 
 
 ```shell
+# 安装网络包
+yum install -y net-tools
+
 # 查看linux本地开放端口情况
 netstat -luntp
 netstat -tulnp

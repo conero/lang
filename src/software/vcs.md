@@ -1286,9 +1286,13 @@ git 图形化工具用于更改基类和文件差异，提交记录等。
 ```shell
 # 设置语言编码格式
 git config --global gui.encoding utf-8
+
+# windows 打开gitk
+gitk
+
+# 执行文件路径
+gitk ruoyi-admin/src/main/resources/application-prod.yml
 ```
-
-
 
 
 

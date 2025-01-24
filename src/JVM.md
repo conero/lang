@@ -267,6 +267,9 @@ java 顶级对象为 `java.lang.Object`.
 java -Xms256m -Xmx512m
 #
 java -Xms128m -Xmx256m
+
+# 设置文件编码 -Dfile.encoding=utf-8
+java -Xms256m -Xmx512m '-Dfile.encoding=utf-8' -jar .\target\pm-admin.jar
 ```
 
 

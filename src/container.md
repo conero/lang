@@ -85,6 +85,9 @@ docker compose up -d --force-recreate
 # 启动 docker 实例模拟，可用与检查环境等配置信息
 docker-compose up --dry-run
 
+# 服务重启
+docker-compose restart nginx
+
 # 停止容器
 docker compose down
 
