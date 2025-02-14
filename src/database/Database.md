@@ -321,6 +321,18 @@ db.createUser(
   }
 )
 
+// 创建用户并对其进行授权
+db.createUser(
+  {
+    user: "idis_user",
+    pwd: "T**o-88",
+    roles: [
+      { role: "readWrite", db: "idis_lhs" },
+      { role: "readWrite", db: "handle" }
+    ]
+  }
+)
+
 // 修改用户权限
 db.grantRolesToUser(
   "databaseManager",

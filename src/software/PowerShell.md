@@ -543,9 +543,18 @@ Get-Command -Verb ConvertTo
 > 从文件读取内容
 
 ```powershell
+# Get-Content 别名 cat/type
 # 读取内容到 $text
 $text = Get-Content -Path .\app-key-for-public.txt -Raw
 echo $text
+
+# 读取文件并使用，more 来进行分页
+Get-Content .\dist.zip | more
+type .\dist.zip | more
+
+# 通过 tail 指定需要读取文件最后几行
+# -wait用于实时记载变化内容，如看日志之类
+Get-Content -path .\dist.zip -Tail 100 -Wait
 
 # 读取文件的二进制内容
 $fileBytes = [System.IO.File]::ReadAllBytes("C:\path\to\your\file.bin")
