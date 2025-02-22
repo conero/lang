@@ -102,6 +102,22 @@ graph TD
 
 
 
+#### v2.x
+
+测试版本为 v2.2.x，v3等需验证是否正常。
+
+
+
+使用 jvm 参数指定程序命令行参数
+
+```shell
+java -Xms256m -Xmx512m '-Dserver.port=18083' '-Dfile.encoding=utf-8' -jar .\ruoyi-gateway-2.1.0.jar
+```
+
+
+
+
+
 ### spring Cloud
 
 Spring Cloud 本身并不是一个开箱即用的框架，它是一套微服务规范，共有两代实现。
