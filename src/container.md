@@ -93,6 +93,8 @@ docker compose down
 
 # 日志输出跟随（类似 tail -f）
 docker composer logs -f
+# 指定单个运行的镜像查看日志
+docker compose logs digital-smart-gy-conf -f
 ```
 
 
@@ -175,6 +177,8 @@ docker cp ac8d80f6233ec:/home/demo /opt/app/demo
 
 # 查看日志 log <container_id&name>
 docker logs imcloud_gms_admin
+# 以日志追加模式查看，类似于 tail -f
+docker logs imcloud_gms_admin -f 
 ```
 
 
