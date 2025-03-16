@@ -186,6 +186,11 @@ select name,setting,context from pg_settings where name like '%encoding%';
 # 将日志信息写入到文件中
 \o /home/scjg_xyjg-db-pg12/import.log
 
+# 查看数据库类别
+\l
+# 更详细的查看数据库列表
+\l+
+
 # 切换数据库
 \c mydb
 
