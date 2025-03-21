@@ -292,6 +292,9 @@ mongo "mongodb://alice@mongodb0.examples.com:28015/?authSource=admin"
 
 # 指定
 mongo -u root
+
+# 指定 root 用户并以 admin 管理人登录
+mongo -u root --authenticationDatabase admin
 ```
 
 
@@ -304,9 +307,15 @@ mongo shell 执行
 // 查看当前数据库
 db
 
+// 显示当前数据列表，展示类别及大小
+show dbs
+// 查看数据库列表，简单模式
+db.getMongo().getDBNames()
+// 
+
+
 // 查看数据库方法
 db.stats()
-
 
 // 创建用户
 // 使用 admin 登陆用户：  mongo --authenticationDatabase admin

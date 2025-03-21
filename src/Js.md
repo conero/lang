@@ -49,6 +49,22 @@ sessionStorage 会话存储的，但直接通过浏览器新打开两个页面�
 
 包管理工具有 npm, yarn, pnpm，bun 等，npm 为nodejs内置，bun为bunjs一体化管理包。
 
+
+
+> 检查npm版本更新状态，根据 package.json
+
+```shell
+# 使用 npm 查看当前的版本更新状态
+npm outdated
+
+# yarn 查看依赖当前的更新状态
+yarn upgrade-interactive
+yarn upgradeInteractive
+yarn upgrade-interactive --latest
+```
+
+
+
 ### npm
 
 **主要命令介绍**
