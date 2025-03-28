@@ -995,11 +995,14 @@ go 对windows 版本支持介绍如：
  $env:GOOS="linux"
  
  # 系统架构
- # amd64, 386, arm, ppc64
+ # amd64(x86_64), 386, arm, arm64(aarch64), ppc64
  $env:GOARCH = "amd64"
  
  # 运行，即使对应操作系统的脚本
  go build
+ 
+ # 查看go支持的操作系统及架构
+ go tool dist list
 ```
 
 

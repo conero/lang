@@ -60,6 +60,19 @@ docker info
 
 # 查看docker下服务镜像
 docker images
+
+# 服务器重启
+docker stop nginx
+docker start nginx
+
+docker restart nginx
+
+# 查看服务进程信息
+docker ps
+# 无截断查看 docker 进程
+docker ps --no-trunc
+# 查看对应进程使用 compose 执行时的配置文件路径之类的信息，如配置文件地址
+docker inspect <container_id_or_name>
 ```
 
 
@@ -67,11 +80,6 @@ docker images
 > docker compose
 
 ```shell
-# 查看服务进程信息
-docker ps
-# 查看对应进程使用 compose 执行时的配置文件路径之类的信息，如配置文件地址
-docker inspect <container_id_or_name>
-
 # 使用 config 查看配置信息，可用于验证配置文件的正确性
 docker-compose config
 # 查看服务进程

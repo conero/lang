@@ -527,7 +527,8 @@ realpath ./redis.cof
 
 ```shell
 # ln 必须使用绝对地址（经实际错误时无效）
-# -s 为实际的目标路径
+# -s 为实际的目标路径（源目录）
+ln -s <源目录> <软连接目录>
 ln -s /opt/systemlist/yzm/uploads /opt/systemlist/yzm/public/uploads
 # 如果资源已存在则强制覆盖
 ln -sf /opt/systemlist/yzm/uploads /opt/systemlist/yzm/public/uploads
@@ -1053,6 +1054,41 @@ iptables -I INPUT -p tcp --dport 80 -j ACCEPT
 # 运行本地访问
 iptables -I INPUT -s 127.0.0.1 -ptcp --dport 9960 -j ACCEPT
 iptables -I OUTPUT -s 127.0.0.1 -ptcp --dport 9960 -j ACCEPT
+```
+
+
+
+#### firewall
+
+防火墙
+
+```shell
+# 查看当前活动区域
+firewall-cmd --get-active-zones
+
+# 在默认区域放行 TCP 端口 8080
+# --permanent 将规则永久保存，即使重启后仍然有效
+firewall-cmd --add-port=8080/tcp --permanent
+firewall-cmd --add-port=53/udp --permanent
+# 移除端口访问策略
+firewall-cmd --remove-port=8080/tcp --permanent
+# 将源 IP 添加到 internal 区域
+firewall-cmd --permanent --zone=internal --add-source=192.168.1.100
+# 删除指定的富规则
+firewall-cmd --permanent --remove-rich-rule='rule family="ipv4" source address="192.168.1.100" port port="8080" protocol="tcp" accept'
+
+
+# 重新加载防火墙配置以使更改生效
+firewall-cmd --reload
+
+# 验证端口是否已放行
+firewall-cmd --list-ports
+# 查看特定区域的放行端口
+firewall-cmd --zone=public --list-ports
+# 查看当前活动区域的所有规则
+firewall-cmd --list-all
+# 查看富规则
+firewall-cmd --list-rich-rules
 ```
 
 
