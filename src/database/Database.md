@@ -272,6 +272,10 @@ MongoDB的最小存储单位就是文档document对象。
 
 
 
+其他基本概念
+
+- 默认端口为 27017
+
 
 
 ### v4.2
@@ -414,3 +418,41 @@ mongorestore --db handle /home/bak/250109-handle --gzip
 mongo --authenticationDatabase admin
 ```
 
+
+
+## neo4j
+
+基于Java的图形数据库。neo4j是一个高性能的NoSQL图形数据库，它将结构化数据存储在网络（从数学角度称为图）上而不是传统的表中。‌ Neo4j是一个嵌入式的、基于磁盘的、具备完全事务特性的Java持久化引擎，特别适合处理具有复杂关系的数据‌。
+
+
+
+- 官网：https://neo4j.com/
+- github: https://github.com/neo4j/neo4j
+
+
+
+
+
+### v3.3
+
+#### windows 安装
+
+- 安装参考   [Neo4j 安装、使用教程](https://blog.csdn.net/zeroheitao/article/details/122925845) ，依赖java 1.8 。 若安装Neo4j 4.x 版本，需使用 jdk11
+
+```powershell
+# ps 5.1 版本和管理原
+cd D:\neo4j-community-3.5.5\bin
+
+# 以服务形式安装
+./neo4j install-service
+
+# 运行服务器
+./neo4j start
+
+# 查看状态
+./neo4j status
+```
+
+
+
+安装后默认数据密码：` neo4j/neo4j` ，浏览器访问地址：http://localhost:7474 接口修改密码及登录

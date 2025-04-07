@@ -1618,6 +1618,7 @@ mysqldump <oldDbname> -u root -p<password> --add-drop-table | mysql <toNewDb> -u
 > 本地导出数据为SQL
 
 ```powershell
+# 设置 utf8 或 utf8mb4
 # mysqldump -uroot -p --default-character-set=utf8 dbname > d:/.../file.sql
 mysqldump -uroot -p --default-character-set=utf8 dataset > d:/tmp/dataset.sql
 
