@@ -1,5 +1,7 @@
 # exe
 *.exe
+*.obj
+*.pdb
 
 # 项目生成
 *zig-cache*
