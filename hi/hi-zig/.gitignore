@@ -6,3 +6,5 @@
 # 项目生成
 *zig-cache*
 *zig-out*
+# 文件输出
+out
