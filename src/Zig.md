@@ -28,6 +28,25 @@ zig fmt ./..
 
 
 
+Windows 下命令行乱码的处理方法
+
+```powershell
+# powershell
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+
+# 查看命令行编码
+chcp
+# 设置名行编码
+# utf-8
+chcp 65001
+# gbk
+chcp 936
+```
+
+
+
+
+
 ### 语法
 
 > **特性**
@@ -54,6 +73,78 @@ zig fmt ./..
 
 
 
+#### 类型
+
+```c
+//
+var variable:type = value;
+
+// 常量
+const variable = value;
+
+//解构赋值
+var z: u32 = undefined;
+// var z: u32 = undefined;
+const x, var y, z = [3]u32{ 1, 2, 3 }; // 数组
+
+
+// 字符串的写法
+const message_1 = "hello";
+const message_2 = [_]u8{ 'h', 'e', 'l', 'l', 'o' };
+const message_3: []const u8 = &.{ 'h', 'e', 'l', 'l', 'o' };
+```
+
+
+
+- 基本类型
+  - 数字
+  - 布尔 - boolean
+  - 字符
+- 复合类型
+  - 字符串 u8
+  - 元组（tuple） .{}
+  - 结构体（struct） strcut
+  - 联合  union
+  - 数组 [_]T
+  - 切片 []T
+  - 枚举  enum
+- 其他
+  - 向量
+  - 指针
+  - 零位类型    void
+
+
+
+
+
+
+使用 `undefined` 使变量保持未初始化状态。
+
+**字符串字面量**既可以隐式转换为 u8 切片，也可以隐式转换为以 0 结尾的指针。
+
+实际上枚举仅仅是一种命名空间
+
+
+
+**struct**
+
+结构体允许使用默认值
+
+
+
+
+
+#### 语句
+
+- 判断
+  - if else
+  - switch
+- 循环，支持 continue/break
+  - for
+  - while
+- 内联   inline
+- defer  延期执行，与 go 语言中类似
+- 可选类型   ?T   表 null or T
 
 
 
@@ -61,12 +152,36 @@ zig fmt ./..
 
 
 
+**三元表达式**
+
+```c
+const a: u32 = 5;
+const b: u32 = 4;
+// 下方 result 的值应该是47
+const result = if (a != b) 47 else 3089;
+```
 
 
 
 
 
+#### 函数
 
+函数的参数是不可变的。
+
+原始类型（整型、布尔这种）传递完全使用值传递，像复合类型（结构体、联合、数组等），这些传递均是由编译器来决定究竟是使用“值传递”还是“引用传递”。
+
+
+
+**内建函数** 由编译器提供，并以 @ 为前缀。
+
+**编译器** 运行，使用 comptime 修饰，其在编译器是必须是已知的。
+
+
+
+### 内存管理
+
+采取了类似 C 的方案，完全由程序员管理内存。
 
 
 
