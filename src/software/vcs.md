@@ -413,6 +413,8 @@ docs: correct spelling of CHANGELOG
 git log --oneline -- <file>
 # 文件追踪更改记录
 git log -p <file>
+# 查看当前目录下 wpg 的更改日志
+git log wpg/
 
 # 查看历史代码提交信息
 git show <commit_id>

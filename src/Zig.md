@@ -192,3 +192,7 @@ const result = if (a != b) 47 else 3089;
 - [Zig 语言圣经](https://course.ziglang.cc/)
 - [Zig 语言中文社区](https://ziglang.cc/)
 - [Zig语言中文手册](https://sxwangzhiwen.github.io/zigcndoc/zigcndoc.html)
+- [pedropark99/zig-book](https://github.com/pedropark99/zig-book) 英文版zig入门手册，https://pedropark99.github.io/zig-book/
+
+
+
