@@ -1627,6 +1627,9 @@ mysqldump -uroot -p --default-character-set=utf8 dataset --result-file=dump.sql
 
 # 仅导出数据库结构
 mysqldump -uroot -p --default-character-set=utf8 --opt -d dbname --result-file=dump.sql
+# 仅导出数据库数据
+mysqldump -uroot -p --default-character-set=utf8 --opt -t dbname --result-file=dump.sql
+
 
 # 经测试只导出一行
 # needtoKnowMore

@@ -461,6 +461,20 @@ sc delete Apache2.4
 
 
 
+#### linux
+
+```shell
+# 查看编译时配置文件
+httpd -V
+
+# 查看配置文件语法情况
+httpd -t
+```
+
+
+
+
+
 ### 变量
 
 #### 可变变量

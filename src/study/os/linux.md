@@ -142,7 +142,7 @@ LD_LIBRARY_PATH
 # 操作系统相关的版本信息
 cat /proc/version
 
-# 查看 cpu 信息
+# 查看 cpu 信息，如核数等
 lscpu
 
 # 操作系统相关信息
@@ -705,6 +705,7 @@ ps -ef|grep yangsu | grep -v grep | awk '{print $2}' | xargs kill -9
 
 # 根据 pid 获取进程执行的详细情况
 ps -p 25647 -f
+ps -ef|grep yangsu
 ```
 
 
@@ -2041,6 +2042,8 @@ G		#末行
 
 
 代码块批操作，如下：*使用 `ctrl + v` 按上下键选择代码块，`shift + i` 进入编辑模式，删除或tab实现批量操作*。
+
+**批量修改**：使用 `ctrl+v` 进入可视模式，在使用 j 等向上下选择，输入 d进行删除；使用 `ctrl+v`进入可视模式，使用 j 等选择块，输入 `#` 等按两次 ESC 即可添加注释。可是模式可使用 ESC 退出
 
 
 

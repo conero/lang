@@ -701,6 +701,17 @@ git checkout dev .gitignore
 
 
 
+> 本地分支查看
+
+```shell
+# 查看所有分支并查看提交信息
+git branch -a -vv
+```
+
+
+
+
+
 #### 新增分支
 
 ```ini
