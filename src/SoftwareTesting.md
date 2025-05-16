@@ -64,6 +64,10 @@
 
 - Gatling
 
+- rust 语言开发工具
+
+  - oha 命令行压测工具  
+  
   
 
 ##### jmeter
@@ -165,3 +169,11 @@ cat chinadatavalley-video.gob | vegeta plot --title "expo2022 video forum" > chi
 ### 灰度测试
 
 *灰度测试环境就是生产环境，生产数据，所影响的也是生产环境，只是范围比测试环境更广，更真实。其实就是小范围的生产环境。类似于游戏内测。*
+
+
+
+### 附录
+
+#### 参考
+
+- [Jmeter 压测保姆级入门教程](https://juejin.cn/post/7304271679009341449)
