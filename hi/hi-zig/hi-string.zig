@@ -5,7 +5,7 @@
 // zig build-exe hi-string.zig --library c
 // 压缩编译
 // zig build-exe hi-string.zig --library c -O ReleaseSmall
-// zig build-exe hi-string.zig --library c -O ReleaseSmall '-femit-bin=out/hi-string.exe'
+// zig build-exe hi-string.zig --library c -O ReleaseSmall '-femit-bin=out/hi-string.exe';.\out\hi-string.exe
 //
 // 执行代码
 // zig run .\hi-string.zig --library c
@@ -13,7 +13,7 @@ const std = @import("std");
 
 pub fn main() void {
     std.debug.print("Zig string 测试，since@2025年4月29日 \n\n", .{});
-
+    simpleStringTest();
     baseStringTest();
 }
 
@@ -57,4 +57,22 @@ fn baseStringTest() void {
 // 打印字符串
 fn printString(desc: []const u8, str: []const u8) void {
     std.debug.print("{s}: {s}\n", .{ desc, str });
+}
+
+//  简单字符串测试
+fn simpleStringTest() void {
+    std.debug.print("-------------------- [ simpleStringTest/begin ] --------------------\n", .{});
+
+    // 字符串变量
+    const testString = "君子以自强不息";
+    std.debug.print("testString/字面字符串定义（{?}）: {s}, len={d}, lastWord={s}\n", .{ @TypeOf(testString), testString, testString.len, testString[testString.len - 1 .. testString.len] });
+    // const utf9Len: usize = std.unicode.calcUtf16LeLen(testString) catch |err| {
+    //     std.debug.print("testString/calcUtf16LeLen err: {?}\n", .{err});
+    //     //0;
+    //     @as(usize, 0);
+    // };
+    const utf9Len: usize = std.unicode.calcUtf16LeLen(testString) catch 0;
+    std.debug.print("testString/utf9Len: {d}\n", .{utf9Len});
+
+    std.debug.print("-------------------- [ simpleStringTest/end ] --------------------\n\n", .{});
 }
