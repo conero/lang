@@ -10,7 +10,7 @@
 
 
 
-KingbaseES是人大金仓自主研发的企业级大型通用数据库管理系统，提供Oracle、、pgsql、MySQL和SQLServer兼容模式，在应用不改、性能不降、习惯不变的情况下，实现国外数据库的迁移替代。
+KingbaseES是人大金仓自主研发的企业级大型通用数据库管理系统，提供Oracle、pgsql、MySQL和SQLServer兼容模式，在应用不改、性能不降、习惯不变的情况下，实现国外数据库的迁移替代。
 
 
 

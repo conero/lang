@@ -2102,6 +2102,9 @@ pacman -Qs <pkg>
 
 # 包安装
 pacman -S <pkg>
+
+# gcc 软件包安装
+pacman -S --needed base-devel mingw-w64-x86_64-toolchain
 ```
 
 
@@ -2110,7 +2113,7 @@ pacman -S <pkg>
 
 
 
-
+msys2 供了最新的 GCC，mingw-w64，CPython，CMake，Meson 等原生构建；可以作为 Windows-gun 的环境。
 
 ## issue
 
@@ -2518,6 +2521,7 @@ ZXCVBNM		自行车未帮你买
 1. [试试Linux下的ip命令，ifconfig已经过时了 ](https://linux.cn/article-3144-1.html)
 1. [Window系统命令行调用控制面板程序](https://www.cnblogs.com/micq/p/15190937.html)
 1. [Linux服务器常用巡检命令](https://mp.weixin.qq.com/s/IjHS2l9166mMTt-Vymo3Fg)
+1. [msys2 安装 gcc教程](https://blog.csdn.net/ymzhu385/article/details/121449628)
 
 
 

@@ -1200,6 +1200,11 @@ get-random -Minimum 0.1 -Maximum 0.9
 # 列出所有进程，与 ps 相同
 Get-Process
 
+# 查看指定进程的所有属性
+Get-Process -PID 13180 | Select-Object *
+# 获取进程执行的实际执行命令
+Get-CimInstance Win32_Process -Filter "ProcessId = 13180" | Select-Object *
+
 # 获取指定服务以及显示基础信息
 Get-Process svchost, explorer | Format-List *
 

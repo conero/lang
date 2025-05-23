@@ -459,6 +459,14 @@ mvn clean install -pl ':zhuo-upms-server' -am '-Dmaven.test.skip=true'
 
 
 
+mvn 本地仓库地址配置
+
+```xml
+<localRepository>E:/AppData/.m2/repository</localRepository>
+```
+
+
+
 ##### pom.xml
 
 pom （Project Object Model，项目对象模型）是 Maven 的基本组件，它是以 xml 文件的形式存放在项目的根目录下，名称为 pom.xml。

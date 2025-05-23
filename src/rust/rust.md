@@ -3487,26 +3487,26 @@ Rust 标准库
 
 
 ```shell
-$ cargo --version
+cargo --version
 # 利用 cargo 创建项目
-$ cargo new <project>
+cargo new <project>
 # 创建一个（依赖）库项目，默认为(--bin) 生成二进制
-$ cargo new <project> --lib
+cargo new <project> --lib
 
 
 # 构建项目
-$ cargo build
+cargo build
 # 优化编译项目/发布时
-$ cargo build --release
+cargo build --release
 
 # 编译并运行生成的可执行文件
-$ cargo run
+cargo run
 
 # 快速检查代码确保其可以编译， 比 build 快
-$ cargo check
+cargo check
 
 # 更新 cargo lock 的版本依赖
-$ cargo update
+cargo update
 
 # 安装 https://github.com/killercup/cargo-edit
 # 同步更新 Cargo.toml
@@ -3518,6 +3518,9 @@ cargo update --dry-run
 cargo update -p tokio
 # 指定版本号
 cargo update -p tokio --precise 1.23.0
+
+# 已安装 cargo 应用列表
+cargo --list
 ```
 
 
