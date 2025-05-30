@@ -567,6 +567,10 @@ Maven可以引用任何Java系统属性，例如${java.version}或${file.encodin
 
 
 
+##### 国内镜像
+
+- 阿里镜像     https://developer.aliyun.com/mvn/guide
+
 
 
 #### Gradle

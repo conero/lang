@@ -148,7 +148,7 @@ lscpu
 # 操作系统相关信息
 uname -a
 
-# 查看本机的ip地址
+# 查看本机的ip地址（参考  https://ifconfig.me/）
 curl ifconfig.me
 
 # 查看本机账号
@@ -362,9 +362,6 @@ du -sh /* | sort -hr
 # 显示占用空间最大的前10个顶级目录
 du -sh /* | sort -hr | head -n 10
 
-# 列举所有系统盘设备及其分区信息
-fdisk -l
-
 # 文件、目录查找
 # 文件名查找
 # -iname 忽略大小写
@@ -448,7 +445,8 @@ find ./ -type f -print0 -maxdepth 1  | xargs -0 sha256sum
 磁盘挂载
 
 ```shell
-# 查看磁盘分袂
+# 查看磁盘分区
+# 列举所有系统盘设备及其分区信息
 fdisk -l
 
 # 查看磁盘被表信息
@@ -497,6 +495,15 @@ lsblk -p
 ```shell
 # 默认显示文件列表，所有（自己）
 fd
+
+# 查找 c 盘中，大于等于10M的log文件
+fd -S '+10m' -l -g "*.log" 'c:\'
+
+# 查找 e 盘中，含snms的名称
+fd -i -g "*snms*" 'E:\'
+
+# 使用 d 限制级别
+fd -i -g "*snms*" -d 1
 ```
 
 

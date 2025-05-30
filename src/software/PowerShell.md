@@ -1402,6 +1402,9 @@ ls env:
 get-childitem env:
 # 读取环境变量
 echo $env:java_home
+
+# 设置环境变量
+$env:PATH="E:\conero\apps\apache-maven-3.3.9\bin;$($env:PATH)"
 ```
 
 
