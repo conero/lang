@@ -28,6 +28,30 @@ zig fmt ./..
 
 
 
+zig 交叉编译
+
+```powershell
+# linux
+zig build '-Dtarget=x86_64-linux-musl' --release=safe
+zig build '-Dtarget=x86_64-linux-gnu'
+zig build '-Dtarget=x86_64-linux'
+zig build '-Dtarget=aarch64-linux'
+
+# macos
+zig build '-Dtarget=x86_64-macos'
+
+# windows
+zig build '-Dtarget=x86_64-windows'
+zig build '-Dtarget=x86_64-windows-gnu'
+
+# wasi 编码
+zig build '-Dtarget=wasm32-wasi-musl'
+```
+
+
+
+
+
 Windows 下命令行乱码的处理方法
 
 ```powershell

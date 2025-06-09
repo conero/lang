@@ -78,7 +78,7 @@ show variables like '%like%';
 # [mysqld] \n max_connections = 1000
 SET GLOBAL max_connections = 1000;
 
-# 数据表大小写是否区分，0-区分/1-不区分
+# 数据表大小写是否区分，0-区分/1-不区分/2-存储时区分查询不区分
 lower_case_table_names = 1
 ```
 

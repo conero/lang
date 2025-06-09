@@ -1,8 +1,12 @@
-# Oracle-11g
+# Oracle
 
 > Joshua Conero
 >
 > 2018年8月28日 星期二
+
+
+
+知识基于版本 oracle 11g 或 oracle 12c。
 
 
 
@@ -165,6 +169,24 @@ alter user uname identified by pswd;
 
 
 
+### 命令或工具
+
+```shell
+# 查看网络连接状态
+lsnrctl status
+```
+
+
+
+
+
+### 备份及恢复
+
+导入sql文件的方法
+
+- 使用 Oracle SQL Developer，以sql查询文件打开到查询控制台中，执行运行脚本即可
+- 使用 sqlplus 工具，连接到数据库中，使用命令如 `@e:/apps/DZZZEX.sql` 导入数据
+
 
 
 ### 版本介绍
@@ -183,4 +205,6 @@ alter user uname identified by pswd;
 
 - [Oracle 锁机制探究](https://www.cnblogs.com/leohahah/p/7039907.html)
 - https://edelivery.oracle.com   Oracle 数据库等下载地址
+- [解决Oracle 本地可以连接，远程不能连接问题](https://www.cnblogs.com/xyt-0412/p/9897180.html) 
+- [DBeaver添加阿里maven镜像](https://developer.aliyun.com/article/1551241)
 

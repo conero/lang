@@ -1025,6 +1025,12 @@ tcpdump -i ens3 port 62023
 
 # 查看任意网卡的 62023 的监听端口
 tcpdump -i any port 62023
+
+# 抓包，保存到 http.cap 中，并使用 Wireshark 分析
+# -c 20 个包
+tcpdump -nni any port 18080 -c 20 -w http.cap
+# 持续抓包
+tcpdump -nni any port 18080 -w http.cap
 ```
 
 
@@ -1400,6 +1406,11 @@ sudo passwd root
 
 # 用户登录
 su root
+
+# 查看当前登录的用户
+whoami
+echo $USER
+id
 ```
 
 
@@ -1448,6 +1459,7 @@ cat /etc/group
 # 查看当前用户
 whoami
 id
+echo $USER
 
 # 密码修改
 passwd mysql
