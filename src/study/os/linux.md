@@ -180,6 +180,8 @@ echo $PATH
 chmod 777 <file_path>
 # 权限授权给指定的用户
 # 将当前目录所有文件与子目录拥有者设置给nginx、群体使用者设置给 nginxgroup
+#
+# 父级属于其他用户，子目录属于不同用户时相互不影响
 chown -R nginx:nginxgroup *
 
 # 内容/文本查找
@@ -717,7 +719,7 @@ ps -ef|grep yangsu
 
 
 
-Linux 服务端端口号占用情况查询：
+Linux 服务端端口号占用情况查询，ps 命令可查询启动它的用户信息：
 
 ```shell
 # 1) 查询进程，并获取 pid
@@ -1065,7 +1067,7 @@ iptables -I INPUT -ptcp --dport 9960 -j DROP
 # 开放80端口外部访问
 iptables -I INPUT -p tcp --dport 80 -j ACCEPT
 
-# 运行本地访问
+# 允许本地访问
 iptables -I INPUT -s 127.0.0.1 -ptcp --dport 9960 -j ACCEPT
 iptables -I OUTPUT -s 127.0.0.1 -ptcp --dport 9960 -j ACCEPT
 ```
@@ -1893,6 +1895,14 @@ $ rpm -qa | grep libxml2
 
 ## 工具包及套件
 
+### 包管理软件
+
+#### dnf
+
+DNF（Dandified Yum）是Fedora Linux操作系统中的一个包管理器，它是基于Yum开发的。它的主要特点是快速、可靠、易用和优秀的用户体验。
+
+
+
 ### vim
 
 旧版命令 *`vi`*，*`vim`全部兼容前者。`Insert` 或者`i/a`插入文本命令, 推荐使用 `vim`命令。*
@@ -2133,6 +2143,37 @@ pacman -S --needed base-devel mingw-w64-x86_64-toolchain
 
 
 msys2 供了最新的 GCC，mingw-w64，CPython，CMake，Meson 等原生构建；可以作为 Windows-gun 的环境。
+
+
+
+### c library
+
+linux 目前常用的 c library （运行时环境）有这些：
+
+- musl                 linux，轻量级且快速的C库，被设计成简单、一致和正确性优先。
+- glibc                 GNU C Library，最广泛使用的标准C库，几乎所有的Linux发行版都默认使用它。
+- bionic               android，由Google为Android开发
+- uClibc               嵌入式Linux系统设计的C库。它旨在提供一个小型化的C库解决方案，同时保持了足够的功能性和POSIX兼容性，适用于资源受限的环境
+- dietlibc             针对嵌入式系统的轻量级C库，目标是创建尽可能小的二进制文件。
+
+
+
+查看linux glibc 的版本号
+
+```shell
+ldd --version
+```
+
+
+
+此外其他系统常见的 c library
+
+- msvc                    MSVCRT 是微软Visual C++编译器附带的标准C运行时库。它支持Windows上的应用程序开发，并提供了与标准C和C++兼容的函数实现。
+- Newlib                 嵌入式系统、裸机（Bare Metal）、实时操作系统（RTOS）
+- Picolibc                嵌入式系统，强调代码尺寸小和性能高
+- FreeBSD C Library (libc)     FreeBSD及其他BSD变种
+
+
 
 ## issue
 

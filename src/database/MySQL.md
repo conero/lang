@@ -227,6 +227,30 @@ service mysqld start
 
 
 
+#### mysql5.7 glibc2.12 （通用 linux）
+
+下载文件
+
+```shell
+wget https://downloads.mysql.com/archives/get/p/23/file/mysql-5.7.44-linux-glibc2.12-x86_64.tar.gz
+
+tar -zxvf mysql-5.7.44-linux-glibc2.12-x86_64.tar.gz
+
+# 创建用户（组）
+groupadd mysql
+useradd -r -g mysql mysql
+
+# 使用 mysqld 安装服务
+mysqld --initialize --user=mysql --basedir=/opt/apps/mysql --datadir=/opt/apps/mysql-data
+
+# mysqld 配置文件可设置为
+vi "$basedir/my.cnf"
+```
+
+
+
+
+
 #### mysql 5.6 openeuler 22.03
 
 数据库安装
@@ -236,11 +260,25 @@ service mysqld start
 wget https://downloads.mysql.com/archives/get/p/23/file/mysql-5.7.44-1.el7.x86_64.rpm-bundle.tar
 
 rpm -ivh mysql-community-common-5.7.44-1.el7.x86_64.rpm
-rmp -ivh mysql-community-libs-5.7.44-1.el7.x86_64.rpm
+rpm -ivh mysql-community-libs-5.7.44-1.el7.x86_64.rpm
 
 # 依赖 
 yum install libncurses
 rpm -ivh mysql-community-client-5.7.44-1.el7.x86_64.rpm
+
+
+# 异常处理，libncurses.so.5: cannot open shared object file: No such file or directory
+# 通过 `find / -name *libncurses*` 查看发现 libncurses.so.6 存在，则创建软链接
+ln -s /usr/lib64/libtinfo.so.6 /usr/lib64/libtinfo.so.5
+ln -s /usr/lib64/libncurses.so.6 /usr/lib64/libncurses.so.5
+
+
+# mysqld 初始化
+./bin/mysqld --initialize --console --user=mysql --basedir=/opt/apps/mysql --datadir=/opt/apps/mysql-data
+
+# 复制服务文件
+cp support-files/mysql.server /etc/init.d/mysqld
+# 修改 mysql 服务文件中的 "basedir/datadir"
 ```
 
 
@@ -1458,6 +1496,16 @@ delete from mysql.user where user="usermy" and host="%";
 -- 查看用户密码
 select user,host from mysql.user;
 ```
+
+
+
+开启远程连接，创建远程服务用户：
+
+```mysql
+create  user 'root'@'%' identified by 'Dw......';
+```
+
+
 
 
 

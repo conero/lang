@@ -207,4 +207,5 @@ lsnrctl status
 - https://edelivery.oracle.com   Oracle 数据库等下载地址
 - [解决Oracle 本地可以连接，远程不能连接问题](https://www.cnblogs.com/xyt-0412/p/9897180.html) 
 - [DBeaver添加阿里maven镜像](https://developer.aliyun.com/article/1551241)
+- [oracle-base 安装包下载](https://oracle-base.com/)
 

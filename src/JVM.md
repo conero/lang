@@ -291,6 +291,24 @@ java '-Dserver.port=7480' -jar .\target\cas.war
 
 
 
+### java 安装
+
+#### linux 安装java
+
+
+
+Anolis OS 8.9 安装 java8
+
+```shell
+# 使用 dnf 查询java
+dnf search java|grep jdk
+
+# 安装openjdk java8
+dnf install java-1.8.0-openjdk
+```
+
+
+
 
 
 ### 框架及应用

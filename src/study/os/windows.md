@@ -319,9 +319,28 @@ C++/WinRT 是 Windows 运行时 (WinRT) API 的完全标准新式 C++17 语言�
 
 
 
+### 菜单及命令行
+
+Windows 菜单路径地址：`C:\ProgramData\Microsoft\Windows\Start Menu`
+
+
+
+使用 fd 工具搜索并打开文件，但搜索框无法工作时：
+
+```powershell
+fd -i -g '*xshell*' C:\ProgramData\
+
+# 打开快捷键
+&"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Xshell 8\Xshell.lnk"
+```
+
+
+
 
 
 ### 控制面板(contrl.exe)
+
+使用 `win+R` 输入 contrl 并执行，即打开（搜索无法打开时）。
 
 control.exe 控制面板所在目录 `C:\Windows\System32\control.exe`
 
@@ -419,7 +438,6 @@ control.exe 控制面板所在目录 `C:\Windows\System32\control.exe`
     - odbcad32	ODBC数据源管理器
     - syskey		系统加密，一旦加密就不能解开，保护windows 7系统的双重密码
     - sfc.exe		系统文件检查器，需要管理员权限启动cmd，并在命令行中输入命令及参数扫描所有受保护的系统文件的完整性，并用正确的 Microsoft 版本替换不正确的版本。
-    - sfc /scannow	需要管理员权限启动cmd，在DOS窗口中进行系统扫描。windows文件保护
     - cleanmgr	垃圾整理（磁盘清理）
     - dvdplay		DVD播放器(Windows Media Player)
     - eventvwr	一个事情查看器
@@ -670,6 +688,10 @@ bcdboot c:\windows /l zh-cn
 
 - `win+X`，选择**磁盘管理**。即进入管理界面。
 - 在桌面选择**此电脑**，选择**管理**，再选中“**存储/磁盘管理**”。
+
+
+
+文件扫描
 
 
 
