@@ -853,6 +853,8 @@ loginctl
 sudo systemctl reboot
 # 执行系统重启
 reboot
+# 系统关机
+shutdown 
 
 # 关闭系统，切断电源
 sudo systemctl poweroff

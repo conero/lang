@@ -205,6 +205,12 @@ windows环境变量分
 # 设置环境变量
 [Environment]::SetEnvironmentVariable('PATH', 'd', 'User')
 
+# 设置环境变量示例
+[System.Environment]::SetEnvironmentVariable(
+    "Path",
+    [System.Environment]::GetEnvironmentVariable("Path", "User") + ";$env:USERPROFILE\.bun\bin",
+    [System.EnvironmentVariableTarget]::User
+)
 
 # 查看 Environment 类的成员
 [Environment] | Get-Member 
@@ -1356,6 +1362,17 @@ Get-CimInstance -ClassName Win32_BIOS
 Get-WmiObject -List *
 Get-WmiObject -List Win32_*
 Get-WmiObject -List Win32_*|Select-Object name
+```
+
+
+
+### 网络
+
+vpn 命令
+
+```powershell
+# 查看当前系统所有 vpn 连接
+Get-VpnConnection -AllUserConnection
 ```
 
 

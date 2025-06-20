@@ -1794,6 +1794,15 @@ mysql 5.7 或 8.0：删除 mysql配置 binlog.index 文件即可
 
 
 
+### mysql 命令工具
+
+```mysql
+# 查看服务器连接信息
+\s
+```
+
+
+
 
 
 ## example

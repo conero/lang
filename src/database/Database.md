@@ -155,7 +155,7 @@ dminit
 dmserver status
 ```
 
-*
+
 
 配置环境变量
 
