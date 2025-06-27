@@ -245,9 +245,18 @@ mysqld --initialize --user=mysql --basedir=/opt/apps/mysql --datadir=/opt/apps/m
 
 # mysqld 配置文件可设置为
 vi "$basedir/my.cnf"
+
+
+# 服务器初始化及启动，在其所在应用目录
+cp support-files/mysql.server /etc/init.d/mysqld
+
+# 启动服务
+service mysqld status
+service mysqld start
+service mysqld stop
+# 启动或重启
+service mysqld restart
 ```
-
-
 
 
 
@@ -1485,9 +1494,9 @@ GRANT ALL PRIVILEGES ON *.* TO 'root'@'192.168.199.99';
 
 flush privileges;
 
--- 查看用户权限
+-- 查看用户和主机信息
 SELECT DISTINCT CONCAT('User: ''',user,'''@''',host,''';') AS query FROM mysql.user;
--- 查看指定用户
+-- 查看指定用户的权限
 show grants for 'usermy'@'%'; 
 
 -- 删除权限
@@ -1668,28 +1677,28 @@ mysqldump <oldDbname> -u root -p<password> --add-drop-table | mysql <toNewDb> -u
 ```powershell
 # 设置 utf8 或 utf8mb4
 # mysqldump -uroot -p --default-character-set=utf8 dbname > d:/.../file.sql
-mysqldump -uroot -p --default-character-set=utf8 dataset > d:/tmp/dataset.sql
+mysqldump -uroot -p --default-character-set=utf8mb4 dataset > d:/tmp/dataset.sql
 
 # 导出的字符格式，utf8. ">" 与系统的语言编码一致 
-mysqldump -uroot -p --default-character-set=utf8 dataset --result-file=dump.sql
+mysqldump -uroot -p --default-character-set=utf8mb4 dataset --result-file=dump.sql
 
 # 仅导出数据库结构
-mysqldump -uroot -p --default-character-set=utf8 --opt -d dbname --result-file=dump.sql
+mysqldump -uroot -p --default-character-set=utf8mb4 --opt -d dbname --result-file=dump.sql
 # 仅导出数据库数据
-mysqldump -uroot -p --default-character-set=utf8 --opt -t dbname --result-file=dump.sql
+mysqldump -uroot -p --default-character-set=utf8mb4 --opt -t dbname --result-file=dump.sql
 
 
 # 经测试只导出一行
 # needtoKnowMore
-mysqldump -uroot -p --default-character-set=utf8 dataset tablename > d:/tmp/tablename.sql
-mysqldump -uroot -p --default-character-set=utf8 dataset tablename --result-file=d:/tmp/tablename.sql
+mysqldump -uroot -p --default-character-set=utf8mb4 dataset tablename > d:/tmp/tablename.sql
+mysqldump -uroot -p --default-character-set=utf8mb4 dataset tablename --result-file=d:/tmp/tablename.sql
 
 # 选项
 # --no-data 无数据
 
 # 远程测试，可能导致其他链接缓慢。
 # 导出测试的服务器所在数据库 "207.12.24.56"
-mysqldump -h "207.12.24.56" -uroot -p --default-character-set=utf8 dataset tablename --result-file=d:/tmp/tablename.sql
+mysqldump -h "207.12.24.56" -uroot -p --default-character-set=utf8mb4 dataset tablename --result-file=d:/tmp/tablename.sql
 
 # 所有数据库进行备份
 mysqldump  -uroot  -p --all-databases > /data/bakSql/133mysqlbak.sql

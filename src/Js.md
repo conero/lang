@@ -84,6 +84,15 @@ npm init
 
 # 查看全局安装的 npm 包
 npm list -g --depth 0
+
+# 查看项目中引用的 webpack 版本
+npm ls webpack
+
+# 依照 package-lock.json 文件按照依赖，而不主动更新
+npm ci
+
+# 与 npm ci 类似(yarn 1.22 版本)
+yarn install --frozen-lockfile
 ```
 
 

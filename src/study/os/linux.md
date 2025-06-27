@@ -547,6 +547,21 @@ ln -sv /opt/systemlist/yzm/uploads /opt/systemlist/yzm/public/uploads
 
 
 
+> **文件切割方法**
+
+当文件较大时可使用 split 对文件进行切割
+
+```shell
+# 将文件按 300M/个 对 ebuy_server.tar.gz 其进行切割
+split -b 300M ebuy_server.tar.gz part_
+```
+
+
+
+
+
+
+
 #### 内容查看或管理
 
 ```shell
@@ -697,6 +712,9 @@ systemctl enable nginx
 # 通过php，开启内部服务器
 # & 表示后台挂起运行
 nohup /usr/bin/php -S 0.0.0.0:9200 &
+
+nohup your_command > /path/to/your/output.log 2>&1 &
+
 
 # 查找进程，是否运行或者杀死进程
 ps -aux|grep <name>
@@ -902,7 +920,6 @@ journalctl -xe
 ### 压缩建档
 
 ```shell
-$ tar
 # 主要类别
 -c Create  -r Add/Replace  -t List  -u Update  -x Extract
 # 解压
