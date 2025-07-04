@@ -739,6 +739,22 @@ select locate('hua', 'joshua yang'), locate('j', 'joshua yang'), locate('joshua 
 
 
 
+##### 动态sql执行
+
+自定义函数或者触发器等不允许动态执行sql
+
+```mysql
+-- 动态sql执行
+SET @tablename = '__data_mock.basic_plat_bj__v_basic_interface_manage';
+set @sqlx = concat('select count(1) from ', @tablename); 
+SELECT @sqlx INTO @result;
+PREPARE stmt FROM @result;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+```
+
+
+
 #### update
 
 *更新数据*

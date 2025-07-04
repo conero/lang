@@ -12,6 +12,8 @@
 
 ## 基础
 
+默认端口：1521
+
 
 
 ### 查询
@@ -47,6 +49,14 @@ alter system kill session'10,15';
 - DML锁（data locks，数据锁），用于保护数据的完整性
 - DDL锁（dictionary locks，字典锁），用于保护数据库对象的结构，如表、索引等的结构定义
 - 内部锁和闩（internal locks and latches），保护数据库的内部结构
+
+
+
+### 用户
+
+默认管理员账号：
+
+*system*
 
 
 
@@ -186,6 +196,58 @@ lsnrctl status
 
 - 使用 Oracle SQL Developer，以sql查询文件打开到查询控制台中，执行运行脚本即可
 - 使用 sqlplus 工具，连接到数据库中，使用命令如 `@e:/apps/DZZZEX.sql` 导入数据
+
+
+
+```shell
+# 创建 DUMP_DIR，sql 对话中执行
+create directory DUMP_DIR as 'E:\dbData';
+
+# 使用 impdb 导入sql
+impdp system/password@dzzzex25 directory=DUMP_DIR dumpfile=ORACLE_dzzzex.dbmd full=y
+```
+
+
+
+
+
+#### sql plus
+
+按照提供登录用户，相关信息查看
+
+执行用户和密码进行数据库登录，中文乱码时可使用Windows 记事本保存为 `ANSI` 编码格式
+
+```shell
+# 指定数据库及用户密码登录数据库
+.\sqlplus.exe 'system/passwd@sid'
+
+# 查看是否支持 utf8
+SELECT value AS database_charset FROM nls_database_parameters WHERE parameter = 'NLS_CHARACTERSET';
+
+# 设置 utf8 编码支持
+# windows pwsh 环境变量
+$env:NLS_LANG='AMERICAN_AMERICA.AL32UTF8'
+```
+
+
+
+sql plus 相关操作
+
+```sql
+# 查看当前用户信息
+SELECT name, dbid, created, log_mode FROM v$database;
+
+# 执行sql
+@E:\dbData\DZZZEX.sql
+# 或使用 start 执行sql
+start E:\dbData\DZZZEX.sql
+# 提交
+commit
+```
+
+
+
+
 
 
 

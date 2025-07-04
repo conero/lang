@@ -242,6 +242,25 @@ config get requirepass
 
 
 
+#### memcached
+
+- 官网 https://memcached.org/  ， github  https://github.com/memcached/memcached
+
+
+
+默认端口 `11211`
+
+
+
+```shell
+# 启动服务
+memcached -d
+```
+
+
+
+
+
 #### 参考
 
 - [图解redis](https://mp.weixin.qq.com/s/fEAWotIg2LN324wDfznpDA)

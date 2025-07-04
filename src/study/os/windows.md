@@ -330,6 +330,9 @@ Windows 菜单路径地址：`C:\ProgramData\Microsoft\Windows\Start Menu`
 ```powershell
 fd -i -g '*xshell*' C:\ProgramData\
 
+# 查询并删除
+fd -i -g ".DS_Store" E:\conero\ | rm
+
 # 打开快捷键
 &"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Xshell 8\Xshell.lnk"
 ```

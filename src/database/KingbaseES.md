@@ -210,6 +210,12 @@ select user;
 # pg 模式
 # 查看系统用户
 SELECT * FROM pg_user;
+
+# 查看当前数据库
+SELECT current_database();
+
+# 查看服务器的编码格式
+show server_encoding
 ```
 
 
@@ -243,6 +249,17 @@ Ksql 下命令话查询
 #### 备份
 
 可通过 kStudio 工具导出数据sql或二进制（.dmp）
+
+
+
+#### 恢复
+
+```shell
+# 使用 sys_restore 导入到指定数据库
+./sys_restore -h 10.10.16.69 -U system -W -d dzzw D:/conero/console/sql/ORACLE_dzzzex.dbmd
+```
+
+
 
 
 
