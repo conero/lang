@@ -760,6 +760,9 @@ Get-Alias cls
 Get-Alias 
 gal
 
+# 设置别名 （python2 -> python）
+Set-Alias -Name python2 -Value python
+
 # tee 命令 => 用于显示程序的输出并将其复制到一个文件中。保存命令输出的内容作为一个文件
 ```
 

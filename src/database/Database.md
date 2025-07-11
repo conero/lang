@@ -133,6 +133,10 @@ sqlcmd -S 127.0.0.1 -U conero
 
 
 
+一个数据库，为其单独实例，类似于 oracle。
+
+
+
 可使用软件自带的**DM数据迁移工具**，实现dm数据库与oracle、MySQL、pgsql的数据迁移；同时支持 sql、csv等文件迁移。
 
 
@@ -183,6 +187,8 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$DM_HOME/bin
 
 使用 **达梦数据库配置助手** 工具创建数据库，与 oracle 相似，即每个数据库需要单独配置。
 
+授权：默认授权只有1年，一年后开发者等无法使用必须使用
+
 模式：数据库创建时其默认模式为与用于同名模式。
 
 
@@ -198,6 +204,9 @@ select * FROM v$instance;
 
 -- 查询当前连接数据库信息
 SELECT * FROM V$DATABASE;
+
+-- 授权信息查看
+select * FROM v$license;
 ```
 
 

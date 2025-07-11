@@ -400,8 +400,18 @@ mvn install:install-file `
     -Dfile=E:/conero/x/Dm8JdbcDriver230624-dm8.jar `
     -DgroupId=com.dm `
     -DartifactId=Dm8JdbcDriver230624 `
-    -version=dm8 `
+    -Dversion=dm8 `
     -Dpackaging=jar
+
+
+# powershell 环境下注意标点符号
+# -X 可查看调试日期
+mvn install:install-file -X `
+    -Dfile=E:/conero/repository/e-gyblockd/2507-gywl_szbwgy/2-prod-jar/main-1.0-SNAPSHOT/BOOT-INF/lib/jeecg-boot-starter-2.1.4-guiyang-SNAPSHOT.jar `
+    '-DgroupId=org.jeecgframework.boot' `
+    '-DartifactId=jeecg-boot-parent' `
+    '-Dversion=2.1.4-guiyang-SNAPSHOT' `
+    '-Dpackaging=jar'
 ```
 
 

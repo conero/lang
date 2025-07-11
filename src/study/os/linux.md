@@ -554,6 +554,9 @@ ln -sv /opt/systemlist/yzm/uploads /opt/systemlist/yzm/public/uploads
 ```shell
 # 将文件按 300M/个 对 ebuy_server.tar.gz 其进行切割
 split -b 300M ebuy_server.tar.gz part_
+
+# 使用 cat 对文件进行合并
+cat $(ls part_* | sort) > ebuy_server_reconstructed-bash.tar.gz
 ```
 
 
@@ -1206,6 +1209,15 @@ date +%s%6N
 
 # 日历显示
 cal
+
+
+#
+# 操作系统时间同步
+# 使用 ntpdate 同步时间
+ntpdate ntp.aliyun.com
+
+# 将系统时间同步到硬件，防止系统重启后时间被还原
+hwclock --systohc
 ```
 
 

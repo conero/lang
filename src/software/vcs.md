@@ -719,6 +719,7 @@ git branch -a -vv
 # Method 1
 git checkout -b <branchName>
 git checkout -b <branchName> remotes/origin/<branchName>
+# 以远程分支为基础拉取分支
 git checkout -b trys-190329/krpano remotes/origin/trys-190329/krpano 
 
 # 分支简写
