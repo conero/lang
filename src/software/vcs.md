@@ -478,6 +478,8 @@ git push -f origin <branch>
 ```shell
 # 撤销 commit， 并保留代码（安全）
 git reset --soft HEAD^
+# 也可以使用分支(--hard 时强制执行)
+git reset --soft branch
 # 修改提交的备注信息
 git commit --amend
 ```

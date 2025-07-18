@@ -220,7 +220,9 @@ func BenchmarkStructToMapLStyle(b *testing.B) {
 
 golang的cgo是调用gcc编译c代码的，gcc工具链在linux上很方便，但windows上是没有的。而windows上一般用的vc，golang是不支持的。
 
-可用 *MinGW*
+可用 *[MinGW](https://www.mingw-w64.org/)* 或 [msys2](https://www.msys2.org/) （https://github.com/msys2/msys2-installer），安装 msys2 后执行 `pacman -S mingw-w64-ucrt-x86_64-gcc` 即可安装 gcc。
+
+
 
 
 
@@ -941,12 +943,13 @@ golangci-lint run file1.go
 
 #### fyne
 
-*跨平台的 GUI 库，[GitHub代码库](<https://github.com/fyne-io/fyne>)。*
+*跨平台的 GUI 库，[GitHub代码库](<https://github.com/fyne-io/fyne>)。* 其底层依赖 go-gl/gl 需使用 cgo (gcc)。
 
 > window GUI APP 默认含 cmd 窗口，可使用参数选项来消除
 
 ```powershell
-go build -ldflags -H=windowsgui <filename>
+# 隐藏命令行窗口
+go build -ldflags="-H windowsgui" main.go
 ```
 
 

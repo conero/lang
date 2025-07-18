@@ -1345,6 +1345,9 @@ Remove-PSDrive
 ```powershell
 # 打印机
 Get-CimInstance -Class Win32_Printer
+
+# 查找打印机状态（是否空闲等）
+Get-CimInstance -Query "SELECT * FROM Win32_Printer WHERE Name like '%6-DYJCJ-S2507%'"
 ```
 
 

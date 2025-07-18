@@ -311,6 +311,21 @@ dnf install java-1.8.0-openjdk
 
 
 
+### jar
+
+JAR 文件是使用 ZIP 文件格式标准 定义的一种归档格式，只是扩展名不同（.jar 而不是 .zip），并添加了一些 Java 相关的元信息（如 MANIFEST.MF）。
+
+
+
+```shell
+# 列出指定jar档案目录
+jar -tf t/file/name.jar
+```
+
+
+
+
+
 ### 框架及应用
 
 - web框架
@@ -412,6 +427,9 @@ mvn install:install-file -X `
     '-DartifactId=jeecg-boot-parent' `
     '-Dversion=2.1.4-guiyang-SNAPSHOT' `
     '-Dpackaging=jar'
+
+# mvn 安装 pom 文件
+mvn install:install-file '-Dfile=E:/conero/e-workshop/1-can-destroy/jeecg-boot-starter-2.1.4-guiyang-SNAPSHOT/META-INF/maven/org.jeecgframework.boot/jeecg-boot-starter/pom.xml' '-DgroupId=org.jeecgframework.boot' '-DartifactId=jeecg-boot-parent' '-Dversion=2.1.4-guiyang-SNAPSHOT' '-Dpackaging=pom'    
 ```
 
 
@@ -438,7 +456,7 @@ mvn install:install-file -X `
 - test                项目测试用例运行
 - package        项目打包，生成 jar 或 war包
 - verify             对测试结果等进行测试
-- install            （Maven特定的概念）将打包得到的文件复制到“仓库”中的指定位置
+- install            （Maven特定的概念）将打包得到的文件复制到“仓库”中的指定位置（本地仓库）
 - site
 - deploy            将动态Web工程生成的war包复制到Servlet容器下，使其可以运行
 
