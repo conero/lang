@@ -64,7 +64,7 @@ fn simpleStringTest() void {
     std.debug.print("-------------------- [ simpleStringTest/begin ] --------------------\n", .{});
 
     // 字符串变量
-    const testString = "君子以自强不息";
+    const testString = "天行健，君子以自强不息。\n A gentleman strives for self-improvement without ceasing.";
     std.debug.print("testString/字面字符串定义（{?}）: {s}, len={d}, lastWord={s}\n", .{ @TypeOf(testString), testString, testString.len, testString[testString.len - 1 .. testString.len] });
     // const utf9Len: usize = std.unicode.calcUtf16LeLen(testString) catch |err| {
     //     std.debug.print("testString/calcUtf16LeLen err: {?}\n", .{err});
@@ -74,5 +74,36 @@ fn simpleStringTest() void {
     const utf9Len: usize = std.unicode.calcUtf16LeLen(testString) catch 0;
     std.debug.print("testString/utf9Len: {d}\n", .{utf9Len});
 
+    // index计算
+    const uIndex: usize = std.mem.lastIndexOf(u8, testString, "强") orelse 0;
+    std.debug.print("字符串index（强）: {d}\n", .{uIndex});
+    strZeroSplit(testString);
+    utf8ZeroSplit(testString);
+
     std.debug.print("-------------------- [ simpleStringTest/end ] --------------------\n\n", .{});
+}
+
+// utf8 字符串分割
+fn utf8ZeroSplit(vStr: []const u8) void {
+    const uView = std.unicode.Utf8View.init(vStr) catch |err| {
+        std.debug.print("utf8Split err: {?}\n", .{err});
+        return;
+    };
+    var iter = uView.iterator();
+    std.debug.print("UTF 分割：", .{});
+    while (iter.nextCodepointSlice()) |codepoint| {
+        std.debug.print("{s}-", .{codepoint});
+    }
+    std.debug.print("\n", .{});
+}
+
+// 字符串分割
+// @todo utf8 空字符串分割无效
+fn strZeroSplit(vStr: []const u8) void {
+    var iter = std.mem.splitAny(u8, vStr, "");
+    std.debug.print("字符串分割：", .{});
+    while (iter.next()) |codepoint| {
+        std.debug.print("{s}-", .{codepoint});
+    }
+    std.debug.print("\n", .{});
 }
