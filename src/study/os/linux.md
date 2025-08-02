@@ -916,6 +916,13 @@ systemctl
 # 查看 systemd 的日志
 journalctl
 journalctl -xe
+
+# 设置开机自启动
+# 格式： sudo systemctl enable 服务名称
+sudo systemctl enable mysqld
+
+# 查看自启动服务
+systemctl list-unit-files --type=service | grep enabled
 ```
 
 
