@@ -1379,7 +1379,7 @@ end;
 delimiter ;
 
 -- 执行匿名块
-call _jc_tmp_untitle_sqlblock();
+call _jc_tmp_untitle_sqlb lock();
 -- 删除匿名块
 drop procedure if exists _jc_tmp_untitle_sqlblock;
 ```
@@ -1718,6 +1718,18 @@ mysqldump -h "207.12.24.56" -uroot -p --default-character-set=utf8mb4 dataset ta
 
 # 所有数据库进行备份
 mysqldump  -uroot  -p --all-databases > /data/bakSql/133mysqlbak.sql
+```
+
+
+
+到时时按照日期排序
+
+```shell
+# powershell
+mysqldump -uroot -p --default-character-set=utf8mb4 mysd "--result-file=mysd$(get-date -Format '-yyMMdd').sql"
+
+# linux
+mysqldump -uroot -p --default-character-set=utf8mb4 mysd "--result-file=mysd$(date '+-%y%m%d').sql"
 ```
 
 
