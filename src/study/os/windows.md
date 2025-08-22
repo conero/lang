@@ -826,3 +826,13 @@ wmic diskdrive get Name, Manufacturer, Model, InterfaceType, MediaType, SerialNu
 注：
 
 - BIOS             *Basic Input Output System*,基本输入输出系统。
+
+
+
+
+
+## 附录
+
+### 常用地址及参考
+
+- https://learn.microsoft.com/zh-cn/sysinternals/downloads/portmon   微软官网提供工具下载地址（可选）

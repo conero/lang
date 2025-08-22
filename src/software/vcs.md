@@ -423,6 +423,13 @@ git show <commit_id>
 # before 与 until 功能一致
 git log --until=2020-11-19
 git log --before=2020-11-19
+
+# 查看当前某一个作者提交的内容
+git log --since="today 00:00:00"
+# 查看当天作者提交
+git log --since="today 00:00:00" --author='Joshua Conero'
+# 查看 v0.4.0 以后的版本提交
+git log v0.4.0..
 ```
 
 
