@@ -143,6 +143,14 @@ sqlcmd -S 127.0.0.1 -U conero
 
 ### linux 配置
 
+软件下载如：
+
+```shell
+wget https://download.dameng.com/eco/adapter/DM8/202505/dm8_20250506_x86_rh7_64.zip
+```
+
+
+
 安装数据库
 
 ```shell
@@ -207,6 +215,9 @@ SELECT * FROM V$DATABASE;
 
 -- 授权信息查看
 select * FROM v$license;
+
+-- 版本信息查询
+SELECT * FROM V$VERSION;
 ```
 
 
@@ -238,6 +249,14 @@ wpg web -r 'E:\conero\repository\conero-blockd\gybhzx2411\guiyanggch\' -R '^(.*)
 # admin  部署
 wpg web -r 'E:\conero\repository\conero-blockd\gybhzx2411\guiyanggch\' -R '^(.*)$ /spzgadmin.php?s=/$1' -addr 19212 -c 'tcp://127.0.0.1:9003'
 ```
+
+
+
+#### 备份/恢复
+
+dmp 脚本文件导入，可使用：
+
+- DM 管理工具，图形化选中 dmp 文件并导入
 
 
 
