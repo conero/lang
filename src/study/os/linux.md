@@ -43,6 +43,16 @@
 
 
 
+linux 为操作系统内核，而linux发行版本才是真正可用的系统。
+常见的linux发行版
+
+- debian
+  - ubuntu
+- redhead
+  - real
+    - centos
+
+
 ## 目录结构
 
 **/：**根目录，所有的目录、文件、设备都在/之下，/就是Linux文件系统的组织者，也是最上级的领导者。
@@ -157,14 +167,18 @@ ifconfig -a
 # && 用户两个命令的链接
 mkdir jc-hellowpy && cd jc-hellowpy
 
-# 环境变量
+# 打印多个环境变量
 # 环境变量，cat /etc/os-release查看系统定义的环境变量
 env
+printenv
 #过滤
 env | PATH
 
 # 设置环境变量
 export env_key=value
+# 删除环境变量
+unset env_key
+
 # 如设置
 export JC_Name='s * ee , sssss。'
 #读取变量
@@ -379,6 +393,9 @@ find / -path "*modules*"
 # 查找目录下的“m3u8”文件并删除目录
 find D:/conero/phpapps/website/iCloud/uc/uploads/ -name "*.m3u8" | xargs rm -fr
 
+# 查找命令并删除
+find /home/edat/conero/com.blockdata/ -name '~$*' -delete
+
 # 查找顶级目录，且仅展示文件类型
 find /etc/nginx/conf.d/ -type f  -maxdepth 1
 # 查找文件并将其复制到指定目录，如备份
@@ -475,6 +492,15 @@ mkfs.ext4 /dev/sdb
 mount -o loop KingbaseES_V008R006C008B0020_Aarch64_install.iso /opt/Kingbase/install/
 # 卸载 iso 文件
 umount /opt/Kingbase/install/
+```
+
+修复磁盘挂载问题，如移动硬盘无法读取时
+
+```shell
+# 如果 /dev/sdb1 是 NTFS 文件系统，可以使用 ntfsfix 工具修复。
+sudo ntfsfix /dev/sdb1
+
+# 通过 lsblk -f 显示文件系统类型
 ```
 
 
@@ -942,6 +968,9 @@ tar.exe -x [options] [<patterns>]
 
 tar -xvf <tar_file> -C <tgt_dir>
 
+# tar 解压 .xz 文件
+tar -xvf ./zig-x86_64-linux-0.15.1.tar.xz
+
 #
 # 创建 tar.gz 压缩文件
 # ./dist 为顶级目录
@@ -1005,14 +1034,21 @@ vmstat 1 10
 
 #### 存储
 
+使用 du / df 等命令进行查看和统计
+
 ```shell
 # 查看当前目录中文件存储占用情况
 # [disk usage] 文件或目录
 du --block-size=K
 # 查看制定文件大小
 du --block-size=K beffq Release.md
-# 当前
+# 查看目录下文件/子目录大小
 du -sh *
+# 查看当前目录的总大小
+du -sh
+
+# 查看当前目录下一级子文件和子目录的大小
+du -h --max-depth=1
 
 # 磁盘使用情况
 # 以“MB”单位查看磁盘占用情况
@@ -1064,6 +1100,10 @@ tcpdump -nni any port 18080 -c 20 -w http.cap
 tcpdump -nni any port 18080 -w http.cap
 ```
 
+
+代理环境配置：
+
+- /etc/hosts   与 windows 的 hosts 文件类似
 
 
 #### iptables
@@ -1140,6 +1180,8 @@ firewall-cmd --list-rich-rules
 
 #### ip
 
+ip 命令是 Linux 系统中用于管理网络接口和路由表的强大工具，旨在替代传统的 ifconfig 命令。它支持多种网络管理任务，包括查看网络状态、配置 IP 地址、管理路由等。
+
 > 类似于Windows 的 `ipconfig 命令`
 
 ```shell
@@ -1149,6 +1191,7 @@ firewall-cmd --list-rich-rules
 ip link
 
 # 等同于 ipconfig
+# 查看网络接口信息
 ip addr show
 
 # 显示核心路由表
@@ -1750,11 +1793,127 @@ service --status-all
 # 显示已安装软件列表
 dpkg -l
 # 添加搜索值
-dpkg -l | grep openssl
+dpkg -l | grep **openssl**
+
+
+# .deb 包安装
+# 当直接执行 .deb 包时，可能会出现如下错误：权限不够,可使用命令行
+sudo dpkg -i <package.deb>
+sudo apt install <package.deb>
 ```
 
 
+> 桌面卡死安全重启
 
+
+当Ubuntu桌面卡死且无法打开命令工具时，可以使用SysRq键组合进行安全重启，或通过切换到tty终端进行操作。
+
+- 按下组合键：同时按下 Ctrl + Alt + SysRq（有些键盘上是PrtSc键）
+- 再按组合键：再按下 REISUB
+  - 含义如下：R /将键盘控制权返回到系统， E/终止所有进程， I/杀死所有进程， S/同步文件系统， U/重新挂载文件系统为只读， B/重启系统
+
+
+> 启用 Ubuntu 剪贴板历史记录
+
+
+安装 GPaste 剪贴板管理扩展, 参考 https://www.sysgeek.cn/clipboard-history-ubuntu/ 
+
+
+#### 常用快捷键
+
+测试与 ubuntu 24.04 LTS（GNOME 桌面环境）
+
+
+- Alt + Tab：切换程序窗口
+- Alt + F4：关闭当前程序窗口
+
+> win 系列
+
+- Win（Super 键）：打开活动概览，搜索程序或文件
+- Win + L：锁定屏幕
+- Win + D：最小化所有窗口，显示桌面
+- Win + A：显示应用程序菜单
+
+
+> Ctrl 系列
+
+- Ctrl+Alt+T/Ctrl+Alt+N：打开 Ubuntu 终端程序(新)
+
+
+> 终端快解决
+
+
+- Ctrl + Alt + T       新打开终端
+- Ctrl + Shift + C     复制
+- Ctrl + Shift + V     粘贴
+- Ctrl + L             清屏，相当于clear命令。
+- 光标操作
+  - Ctrl + A           将光标移动到行首。
+  - Ctrl + E           将光标移动到行尾。
+  - Ctrl + B           向后移动光标。
+  - Ctrl + F           向前移动光标。
+  - Ctrl + Left/Right Arrow       光标移动到上一个/下一个单词的开头或结尾。
+- 删除与粘贴
+  - Ctrl + K           删除光标处到行尾的内容。
+  - Ctrl + U           删除光标处到行首的内容。
+  - Ctrl + W           删除光标处到左边的单词。
+  - Ctrl + H           删除光标前的一个字符。
+  - Ctrl + Y           粘贴由Ctrl + U或Ctrl + W删除的内容。
+- 历史命令与搜索
+  - Ctrl + R           搜索历史命令。
+  - Ctrl + P           显示上一条历史命令。
+  - Ctrl + N           显示下一条历史命令。
+
+
+
+
+#### 防火墙
+
+在 Ubuntu 系统中，防火墙通常使用 UFW（Uncomplicated Firewall） 工具进行管理
+
+常用命令如（https://www.cnblogs.com/zhulw/articles/18843177）：
+
+```shell
+# 安装 ufw 工具
+sudo apt-get install ufw
+
+# 查看防火墙状态
+sudo ufw status
+
+# 查看详细状态（包含每条规则）
+sudo ufw status verbose
+
+# 启动防火墙
+sudo ufw enable
+
+# 关闭防火墙
+sudo ufw disable
+
+# 添加端口放行
+sudo ufw allow 22
+
+# 删除端口放行
+sudo ufw deny 3306
+
+# 删除规则（等于取消开放）
+sudo ufw delete allow 3306
+
+# 设置默认策略为拒绝所有连接，再逐个放行：
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+
+# 完成后，重载防火墙规则以生效
+sudo ufw reload
+```
+
+#### 代理
+
+命令行中清除获取删除代理
+```shell
+env | grep -i proxy
+
+unset http_proxy;unset https_proxy;unset ftp_proxy;unset no_proxy; unset all_proxy;unset HTTP_PROXY;unset HTTPS_PROXY;unset FTP_PROXY;unset NO_PROXY; unset ALL_PROXY
+```
 
 
 ### CentOS
@@ -1935,9 +2094,57 @@ $ rpm -qa | grep libxml2
 
 ### 包管理软件
 
+**snap** 由 Canonical（Ubuntu 母公司）开发的新型通用包管理系统，采用独立封装的 snap 格式包。以解决解决依赖冲突、实现跨发行版兼容、提供沙箱隔离，适合应用级软件（尤其是桌面应用）。
+
+
+```shell
+# 安装 curl
+sudo snap install curl
+
+# curl 命令查询
+snap info curl
+
+# 删除 curl
+sudo snap remove curl
+```
+
 #### dnf
 
 DNF（Dandified Yum）是Fedora Linux操作系统中的一个包管理器，它是基于Yum开发的。它的主要特点是快速、可靠、易用和优秀的用户体验。
+
+
+#### apt
+
+apt是Debian Linux操作系统中的一个包管理器，它是基于Yum开发的。它的主要特点是快速、可靠、易用和优秀的用户体验。
+
+常用命令
+
+```shell
+
+# 更新包索引（获取最新的软件版本信息），不实际更新
+sudo apt update
+
+# 彻底升级（包括内核和系统组件）
+sudo apt full-upgrade
+
+# 升级已安装的程序
+sudo apt upgrade
+
+# 查看版本信息 （apt show <程序名>）
+apt show git 
+
+# 更新 软件包
+sudo apt upgrade git
+
+# 搜索软件包，并查看版本信息
+apt show git | grep -E "Version|Installed"
+
+# 查看可升级的包
+apt list --upgradable
+
+sudo apt autoremove  # 移除不再需要的依赖包
+sudo apt clean       # 清理下载的包缓存
+```
 
 
 

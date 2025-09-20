@@ -238,16 +238,36 @@ yum install libjpeg libpng freetype libjpeg-devel libpng-devel freetype-devel -y
 
 # error: png.h not found
 yum install libpng libpng-devel -y
+
+# configure: error: Package requirements (sqlite3 > 3.7.4) were not met
+sudo apt-get install sqlite3
+# 查看版本号： sqlite3 --version
 ```
 
+> 指定部署路径，用于多版本安装及运行
 
+
+php 7.2 openssl 对应版本为 1.1.1w，过高可能导致 openssl 错误（参考 https://blog.csdn.net/gianttj/article/details/141216867）
+
+php 7.2 编译 --with-gd 是 freetype2(是一个免费、开源、可移植且高质量的字体引擎). 版本 https://blog.csdn.net/xiaofuge027/article/details/108993320
+
+
+```shell
+# 如 7.2.34
+sudo ./configure --with-pdo-mysql --enable-bcmath --enable-mbstring --enable-sockets --with-gd --with-gettext --enable-fpm --prefix=/usr/local/php72 --with-openssl=/usr/local/openssl-1.1.1 --with-zlib --with-freetype-dir=/usr/local/freetype
+sudo make && sudo make install
+
+# 生成配置文件
+sudo cp ./etc/php-fpm.conf.default ./etc/php-fpm.conf
+sudo cp ./etc/php-fpm.d/www.conf.default ./etc/php-fpm.d/www.conf
+```
 
 
 
 *编译项*
 
 ```shell
-./configure --with-pdo-mysql --enable-bcmath --enable-mbstring --enable-sockets --with-gd --with-gettext --with-config-file-path=/usr/local/php/etc
+./configure --with-pdo-mysql --enable-bcmath --enable-mbstring --enable-sockets --with-gd 
 ```
 
 

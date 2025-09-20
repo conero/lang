@@ -259,6 +259,20 @@ service mysqld restart
 ```
 
 
+Ubuntu 24.04 mysql 5.7 异常
+
+```shell
+libsqlite3-dev
+Package 'sqlite3', required by 'virtual:world', not found
+https://cloud.tencent.com/developer/ask/sof/108141756
+
+
+Package 'oniguruma', required by 'virtual:world', not found
+libonig-dev
+https://www.wkwkk.com/articles/02fa550922c44d29.html
+```
+
+参考：[libonig-dev](https://www.wkwkk.com/articles/02fa550922c44d29.html)， [libsqlite3-dev](https://cloud.tencent.com/developer/ask/sof/108141756)
 
 #### mysql 5.6 openeuler 22.03
 

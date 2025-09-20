@@ -646,8 +646,13 @@ git tag -d $'\u0096v1.0.2.250331-dev'
 git config --global core.safecrlf false
 
 # autocrlf
-# core.autocrlf 值: input/提交时转换为LF, true/提交时转换为LF，检出时转换为CRLF, false/不处理 
+# linux 环境 core.autocrlf 值: input/提交时转换为LF, true/提交时转换为LF，检出时转换为CRLF, false/不处理 
 git config --global core.autocrlf input
+
+
+# 操作系统时，模式更变
+git config core.fileMode false
+git config --global core.fileMode false
 ```
 
 

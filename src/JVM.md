@@ -76,6 +76,14 @@ jdk 下载地址：
 
 
 
+环境变量设置：
+
+```shell
+# linux 版本如
+export JAVA_HOME=/usr/local/jdk1.8.0_181
+export PATH=$JAVA_HOME/bin:$PATH
+```
+
 
 
 #### 项目结构

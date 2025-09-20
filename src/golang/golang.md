@@ -783,6 +783,9 @@ go build -tags "t1 t2 t3"
 
 # 不使用 tags
 go build 
+
+# linux 编译时错误，error obtaining VCS status
+go build -buildvcs=false
 ```
 
 

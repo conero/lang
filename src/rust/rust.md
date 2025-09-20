@@ -91,6 +91,12 @@ $ rustc --version
 $ cargo --version
 ```
 
+> ubuntu 安装 rustup 使用 snap curl 版本安装时可能会报错
+
+```shell
+# 使用 apt 安装 curl 即可
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
 
 
 > 复杂/重要的概念
