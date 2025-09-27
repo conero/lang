@@ -16,11 +16,14 @@
 
 ```shell
 # ubuntu 中运行测试用例
-# 测试 go 1.25 版本
+# go 测试版本 1.25
 go run simple.go
 
-# zig 测试版本
+# zig 测试版本 0.15.1
 zig run simple.zig
+
+# rustc 测试代码 rustc 1.90.0
+rustc simple.rs;./simple;rm ./simple
 ```
 
 
