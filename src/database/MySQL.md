@@ -229,6 +229,12 @@ service mysqld start
 
 #### mysql5.7 glibc2.12 （通用 linux）
 
+查看系统 glibc 版本
+```shell
+ldd --version
+```
+
+
 下载文件
 
 ```shell
@@ -249,6 +255,8 @@ vi "$basedir/my.cnf"
 
 # 服务器初始化及启动，在其所在应用目录
 cp support-files/mysql.server /etc/init.d/mysqld
+# 需重新加载配置文件
+systemctl daemon-reload
 
 # 启动服务
 service mysqld status

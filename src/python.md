@@ -1391,7 +1391,30 @@ source ./<venv-name>/Scripts/Activate.ps1
 ```
 
 
+#### pyenv
 
+多版本管理工具，安装参考 https://github.com/pyenv/pyenv?tab=readme-ov-file#installation
+
+```shell
+# 查看所有版本
+pyenv install --list
+pyenv install -l | less
+
+# 安装自定版本号
+pyenv install 3.10.4
+# 设置全局版本
+pyenv global 3.10
+# 仅为当前 shell 会话选择。
+pyenv shell 3.10
+# 仅在当前目录（或其子目录）时自动选择。
+pyenv local 3.10
+
+# 删除指定版本
+pyenv uninstall 2.7.18
+
+# 查看已安装的版本
+pyenv versions
+```
 
 
 ### 扩展

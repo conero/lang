@@ -43,15 +43,38 @@
 
 
 
-linux 为操作系统内核，而linux发行版本才是真正可用的系统。
+linux 为操作系统内核，而linux发行版本才是真正可用的系统。linux发行版一般由：Linux内核、GNU 工具、附加软件和软件包管理器组成的一整套完整操作系统，其也可能包括了显示服务器和 Linux 桌面环境，通常被运作于服务器或桌面操作系统来使用。
+
+
 常见的linux发行版
 
-- debian
+- debian     
   - ubuntu
+    - linux mint
 - redhead
-  - real
-    - centos
+  - RedHat
+  - centos
+  - fedora
+- suse
+  - openSuse
+- archlinux
+  - manjaro
 
+debian 历史最悠久的社区发行版之一，以稳定性著称。适合服务器和高级用户，更新周期长（每2年发布稳定版）。
+
+> 国产操作系统
+
+- deepin            深度Linux，https://www.deepin.org/index/zh ， 武汉深之度
+- 统信UOS            https://www.uniontech.com/ ，中国电子集团和武汉深之度
+- 优麒麟（UbuntuKylin）   Ubuntu的官方衍生版，麒麟软件有限公司   https://ubuntukylin.com/
+- 红旗Linux           https://www.chinaredflag.cn/
+- 中标麒麟（NeoKylin） https://www.kylinos.cn/
+- 银河麒麟（KylinOS）  https://kylinos.cn/
+- 中科方德            中科方德软件（中国）有限公司  https://www.nfschina.com/
+- 华为欧拉（openEuler） 华为欧拉（openEuler）是华为推出的开源操作系统，主打服务器市场。 https://www.openeuler.org/zh/
+- 龙蜥（OpenAnolis）  阿里智能云OS（OpenEuler）  https://openEuler.org/
+- 鸥栖（OpenCloudOS） 
+- 开放麒麟（openKylin） 
 
 ## 目录结构
 
@@ -703,6 +726,7 @@ WantedBy=multi-user.target
 ```shell
 # 查看服务列表
 systemctl list-units
+sudo systemctl list-unit-files | grep -i mysqld
 
 # 已启动的服务列表
 systemctl list-units --type=service
@@ -1803,6 +1827,12 @@ sudo apt install <package.deb>
 ```
 
 
+查看图形化版本 gnome 的版本号
+
+```shell
+gnome-shell --version
+```
+
 > 桌面卡死安全重启
 
 
@@ -1818,6 +1848,15 @@ sudo apt install <package.deb>
 
 安装 GPaste 剪贴板管理扩展, 参考 https://www.sysgeek.cn/clipboard-history-ubuntu/ 
 
+
+
+> 资源管理器
+
+
+```shell
+# 打开指定目录的资源管理器
+nautilus /data/path/x
+```
 
 #### 常用快捷键
 

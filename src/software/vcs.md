@@ -119,6 +119,18 @@ git config --global user.email johndoe@example.com
 *git config --system --unset credential.helper*
 
 
+**ubuntu 等系统的安全权限**
+
+如错误： `fatal: detected dubious ownership in repository at`
+
+```shell
+
+# 运行全局目录下的 git 仓库
+git config --global --add safe.directory "*"
+
+# 或者配置单项目有效
+git config --global --add safe.directory "/home/git/xx/evtWeb"
+```
 
 
 
