@@ -10,7 +10,7 @@ func main() {
 	fmt.Println("simple 并发测试")
 
 	var now = time.Now()
-	var cct = 1_978_654
+	var cct = 1_987_654
 	var countData = simple(cct)
 
 	fmt.Println()
