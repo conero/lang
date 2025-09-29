@@ -17,7 +17,7 @@
 ```shell
 # ubuntu 中运行测试用例
 # go 测试版本 1.25
-go run simple.go
+go run golang/simple.go
 
 # zig 测试版本 0.15.1
 zig run simple.zig
