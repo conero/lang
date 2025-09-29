@@ -7,16 +7,13 @@ import (
 )
 
 func main() {
-	//runSimpleCase()
-	vData := simplePool(17, 4)
-
-	fmt.Println()
-	fmt.Printf("vData: %d\n", vData)
+	runSimpleCase()
+	runSimpleCasePool()
 }
 
 // 测试用例
 func runSimpleCase() {
-	fmt.Println("simple 并发测试")
+	fmt.Println("---------------------------- simple 无缓存池并发测试 ----------------------------")
 
 	var now = time.Now()
 	var cct = 1_987_654
@@ -25,6 +22,28 @@ func runSimpleCase() {
 	fmt.Println()
 	fmt.Println()
 	fmt.Printf("并发数：%d, countData: %d， 用时： %v\n", cct, countData, time.Since(now))
+}
+
+// 测试用例
+func runSimpleCasePool() {
+	fmt.Println("---------------------------- simple 带缓存线程池并发测试（非队列）----------------------------")
+
+	var now = time.Now()
+	var cct = 1_987_654
+	// var cct = 9_987_654
+	var poolSize uint = 5000
+	var countData = simplePool(cct, poolSize)
+
+	fmt.Println()
+	fmt.Println()
+	fmt.Printf("并发数：%d, countData: %d， 用时： %v\n", cct, countData, time.Since(now))
+}
+
+func runSimpleCasePoolTest() {
+	vData := simplePool(17, 4)
+
+	fmt.Println()
+	fmt.Printf("vData: %d\n", vData)
 }
 
 // Mutex  互斥锁，保证同一时刻只有一个 goroutine 访问资源。
@@ -46,11 +65,10 @@ func simple(cct int) int {
 			fmt.Printf("goroutine: %d ……\r", idx)
 			for {
 				if lock.TryLock() {
-					countData++
 					if idx%2 == 0 {
 						countData += 2
 					} else {
-						countData -= 3
+						countData -= 1
 					}
 					lock.Unlock()
 					break
@@ -71,11 +89,10 @@ func simplePool(cct int, poolSize uint) int {
 	var pt = &poolTask{size: poolSize, task: func(i int) {
 		for {
 			if lock.TryLock() {
-				countData++
 				if i%2 == 0 {
 					countData += 2
 				} else {
-					countData -= 3
+					countData -= 1
 				}
 				lock.Unlock()
 				break
@@ -114,57 +131,59 @@ func (pt *poolTask) add(i int) {
 // 运行
 func (pt *poolTask) run() {
 	pt.wg.Add(1)
-	var indexLock sync.Mutex
+	// var indexLock sync.Mutex
 	//var queue []int    // 队列
 	var index int = -1 // 已执行到的任务索引
-	tryAddIndexFn := func() int {
-		for {
-			if indexLock.TryLock() {
-				index += 1
-				indexLock.Unlock()
-				return index
-			}
-		}
-	}
+	// tryAddIndexFn := func() int {
+	// 	for {
+	// 		if indexLock.TryLock() {
+	// 			index += 1
+	// 			indexLock.Unlock()
+	// 			return index
+	// 		}
+	// 	}
+	// }
 	// [2]int  => [协程池索引, 任务索引]
-	var runGIdx = make(chan [2]int, pt.size)
-	var isAllDone = make(chan bool)
+	// var runGIdx = make(chan [2]int, pt.size)
+	// var isAllDone = make(chan bool)
 	var taskSize = len(pt.taskList)
 	fmt.Println("任务数：", taskSize, " 协程池：", pt.size)
 
 	// 任务执行
 	runTaskFn := func(rIdx uint, gIdx int) {
-		if gIdx >= taskSize {
-			isAllDone <- true
-			return
-		}
+		// if gIdx >= taskSize {
+		// 	isAllDone <- true
+		// 	return
+		// }
 		pt.task(gIdx)
-		runGIdx <- [2]int{int(rIdx), gIdx}
+		// runGIdx <- [2]int{int(rIdx), gIdx}
 	}
 
-	// 初始化协程池，并推送
-	for i := range pt.size {
-		index += 1
-		go runTaskFn(i, index)
-	}
-
-	// 循环处理
 	for {
+		var innerWg sync.WaitGroup
 		isBreak := false
-		select {
-		case idxArr := <-runGIdx:
-			// fmt.Printf("idxArr: %v ...\r", idxArr)
-			fmt.Println(idxArr)
-			go runTaskFn(uint(idxArr[0]), tryAddIndexFn())
-		case <-isAllDone:
-			isBreak = true
-		}
+		// 初始化协程池，并推送
+		for i := range pt.size {
+			index += 1
+			if index >= taskSize {
+				isBreak = true
+				break
+			}
+			innerWg.Add(1)
+			go func(vI uint, vIdex int) {
+				defer innerWg.Done()
 
-		// 退出任务
-		if isBreak {
-			pt.wg.Done()
+				//fmt.Println("协程池：", vI, "任务索引：", vIdex)
+				fmt.Printf("协程池：%d, 任务索引：%d ...\r", vI, vIdex)
+				runTaskFn(vI, vIdex)
+			}(i, index)
+		}
+		innerWg.Wait()
+		if isBreak || index >= taskSize {
 			break
 		}
 	}
 
+	// 运行完成
+	pt.wg.Done()
 }
