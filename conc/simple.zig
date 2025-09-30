@@ -5,8 +5,8 @@ pub fn main() !void {
 
     const start_nano = std.time.nanoTimestamp();
 
-    const cct: usize = 1_987_654;
-    const max_concurrent: usize = 5000;
+    const cct: usize = 9_987_654;
+    const max_concurrent: usize = 10000;
     //const vData = simple_conc(cct, max_concurrent);
     const vData = simple_conc_pool(cct, max_concurrent);
 

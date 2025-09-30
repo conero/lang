@@ -7,7 +7,7 @@ fn main() {
 
     // 计算用时
     let start = std::time::Instant::now();
-    let count: isize = 1_987_654;
+    let count: isize = 9_987_654;
     //let count: isize = 19_987_654;
     //let sum: i32 = simple_conc(count);
     let sum: i32 = simple_conc_pool(count);

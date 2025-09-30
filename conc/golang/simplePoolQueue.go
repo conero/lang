@@ -11,19 +11,20 @@ import (
 // Task 表示一个需要执行的任务，包含唯一ID和处理函数
 type Task struct {
 	ID     int
-	Handle func() // 任务处理逻辑
+	Handle func(idx int) // 任务处理逻辑
 }
 
 // Queue 协程队列，按索引管理任务
 type Queue struct {
-	capacity   int            // 队列容量（同时运行的最大协程数）
-	taskCh     chan Task      // 任务通道（用于传递待执行任务）
-	doneCh     chan int       // 完成通知通道（传递完成的队列索引）
-	active     []bool         // 记录每个队列位置是否活跃（true表示正在执行任务）
-	wg         sync.WaitGroup // 等待所有任务完成
-	totalTasks int            // 总任务数（用于判断是否全部完成）
-	processed  int            // 已处理的任务数
-	mu         sync.Mutex     // 保护共享变量（active/processed）
+	capacity      int            // 队列容量（同时运行的最大协程数）
+	taskCh        chan Task      // 任务通道（用于传递待执行任务）
+	doneCh        chan int       // 完成通知通道（传递完成的队列索引）
+	active        []bool         // 记录每个队列位置是否活跃（true表示正在执行任务）
+	wg            sync.WaitGroup // 等待所有任务完成
+	totalTasks    int            // 总任务数（用于判断是否全部完成）
+	processed     int            // 已处理的任务数
+	mu            sync.Mutex     // 保护共享变量（active/processed）
+	taskCountData int            // 任务计算值的统计
 }
 
 // NewQueue 创建一个新的协程队列
@@ -61,9 +62,9 @@ func (q *Queue) worker(idx int) {
 		q.mu.Unlock()
 
 		// 执行任务
-		fmt.Printf("队列索引 %d 开始处理任务 %d\n", idx, task.ID)
-		task.Handle() // 执行任务逻辑
-		fmt.Printf("队列索引 %d 完成任务 %d\n", idx, task.ID)
+		// fmt.Printf("队列索引 %d 开始处理任务 %d\n", idx, task.ID)
+		task.Handle(task.ID) // 执行任务逻辑
+		// fmt.Printf("队列索引 %d 完成任务 %d\n", idx, task.ID)
 
 		// 标记当前位置为非活跃，通知调度器
 		q.mu.Lock()
@@ -76,14 +77,26 @@ func (q *Queue) worker(idx int) {
 
 // scheduler 调度器：监控任务完成，动态生成并分发新任务
 func (q *Queue) scheduler() {
+	// 任务定义
+	var countLock sync.Mutex
+	taskFn := func(taskID int) {
+		countLock.Lock()
+		if taskID%2 == 0 {
+			q.taskCountData += 2
+		} else {
+			q.taskCountData -= 1
+		}
+		fmt.Printf("任务 %d 执行中 …… \r", taskID)
+		countLock.Unlock()
+	}
+
+	// 执行队列并监控
 	taskID := 0
 	// 初始填充任务（填满队列）
 	for i := 0; i < q.capacity && taskID < q.totalTasks; i++ {
 		q.taskCh <- Task{
-			ID: taskID,
-			Handle: func() {
-				time.Sleep(500 * time.Millisecond) // 模拟任务耗时
-			},
+			ID:     taskID,
+			Handle: taskFn,
 		}
 		taskID++
 	}
@@ -100,16 +113,15 @@ func (q *Queue) scheduler() {
 		q.mu.Unlock()
 
 		// 等待某个队列位置完成任务
-		idx := <-q.doneCh
-		fmt.Printf("调度器：队列索引 %d 已空闲，准备分配新任务\n", idx)
+		_ = <-q.doneCh
+		// idx := <-q.doneCh
+		// fmt.Printf("调度器：队列索引 %d 已空闲，准备分配新任务\n", idx)
 
 		// 生成并分配新任务（如果还有剩余）
 		if taskID < q.totalTasks {
 			q.taskCh <- Task{
-				ID: taskID,
-				Handle: func() {
-					time.Sleep(500 * time.Millisecond) // 模拟任务耗时
-				},
+				ID:     taskID,
+				Handle: taskFn,
 			}
 			taskID++
 		}
@@ -122,11 +134,19 @@ func (q *Queue) Wait() {
 }
 
 func main() {
+	fmt.Println("---------------------------- simple 缓存池并发测试（队列式） ----------------------------")
+	var now = time.Now()
+	var cct = 9_987_654
+	var proSize = 20
+
 	// 创建队列：容量为3，总任务数为10
-	queue := NewQueue(3, 10)
+	queue := NewQueue(proSize, cct)
 	queue.Start()
 
 	// 等待所有任务完成
 	queue.Wait()
+
+	fmt.Printf("并发数：%d, 协程池: %d, countData: %d， 用时： %v\n", cct, proSize, queue.taskCountData, time.Since(now))
+	fmt.Println("任务计算值：", queue.taskCountData)
 	fmt.Println("所有任务处理完毕")
 }
