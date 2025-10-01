@@ -29,8 +29,16 @@ def run_simple(count):
     """
     线程入口主函数
     """
+
+    task_list = []
     for i in range(count):
-        threading.Thread(target=task_run, args=(i,)).start()
+        thread_el = threading.Thread(target=task_run, args=(i,))
+        thread_el.start()
+        task_list.append(thread_el)
+
+    # 等待所有线程执行完毕
+    for el in task_list:
+        el.join()
 
 
 def run_with_thread_pool(task_count, max_workers=100):
@@ -80,8 +88,8 @@ def run_thread_pool_test():
 
 
 if __name__ == "__main__":
-    # run_thread_simple()
-    # print()
+    run_thread_simple()
+    print()
 
-    shareCount = 0
-    run_thread_pool_test()
+    # shareCount = 0
+    # run_thread_pool_test()

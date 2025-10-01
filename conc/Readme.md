@@ -27,6 +27,10 @@ rustc simple.rs;./simple;rm ./simple
 
 # python
 python simple.py
+
+# java 8 测试及运行
+# `-d .` : 将编译生成的 .class 文件，按照源文件中的包结构，输出到当前执行命令的目录下
+javac Simple.java -d .; java conc.Simple; find . -name "*.class" -delete
 ```
 
 
