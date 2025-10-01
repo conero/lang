@@ -24,6 +24,9 @@ zig run simple.zig
 
 # rustc 测试代码 rustc 1.90.0
 rustc simple.rs;./simple;rm ./simple
+
+# python
+python simple.py
 ```
 
 
