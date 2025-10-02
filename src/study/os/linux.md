@@ -51,18 +51,34 @@ linux 为操作系统内核，而linux发行版本才是真正可用的系统。
 - debian     
   - ubuntu
     - linux mint
-- redhead
-  - RedHat
-  - centos
+- Red Hat
+  - RHEL
+  - CentOS
   - fedora
+  - Rocky Linux
+  - AlmaLinux
 - suse
   - openSuse
 - archlinux
   - manjaro
 
+
+
+其他分类的：
+
+- **独立派**：Arch Linux、Gentoo、Slackware、openSUSE
+- **面向安全的**：Kali Linux、Parrot OS
+- **面向嵌入式的**：Yocto、OpenWrt
+
+
+
 debian 历史最悠久的社区发行版之一，以稳定性著称。适合服务器和高级用户，更新周期长（每2年发布稳定版）。
 
-> 国产操作系统
+linux 常见的桌面环境：[Gnome](https://www.gnome.org/)，KDE，Xfce，Cinnamon，Mate，DDE。
+
+
+
+> **国产操作系统**
 
 - deepin            深度Linux，https://www.deepin.org/index/zh ， 武汉深之度
 - 统信UOS            https://www.uniontech.com/ ，中国电子集团和武汉深之度
@@ -75,6 +91,17 @@ debian 历史最悠久的社区发行版之一，以稳定性著称。适合服�
 - 龙蜥（OpenAnolis）  阿里智能云OS（OpenEuler）  https://openEuler.org/
 - 鸥栖（OpenCloudOS） 
 - 开放麒麟（openKylin） 
+
+
+
+目前国内比较有代表性的 Linux 发行版包括：
+
+- **麒麟系列**：银河麒麟（Kylin）、中标麒麟（NeoKylin），在政府、金融、能源、电力等行业大规模应用；
+- **统信 UOS**：基于 Debian 深度优化，桌面体验友好，是国产桌面 Linux 的代表；
+- **深度 Deepin**：社区活跃度高，UI 美观，国际影响力大；
+- **普华、红旗、启明星辰** 等，也在做面向行业的定制版。
+
+
 
 ## 目录结构
 
