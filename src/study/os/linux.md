@@ -1883,7 +1883,27 @@ gnome-shell --version
 ```shell
 # 打开指定目录的资源管理器
 nautilus /data/path/x
+
+# 使用默认应用打开文件/默认浏览器等
+open path
+xdg-open path
 ```
+
+
+
+**登录（显示）管理器**
+
+gdm3 等应用介绍，重启后屏幕会被注销：
+
+gdm3、kdm 和 lightdm 都是显示管理器。它们提供图形化登录并处理用户身份验证
+
+- GNOME 使用 gdm3
+- xfce 使用 lightdm
+- KDE 使用 kdm
+
+
+
+
 
 #### 常用快捷键
 
@@ -1980,6 +2000,7 @@ env | grep -i proxy
 
 unset http_proxy;unset https_proxy;unset ftp_proxy;unset no_proxy; unset all_proxy;unset HTTP_PROXY;unset HTTPS_PROXY;unset FTP_PROXY;unset NO_PROXY; unset ALL_PROXY
 ```
+
 
 
 ### CentOS
