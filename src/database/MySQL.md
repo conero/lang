@@ -406,6 +406,16 @@ help	# 查看mysql shell 内部的命令
 
 
 
+ubuntu 多mysql版本是指定 sock 登录命令
+
+```shell
+mysql -S /tmp/mysql84.sock -P 3384 -u root -p
+```
+
+
+
+
+
 ### 属性相关的函数
 
 ```mysql

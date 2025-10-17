@@ -504,6 +504,9 @@ mvn clean test
 mvn clean package
 # 加入 -e 查看详细错误信息；-X 查看调试信息
 mvn clean package -e
+# 清除缓存并打包包及忽略测试脚本
+mvn clean package -Dmaven.test.skip=true
+
 # 运行清理和发布（发布到私服上面）
 mvn clean deploy
 # 运行清理和安装，会将打好的包安装到本地仓库中，以便其他的项目可以调用。

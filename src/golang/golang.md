@@ -1010,10 +1010,14 @@ go 对windows 版本支持介绍如：
  # 设置环境变量
  # linux, darwin, windows, netbsd
  $env:GOOS="linux"
+ # shell
+ export GOOS=linux
  
  # 系统架构
  # amd64(x86_64), 386, arm, arm64(aarch64), ppc64
  $env:GOARCH = "amd64"
+  # shell
+ export GOARCH=amd64
  
  # 运行，即使对应操作系统的脚本
  go build

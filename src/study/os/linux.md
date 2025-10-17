@@ -685,6 +685,25 @@ source ~/.bash_profile
 
 
 
+#### /proc 系统运行时目录
+
+系统内部生成目录（内存）
+
+
+
+查看服务进程详情，exe 表示运行二进制，cwd 表示工作目录
+
+```shell
+ls /proc/$pid/
+
+# ls -l
+ll /proc/$pid/
+```
+
+
+
+
+
 ### 服务(进程)管理
 
 linux  服务管理一般由 **service** 和 **systemd** 两个命令管理，后者出现晚于前置，因此其基本上后向兼容与它。
@@ -813,6 +832,15 @@ ps -ef|grep yangsu | grep -v grep | awk '{print $2}' | xargs kill -9
 # 根据 pid 获取进程执行的详细情况
 ps -p 25647 -f
 ps -ef|grep yangsu
+
+# 查看详情 $pid 的二进制路径
+ls -l /proc/$pid/exe
+
+# 显示 $pid 及其所有子进程的树状结构
+pstree -p $pid
+
+# -s 显示父进程，-p 显示 PID
+pstree -sp $pid
 ```
 
 
@@ -1833,7 +1861,9 @@ cat hosts
 ```shell
 # Ubuntu 分发系统
 # 更新系统依赖
-sudo apt-get update
+sudo apt update && sudo apt upgrade -y
+# 更新引导程序
+sudo update-grub
 
 # 包搜索
 sudo apt search <name>
@@ -1854,11 +1884,31 @@ sudo apt install <package.deb>
 ```
 
 
+
+应用管理
+
+```shell
+# 保持当前版本，禁止文件升级
+sudo apt-mark hold typora
+
+# 移除版本 apt-mark
+sudo apt-mark unhold typora
+
+# 展示类别
+sudo apt-mark showhold
+```
+
+
+
+
+
 查看图形化版本 gnome 的版本号
 
 ```shell
 gnome-shell --version
 ```
+
+
 
 > 桌面卡死安全重启
 

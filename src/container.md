@@ -95,6 +95,7 @@ docker-compose up --dry-run
 
 # 服务重启
 docker-compose restart nginx
+docker-compose restart
 
 # 停止容器，并移除容器
 docker compose down
