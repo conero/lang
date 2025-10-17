@@ -4,6 +4,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+// 参考：  https://www.cnblogs.com/jimoer/p/19083170    技术面:Java并发(线程同步、死锁、多线程编排)
 public class Simple {
     public static void main(String[] args) {
         System.out.println("--------------------------- Java 简单的并发测试 ---------------------------");
