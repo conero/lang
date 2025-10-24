@@ -76,6 +76,10 @@ debian 历史最悠久的社区发行版之一，以稳定性著称。适合服�
 
 linux 常见的桌面环境：[Gnome](https://www.gnome.org/)，KDE，Xfce，Cinnamon，Mate，DDE。
 
+其他操作系统：[Zorin OS](https://zorin.com/os/) ，基于Ubuntu的Linux发行版，专为Windows用户设计提供windows兼容层（Wine）。
+
+
+
 
 
 > **国产操作系统**
@@ -698,6 +702,17 @@ ls /proc/$pid/
 
 # ls -l
 ll /proc/$pid/
+```
+
+
+
+
+
+内存占用较多时，释放内存的方法
+
+```shell
+# 释放 buff 中的内存
+echo 3 > /proc/sys/vm/drop_caches
 ```
 
 
@@ -1885,7 +1900,7 @@ sudo apt install <package.deb>
 
 
 
-应用管理
+**应用管理**
 
 ```shell
 # 保持当前版本，禁止文件升级
@@ -1897,6 +1912,40 @@ sudo apt-mark unhold typora
 # 展示类别
 sudo apt-mark showhold
 ```
+
+
+
+snap 管理
+
+```shell
+# 查看 nap 安装列表
+snap list
+
+# 查看详细信息
+snap info intellij-idea-ultimate
+
+# 检查 Snap 服务状态
+snap services
+
+
+# 禁止snap 下软件自动更新
+snap refresh --hold intellij-idea-ultimate
+
+# 查看禁止启动列表
+snap list --all | grep "held"
+
+# 删除软件指定的软件版本
+sudo snap remove intellij-idea-ultimate --revision 668
+
+# 运行snap中的软件自动更新
+snap refresh --unhold intellij-idea-ultimate
+
+
+# 显示在下次刷新将被更新的 snap
+snap refresh --list
+```
+
+
 
 
 
@@ -2577,6 +2626,13 @@ su root
 
 ## shell
 
+常见的设shell工具：bash, zsh, sh, fish, nushell 等
+
+- bash 与类 Unix 系统高度兼容，且符合 POSIX 标准，这确保了用 Bash 编写的脚本具有良好的可移植性，能够在不同系统间无障碍运行。、
+- fish 非 POSIX 标准
+
+
+
 > Bourne Shell 变量，`$<NAME>`  内部命令
 
 - `HOME`   *当前用户所在主页*
@@ -2609,6 +2665,9 @@ echo 相关语法
 ```bash
 # 输出环境变量
 echo $PATH
+
+# 输出当前shell
+echo $SHELL
 ```
 
 
@@ -2841,6 +2900,28 @@ fi
 | ctrl+Z | 暂停，并放入后台         |                                             |
 | ctrl+S | 暂停屏幕输出             |                                             |
 | ctrl+Q | 恢复屏幕输出             |                                             |
+
+
+
+
+
+### fish-shell
+
+设置环境变量(https://fishshell.com/docs/4.1/cmds/set.html)
+
+```shell
+# -x/--export  
+# -U or --universal    全局变量
+set -x GOROOT /usr/local/go
+# 全局设置
+set -xU GOPATH $HOME/go
+set -x PATH $PATH $GOPATH/bin $GOROOT/bin
+
+# 删除
+set -e myvalue
+```
+
+
 
 
 
