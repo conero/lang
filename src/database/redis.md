@@ -121,6 +121,9 @@ protected-mode no
 # redis 链接指定 host 域名
 redis-cli -h 172.27.57.98 -p 6380
 
+# 指定密码和远程地址
+redis-cli -h 1.225.1.7 -p 3379 --pass thePsw
+
 # 指向端口
 redis-cli -p 6380
 ```

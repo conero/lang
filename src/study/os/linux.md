@@ -323,6 +323,9 @@ ll -h
 # drwxr-xr-x  8 conero conero 4.0K Mar 20 19:36 .git/
 # -rw-r--r--  1 conero conero   84 Mar 19 16:55 .gitignore
 # 首字符含义: - 普通文件，d 为目录，l为链接符号（表软链接等）。
+
+# 查看完整的事件
+ll -h --full-time
 ```
 
 
@@ -1611,6 +1614,28 @@ grep -e str log.txt
 grep -i str log.txt
 # 查找字符串且显示行
 grep -ni str log.txt
+```
+
+
+
+**rust编写替代工具 ripgrep**
+
+https://github.com/BurntSushi/ripgrep
+
+
+
+```shell
+# 搜索 tmp 下的log文件内容
+rg -i 3000 tmp/*.log
+
+# 搜索 java 中的 Name
+rg Name */**.java
+
+# 搜索
+rg Name -g '*.java'
+
+# 管道使用
+ll | rg .sh
 ```
 
 

@@ -410,6 +410,9 @@ ubuntu 多mysql版本是指定 sock 登录命令
 
 ```shell
 mysql -S /tmp/mysql84.sock -P 3384 -u root -p
+
+# 导出数据
+mysqldump -uroot -S /tmp/mysql80.sock -P 3380 -p --default-character-set=utf8mb4 ksj_robot_multi_2509 --result-file=ksj_robot_multi_2509.sql
 ```
 
 

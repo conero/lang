@@ -923,6 +923,9 @@ require (
 
 
 ```shell
+# 安装最新版本
+go install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@latest
+
 # golangci-lint
 golangci-lint run
 

@@ -293,6 +293,9 @@ java -jar ./target/appdemo.jar
 # 执行 war 包执行 
 java -jar ./target/webdemo.war
 
+# 指定配置文件
+java -jar ./target/api_20251028171931.jar --spring.profiles.active=dev
+
 # 执行命令并通过 -D$key=$value 设置系统属性
 java '-Dserver.port=7480' -jar .\target\cas.war
 ```
@@ -328,6 +331,9 @@ JAR 文件是使用 ZIP 文件格式标准 定义的一种归档格式，只是�
 ```shell
 # 列出指定jar档案目录
 jar -tf t/file/name.jar
+
+# 使用 jar 解压 .jar 文件（命令与 tar 类似）
+jar -xvf api_v1.jar
 ```
 
 
