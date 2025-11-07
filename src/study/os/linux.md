@@ -43,6 +43,8 @@
 
 
 
+### 发行版
+
 linux 为操作系统内核，而linux发行版本才是真正可用的系统。linux发行版一般由：Linux内核、GNU 工具、附加软件和软件包管理器组成的一整套完整操作系统，其也可能包括了显示服务器和 Linux 桌面环境，通常被运作于服务器或桌面操作系统来使用。
 
 
@@ -104,6 +106,19 @@ linux 常见的桌面环境：[Gnome](https://www.gnome.org/)，KDE，Xfce，Cin
 - **统信 UOS**：基于 Debian 深度优化，桌面体验友好，是国产桌面 Linux 的代表；
 - **深度 Deepin**：社区活跃度高，UI 美观，国际影响力大；
 - **普华、红旗、启明星辰** 等，也在做面向行业的定制版。
+
+
+
+
+
+针对不同的软件分发格式主要有：
+
+- AppImage         适用于所有主流 Linux 发行版；跨发行版通用，无需安装；包体积大，集成度低
+  - 无需安装，打包了软件运行所需的所有依赖（类似 Windows 的 `.exe` 或 macOS 的 `.app`），直接赋予执行权限即可运行（`chmod +x 包名.AppImage && ./包名.AppImage`）。
+- DEB                   使用于 Debian/Ubuntu 系；与系统深度集成，依赖管理完善
+  - 通过 `dpkg` 命令管理（如 `dpkg -i 包名.deb`），上层通常搭配 `apt` 工具（处理依赖关系）。
+- RPM                   适用于 RHEL/CentOS/Fedora 系；企业级生态支持，稳定性强；
+  - 通过 `rpm` 命令管理（如 `rpm -ivh 包名.rpm`），上层通常搭配 `yum` 或 `dnf` 工具（处理依赖关系）。
 
 
 
@@ -684,10 +699,13 @@ vi /etc/profile.d/java_home.sh
 source /etc/profile
 
 # 指定用户设置特定环境变量
-vi ~/.bash_profile
+vi ~/.bash_profile	
 # 附加环境变量
 export PATH=/opt/gypc_ams/php-7.2.34/sapi/cli/:/opt/gypc_ams/php-7.2.34/sapi/fpm/:$PATH
 source ~/.bash_profile
+
+# ubuntu 中 sudo 用户变量设置
+sudo visudo
 ```
 
 

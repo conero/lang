@@ -377,6 +377,17 @@ IP 服务器		->  HTTP 相应
 
 
 
+- chromium 浏览器    https://github.com/chromium/chromium
+
+
+
+portable 绿色版本
+
+- windows
+  - chromium  浏览器安装版本   https://github.com/portapps/ungoogled-chromium-portable ， 官网地址 https://portapps.io/app/ungoogled-chromium-portable/
+
+
+
 
 
 ### 内核
@@ -400,6 +411,14 @@ IP 服务器		->  HTTP 相应
 | 81.0.4044.138 | 2020-04-08 | V8 8.1.307.32 |              |
 | 80.0.3987.87  | 2020-02-06 |               |              |
 |               |            |               |              |
+
+
+
+### 调试工具（DevTools）
+
+**Chrome DevTools Protocol** (CDP协议)   是一组 JSON 格式的数据封装协议，CDP 封装库参考  https://github.com/ChromeDevTools/awesome-chrome-devtools 。
+
+流行的库有 [Puppeteer](https://github.com/GoogleChrome/puppeteer/)，[Playwright](https://github.com/microsoft/playwright) 等，并支持 Chrome、Firefox等浏览器（可实现 Headless Chrome）
 
 
 

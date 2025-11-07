@@ -1960,6 +1960,8 @@ _挖矿是个将待确认的交易数据包含到区块链中，从而完成对�
 
 - arm          `Acorn RISC Machine`  **AMD 产品**
   - aarch64              64位的ARM架构，ARMv8。
+  - armhf       是 **ARM hard float** 的缩写，指的是支持硬件浮点运算的 ARM 处理器架构；主要用于需要高效浮点运算的嵌入式系统和设备。
+  - Apple Silicon 架构；苹果自研 ARM 架构，如 M1/M2/M3 系列芯片
   
 - mips         RISC处理器（Microprocessor without interlocked piped stages），无内部互锁流水级的微处理器
 
