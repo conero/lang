@@ -198,6 +198,16 @@ git checkout FETCH_HEAD
 
 
 
+忽略https证书强制拉取
+
+```shell
+GIT_SSL_NO_VERIFY=true git clone https://example.com/repo.git
+```
+
+
+
+
+
 #### 记录每次更新到仓库
 
 > **已跟踪或未跟踪**
@@ -747,6 +757,7 @@ git checkout -b <branchName>
 git checkout -b <branchName> remotes/origin/<branchName>
 # 以远程分支为基础拉取分支
 git checkout -b trys-190329/krpano remotes/origin/trys-190329/krpano 
+git checkout -b open_ticket origin/open_ticket
 
 # 分支简写
 # Method 2
@@ -1366,6 +1377,8 @@ git svn clone file:///tmp/test-svn -T trunk -b branches -t tags
 
 # 如，遵循基础
 git svn clone https://x.y.z.t/svn/expo -T trunk -b branches -t tags
+# 默认分支拉取代码
+git svn clone --stdlayout --authors-file=useinfo.txt https://1.76.57.172/svn/eCloud eCloud
 
 # git 克隆
 git svn clone file:///tmp/test-svn -s
@@ -1373,7 +1386,7 @@ git svn clone file:///tmp/test-svn -s
 # 与两者前者接口一样
 git init
 git svn fetch <URL>
-# 拉取当前的地址内容
+# 拉取当前的地址内容(拉取而不合并)
 git svn fetch
 
 # 提交
@@ -1383,7 +1396,7 @@ git commit -am 'Adding git-svn instructions to the README'
 # 推送项目
 git svn dcommit
 
-# 拉取最新代码
+# 拉取最新代码（当前分支）
 git svn rebase
 
 # 显示参照

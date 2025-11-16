@@ -3610,6 +3610,21 @@ cli = { version="2.0.0", path = "../../uymas/cli", package = "uymas_cli"}
 
 
 
+使用国内镜像
+
+```shell
+# linux 环境下
+export RUSTUP_DIST_SERVER=https://mirrors.tuna.tsinghua.edu.cn/rustup
+export RUSTUP_UPDATE_ROOT=https://mirrors.tuna.tsinghua.edu.cn/rustup/rustup
+
+# 工具默认源地址
+https://static.rust-lang.org
+```
+
+
+
+
+
 ### rustfmt
 
 > rust 代码格式化工具

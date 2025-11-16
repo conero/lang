@@ -229,6 +229,7 @@ uname -a
 
 # 查看本机的ip地址（参考  https://ifconfig.me/）
 curl ifconfig.me
+curl ipconfig.org
 
 # 查看本机账号
 ifconfig -a
@@ -925,6 +926,10 @@ service redis start
 
 # 开机自启动
 update-rc.d redis defaults
+
+
+# 查看服务列表及状态
+systemctl list-unit-files --type=service
 ```
 
 
@@ -1092,6 +1097,8 @@ tar -xvf ./zig-x86_64-linux-0.15.1.tar.xz
 tar -czvf path-dist.tar.gz ./dist
 # ./dist 不做顶级，加上参数`-C` 和 `.`
 tar -czvf path-dist.tar.gz -C ./dist .
+# 过滤文件
+tar -czvf ksjpm_demo_flow.tar.gz --exclude='runtime' --exclude='uploads' --exclude='.git' ksjpm_demo_flow/
 
 # zip 压缩
 $ zip
@@ -1939,6 +1946,9 @@ dpkg -l | grep **openssl**
 # 当直接执行 .deb 包时，可能会出现如下错误：权限不够,可使用命令行
 sudo dpkg -i <package.deb>
 sudo apt install <package.deb>
+
+# 如更新新版微信安装包（可覆盖历史安装）
+sudo dpkg -i WeChatLinux_x86_64-4.1.0.deb
 ```
 
 
@@ -2963,6 +2973,70 @@ set -x PATH $PATH $GOPATH/bin $GOROOT/bin
 # 删除
 set -e myvalue
 ```
+
+
+
+
+
+**基本语法**
+
+使用变量
+
+```shell
+echo "home dir: $HOME, current dir: $PWD"
+
+# 设置变量
+set name 'Joshua Conero'
+echo $name
+
+# 通配符
+# 数据当前目录下
+ls j*.p*
+
+# 子集目录递归查询
+ls /var/**.log
+
+# 子命令执行
+echo In (pwd), running $(uname)
+```
+
+
+
+列表
+
+```shell
+# 列表
+# 输出列表
+echo $PATH
+
+# 统计个数
+count $PATH
+
+# 追加数组
+set PATH $PATH /usr/local/bin
+# 索引读取(从1开始)
+echo "第一个 $PATH[1], 最后一个 $PATH[-1]"
+# 索引范围
+echo $PATH[1..2]
+
+# 遍历
+for val in $PATH
+  echo "entry: $val"
+end
+```
+
+
+
+
+
+逻辑运算
+
+```shell
+ # &&/与, ||/或, !/非, 别名 and/or/not
+ ./configure && make && sudo make install
+```
+
+
 
 
 
