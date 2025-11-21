@@ -353,7 +353,8 @@ Markdown to PDF，主要是通过模板生成tex文件，然后渲染成pdf。�
 ### 代码
 
 - 代码统计工具
-  - https://github.com/XAMPPRocky/tokei                         rust 编写，计算快。
+  - https://github.com/XAMPPRocky/tokei                         rust 编写，计算快。（开发滞缓）
+  - https://github.com/boyter/scc                                        go 编写统计工具，可有费用估值等
   - https://github.com/AlDanial/cloc                                    perl编写
 
 

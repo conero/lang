@@ -60,6 +60,29 @@ host    all             all             0.0.0.0/0               md5
 
 
 
+#### ubuntu 24.04 版本安装
+
+设置系统的deb 源后，使用 apt 安装，[参考](https://blog.junxworks.cn/articles/2025/03/31/1743412091261.html)
+
+```shell
+sudo apt install -y postgresql-15
+
+# 检查服务状态
+sudo systemctl status postgresql@15-main
+
+# 修改密码
+sudo -u postgres psql -c "ALTER USER postgres WITH PASSWORD '你的密码';"
+
+# 相关配置文件 /etc/postgresql/15/main/
+# 重启服务
+sudo systemctl restart postgresql@15-main
+
+# 设置开机启动
+sudo systemctl enable postgresql@15-main
+```
+
+
+
 ### SQL
 
 #### create
@@ -227,5 +250,30 @@ show server_version;
 
 # 显示服务器编码
 show server_encoding;
+```
+
+
+
+### 附录
+
+#### 源设置
+
+Ubuntu 22.04/24.04 使用[阿里源](https://developer.aliyun.com/mirror/postgresql/)安装 PostgreSQL, 参考 https://zhuanlan.zhihu.com/p/698519180
+
+```shell
+# bash 命令
+sudo apt update && \
+sudo apt install -y curl gpg gnupg2 software-properties-common apt-transport-https lsb-release ca-certificates && \
+curl -fsSL https://mirrors.aliyun.com/postgresql/repos/apt/ACCC4CF8.asc | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/postgresql.gpg && \
+echo "deb https://mirrors.aliyun.com/postgresql/repos/apt/ `lsb_release -cs`-pgdg main" |sudo tee  /etc/apt/sources.list.d/pgdg.list && \
+sudo apt update && sudo apt install -y postgresql-16
+
+
+# fish 命令
+sudo apt update && \
+sudo apt install -y curl gpg gnupg2 software-properties-common apt-transport-https lsb-release ca-certificates && \
+curl -fsSL https://mirrors.aliyun.com/postgresql/repos/apt/ACCC4CF8.asc | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/postgresql.gpg && \
+echo "deb https://mirrors.aliyun.com/postgresql/repos/apt/ $(lsb_release -cs)-pgdg main" |sudo tee  /etc/apt/sources.list.d/pgdg.list && \
+sudo apt update && sudo apt install -y postgresql-16
 ```
 

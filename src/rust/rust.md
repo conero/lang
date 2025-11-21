@@ -3564,6 +3564,18 @@ $env:RUST_BACKTRACE=full;
 
 
 
+**workspace**
+
+Cargo 的 resolver 版本从 1 到 3，核心进化方向是 **更严格的依赖版本冲突检测、更合理的重复依赖处理、适配新版 Rust 特性**
+
+主要含义：
+
+- resolver = "1"    Rust 1.38+（2018 edition 配套/无）
+- resolver = "2"    Rust 1.53+（2021 edition 配套    
+- resolver = "3"    Rust 1.75+（2024 edition 配套）
+
+
+
 ### 安装
 
 rust 支持多系统：如 window，linux，mac等

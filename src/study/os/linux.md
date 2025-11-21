@@ -2331,6 +2331,30 @@ $ rpm -qa | grep libxml2
 
 ## 工具包及套件
 
+### GNU coreutils
+
+GNU 核心实用程序和 util-linux，共同提供了管理 Linux 系统所需的基本实用程序。
+
+- gnu coreutils                 https://github.com/coreutils/coreutils , [官网](https://www.gnu.org/software/coreutils/manual/html_node/index.html)
+- rust coreutils                 https://github.com/uutils/coreutils ，rust 重写版本
+
+
+
+```shell
+# 查看详情
+info coreutils
+
+# ubuntu 版本查询
+apt show coreutils
+dpkg -l | grep coreutils
+# 通过提供的基本命令详情查看
+ls --version
+```
+
+
+
+
+
 ### 包管理软件
 
 **snap** 由 Canonical（Ubuntu 母公司）开发的新型通用包管理系统，采用独立封装的 snap 格式包。以解决解决依赖冲突、实现跨发行版兼容、提供沙箱隔离，适合应用级软件（尤其是桌面应用）。

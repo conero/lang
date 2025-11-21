@@ -62,6 +62,30 @@
 
 
 
+## 类型
+
+当前常见的操作系统有
+
+- Linux
+  - Debian
+  - Red Hat/Rocky/AlmaLinux
+  - SUSE
+  - Ubuntu
+  - 其他 (generic GLIBC)
+- macOS
+- Windows
+- BSD
+  - OpenBSD
+  - FreeBSD
+  - NetBSD
+- Solaris
+
+
+
+Linux 是一个从零开始构建的类 Unix 操作系统，而 BSD 则直接继承了 Unix 的血统。
+
+
+
 
 
 # <span id="menu_unix">UNIX</span> 1970
