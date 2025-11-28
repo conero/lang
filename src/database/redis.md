@@ -59,6 +59,10 @@ github 地址： https://github.com/redis/redis
 
 
 
+默认端口：6379
+
+
+
 ### 安装
 
 通过编译源码安装 redis
@@ -77,6 +81,18 @@ make && make install
 
 
 
+yum 安装
+
+```shell
+# 安装默认 yum 版本号
+yum install redis
+ 
+# 配置文件地址
+vi /etc/redis.conf
+```
+
+
+
 
 
 ### 启动
@@ -84,6 +100,9 @@ make && make install
 ```shell
 # 使用 nohup 启动
 nohup redis-server &
+
+# 指定配置文件
+redis-server /etc/redis/16379.conf
 ```
 
 
@@ -107,6 +126,15 @@ nohup ./dragonfly --port 6380 &
 ```shell
 # 关闭保护模式
 protected-mode no
+
+# 运行外网访问
+bind 0.0.0.0
+
+# 修改端口号
+port 16379
+
+# 设置密码
+requirepass 123456
 ```
 
 
@@ -115,7 +143,7 @@ protected-mode no
 
 ### 命令
 
-启动服务
+连接服务
 
 ```shell
 # redis 链接指定 host 域名
@@ -157,6 +185,11 @@ ttl key
 set $key $values
 # 读取参数
 get $key
+# 读取hash 数据，全部数据
+hgetall $key
+# 读取sha 值,减下面的某个值
+hget key fiead
+
 # 设置多个参数
 mset $k1 v1 $k2 v2 $k3 v3 [$k value]
 # 批量获取参数
@@ -180,6 +213,9 @@ decr $key
 
 # 查看键值是否存在
 exits $key
+
+# 查看键值类型
+type $key
 ```
 
 

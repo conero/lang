@@ -1694,7 +1694,11 @@ sudo ln -s /usr/local/python37/bin/python3.7 /usr/bin/python37
 
 
 
+#### 科学数据处理框架
 
+- pandas      数据分析库，
+- numpy      高性能的矩阵运算
+- polars        rust 编写数据处理框架，提供 python/rust 接口支持  https://github.com/pola-rs/polars
 
 
 

@@ -12,6 +12,10 @@ ziglang 始于2016由  Andrew Kelley 开发，基于 LLVM 后端
 
 
 
+git 仓库：https://codeberg.org/ziglang/zig   （2025/11/26 由 https://github.com/ziglang/zig 迁入）
+
+
+
 ### 命令
 
 ```shell

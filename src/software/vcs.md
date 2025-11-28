@@ -1627,6 +1627,28 @@ git checkout *.php
 - `commit object`  提交对象
 - `decorate`      
 
+
+
+### 扩展/工具
+
+#### Git-LFS
+
+git 大文件管理工具，参考 https://segmentfault.com/a/1190000045394658
+
+```shell
+# ubuntu 安装 git-lfs
+sudo apt-get install git-lfs
+
+# 仓库 lfs 初始化
+git lfs install
+```
+
+
+
+
+
+
+
 ### 参考
 
 #### git-scm
