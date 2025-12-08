@@ -85,6 +85,21 @@ sudo systemctl enable postgresql@15-main
 
 ### SQL
 
+
+
+#### 数据类型
+
+
+
+数字整形：支持类型 int、int2/smallint、int4/integer/int、int8/bigint
+
+- int
+- int2    2字节整形，16位 (`2^16`)
+- int4    4字节整形，32位
+- int8    8字节整形，64位
+
+
+
 #### create
 
 ```sql
@@ -95,6 +110,56 @@ COMMENT ON DATABASE ksj_gysjj_xyjgxt IS '数据库名称';
 -- scheme 创建
 CREATE SCHEMA IF NOT EXISTS scjg_xyjg AUTHORIZATION postgres;
 ```
+
+
+
+
+
+#### alter
+
+列修改
+
+```sql
+-- 已知 sex 性别为varchar，将其修改为 int
+
+ALTER TABLE public.guest_user ALTER COLUMN sex DROP DEFAULT;
+ALTER TABLE public.guest_user ALTER COLUMN sex TYPE int2 USING sex::int2;
+-- 合成一句
+ALTER TABLE public.guest_user 
+	ALTER COLUMN pw_type DROP default,
+	ALTER COLUMN pw_type TYPE int2 USING pw_type::int2;
+
+-- 设置默认值
+ALTER TABLE public.guest_user ALTER COLUMN sex SET DEFAULT 0;
+-- 设置必填
+ALTER TABLE public.guest_user ALTER COLUMN sex SET NOT NULL;
+
+-- 合并写法
+ALTER TABLE public.guest_user
+  ALTER COLUMN sex SET DEFAULT 0,
+  ALTER COLUMN sex SET NOT NULL;
+```
+
+
+
+带值转换
+
+```sql
+-- 1. 转换类型时确保无 NULL（如前所述）
+ALTER TABLE public.guest_user
+ALTER COLUMN sex TYPE INT2
+USING COALESCE(
+  CASE 
+    WHEN sex = '男' THEN 1
+    WHEN sex = '女' THEN 2
+    WHEN sex ~ '^\d+$' THEN sex::INT2
+    ELSE 0
+  END,
+  0
+);
+```
+
+
 
 
 

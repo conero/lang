@@ -1347,7 +1347,7 @@ git archive --format=zip -o zzt-211020-02.zip HEAD $(git diff v0.0.1 --name-only
 
 #### gitk
 
-git 图形化工具用于更改基类和文件差异，提交记录等。
+git 图形化工具用于更改基类和文件差异，提交记录等，文档参考 https://git-scm.com/docs/gitk。
 
 ```shell
 # 设置语言编码格式
@@ -1356,8 +1356,11 @@ git config --global gui.encoding utf-8
 # windows 打开gitk
 gitk
 
-# 执行文件路径
+# 指定文件路径
 gitk ruoyi-admin/src/main/resources/application-prod.yml
+
+# 指定一点
+gitk --since='1 day'
 ```
 
 

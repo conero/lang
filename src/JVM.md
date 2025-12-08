@@ -73,6 +73,9 @@ jdk 下载地址：
 
 - openjdk
   - [adoptium.net](https://adoptium.net/zh-CN/temurin/releases/) 可下载 jre/jdk等
+  - https://mirrors.huaweicloud.com/openjdk/    华为镜像
+  - https://jdk.java.net/archive/                               oracle 下载地址
+  - https://mirrors.tuna.tsinghua.edu.cn/Adoptium/   清华大学镜像
 
 
 
