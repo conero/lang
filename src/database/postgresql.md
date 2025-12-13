@@ -100,6 +100,23 @@ sudo systemctl enable postgresql@15-main
 
 
 
+
+
+##### 字符串 
+
+
+
+字符串换行
+
+```sql
+-- standard_conforming_strings = on（PostgreSQL 9.1+ 默认为 on）
+select E'line1\nline2\n  line3' as test;
+```
+
+
+
+
+
 #### create
 
 ```sql
@@ -116,6 +133,23 @@ CREATE SCHEMA IF NOT EXISTS scjg_xyjg AUTHORIZATION postgres;
 
 
 #### alter
+
+用户密码修改，默认安装后远程工具无法登录，需要修改密码
+
+```sql
+ALTER USER postgres WITH PASSWORD 'blockPswd';
+```
+
+
+
+列字段新增
+
+```sql
+	alter table guest_invite add column recept_level int2 DEFAULT 0;
+COMMENT ON COLUMN public.guest_invite.recept_level IS '嘉宾接待级别';
+```
+
+
 
 列修改
 
@@ -297,7 +331,28 @@ show server_version;
 
 ### 备份/恢复
 
+pgsql 复制分为物理复制、逻辑复制。
+
 可使用 pgAdmin 工具，选择数据库使用“Restore“、”Backup”工具恢复或备份数据库。（实际使用图形化界面，错误信息不太好看）
+
+
+
+命令行导出
+
+```shell
+# 命令行导出sql
+pg_dump -U postgres -h 123.57.63.25 -p 39751 sbh > sbh_backup.sql
+
+# 命令格式
+pg_dump -U 用户名 -h 主机地址 -p 端口 数据库名 > 备份文件.sql
+
+
+# 使用 psql 导入存文本 sql 脚本
+# 切换用户:  sudo su - postgres
+psql -U postgres -d sbh_25 -f /home/edat/conero/repository/conero/e-birdnest/expo25rw/sbh_backup.sql
+```
+
+
 
 
 
