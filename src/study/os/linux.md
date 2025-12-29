@@ -93,8 +93,8 @@ linux 常见的桌面环境：[Gnome](https://www.gnome.org/)，KDE，Xfce，Cin
 - 中标麒麟（NeoKylin） https://www.kylinos.cn/
 - 银河麒麟（KylinOS）  https://kylinos.cn/
 - 中科方德            中科方德软件（中国）有限公司  https://www.nfschina.com/
-- 华为欧拉（openEuler） 华为欧拉（openEuler）是华为推出的开源操作系统，主打服务器市场。 https://www.openeuler.org/zh/
-- 龙蜥（OpenAnolis）  阿里智能云OS（OpenEuler）  https://openEuler.org/
+- 华为欧拉（openEuler） 华为欧拉（openEuler）是华为推出的开源操作系统，主打服务器市场/电信基础设施，兼容性好，可作为系统基座。 https://www.openeuler.org/zh/
+- 龙蜥（OpenAnolis）  阿里智能云OS（OpenEuler），适合与 centsOS平滑过渡（兼容性好）  https://openEuler.org/
 - 鸥栖（OpenCloudOS） 
 - 开放麒麟（openKylin） 
 
@@ -102,12 +102,14 @@ linux 常见的桌面环境：[Gnome](https://www.gnome.org/)，KDE，Xfce，Cin
 
 目前国内比较有代表性的 Linux 发行版包括：
 
-- **麒麟系列**：银河麒麟（Kylin）、中标麒麟（NeoKylin），在政府、金融、能源、电力等行业大规模应用；
-- **统信 UOS**：基于 Debian 深度优化，桌面体验友好，是国产桌面 Linux 的代表；
+- **麒麟系列**：银河麒麟（Kylin）、中标麒麟（NeoKylin），在政府、金融、能源、电力等行业大规模应用；Kylin/应用军工（主打安全），NeoKylin/企业或民用
+- **统信 UOS**：基于 Debian 深度优化，桌面体验友好，是国产桌面 Linux 的代表，界面与Windows系统界面相识，适合Windows平滑过渡
 - **深度 Deepin**：社区活跃度高，UI 美观，国际影响力大；
 - **普华、红旗、启明星辰** 等，也在做面向行业的定制版。
 
 
+
+**麒麟（Kylin）**，它走的是安全牌路线，背景也很特殊，最早是国防科技大学搞的。现在分了两支，一支是银河麒麟，主打国企、军工；另外一支是中标麒麟，侧重民用。
 
 
 
