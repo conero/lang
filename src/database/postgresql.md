@@ -287,6 +287,24 @@ ORDER BY
 
 
 
+### 常用函数
+
+#### 逻辑函数
+
+**coalesce**  类似与mysql的 *ifnull* 函数，可用于非空判断
+
+```sql
+-- 如SQL查询
+select c.code_id, c.invite_code, c.status, g.guest_name, g.company, g.post, i.invite_id  from guest_invite_code c	
+	left join guest_invite i on i.invite_code = c.invite_code and i.pro_code = c.pro_code 
+	left join guest_user g on g.guest_id = i.guest_id 
+	-- where c.apply_id = 1994227078059667458
+	order by coalesce(i.invite_id, 0) desc
+;
+```
+
+
+
 
 
 

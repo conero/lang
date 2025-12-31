@@ -3629,6 +3629,11 @@ cli = { version="2.0.0", path = "../../uymas/cli", package = "uymas_cli"}
 export RUSTUP_DIST_SERVER=https://mirrors.tuna.tsinghua.edu.cn/rustup
 export RUSTUP_UPDATE_ROOT=https://mirrors.tuna.tsinghua.edu.cn/rustup/rustup
 
+# 阿里云
+# 临时设置环境变量以替换默认更新源和分发服务器
+export RUSTUP_UPDATE_ROOT=https://mirrors.aliyun.com/rustup/rustup
+export RUSTUP_DIST_SERVER=https://mirrors.aliyun.com/rustup
+
 # 工具默认源地址
 https://static.rust-lang.org
 ```
