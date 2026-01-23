@@ -461,6 +461,9 @@ git log v0.4.0..
 ```shell
 # 输出，csv 格式
 git log --date=format:'%Y-%m-%d %H:%M:%S' --pretty=format:'"%h","%an","%ad","%s"'
+
+# 用户当前提交记录
+git log --since="today 00:00:00" --author='Joshua Conero' --date=format:'%Y-%m-%d %H:%M:%S'
 ```
 
 

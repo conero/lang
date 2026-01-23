@@ -1564,6 +1564,28 @@ ls /usr/bin | sort | uniq | less
 
 
 
+#### time 指定命令用时统计
+
+统计命令或代码块执行的时间消耗
+
+```shell
+# 统计 go 编译程序消耗的时间
+time go build
+
+# 测试 sleep 耗时
+time sleep 1s
+
+# 统计指定循环使用的时间消耗
+time for i in 1 2 3; sleep 1s; end
+
+# 行内变量参数
+time a_moment=1.5m sleep $a_moment
+```
+
+
+
+
+
 ### sudo
 
 > `sudo apt-get install`

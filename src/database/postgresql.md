@@ -130,6 +130,25 @@ CREATE SCHEMA IF NOT EXISTS scjg_xyjg AUTHORIZATION postgres;
 
 
 
+表格备份生成
+
+```sql
+-- 表格快速生成
+-- 表结构复制/PG 基础写法（类似 MySQL CREATE TABLE LIKE）
+create table sys_user_bk (like sys_user);
+
+-- 完整复刻（含索引 / 约束 / 序列等）
+create table sys_user_bk (like sys_user INCLUDING ALL);
+
+-- 临时表创建
+CREATE TEMP TABLE temp_guest_code (LIKE guest_invite_code INCLUDING ALL);
+
+-- 快速插入数据/查询插入数据
+insert into temp_guest_code select * from guest_invite_code;
+```
+
+
+
 
 
 #### alter
@@ -194,6 +213,19 @@ USING COALESCE(
 ```
 
 
+
+### update
+
+```sql
+-- 类似 join 数据更新
+-- b.pw_type::integer   字符串转数字
+UPDATE member_user u
+SET pw_type = b.pw_type::integer
+FROM member_user_bk b  
+WHERE 
+  u.user_id = b.user_id  
+  AND length(b.pw_type) > 0; 
+```
 
 
 

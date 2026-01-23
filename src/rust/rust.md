@@ -3638,6 +3638,13 @@ export RUSTUP_DIST_SERVER=https://mirrors.aliyun.com/rustup
 https://static.rust-lang.org
 ```
 
+fish 环境
+
+```shell
+set -x RUSTUP_UPDATE_ROOT https://mirrors.aliyun.com/rustup/rustup
+set -x RUSTUP_DIST_SERVER https://mirrors.aliyun.com/rustup
+```
+
 
 
 
@@ -3893,6 +3900,9 @@ use std::{
 - [图解 Rust 编译器与语言设计 | Part1：Rust 编译过程与宏展开](https://cloud.tencent.com/developer/article/1792684)
 - [Rust no-std 工程实践](https://zhuanlan.zhihu.com/p/395670603)
 - [rust通过代码实际学习知识以及概念](https://github.com/rust-lang/rustlings)
+- [Rust 中文资源](https://github.com/rust-lang-cn)  github 组织，Rust 中文翻译项目组
+
+
 
 
 
