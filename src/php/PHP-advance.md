@@ -297,6 +297,8 @@ php -d display_startup_errors=1 -d error_reporting=-1 -d display_errors -c "/etc
 
 **扩展编译**
 
+经测试如 php7.2 编译扩展时无需防止到源码中，意味着无需下载源码。
+
 ```shell
 # 转入扩展页面
 cd ext-src

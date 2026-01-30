@@ -117,6 +117,30 @@ select E'line1\nline2\n  line3' as test;
 
 
 
+#### 对象
+
+##### 序列
+
+```sql
+-- 查询序列
+SELECT * FROM pg_sequences WHERE schemaname = 'public';
+
+-- 创建值如
+CREATE SEQUENCE public.exhibitor_basic_info_id_seq
+	INCREMENT BY 1
+	MINVALUE 1
+	MAXVALUE 2147483647
+	START 1
+	CACHE 1
+	NO CYCLE;
+```
+
+
+
+
+
+
+
 #### create
 
 ```sql
@@ -164,8 +188,19 @@ ALTER USER postgres WITH PASSWORD 'blockPswd';
 列字段新增
 
 ```sql
-	alter table guest_invite add column recept_level int2 DEFAULT 0;
+alter table guest_invite add column recept_level int2 DEFAULT 0;
 COMMENT ON COLUMN public.guest_invite.recept_level IS '嘉宾接待级别';
+
+-- 多字段新增
+alter table guest_invite_code
+	add column send_mid int8 NOT NULL DEFAULT 0,
+	add column send_mid_time timestamp NULL;
+COMMENT ON COLUMN public.guest_invite_code.send_mid IS '邀请码发送到的用户id';
+COMMENT ON COLUMN public.guest_invite_code.send_mid_time IS '邀请码发送到的用户的时间戳';
+
+-- 新增主键
+ALTER TABLE exhibitor_user
+	ADD CONSTRAINT pk_exhibitor_user_id PRIMARY KEY (id);
 ```
 
 
@@ -191,6 +226,18 @@ ALTER TABLE public.guest_user ALTER COLUMN sex SET NOT NULL;
 ALTER TABLE public.guest_user
   ALTER COLUMN sex SET DEFAULT 0,
   ALTER COLUMN sex SET NOT NULL;
+  
+-- 将 member_user.sex 字段有 varchar 修改为 int2
+ALTER TABLE member_user
+-- 1. 删除旧的varchar类型默认值
+ALTER COLUMN sex DROP DEFAULT,
+-- 2. 修改字段类型（处理空字符串/非数字）
+ALTER COLUMN sex TYPE smallint USING COALESCE(NULLIF(sex, '')::smallint, 0),
+-- 3. 重新设置smallint类型的默认值（如0）
+ALTER COLUMN sex SET DEFAULT 0;  
+  
+-- 列字段修改
+ALTER TABLE public.member_user RENAME COLUMN fileavatar TO avatar;
 ```
 
 

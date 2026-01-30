@@ -576,6 +576,9 @@ umount /opt/Kingbase/install/
 sudo ntfsfix /dev/sdb1
 
 # 通过 lsblk -f 显示文件系统类型
+
+# 修改后手动挂载
+sudo mount /dev/sdc1 /media/conero/
 ```
 
 
