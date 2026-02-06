@@ -364,6 +364,39 @@ ORDER BY
 
 
 
+### select
+
+
+
+递归查询
+
+```sql
+WITH recursive tree as (
+	select dept_id, dept_name, parent_id from sys_dept
+	-- 起点
+	-- where dept_id = 1995695440665133058
+	where dept_id = 109	
+	UNION all
+	select d2.dept_id, d2.dept_name, d2.parent_id from sys_dept d2
+	-- 关系
+	inner join tree on d2.dept_id = tree.parent_id
+)
+select * from tree
+;
+```
+
+
+
+
+
+查询是否在组合中
+
+```sql
+select * from sys_dept where '2014257704062095361' = any(string_to_array(leader, ','));
+```
+
+
+
 
 
 ### 常用函数
