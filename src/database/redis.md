@@ -103,6 +103,9 @@ nohup redis-server &
 
 # 指定配置文件
 redis-server /etc/redis/16379.conf
+
+# 通过服务启动
+systemctl restart redis-server.service
 ```
 
 
@@ -268,6 +271,39 @@ config get requirepass
 - 命令入队，批量操作，FIFO 顺序执行
 - `exec`                            执行事务
 - `discard`                      抛弃事务（取消事务）
+
+
+
+
+
+### 恢复及备份
+
+使用 save 导出 dump.rdb 文件
+
+```shell
+# 使用 redis-cli 登录
+# 执行 save，在数据目录生成 dump.rdb
+# 执行备份命令（阻塞式，数据量大时会卡住 Redis）
+save
+
+# 或者使用非阻塞备份（推荐）
+bgsave
+
+# 通过命令读取数据模式
+config get dir
+```
+
+
+
+将 `dump.rdb` 迁移到对应的数据目录，重启即可
+
+手动使用备份文件
+
+```shell
+redis-server --dir /path/to/backup/dir --dbfilename my_dump.rdb
+```
+
+
 
 
 
