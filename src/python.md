@@ -1414,6 +1414,9 @@ pyenv uninstall 2.7.18
 
 # 查看已安装的版本
 pyenv versions
+
+# 查看当前 python 版本
+pyenv versions
 ```
 
 

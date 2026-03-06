@@ -1657,6 +1657,8 @@ id
 ```shell
 # 搜索全局文件中的文本
 grep -nr "10.35.1.223" *
+# grep 执行目录搜索
+grep -nri "qr.gz-jjjt.com" /usr/local/openresty/nginx/conf/conf.d/*
 
 # 顶级目录下含该文本的所有的
 # -n 标识展示行号
