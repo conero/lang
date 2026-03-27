@@ -449,6 +449,9 @@ select name,setting,context from pg_settings where name like '%encoding%';
 # 查看用户列表
 \du
 
+# 查看数据表
+\dt
+
 # 查看数据库服务器版本号
 select version();
 

@@ -452,6 +452,9 @@ git log --since="today 00:00:00"
 git log --since="today 00:00:00" --author='Joshua Conero'
 # 查看 v0.4.0 以后的版本提交
 git log v0.4.0..
+
+# 查看其他分支日志
+git log $branchName
 ```
 
 
@@ -1361,6 +1364,9 @@ gitk
 
 # 指定文件路径
 gitk ruoyi-admin/src/main/resources/application-prod.yml
+
+# 查看分支日志
+gitk master
 
 # 指定一点
 gitk --since='1 day'
