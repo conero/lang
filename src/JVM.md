@@ -305,6 +305,47 @@ java '-Dserver.port=7480' -jar .\target\cas.war
 
 
 
+#### 回调/Lambda
+
+**lambda**
+
+Java 从 JDK 8 开始引入了 Lambda 表达式，它是一种简洁的语法，用于表示匿名函数（即“函数字面量”），常用于实现函数式接口（只有一个抽象方法的接口），从而轻松实现回调、高阶函数（方法返回函数）、事件处理等。
+
+格式
+
+```java
+(参数) -> { 函数体 }
+```
+
+与传统匿名类对比
+
+```java
+// 传统方式（匿名内部类）
+Runnable r = new Runnable() {
+    @Override
+    public void run() {
+        System.out.println("Hello");
+    }
+};
+
+// Lambda 方式
+Runnable r = () -> System.out.println("Hello");
+```
+
+
+
+java 常见函数接口
+
+| 接口           | 抽象方法          | 用途                       |
+| -------------- | ----------------- | -------------------------- |
+| Runnable       | void run()        | 无参无返回                 |
+| Supplier<T>    | T get()           | 无参，有返回               |
+| Consumer<T>    | void accept(T t)  | 有参，无返回（常用于回调） |
+| Function<T, R> | R apply(T t)      | 有参有返回                 |
+| Predicate<T>   | boolean test(T t) | 判断条件                   |
+
+
+
 ### java 安装
 
 #### linux 安装java
