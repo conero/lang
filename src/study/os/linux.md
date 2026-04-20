@@ -1395,6 +1395,7 @@ cal
 # 操作系统时间同步
 # 使用 ntpdate 同步时间
 ntpdate ntp.aliyun.com
+ntpdate 203.107.6.88
 
 # 将系统时间同步到硬件，防止系统重启后时间被还原
 hwclock --systohc

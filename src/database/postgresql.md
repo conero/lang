@@ -91,6 +91,28 @@ sudo systemctl enable postgresql@15-main
 
 
 
+| 类型名称                                    | 别名                       | 描述                |
+| ------------------------------------------- | -------------------------- | ------------------- |
+| bigint                                      | int8                       | 有符号8位(64)整形   |
+| bigserial                                   | serial8                    | 自增8位(64)整形     |
+| integer                                     | `int`, `int4`              | 有符号4位(64)整形   |
+| smallint                                    | int2                       |                     |
+| smallserial                                 | serial2                    |                     |
+| double precision                            | `float`, `float8`          |                     |
+| numeric[ (*`p`*, *`s`*) ]                   | decimal [ (*`p`*, *`s`*) ] | 指定位浮点数        |
+| bit([N])                                    |                            | 指定长度的N位字符   |
+| bit varying                                 | varbit [ (*`n`*) ]         | 可变长字符          |
+| character([N])                              | char(N)                    | 指定长度的N位字符串 |
+| character varying([N])                      | varchar([N])               | 可变长的N位字符串   |
+| boolean                                     | bool                       | 布尔类型            |
+| json                                        |                            |                     |
+| timestamp [ (*`p`*) ] [ without time zone ] |                            | 无时区时间          |
+| timestamp [ (*`p`*) ] with time zone        | timestamptz                | 有时区时间          |
+| time [ (*`p`*) ] [ without time zone ]      |                            |                     |
+| time [ (*`p`*) ] with time zone             | timez                      |                     |
+
+
+
 数字整形：支持类型 int、int2/smallint、int4/integer/int、int8/bigint
 
 - int
@@ -98,19 +120,31 @@ sudo systemctl enable postgresql@15-main
 - int4    4字节整形，32位
 - int8    8字节整形，64位
 
-
+时间有：timestamp, timestamptz, time, timetz, date
 
 
 
 ##### 字符串 
-
-
 
 字符串换行
 
 ```sql
 -- standard_conforming_strings = on（PostgreSQL 9.1+ 默认为 on）
 select E'line1\nline2\n  line3' as test;
+
+-- 字符串转数字类型
+select v_code::bigint, '123'::integer, CAST('789' AS INT) from test_data;
+```
+
+
+
+##### 时间
+
+```sql
+select now() "时间", 
+	to_timestamp(1619773291) "时间戳转时间", 
+	EXTRACT(EPOCH FROM NOW())::INTEGER "时间转时间戳", 
+	to_timestamp(EXTRACT(EPOCH FROM NOW())::INTEGER) "时间戳转时间2";
 ```
 
 
@@ -258,6 +292,19 @@ USING COALESCE(
   0
 );
 ```
+
+
+
+非空 int 时间戳转时间
+
+```sql
+ALTER TABLE member_face 
+ALTER COLUMN ctid_time DROP default,
+ALTER COLUMN ctid_time DROP NOT NULL,
+ALTER COLUMN ctid_time TYPE TIMESTAMP USING to_timestamp(ctid_time);
+```
+
+
 
 
 
@@ -478,7 +525,11 @@ pg_dump -U postgres -h 123.57.63.25 -p 39751 sbh > sbh_backup.sql
 
 # 命令格式
 pg_dump -U 用户名 -h 主机地址 -p 端口 数据库名 > 备份文件.sql
+# -n 等支持指定多个
+pg_dump -U 用户名 -h 主机地址 -p 端口 -n schema -n schemaN -d 数据库名 > 备份文件.sql
 
+# 导出时指定 schem
+pg_dump -U postgres -d sbh_prod_qy -n bigdata > "sbh_backup-bigdata-$(date +%Y%m%d%H%M%S).sql"
 
 # 使用 psql 导入存文本 sql 脚本
 # 切换用户:  sudo su - postgres
